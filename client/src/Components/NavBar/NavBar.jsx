@@ -1,8 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import style from "./Nav.module.css";
+import style from "./NavBar.module.css";
 import logo from "../../assets/NifytiGo.png";
-import { logout } from "../../redux/Actions/logout";
+//import { logout } from "../../redux/Actions/logout";
 import avatar from "../../assets/avatar2.png";
 import SearchBar from "../../Components/Search/Search";
 

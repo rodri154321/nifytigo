@@ -1,14 +1,12 @@
-
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 //import Collections from './Views/Collections/Collections'
 import Home from './Views/Home/Home'
-import NavBar from './Components/NavBar'
+import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
-
+import About from './Views/About/About'
 
 function App() {
-
 
   return (
     <>
