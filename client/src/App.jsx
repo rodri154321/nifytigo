@@ -2,7 +2,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Collections from './Views/Collections/Collections'
-import Home from './Views/Home/Home'
+//import Home from './Views/Home/Home'
 
 
 function App() {
@@ -19,11 +19,11 @@ function App() {
       }
 
       <Routes>
-        <Route path="/home" element={<Home />}/>
+        
         <Route path="/collections" element={<Collections />}/>
 
         {/*
-
+        <Route path="/home" element={<Home />}/>
         <Route patch="/Detail" element={<Detail />}/>
         <Route patch="/FormCollection" element={<FormCollection />}/>
         <Route patch="/About" element={<About />}/>
