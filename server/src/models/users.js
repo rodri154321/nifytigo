@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('users', {
         name: {
             type: DataTypes.STRING,
-            allwNull: false,
+            allowNull: false,
         },
     });
 };
