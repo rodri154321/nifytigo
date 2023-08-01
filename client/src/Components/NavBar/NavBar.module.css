@@ -16,7 +16,7 @@
     /* border-bottom: 1px solid #9AC71F; */
   }
   
-  .navegacion{
+  .navegation{
     display: flex;
     flex-direction: row;
     align-items: center;
