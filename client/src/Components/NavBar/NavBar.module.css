@@ -46,6 +46,13 @@
     margin-left: 1rem;
     margin-right: 2rem;
   }
+
+  .img:hover {
+    position: absolute;
+    margin-left: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
   
   .logoutButton{
     border: none;
