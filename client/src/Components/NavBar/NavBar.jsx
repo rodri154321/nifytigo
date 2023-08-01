@@ -1,27 +1,27 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import style from "./Nav.module.css";
+//import { useDispatch } from "react-redux";
+import style from "./NavBar.module.css";
 import logo from "../../assets/NifytiGo.png";
-import { logout } from "../../redux/Actions/logout";
-import avatar from "../../assets/avatar2.png";
+//import { logout } from "../../redux/Actions/logout";
+//import avatar from "../../assets/avatar2.png";
 import SearchBar from "../../Components/Search/Search";
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const loger = localStorage.getItem("loger");
-  const isClient = localStorage.getItem("isClient");
+ // const navigate = useNavigate();
+ // const dispatch = useDispatch();
+ // const loger = localStorage.getItem("loger");
+ // const isClient = localStorage.getItem("isClient");
 
   const handleLogout = () => {
     dispatch(logout()).then(() => {
       navigate("/home");
     });
-    localStorage.setItem("loger", false);
-    localStorage.setItem("detail", null);
+   // localStorage.setItem("loger", false);
+   // localStorage.setItem("detail", null);
   };
   return (
     <div className={style.container}>
-      <NavLink to="/home">
+      <NavLink to="/Home">
         <div>
           <img src={logo} alt="logo" className={style.img} />
         </div>
@@ -30,16 +30,16 @@ const NavBar = () => {
         <SearchBar />
       </div>
       <div className={style.navegation}>
-        <NavLink to="/about" className={style.navlink}>
+        <NavLink to="/About" className={style.navlink}>
           About
         </NavLink>
-        {isClient === "true" && (
+        {/*{isClient === "true" && (
           <NavLink to="/dashboard" className={style.navlink}>
             <button className={style.avatarButton}>
               <img src={avatar} alt="Avatar" className={style.avatarImage} />
             </button>
           </NavLink>
-        )}
+        )} 
         {isClient === "false" && (
           <NavLink to="/admin" className={style.navlink}>
             <button className={style.avatarButton}>
@@ -48,7 +48,7 @@ const NavBar = () => {
           </NavLink>
         )}
 
-        {loger === "true" ? (
+        {loger === "true" ? (*/}
           <NavLink to="" className={style.navlink} onClick={handleLogout}>
             <button className={style.btn}>
               <div className={style.sign}>
@@ -57,11 +57,11 @@ const NavBar = () => {
                 </svg>
               </div>
 
-              <div className={style.text}>Log out</div>
+              <div className={style.textLogOut}>Log out</div>
             </button>
           </NavLink>
         ) : (
-          <NavLink to="/login" className={style.navlink}>
+          <NavLink to="/Login" className={style.navlink}>
             <button className={style.btn}>
               <div className={style.sign}>
                 <svg viewBox="0 0 512 512">
@@ -72,7 +72,7 @@ const NavBar = () => {
               <div className={style.text}>Login</div>
             </button>
           </NavLink>
-        )}
+        ) {/*  }*/}
       </div>
     </div>
   );

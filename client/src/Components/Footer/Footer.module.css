@@ -1,143 +1,243 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.img {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.follow{
+color: #ff8c09da;
+}
+
+
+.mainConatiner {
+  position: relative;
+  width: 100%;
+  height: 17rem;
+  border-top: 1px solid #ffb109;
+  background-color: #242424;
+}
+
+.content {
+  position: absolute;
+  display: grid;
+  grid-template: 1fr / 30% 40% 30%;
+  right: 2%;
+  gap: 1rem;
+  flex-direction: row-reverse;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background-color: #242424;
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.enlaceRedes {
+  height: 30px;
+  width: 30px;
+  margin: 5%;
+  white-space: nowrap;
+  translate: 2s;
+}
+
+.enlaceRedes:hover {
+  transform: scale(1.2);
+}
+
+.conocenos {
+  text-decoration: none;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.conocenos:hover {
+  opacity: 3;
+}
+
+.navlink {
+  text-decoration: none;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-top: 13px;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: rgb(32, 197, 202);
+}
+
+.navlink:hover {
+  opacity: 3;
+}
+
+.logo {
+  height: 100px;
+  width: 350px;
+  padding-left: 5rem;
+}
+
+.box {
+  margin-top: 4rem;
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.boxNames {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 3rem;
+  margin-left: 2.7rem;
+}
+
+.boxLogo {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template: repeat(1, 1fr) / repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.contenedorRedes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  height: 70px;
+  width: 270px;
+  margin: 5px;
+}
+
+.card svg {
+  position: absolute;
+  display: flex;
+  width: 60%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 1;
+  transition: opacity 0.25s;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card .socialLink1,
+.card .socialLink2,
+.card .socialLink3,
+.card .socialLink4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  color: whitesmoke;
+  font-size: 24px;
+  text-decoration: none;
+  transition: 0.25s;
+  border-radius: 50px;
+}
+
+@media (max-width: 900px) {
+  .img {
+    margin-bottom: 0;
+    width: 50%;
   }
-  
+
   .mainConatiner {
     position: relative;
     width: 100%;
-    height: 15rem;
-    border-top: 1px solid #9ac71f;
-    background-color: black;
-  }
-  
-  .content {
-    position: absolute;
-    display: grid;
-    grid-template: 1fr / 30% 40% 30%;
-    right: 2%;
-    gap: 1rem;
-    flex-direction: row-reverse;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    background-color: black;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .column {
-    display: flex;
+    height: auto;
     flex-direction: column;
   }
-  
-  .enlaceRedes {
-    height: 30px;
-    width: 30px;
-    margin: 5%;
-    white-space: nowrap;
-    translate: 2s;
-  }
-  
-  .enlaceRedes:hover {
-    transform: scale(1.2);
-  }
-  
-  .conocenos {
-    text-decoration: none;
-    opacity: 0.8;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    font-size: 18px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .conocenos:hover {
-    opacity: 3;
-  }
-  
-  .navlink {
-    text-decoration: none;
-    opacity: 0.8;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-top: 13px;
-  }
-  
-  a:link,
-  a:visited,
-  a:active {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .navlink:hover {
-    opacity: 3;
-  }
-  
-  .logo {
-    height: 100px;
-    width: 350px;
-    padding-left: 5rem;
-  }
-  
-  .box {
-    margin-top: 4rem;
-    grid-area: 1 / 3 / 2 / 4;
-  }
-  
-  .icons {
+
+  .content {
+    position: relative;
     display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.8rem;
+    padding: 0;
+    margin-left: 0;
+    text-align: center;
   }
-  
+
   .boxNames {
     width: 100%;
-    height: 100%;
-    background-color: transparent;
-    grid-area: 1 / 2 / 2 / 3;
-    padding: 3rem;
-    margin-left: 2.7rem;
+    height: auto;
+    margin-left: 0;
+    padding: 0;
   }
-  
-  .boxLogo {
-    grid-area: 1 / 1 / 2 / 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 5rem;
+
+  .column {
+    gap: 0.2rem;
   }
-  
+
   .gridContainer {
-    display: grid;
-    grid-template: repeat(1, 1fr) / repeat(3, 1fr);
-    gap: 1rem;
-    width: 100%;
-    height: 100%;
+    grid-template: repeat(3, auto) / 1fr;
+    gap: 1.2rem
   }
-  
+
+  .boxLogo {
+    padding-left: 0;
+  }
+
   .contenedorRedes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
     width: 100%;
   }
-  
-  .card {
-    display: flex;
-    height: 70px;
-    width: 270px;
-    margin: 5px;
+
+  .conocenos {
+    margin-bottom: 0.1rem;
+
   }
-  
+
+  .boxLogo {
+    margin-bottom: 0.1rem;
+
+  }
+
+
+
   .card svg {
     position: absolute;
     display: flex;
@@ -149,227 +249,25 @@
     transition: opacity 0.25s;
     z-index: 2;
     cursor: pointer;
+    margin-bottom: 1rem;
   }
-  
-  .card .socialLink1,
-  .card .socialLink2,
-  .card .socialLink3,
-  .card .socialLink4 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-    color: whitesmoke;
-    font-size: 24px;
-    text-decoration: none;
-    transition: 0.25s;
-    border-radius: 50px;
-  }
-  
-  .card svg {
-    transform: scale(1);
-  }
-  
-  .card .socialLink1:hover {
-    background: #f09433;
-    background: -moz-linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    background: -webkit-linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    background: linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink2:hover {
-    background-color: #00ccff;
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink3:hover {
-    background-color: #5865f2;
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink4:hover {
-    background-color: #12a50b;
-    animation: bounce_613 0.4s linear;
-  }
-  
+
   @keyframes bounce_613 {
     40% {
       transform: scale(1.4);
     }
-  
+
     60% {
       transform: scale(0.8);
     }
-  
+
     80% {
       transform: scale(1.2);
     }
-  
+
     100% {
       transform: scale(1);
     }
   }
-  
-  @media (max-width: 900px) {
-    .mainConatiner {
-      position: relative;
-      width: 100%;
-      height: auto;
-      flex-direction: column;
-    }
-  
-    .content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1.8rem;
-      padding: 3rem;
-      margin-left: 0;
-      text-align: center;
-    }
-  
-    .boxNames {
-      width: 100%;
-      height: auto;
-      margin-left: 0;
-      padding: 0;
-    }
-  
-    .column {
-      gap: 0.2rem;
-    }
-  
-    .gridContainer {
-      grid-template: repeat(3, auto) / 1fr;
-      gap: 1.2rem
-    }
-  
-    .boxLogo {
-      padding-left: 0;
-    }
-  
-    .contenedorRedes {
-      width: 100%;
-    }
-    .conocenos {
-      margin-bottom: 0.1rem;
-  
-    }
-    .boxLogo {
-      margin-bottom: 0.1rem;
-  
-    }
-  
-  
-  
-  .card svg {
-    position: absolute;
-    display: flex;
-    width: 60%;
-    height: 100%;
-    font-size: 24px;
-    font-weight: 700;
-    opacity: 1;
-    transition: opacity 0.25s;
-    z-index: 2;
-    cursor: pointer;
-  }
-  
-  .card .socialLink1,
-  .card .socialLink2,
-  .card .socialLink3,
-  .card .socialLink4 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
-    color: whitesmoke;
-    font-size: 24px;
-    text-decoration: none;
-    transition: 0.25s;
-    border-radius: 50px;
-  }
-  
-  .card svg {
-    transform: scale(1);
-  }
-  
-  .card .socialLink1:hover {
-    background: #f09433;
-    background: -moz-linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    background: -webkit-linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    background: linear-gradient(45deg,
-        #f09433 0%,
-        #e6683c 25%,
-        #dc2743 50%,
-        #cc2366 75%,
-        #bc1888 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink2:hover {
-    background-color: #00ccff;
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink3:hover {
-    background-color: #5865f2;
-    animation: bounce_613 0.4s linear;
-  }
-  
-  .card .socialLink4:hover {
-    background-color: #12a50b;
-    animation: bounce_613 0.4s linear;
-  }
-  
-  @keyframes bounce_613 {
-    40% {
-      transform: scale(1.4);
-    }
-  
-    60% {
-      transform: scale(0.8);
-    }
-  
-    80% {
-      transform: scale(1.2);
-    }
-  
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  }
+
+}
