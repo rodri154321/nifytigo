@@ -3,9 +3,9 @@ import React from "react";
 
 export default function About() {
 
-return (
-
-<div><h1>It's About</h1></div>
-
+    return (
+        <div>
+        <h1>It's About</h1>
+        </div>
     );
 }
