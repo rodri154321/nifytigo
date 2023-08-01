@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes,useLocation } from 'react-router-dom'
 import './App.css'
 import Collections from './Views/Collections/Collections'
 import Home from './Views/Home/Home'
@@ -8,27 +8,28 @@ import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 
 function App() {
-
+  const location = useLocation();
   return (
     <>
-
-      <h1>soy app</h1>
       {
         location.pathname !== "/" && <NavBar />
       }
 
       <Routes>
         <Route path="/Home" element={<Home />} />
-        <Route patch="/About" element={<About />} />
+        <Route path="/About" element={<About />} />
         <Route path="/Collections" element={<Collections />} />
-        <Route patch="/Contact" element={<Contact />}/>
+        <Route path="/Contact" element={<Contact />}/>
         {/*
         <Route patch="/Detail" element={<Detail />}/>
         <Route patch="/FormCollection" element={<FormCollection />}/>
         <Route patch="/Admin" element={<Admin />}/>
         <Route patch="/Success" element={<Success />}/>
         <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
-        <Route patch="/Failure" element={<Failure />}/>*/
+        <Route patch="/Failure" element={<Failure />}/>
+        <Route patch="/TermsOfService" element={<TermsOfService />}/>
+        <Route patch="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
+        <Route patch="/FrequentQuestions" element={<FrequentQuestions />}/>*/
         }
       </Routes>
 
