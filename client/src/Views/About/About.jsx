@@ -1,4 +1,5 @@
 import React from "react";
+import style from "../../Views/About.module.css"
 
 
 export default function About() {

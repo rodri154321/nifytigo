@@ -4,8 +4,9 @@ import style from "./Nav.module.css";
 import logo from "../../assets/NifytiGo.png";
 import { logout } from "../../redux/Actions/logout";
 import avatar from "../../assets/avatar2.png";
+import SearchBar from "../../Components/Search/Search";
 
-const Nav = () => {
+const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loger = localStorage.getItem("loger");
@@ -25,7 +26,10 @@ const Nav = () => {
           <img src={logo} alt="logo" className={style.img} />
         </div>
       </NavLink>
-      <div className={style.navegacion}>
+      <div className={style.search}>
+        <SearchBar />
+      </div>
+      <div className={style.navegation}>
         <NavLink to="/about" className={style.navlink}>
           About
         </NavLink>
@@ -73,4 +77,4 @@ const Nav = () => {
     </div>
   );
 };
-export default Nav;
+export default NavBar;
