@@ -1,9 +1,7 @@
 import React from "react";
 //import style from "../../Views/About/About.module.css"
 
-
 export default function About() {
-
 
 return (
 
