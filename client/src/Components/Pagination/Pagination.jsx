@@ -1,7 +1,7 @@
 import './Pagination_style.css';
-import React from 'react';
 
-const Pagination=({cardsPerPage,totalCards,currentPage,paginate})=>{
+
+const Pagination=(cardsPerPage,totalCards,currentPage,paginate)=>{
     const pageNumbers = [];
     
 for (let i = 1; i <= Math.ceil(totalCards / cardsPerPage); i++) {

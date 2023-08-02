@@ -7,12 +7,12 @@ import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
 //import About from './Views/About/About'
-//import NavBar from './Components/NavBar/NavBar'
-//import Footer from './Components/Footer/Footer'
+import NavBar from './Components/NavBar/NavBar'
+import Footer from './Components/Footer/Footer'
 //import Contact from './Views/Contact/Contact'
 
 
-import FormImg from './Views/FormImg/FormImg'
+//import FormImg from './Views/FormImg/FormImg'
 
 function App() {
   /*const location = useLocation();*/
@@ -20,9 +20,9 @@ function App() {
   return (
 
     <>
-      {/*
-        location.pathname !== "/" && <NavBar />
-        */
+      {
+        location.pathname === "/" && <NavBar />
+        
       }
 
       <Routes>
@@ -33,16 +33,16 @@ function App() {
         {/*
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />}/>
-<<<<<<< Updated upstream
+
         
 
         <Route path="/FormImg" element={<FormImg />}/>
 
         {/*
         <Route patch="/Detail" element={<Detail />}/>
-=======
+
         <Route patch="/FormCollection" element={<FormCollection />}/>
->>>>>>> Stashed changes
+
         <Route patch="/Admin" element={<Admin />}/>
         <Route patch="/Success" element={<Success />}/>
         <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
@@ -53,9 +53,9 @@ function App() {
         }
       </Routes>
 
-      {/*
-        location.pathname !== "/" && <Footer />
-        */
+      {
+        location.pathname === "/" && <Footer />
+        
       }
     </>
   )

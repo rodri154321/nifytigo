@@ -1,4 +1,4 @@
-/*falta que se haga el la subida del back
+//falta que se haga el la subida del back
 
 import { useEffect, useState} from 'react'
 import {  useParams } from 'react-router-dom';
@@ -18,7 +18,7 @@ export default function Detail() {
            }
         });
         return setGameID({});
-     }, [0]);
+     }, [id]);
 
 return (
 
@@ -31,4 +31,4 @@ return (
 </div>
 
     );
-}*/
+}
