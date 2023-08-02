@@ -17,11 +17,12 @@ function App() {
 
     <>
       {
-        location.pathname !== "/" && <NavBar />
+        location.pathname === "/" &&  <NavBar />
       }
 
       <Routes>
-        <Route path="/Home" element={<Home />} />
+        
+        <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/Collections" element={<Collections />} />
         <Route path="/Contact" element={<Contact />}/>
@@ -42,7 +43,7 @@ function App() {
       </Routes>
 
       {
-        location.pathname !== "/" && <Footer />
+        location.pathname === "/" && <Footer />
       }
     </>
   )

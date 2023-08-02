@@ -4,7 +4,7 @@ import React from "react";
 export default function About() {
 
     return (
-        <div>
+        <div className={style.containerAbout}>
         <h1>It's About</h1>
         </div>
     );
