@@ -6,6 +6,7 @@ const Loader = () => {
     <div className="spinner-container">
 <div class="spinner">
     <div class="spinner1"></div>
+    
 </div>
 </div>
 

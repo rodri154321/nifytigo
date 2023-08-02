@@ -3,7 +3,7 @@ const validation = (userData) => {
     let errors = {};
 
      if(!regexEmail.test(userData.username)){
-        errors.username = "El nombre de usuario no coincide";
+        errors.username = "El nombre de usuario no coincide ";
      }
      if(!userData.username){
         errors.username = "Completa el campo por favor!"
