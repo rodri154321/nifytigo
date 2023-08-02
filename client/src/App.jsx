@@ -1,5 +1,6 @@
 import { Route, Routes,useLocation } from 'react-router-dom'
 import './App.css'
+
 import Collections from './Views/Collections/Collections'
 import Home from './Views/Home/Home'
 import About from './Views/About/About'
@@ -10,6 +11,7 @@ import Contact from './Views/Contact/Contact'
 function App() {
   const location = useLocation();
   return (
+
     <>
       {
         location.pathname !== "/" && <NavBar />
