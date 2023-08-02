@@ -26,5 +26,3 @@ module.exports = (sequelize) => {
     });
 };
 
-
-//agregar models category, sera un array de strings.

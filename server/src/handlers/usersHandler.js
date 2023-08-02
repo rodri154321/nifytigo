@@ -21,8 +21,7 @@ try {
 
     const newUser = await getCreateUser(name,lastName,email,password,cellPhone,country)
 
-    res.status(200).json()
-    
+    res.status(200).json(newUser)
 } catch (error) {
 res.status(400).json({error:error.message = 'No se creo el usuario'})
 }
@@ -31,6 +30,5 @@ res.status(400).json({error:error.message = 'No se creo el usuario'})
 
     module.exports = {
         getUsersHandler,
-        getCreateUsers
-     
+        getCreateUsers,
     }

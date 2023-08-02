@@ -26,6 +26,7 @@ modelDefiners.forEach(model => model(sequelize));
 // Definición de las relaciones
 const { favorites, nfts, users, categories } = sequelize.models;
 
+// 1. Relación uno a muchos: users -> nfts
 users.hasMany(nfts, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
 });
@@ -33,7 +34,7 @@ nfts.belongsTo(users, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
 });
 
-// 2. Relación muchos a muchos: favorites <-> nfts
+// 2. Relación muchos a muchos: favorites <-> users
 favorites.belongsToMany(users, {
   through: 'favorites_users', // Nombre de la tabla intermedia que contiene las relaciones
 });
