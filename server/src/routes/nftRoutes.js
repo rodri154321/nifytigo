@@ -1,13 +1,8 @@
-const { Router } = require("express");
-
+const { Router } = require('express');
 const router = Router();
+const { getNftHandler, postNftHandler } = require('../handlers/nftHandler');
 
-const { getNftHandler,postNftHandler }= require('../handlers/nftHandler')
-
-
-router
-.get('/', getNftHandler)
-.post('/', postNftHandler)
-
+router.get('/', getNftHandler);
+router.post('/', postNftHandler);
 
 module.exports = router;

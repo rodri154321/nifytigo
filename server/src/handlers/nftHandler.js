@@ -4,8 +4,8 @@ const {allNft, createNft} = require('../controllers/nftController')
 const getNftHandler = async(req,res)=>{
 
     try {
-        const contents = allNft();
-    res.status(200).send(contents)
+        const nfts = allNft();
+    res.status(200).send(nfts)
 
     } catch (error) {
         res.status(500).json({error: error.message}) 
