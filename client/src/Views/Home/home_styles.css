@@ -9,11 +9,7 @@
     flex-direction: column;
     position: relative;
 }
-#fakeNavBar{
-    background-color: gray;
-    width: 100vw;
-    height: 10vh;
-}
+
 #videoBack{
     position: fixed;
     top:0;

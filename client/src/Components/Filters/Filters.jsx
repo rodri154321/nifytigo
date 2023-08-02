@@ -26,7 +26,7 @@ function Filters(){
                 <label>COLLECTION: </label>
                 <select onChange={handleFilterByCollection}>
                     {["A","B","C"].map((origin)=>
-                    (<option value={origin}>{origin}</option>))}
+                    (<option value={origin} key={origin}>{origin}</option>))}
                 </select>
             </div>
 
@@ -34,7 +34,7 @@ function Filters(){
                 <label>SORT: </label>
                 <select onChange={handleSort}>
                     {["A-Z","Z-A","Rating(Best First)","Rating(Worst First)"].map((gender)=>
-                    (<option value={gender}>{gender}</option>))}
+                    (<option value={gender} key={gender}>{gender}</option>))}
                 </select>
             </div>
 
@@ -42,7 +42,7 @@ function Filters(){
                 <label>Category: </label>
                 <select onChange={handleFilterByCategory}>
                     {["All Genres","Art","Membership","Game","PFP","Photography","Domain Names","Music","Sports Collectibles","Virtual Worlds"].map((gender)=>
-                    (<option value={gender}>{gender}</option>))}
+                    (<option value={gender} key={gender}>{gender}</option>))}
                 </select >
             </div>
         </div>
