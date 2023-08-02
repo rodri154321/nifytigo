@@ -17,4 +17,4 @@ const createContent = async (iduser, name, description, image, price)=>{
     return newContent;
 };
     
-    module.exports = {allContents,createContent}
+    module.exports = {allContents,createContent}                                                                 
