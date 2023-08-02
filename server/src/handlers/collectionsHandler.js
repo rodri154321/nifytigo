@@ -14,5 +14,5 @@ const getCollectionsHandler = async(req,res)=>{
 
     module.exports = {
         getCollectionsHandler,
-     
+    
     }
