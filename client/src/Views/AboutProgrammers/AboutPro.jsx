@@ -26,7 +26,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'Bryan Coaquila',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
@@ -36,7 +36,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'Rodrigo Amaya',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
@@ -46,7 +46,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'Julian Tejeda',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
@@ -56,7 +56,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'Brandon Barrera',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
@@ -66,7 +66,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'Brian Gelvez',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
@@ -76,7 +76,7 @@ const GoogleButton = () => {
         imageUrl: Alejandro
       },
       {
-        name: 'Jose Franco',
+        name: 'leidy Sánchez',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
