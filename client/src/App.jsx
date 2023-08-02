@@ -9,7 +9,7 @@ import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 
 
-import FormImg from './Views/FormImg/FormImg'
+import FormNft from './Views/FormNft/FormNft'
 
 function App() {
   const location = useLocation();
@@ -27,7 +27,7 @@ function App() {
         <Route path="/Contact" element={<Contact />}/>
         
 
-        <Route path="/FormImg" element={<FormImg />}/>
+        <Route path="/FormNft" element={<FormNft />}/>
 
         {/*
         <Route patch="/Detail" element={<Detail />}/>
