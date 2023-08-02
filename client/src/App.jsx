@@ -8,6 +8,9 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 
+
+import FormImg from './Views/FormImg/FormImg'
+
 function App() {
   const location = useLocation();
   return (
@@ -22,9 +25,12 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Collections" element={<Collections />} />
         <Route path="/Contact" element={<Contact />}/>
+        
+
+        <Route path="/FormImg" element={<FormImg />}/>
+
         {/*
         <Route patch="/Detail" element={<Detail />}/>
-        <Route patch="/FormCollection" element={<FormCollection />}/>
         <Route patch="/Admin" element={<Admin />}/>
         <Route patch="/Success" element={<Success />}/>
         <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
