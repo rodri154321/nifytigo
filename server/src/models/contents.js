@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('nfts', {
+    sequelize.define('contents', {
         id: {
             type: DataTypes.UUID, // genera un id mas largo, ocupa mas espacio en la BDD pero es mas seguro, sin colisiones
             defaultValue: DataTypes.UUIDV4, // Genera automáticamente un UUID único
@@ -23,24 +23,8 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0.00,  // podemos establecer un valor predeterminado
         },
-        blockchain: {
-            type: DataTypes.STRING, //"Ethereum", "Binance Smart Chain", "Polygon", etc.
-            allowNull: false,
-        },
-        tokenMetadata: {
-            type: DataTypes.JSON, // 
-            allowNull: true, // 
-            defaultValue: {
-                creator: "", // info creador
-                owner: "", // info dueño actual
-            },
-        },
-        category: {
-            type: DataTypes.STRING,
-        },
-        ownerHistory: {
-            type: DataTypes.JSON,
-            defaultValue: [],
-        },
     });
 };
+
+
+//agregar models category, sera un array de strings.
