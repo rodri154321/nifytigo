@@ -1,4 +1,4 @@
-const { user } = require('../db')
+const { users } = require('../db')
 
 const axios = require('axios')
 
@@ -12,7 +12,7 @@ const allUsers = async () => {
 }
 
 const getCreateUser = async (name, lastName, email, password, cellPhone, country) => {
-    const newUser = await user.create({ name, lastName, email, password, cellPhone, country })
+    const newUser = await users.create({ name, lastName, email, password, cellPhone, country })
     console.log('post userCreate')
     return newUser
 }
