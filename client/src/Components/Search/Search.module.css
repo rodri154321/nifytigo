@@ -1,0 +1,11 @@
+.container {
+    color: rgba(252, 250, 250, 0.534);
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.img {
+    width: 18px;
+    margin-right: 10px;
+}
