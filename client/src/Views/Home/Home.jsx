@@ -24,7 +24,6 @@ const cardsPerPage=15;
     return (
         <div id='HomeContainer'>
             {/* <NavBar></NavBar> */}
-            <div id ='fakeNavBar'></div>
             <Filters></Filters>
             <Pagination cardsPerPage={cardsPerPage} totalCards={150} paginate={paginate}></Pagination>
         <label>Este es el home</label>

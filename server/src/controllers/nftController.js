@@ -1,6 +1,6 @@
 const {contents, user} = require('../db.js');
 
-const allContents = async ()=>{
+const allNft = async ()=>{
     const allContentsDb = await contents.findAll({
         include: {
           model: user,
@@ -10,11 +10,11 @@ const allContents = async ()=>{
       return allContentsDb;
     };
     
-const createContent = async (iduser, name, description, image, price)=>{
+const createNft = async (iduser, name, description, image, price)=>{
 
     const newContent = await contents.create({name, description, image, price});
     await newContent.addUser(iduser);
     return newContent;
 };
     
-    module.exports = {allContents,createContent}
+    module.exports = {allNft,createNft}
