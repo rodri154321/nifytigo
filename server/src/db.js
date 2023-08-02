@@ -21,17 +21,38 @@ fs.readdirSync(path.join(__dirname, '/models'))
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-
 modelDefiners.forEach(model => model(sequelize));
+
+// Definición de las relaciones
+const { users, contents, wishlist } = sequelize.models;
+
+// Relación uno a muchos: users -> contents
+users.hasMany(contents, {
+  foreignKey: 'userId', // Nombre de la clave externa en el modelo "contents" que referencia al modelo "users"
+});
+contents.belongsTo(users, {
+  foreignKey: 'userId', // Nombre de la clave externa en el modelo "contents" que referencia al modelo "users"
+});
+
+// Relación uno a uno: users -> wishlist
+users.hasOne(wishlist, {
+  foreignKey: 'userId', // Nombre de la clave externa en el modelo "wishlist" que referencia al modelo "users"
+});
+wishlist.belongsTo(users, {
+  foreignKey: 'userId', // Nombre de la clave externa en el modelo "wishlist" que referencia al modelo "users"
+});
+
+// Relación muchos a muchos: wishlist <-> contents
+wishlist.belongsToMany(contents, {
+  through: 'wishlist_contents', // Nombre de la tabla intermedia que contiene las relaciones
+});
+contents.belongsToMany(wishlist, {
+  through: 'wishlist_contents', // Nombre de la tabla intermedia que contiene las relaciones
+});
 
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
-
-const { user } = sequelize.models;
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
