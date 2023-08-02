@@ -1,13 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Route, Routes,useLocation } from 'react-router-dom'
 import './App.css'
-import Home from './Views/Home/Home.jsx'
-function App() {
-  const [count, setCount] = useState(0)
 
+import Collections from './Views/Collections/Collections'
+import Home from './Views/Home/Home'
+import About from './Views/About/About'
+import NavBar from './Components/NavBar/NavBar'
+import Footer from './Components/Footer/Footer'
+import Contact from './Views/Contact/Contact'
+
+function App() {
+  const location = useLocation();
   return (
-    <Home></Home>
+
+    <>
+      {
+        location.pathname !== "/" && <NavBar />
+      }
+
+      <Routes>
+        <Route path="/Home" element={<Home />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Collections" element={<Collections />} />
+        <Route path="/Contact" element={<Contact />}/>
+        {/*
+        <Route patch="/Detail" element={<Detail />}/>
+        <Route patch="/FormCollection" element={<FormCollection />}/>
+        <Route patch="/Admin" element={<Admin />}/>
+        <Route patch="/Success" element={<Success />}/>
+        <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
+        <Route patch="/Failure" element={<Failure />}/>
+        <Route patch="/TermsOfService" element={<TermsOfService />}/>
+        <Route patch="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
+        <Route patch="/FrequentQuestions" element={<FrequentQuestions />}/>*/
+        }
+      </Routes>
+
+      {
+        location.pathname !== "/" && <Footer />
+      }
+    </>
   )
 }
 

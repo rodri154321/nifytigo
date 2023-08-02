@@ -37,3 +37,4 @@ const cardsPerPage=15;
 }
 
 export default Home;
+
