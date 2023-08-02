@@ -60,7 +60,7 @@ const NavBar = () => {
               <div className={style.textLogOut}>Log out</div>
             </button>
           </NavLink>
-        ) : (
+
           <NavLink to="/Login" className={style.navlink}>
             <button className={style.btn}>
               <div className={style.sign}>
