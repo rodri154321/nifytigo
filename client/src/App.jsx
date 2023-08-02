@@ -1,8 +1,6 @@
 import { Route, Routes,useLocation } from 'react-router-dom'
 import './App.css'
-<<<<<<< HEAD
-import Home from './Views/Home/Home.jsx'
-=======
+
 import Collections from './Views/Collections/Collections'
 import Home from './Views/Home/Home'
 import About from './Views/About/About'
@@ -10,13 +8,11 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 
->>>>>>> develop
+
+
 function App() {
   const location = useLocation();
   return (
-<<<<<<< HEAD
-    <Home></Home>
-=======
     <>
       {
         location.pathname !== "/" && <NavBar />
@@ -44,7 +40,6 @@ function App() {
         location.pathname !== "/" && <Footer />
       }
     </>
->>>>>>> develop
   )
 }
 
