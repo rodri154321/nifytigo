@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../Footer/Footer.module.css";
-import logo from "../../assets/NifytiGo.png";
+import logo from "../../assets/NifytiGo2.png";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
@@ -12,6 +12,7 @@ const Footer = () => {
       <div className={style.content}>
         <div className={style.boxLogo}>
           <img src={logo} alt="logo" className={style.img} />
+          <h4>© 2023 NifytiGo</h4>
         </div>
         <div className={style.boxNames}>
           <div className={style.gridContainer}>
