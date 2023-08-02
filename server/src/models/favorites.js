@@ -1,34 +1,27 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('users', {
+    sequelize.define('favorites', {
         id: {
             type: DataTypes.UUID, // genera un id mas largo, ocupa mas espacio en la BDD pero es mas seguro, sin colisiones
+            defaultValue: DataTypes.UUIDV4, // Genera automáticamente un UUID único
             primaryKey: true,
             allowNull: false,
         },
-
-        name: { 
-
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        description: {
+            type: DataTypes.TEXT,
         },
-        email: {
+        image: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
         },
-        password: {
-            type: DataTypes.STRING,
+        price: {
+            type: DataTypes.DECIMAL(10, 2), // Tipo de dato para almacenar precios en formato decimal (10 dígitos enteros y 2 decimales)
             allowNull: false,
-        },
-        cellPhone: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            defaultValue: 0.00,  // podemos establecer un valor predeterminado
         },
     });
 };

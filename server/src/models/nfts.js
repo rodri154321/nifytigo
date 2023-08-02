@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('contents', {
+    sequelize.define('nfts', {
         id: {
             type: DataTypes.UUID, // genera un id mas largo, ocupa mas espacio en la BDD pero es mas seguro, sin colisiones
             defaultValue: DataTypes.UUIDV4, // Genera automáticamente un UUID único
