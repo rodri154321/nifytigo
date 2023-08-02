@@ -1,36 +1,48 @@
-import { Route, Routes,useLocation } from 'react-router-dom'
+import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
 
-import Collections from './Views/Collections/Collections'
+//import Collections from './Views/Collections/Collections'
+
 import Home from './Views/Home/Home'
-import About from './Views/About/About'
+import Cards from './Components/Cards/Cards'
+import Detail from './Views/Detail/Detail'
+//import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
-import Contact from './Views/Contact/Contact'
+//import Contact from './Views/Contact/Contact'
 
 
-import FormImg from './Views/FormImg/FormImg'
+//import FormImg from './Views/FormImg/FormImg'
 
 function App() {
-  const location = useLocation();
+  /*const location = useLocation();*/
+
   return (
 
     <>
       {
-        location.pathname !== "/" && <NavBar />
+        location.pathname === "/" && <NavBar />
+        
       }
 
       <Routes>
-        <Route path="/Home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Cards />} />
+        <Route path="/detail/:id" element={<Detail />}/>
+        
+        {/*
         <Route path="/About" element={<About />} />
-        <Route path="/Collections" element={<Collections />} />
         <Route path="/Contact" element={<Contact />}/>
+
         
 
         <Route path="/FormImg" element={<FormImg />}/>
 
         {/*
         <Route patch="/Detail" element={<Detail />}/>
+
+        <Route patch="/FormCollection" element={<FormCollection />}/>
+
         <Route patch="/Admin" element={<Admin />}/>
         <Route patch="/Success" element={<Success />}/>
         <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
@@ -42,7 +54,8 @@ function App() {
       </Routes>
 
       {
-        location.pathname !== "/" && <Footer />
+        location.pathname === "/" && <Footer />
+        
       }
     </>
   )
