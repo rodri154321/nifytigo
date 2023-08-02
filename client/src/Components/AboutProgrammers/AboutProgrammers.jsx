@@ -104,7 +104,7 @@ const About = () => {
     return (
         <div>
           <h1 className='titulo'>About Programmers</h1>
-          <h2 className='subtitulo'>This is our great team of programmers, thanks for your passion and dedication, this project has been successfully consolidated.</h2>
+          <h2 className='subtitulo'>This is our great team of programmers, thanks for your passion and dedication, this project has been successfully consolidated, Thanks.</h2>
           <div className="team">
             {teamMembers.map((member, index) => (
               <TeamMember key={index} {...member} />

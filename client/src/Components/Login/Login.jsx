@@ -51,7 +51,7 @@ const Login = ({ login }) => {
 
           <label htmlFor='username' className={style.usernameLabel}>
             <div className={style.trackinginexpandforwardbottom}>
-              USERNAME:
+              USERNAME :
 
             </div>
           </label>
