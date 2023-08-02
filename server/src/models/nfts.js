@@ -23,24 +23,8 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0.00,  // podemos establecer un valor predeterminado
         },
-        blockchain: {
-            type: DataTypes.STRING, //"Ethereum", "Binance Smart Chain", "Polygon", etc.
-            allowNull: false,
-        },
-        tokenMetadata: {
-            type: DataTypes.JSON, // 
-            allowNull: true, // 
-            defaultValue: {
-                creator: "", // info creador
-                owner: "", // info dueño actual
-            },
-        },
-        category: {
-            type: DataTypes.STRING,
-        },
-        ownerHistory: {
-            type: DataTypes.JSON,
-            defaultValue: [],
-        },
     });
 };
+
+
+//agregar models category, sera un array de strings.
