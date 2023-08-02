@@ -1,10 +1,10 @@
 const { Router } = require("express");
 const router = Router();
 const usersRoutes = require('./usersRoutes')
-const contentsRoutes = require('./contentsRoutes')
+const nftRoutes = require('./nftRoutes')
 
 router.use('/users', usersRoutes)
-router.use('/contents', contentsRoutes)
+router.use('/nft', nftRoutes)
 
 
 module.exports = router;

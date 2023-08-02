@@ -1,10 +1,10 @@
-const {allContents, createContent} = require('../controllers/contentsController')
+const {allNft, createNft} = require('../controllers/nftController')
 
 
-const getContentsHandler = async(req,res)=>{
+const getNftHandler = async(req,res)=>{
 
     try {
-        const contents = allContents();
+        const contents = allNft();
     res.status(200).send(contents)
 
     } catch (error) {
@@ -12,12 +12,12 @@ const getContentsHandler = async(req,res)=>{
     
     }}
 
-    const postContentsHandler = async(req,res)=>{
+    const postNftHandler = async(req,res)=>{
 
         const {iduser, name, description, image, price} = req.body;
 
     try {
-        const response = await createContent(iduser,name, description, image, price);
+        const response = await createNft(iduser,name, description, image, price);
         res.status(201).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -26,6 +26,6 @@ const getContentsHandler = async(req,res)=>{
     
 
     module.exports = {
-        getContentsHandler,
-        postContentsHandler
+        getNftHandler,
+        postNftHandler
     }
