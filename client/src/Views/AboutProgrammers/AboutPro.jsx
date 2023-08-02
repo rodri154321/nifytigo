@@ -21,7 +21,7 @@ const GoogleButton = () => {
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
           { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/luis-alejandro-prieto-torres-992600261/' },
-          { icon: 'github', tooltip: 'Github', link: '#'},
+          { icon: 'github', tooltip: 'Github', link: 'https://github.com/DETNAW11'},
         ],
         imageUrl: Alejandro
       },
