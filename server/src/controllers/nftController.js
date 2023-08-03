@@ -3,10 +3,10 @@ const { Op } = require('sequelize');
 
 const allNft = async () => {
   const allNftsDb = await nfts.findAll({
-    // include: {
-    //   model: users,
-    //   attributes: ["name"],
-    // },
+       include: {
+      model: users,
+      attributes: ["name"],
+    },
   });
   
   return allNftsDb;
