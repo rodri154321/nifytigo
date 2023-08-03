@@ -30,4 +30,14 @@ const findUserName = async (username, password) => {
 
 }
 
-module.exports = { allUsers, createUser, findUserName }
+const deleteUsersById= async(id)=>{
+
+    let userId = await users.findByPk(id)
+
+ 
+
+    return 
+
+}
+
+module.exports = { allUsers, createUser, findUserName, deleteUsersById }

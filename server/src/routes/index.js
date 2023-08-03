@@ -4,11 +4,12 @@ const router = Router();
 const usersRoutes = require('./usersRoutes')
 const nftRoutes = require('./nftRoutes')
 const videoGamesRouter = require("./videoGamesRouter")
+const deleteUsersRoutes = require('./usersRoutes')
 
 router.use('/users', usersRoutes)
 router.use('/nft', nftRoutes)
-
 router.use("./videogames", videoGamesRouter)
+router.delete("/users", deleteUsersRoutes)
 
 module.exports = router;
 
