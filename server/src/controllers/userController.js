@@ -32,11 +32,11 @@ const findUserName = async (username, password) => {
 
 const deleteUsersById= async(id)=>{
 
-    let userId = await users.findByPk(id)
+return     await users.findByPk(id)
 
  
 
-    return 
+
 
 }
 
