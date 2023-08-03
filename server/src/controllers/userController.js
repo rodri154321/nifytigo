@@ -1,6 +1,5 @@
 const { users } = require('../db')
 
-const axios = require('axios')
 
 const allUsers = async () => {
     const allusersDb = users.findAll()
