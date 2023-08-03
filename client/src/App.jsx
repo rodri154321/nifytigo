@@ -1,8 +1,6 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
 
-//import Collections from './Views/Collections/Collections'
-
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
@@ -19,8 +17,8 @@ function App() {
 
   return (
     <>
-      <NavBar />
-
+      <div id="container"><NavBar /> </div>
+<div id="Routes">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Cards />} />
@@ -30,6 +28,7 @@ function App() {
         <Route path='/Login' element= {<Login />}/>       
         <Route path="/Detail" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
+        
         {/*
         <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
@@ -41,7 +40,10 @@ function App() {
         <Route path="/Loader" element={<Loader />}/>*/
         }
       </Routes>
- <Footer />
+
+<div id="containerFooter"><Footer/> </div>
+
+</div>
 
     </>
   )
