@@ -1,6 +1,5 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
-
 //import Home from './Views/Home/Home'
 
 
@@ -46,7 +45,6 @@ function App() {
         <Route exact path="/collections" element={<Collections />}/>
         <Route exact path="/CardContainer" element={<CardContainer />}/>
         
-
         {/*
         <Route patch="/Detail" element={<Detail />}/>
 
