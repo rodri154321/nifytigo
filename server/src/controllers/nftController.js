@@ -1,20 +1,22 @@
-const {contents, user} = require('../db.js');
+const { nfts, users } = require('../db');
+const { Op } = require('sequelize');
 
-const allNft = async ()=>{
-    const allContentsDb = await contents.findAll({
-        include: {
-          model: user,
-          attributes: ["name"],
-        },
-      });
-      return allContentsDb;
-    };
-    
-const createNft = async (iduser, name, description, image, price)=>{
-
-    const newContent = await contents.create({name, description, image, price});
-    await newContent.addUser(iduser);
-    return newContent;
+const allNft = async () => {
+  const allNftsDb = await nfts.findAll({
+       include: {
+      model: users,
+      attributes: ["name"],
+    },
+  });
+  
+  return allNftsDb;
 };
-    
-    module.exports = {allNft,createNft}
+
+const createNft = async (iduser, name, description, image, price) => {
+  const newNft = await nfts.create({ name, description, image, price });
+  console.log(newNft);
+  await newNft.setUser(iduser);
+  return newNft;
+};
+
+module.exports = { allNft, createNft };

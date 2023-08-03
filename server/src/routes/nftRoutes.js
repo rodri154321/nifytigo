@@ -7,7 +7,7 @@ const { getNftHandler,postNftHandler }= require('../handlers/nftHandler')
 
 router
 .get('/', getNftHandler)
-router.post('/', postNftHandler)
+.post('/create', postNftHandler)
 
 
 module.exports = router;
