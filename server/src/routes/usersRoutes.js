@@ -12,6 +12,6 @@ const {
 router
 .get('/all', getUsersHandler)
 .get('/username', getUserNameHandler)
-router.post('/', createUsersHandler)
+.post('/', createUsersHandler)
 
 module.exports = router;
