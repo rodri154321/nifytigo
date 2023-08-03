@@ -18,7 +18,7 @@ const Footer = () => {
           <div className={style.gridContainer}>
             <div className={style.column}>
               <h3 className={style.conocenos}>Links of interest</h3>
-              <NavLink to='/Home' className={style.navlink} onClick={goToTopPage}>Home</NavLink>
+              <NavLink to='/' className={style.navlink} onClick={goToTopPage}>Home</NavLink>
               <NavLink to='/Login' className={style.navlink} onClick={goToTopPage}>Log in</NavLink>
               <NavLink to='/Contact' className={style.navlink} onClick={goToTopPage}>Contact us</NavLink>
 

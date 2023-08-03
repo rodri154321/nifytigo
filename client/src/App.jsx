@@ -11,21 +11,18 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Login from './Views/Login/Login'
-import AboutProgrammers from './Views/FormNft/FormNft'
-import FormNft from './Views/FormNft/FormNft'
+import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
+import FormNft from './Views/FormNft/FormNft' 
 
 function App() {
   /*const location = useLocation();*/
 
   return (
-
     <>
-      {
-        location.pathname === "/" && <NavBar />
-      }
+      <NavBar />
 
       <Routes>
-        <Route path="/Home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/" element={<Cards />} />
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />}/>
@@ -33,10 +30,7 @@ function App() {
         <Route path='/Login' element= {<Login />}/>       
         <Route path="/Detail" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
-
         {/*
-        
-
         <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
@@ -47,10 +41,8 @@ function App() {
         <Route path="/Loader" element={<Loader />}/>*/
         }
       </Routes>
+ <Footer />
 
-      {
-        location.pathname === "/" && <Footer />
-      }
     </>
   )
 }

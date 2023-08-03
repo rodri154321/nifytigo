@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 //import { useDispatch } from "react-redux";
 import style from "./NavBar.module.css";
-import logo2 from "../../assets/NifytiGo2.png";
+import logo2 from "../../assets/NifytiGo4.png";
 //import { logout } from "../../redux/Actions/logout";
 //import avatar from "../../assets/avatar2.png";
 import SearchBar from "../../Components/Search/Search";
@@ -72,7 +72,7 @@ const NavBar = () => {
               <div className={style.text}>Login</div>
             </button>
           </NavLink>
-        ) {/*  }*/}
+         {/*  }*/}
       </div>
     </div>
   );
