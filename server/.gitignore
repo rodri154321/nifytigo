@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> solucion_rama
 # Logs
 logs
 *.log
@@ -107,4 +111,8 @@ dist
 package-lock.json
 
 # node_modules back
+<<<<<<< HEAD
 server/node_modules
+=======
+server/node_modules
+>>>>>>> solucion_rama
