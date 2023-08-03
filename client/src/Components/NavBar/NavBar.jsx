@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 //import { useDispatch } from "react-redux";
 import style from "./NavBar.module.css";
-import logo2 from "../../assets/NifytiGo4.png";
+import logo from "../../assets/NifytiGo4.png";
 //import { logout } from "../../redux/Actions/logout";
 //import avatar from "../../assets/avatar2.png";
 import SearchBar from "../../Components/Search/Search";
@@ -21,9 +21,9 @@ const NavBar = () => {
   };
   return (
     <div className={style.container}>
-      <NavLink to="/Home">
+      <NavLink to="/">
         <div>
-          <img src={logo2} alt="logo" className={style.img} />
+          <img src={logo} alt="logo" className={style.img} />
         </div>
       </NavLink>
       <div className={style.search}>
@@ -33,6 +33,12 @@ const NavBar = () => {
         <NavLink to="/About" className={style.navlink}>
           About
         </NavLink>
+        <NavLink to="/FormNft" className={style.navlink}>
+          Create NFT
+        </NavLink>
+
+
+
         {/*{isClient === "true" && (
           <NavLink to="/dashboard" className={style.navlink}>
             <button className={style.avatarButton}>
@@ -48,7 +54,10 @@ const NavBar = () => {
           </NavLink>
         )}
 
-        {loger === "true" ? (*/}
+        {loger === "true" ? (
+
+
+
           <NavLink to="" className={style.navlink} onClick={handleLogout}>
             <button className={style.btn}>
               <div className={style.sign}>
@@ -59,7 +68,7 @@ const NavBar = () => {
 
               <div className={style.textLogOut}>Log out</div>
             </button>
-          </NavLink>
+          </NavLink>*/}
 
           <NavLink to="/Login" className={style.navlink}>
             <button className={style.btn}>
