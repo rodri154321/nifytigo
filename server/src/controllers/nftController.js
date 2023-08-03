@@ -1,5 +1,4 @@
 const { nfts, users } = require('../db');
-const { Op } = require('sequelize');
 
 const allNft = async () => {
   const allNftsDb = await nfts.findAll({
@@ -18,5 +17,11 @@ const createNft = async (iduser, name, description, image, price) => {
   await newNft.setUser(iduser);
   return newNft;
 };
+
+const deleteNft = async (nftId) => {
+  const deleteNft = await nfts.destroy({where: { id: nftId} });
+};
+
+
 
 module.exports = { allNft, createNft };
