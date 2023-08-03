@@ -88,7 +88,8 @@ const Login = ({ login }) => {
             autoLoad={false}
             fields="name,email,picture"
             buttonText="Login with Facebook"
-            callback={responseFacebook} />
+            callback={responseFacebook}
+            icon="fa-facebook" />
             <br></br>
           <GoogleLogin
             clientId="520462004631-6pc5a0sbv00p5cg51rqrb5mqqep566rd.apps.googleusercontent.com"
