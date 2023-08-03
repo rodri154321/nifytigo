@@ -61,7 +61,7 @@ const ejemplo = useSelector((state) => state.ejemplo)
 
 
             <Pagination cardsPerPage={videogamesPerPage}  paginate={paginate}></Pagination>
-            <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
+            
         </div>
        
     
