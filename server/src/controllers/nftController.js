@@ -18,10 +18,11 @@ const createNft = async (iduser, name, description, image, price) => {
   return newNft;
 };
 
-const deleteNft = async (nftId) => {
-  const deleteNft = await nfts.destroy({where: { id: nftId} });
+const deleteNft = async (id) => {
+  const deleteNft = await nfts.destroy({where: { id: id} });
+  return deleteNft;
 };
 
 
 
-module.exports = { allNft, createNft };
+module.exports = { allNft, createNft, deleteNft };
