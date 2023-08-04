@@ -6,7 +6,7 @@ import Cards from "../../Components/Cards/Cards";
 import { getEjemplo } from "../../Redux/getEjemplo"
 // import NavBar from '../../Components/NavBar/NavBar';
 import Filters from '../../Components/Filters/Filters';
-import videoBackground from '../../assets/background_video/Waves.webm'
+// import videoBackground from '../../assets/background_video/Waves.webm'
 import Pagination from '../../Components/Pagination/Pagination'
 
 
@@ -61,7 +61,7 @@ const ejemplo = useSelector((state) => state.ejemplo)
 
 
             <Pagination cardsPerPage={videogamesPerPage}  paginate={paginate}></Pagination>
-            <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
+            {/* <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video> */}
         </div>
        
     

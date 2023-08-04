@@ -10,8 +10,7 @@ import Detail from './Views/Detail/Detail'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 //import Contact from './Views/Contact/Contact'
-
-
+import videoBackground from '../src/assets/background_video/Forms.webm'
 //import FormImg from './Views/FormImg/FormImg'
 
 function App() {
@@ -57,6 +56,7 @@ function App() {
         location.pathname === "/" && <Footer />
         
       }
+      <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
     </>
   )
 }
