@@ -1,5 +1,51 @@
+
 import React from 'react';
 import './index.css'
+
+import { useState } from 'react'
+import style from './Login.module.css'
+import validation from './validation';
+import GoogleLogin from '@leecheuk/react-google-login';
+import FacebookLogin from '@greatsumini/react-facebook-login';
+
+const responseFacebook = (response) => {
+  console.log(response);
+}
+const respuestaGoogle = (respuesta) => {
+  console.log(respuesta);
+  console.log(respuesta.profileObj);
+}
+
+const Login = ({ login }) => {
+
+  const [userData, setUserData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const [errors, setErrors] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setUserData({
+      ...userData,
+      [name]: value
+    });
+    setErrors(validation({
+      ...userData,
+      [name]: value
+    }));
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(userData);
+  }
+
 
 const Login = () => {
   return (

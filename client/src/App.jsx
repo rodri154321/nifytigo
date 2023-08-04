@@ -10,7 +10,7 @@ import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
-import Login from './Views/Login/Login'
+//import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft' 
 import Account from './Views/Account/Account'
@@ -19,7 +19,7 @@ function App() {
   /*const location = useLocation();*/
 
   return (
-    <>
+    <div>
       <div id="container"><NavBar /> </div>
 <div id="Routes">
       <Routes>
@@ -28,11 +28,16 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />}/>
         <Route path="/AboutProgrammers" element={<AboutProgrammers />}/>
-        <Route path='/Login' element= {<Login />}/>       
+          
         <Route path="/detail/:id" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
+
         <Route path="/Account" element={<Account/>}/>
-        {/*
+    
+
+  
+        <Route path='/Login' element= {<Login />}/>   
+
         <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
@@ -40,15 +45,17 @@ function App() {
         <Route path="/TermsOfService" element={<TermsOfService />}/>
         <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
         <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
-        <Route path="/Loader" element={<Loader />}/>*/
-        }
+        <Route path="/Loader" element={<Loader />}/>
+       
+     
       </Routes>
 
 <div id="containerFooter"><Footer/> </div>
-<video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
+
+
 </div>
 
-    </>
+    </div>
   )
 }
 

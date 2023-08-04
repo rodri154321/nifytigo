@@ -11,7 +11,7 @@ export default function Detail() {
     const { id } = useParams();
     const [gameID, setGameID] = useState({})
     useEffect(() => {
-        axios(`http://localhost:3001/videogames/${id}`).then(({ data }) => {
+        axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
            if (data.name) {
             setGameID(data);
            } else {
