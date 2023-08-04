@@ -20,14 +20,14 @@ const Footer = () => {
               <h3 className={style.title}>Links of interest</h3>
               <NavLink to='/' className={style.navlink} onClick={goToTopPage}>Home</NavLink>
               <NavLink to='/Login' className={style.navlink} onClick={goToTopPage}>Log in</NavLink>
-              <NavLink to='/Contact' className={style.navlink} onClick={goToTopPage}>Contact us</NavLink>
+              {/*<NavLink to='/Contact' className={style.navlink} onClick={goToTopPage}>Contact us</NavLink>*/}
 
 
             </div>
             <div className={style.column}>
               <h3 className={style.title}>Our company</h3>
               <NavLink to='/About' className={style.navlink} onClick={goToTopPage}>About</NavLink>
-              <NavLink to='/TermsOfService' className={style.navlink} onClick={goToTopPage}>Terms of use</NavLink>
+              {/*<NavLink to='/TermsOfService' className={style.navlink} onClick={goToTopPage}>Terms of use</NavLink>*/}
               <NavLink to='/PrivacyOfPolicy' className={style.navlink} onClick={goToTopPage}>Privacy of policy</NavLink>
             </div>
             <div className={style.column}>

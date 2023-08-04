@@ -1,7 +1,7 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
 //import Home from './Views/Home/Home'
-
+import videoBackground from './assets/Forms.webm'
 
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
@@ -13,6 +13,7 @@ import Contact from './Views/Contact/Contact'
 //import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft' 
+import Account from './Views/Account/Account'
 
 function App() {
   /*const location = useLocation();*/
@@ -30,8 +31,13 @@ function App() {
           
         <Route path="/detail/:id" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
-        
-        {/*  <Route path='/Login' element= {<Login />}/>   
+
+        <Route path="/Account" element={<Account/>}/>
+    
+
+  
+        <Route path='/Login' element= {<Login />}/>   
+
         <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
@@ -41,11 +47,11 @@ function App() {
         <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
         <Route path="/Loader" element={<Loader />}/>
        
-        */
-        }
+     
       </Routes>
 
- <div id="containerFooter"><Footer/> </div>
+<div id="containerFooter"><Footer/> </div>
+
 
 </div>
 

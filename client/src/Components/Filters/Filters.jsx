@@ -26,7 +26,7 @@ function Filters(){
                 <label>COLLECTION: </label>
                 <select onChange={handleFilterByCollection}>
                     {["A","B","C"].map((origin)=>
-                    (<option value={origin}>{origin}</option>))}
+                    (<option key={origin} value={origin}>{origin}</option>))}
                 </select>
             </div>
 
