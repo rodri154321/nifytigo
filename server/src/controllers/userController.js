@@ -45,11 +45,20 @@ const deleteUsersById= async(id)=>{
 }  
 
 
+const usersById = async(id)=>{
+
+    let idUser = await users.findByPk(id)
+ 
+    return idUser
+
+}
+
+
 
 const searchUsersnameByName = async(username)=>{
     if(username){
     let palabraM = username.username.toUpperCase()
-    let primeraLetra = palabraM[0]
+    let primeraLetra = palabraM[0] 
     
     let minuscula = username.username.toLowerCase().slice(1)
     
@@ -68,5 +77,5 @@ const searchUsersnameByName = async(username)=>{
     
 }
 
-module.exports = {searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById }
+module.exports = {usersById,searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById }
  
