@@ -1,7 +1,7 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
 //import Home from './Views/Home/Home'
-
+import videoBackground from './assets/Forms.webm'
 
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
@@ -13,6 +13,7 @@ import Contact from './Views/Contact/Contact'
 import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft' 
+import Account from './Views/Account/Account'
 
 function App() {
   /*const location = useLocation();*/
@@ -30,7 +31,7 @@ function App() {
         <Route path='/Login' element= {<Login />}/>       
         <Route path="/Detail" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
-        
+        <Route path="/Account" element={<Account/>}/>
         {/*
         <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
@@ -44,7 +45,7 @@ function App() {
       </Routes>
 
 <div id="containerFooter"><Footer/> </div>
-
+<video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
 </div>
 
     </>
