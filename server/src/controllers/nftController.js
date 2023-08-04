@@ -3,12 +3,12 @@ const { Op } = require('sequelize');
 
 const allNft = async () => {
   const allNftsDb = await nfts.findAll({
-       include: {
+    include: {
       model: users,
       attributes: ["name"],
     },
   });
-  
+
   return allNftsDb;
 };
 
@@ -18,5 +18,23 @@ const createNft = async (iduser, name, description, image, price) => {
   await newNft.setUser(iduser);
   return newNft;
 };
+const getNftById = async (id) => {
+  try {
+    const nft = await nfts.findByPk(id);
+    // console.log(id);
+    console.log(nft);
+    return (
+      {
+        id: nft.id,
+        name: nft.name,
+        description: nft.description,
+        image: nft.image,
+        price: nft.price});
+  } catch (error) {
+    throw new Error('Error retrieving NFT');
+  }
+};
 
-module.exports = { allNft, createNft };
+
+
+module.exports = { allNft, createNft, getNftById };
