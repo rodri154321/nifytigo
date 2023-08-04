@@ -1,7 +1,7 @@
 const { nfts, users } = require('../db');
-const { Op } = require('sequelize');
 
-const allNft = async () => {
+
+const allNft = async (name) => {
   const allNftsDb = await nfts.findAll({
     include: {
       model: users,
@@ -9,8 +9,19 @@ const allNft = async () => {
     },
   });
 
+  if (name) {
+    
+    let filterNft = allNftsDb.filter((nft) => 
+      nft.name.toLowerCase().includes(name.toLowerCase()));
+    //validacion para que no devuelva un array u objeto vacio 
+
+    if (!filterNft.length)
+      throw new Error(`No se encontro el juego con el nombre ${name}`);
+    return filterNft;
+  }
   return allNftsDb;
 };
+
 
 const createNft = async (iduser, name, description, image, price) => {
   const newNft = await nfts.create({ name, description, image, price });
@@ -29,7 +40,8 @@ const getNftById = async (id) => {
         name: nft.name,
         description: nft.description,
         image: nft.image,
-        price: nft.price});
+        price: nft.price
+      });
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
@@ -37,4 +49,25 @@ const getNftById = async (id) => {
 
 
 
-module.exports = { allNft, createNft, getNftById };
+const deleteNft = async (id) => {
+  const deleteNft = await nfts.destroy({where: { id: id} });
+  return deleteNft;
+};
+
+
+const updateNftDescription = async (id, description) => {
+  const nft = await nfts.findByPk(id);
+  if (!nft) {
+    throw new Error('No se encontró la NFT con ese ID');
+  }
+
+  nft.description = description;
+  await nft.save();
+
+  return nft;
+};
+
+
+
+
+module.exports = { allNft, createNft, deleteNft, updateNftDescription, getNftById };
