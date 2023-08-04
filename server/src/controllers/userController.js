@@ -20,24 +20,53 @@ const findUserName = async (username, password) => {
             return login;
         }else{
             login = false;
-            throw Error(`Contraseña Incorrecta`);
+           return `Contraseña Incorrecta`
         }
     }else{
         login = false;
-        throw Error(`Usuario Incorrecto`);
+       return `Usuario Incorrecto`
     }
 
 
 }
 
+
 const deleteUsersById= async(id)=>{
 
-return     await users.findByPk(id)
+   let idUser = await users.findByPk(id)
+    if(idUser){
+  users.destroy({
+    where: {id:id}
+ })
+ return 'usuario eliminado'
+    }
 
- 
+    return 'usuario inexistente'
+}  
 
 
 
+const searchUsersnameByName = async(username)=>{
+    if(username){
+    let palabraM = username.username.toUpperCase()
+    let primeraLetra = palabraM[0]
+    
+    let minuscula = username.username.toLowerCase().slice(1)
+    
+    let nombre = primeraLetra + minuscula 
+
+ let union = username.username = nombre 
+
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}else{
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}
+    
 }
 
-module.exports = { allUsers, createUser, findUserName, deleteUsersById }
+module.exports = {searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById }
+ 

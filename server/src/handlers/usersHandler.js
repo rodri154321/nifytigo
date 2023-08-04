@@ -1,10 +1,16 @@
-const {deleteUsersById, allUsers, createUser,findUserName } = require('../controllers/userController')
+const {searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName } = require('../controllers/userController')
 
 const getUsersHandler = async (req, res) => {
-
+const {username} = req.query
     try {
-        const results = await allUsers()
+
+        
+        const results = username
+        
+       ? await searchUsersnameByName({username}): await allUsers()
+
         res.status(200).json(results)
+        
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -42,6 +48,7 @@ const deleteUsersHandler = async(req, res)=>{
     const {id}= req.params
 try {
     const usersDelete = await deleteUsersById(id);
+    
 res.status(200).json(usersDelete)
 
 } catch (error) {
@@ -50,9 +57,21 @@ res.status(200).json(usersDelete)
 }
 }
 
+const getDeleteUsersHandler= async()=>{
+    try {
+
+     const results = 'funciona?'
+        res.status(200).json(results)
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    } 
+}
+
 module.exports = {
-    getUsersHandler,
+    getUsersHandler, 
     createUsersHandler,
-    getUserNameHandler,
-    deleteUsersHandler
+    getUserNameHandler, 
+    deleteUsersHandler,
+    getDeleteUsersHandler
 }
