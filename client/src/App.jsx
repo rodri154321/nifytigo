@@ -1,5 +1,7 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
+//import Home from './Views/Home/Home'
+
 
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
