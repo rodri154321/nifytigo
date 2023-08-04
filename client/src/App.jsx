@@ -36,9 +36,9 @@ function App() {
     
 
   
-        <Route path='/Login' element= {<Login />}/>   
+       {/*<Route path='/Login' element= {<Login />}/>   
 
-        <Route path="/FormCollection" element={<FormCollection />}/>
+       {/* <Route path="/FormCollection" element={<FormCollection />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
         <Route path="/Failure" element={<Failure />}/>
@@ -46,8 +46,7 @@ function App() {
         <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
         <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
         <Route path="/Loader" element={<Loader />}/>
-       
-     
+       */} 
       </Routes>
 
 <div id="containerFooter"><Footer/> </div>
