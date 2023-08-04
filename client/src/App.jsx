@@ -29,7 +29,7 @@ function App() {
         <Route path="/Contact" element={<Contact />}/>
         <Route path="/AboutProgrammers" element={<AboutProgrammers />}/>
         <Route path='/Login' element= {<Login />}/>       
-        <Route path="/Detail" element={<Detail />}/>
+        <Route path="/detail/:id" element={<Detail />}/>
         <Route path="/FormNft" element={<FormNft />}/>
         <Route path="/Account" element={<Account/>}/>
         {/*
