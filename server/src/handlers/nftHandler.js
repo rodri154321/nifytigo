@@ -1,4 +1,4 @@
-const { allNft, createNft, deleteNft, updateNftDescription } = require('../controllers/nftController')
+const { allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
 
 
 const getNftHandler = async (req, res) => {
@@ -12,7 +12,7 @@ const getNftHandler = async (req, res) => {
             return res.status(200).json(nfts)
         }
         const nfts = await allNft();
-         res.status(200).json(nfts)
+        res.status(200).json(nfts)
 
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -36,7 +36,7 @@ const nftbyID = async (req, res) => {
     try {
         const { id } = req.params;
         // console.log(id);
-        const nft = await getNftById( id );
+        const nft = await getNftById(id);
         res.status(200).json(nft);
     } catch (e) {
         console.log(e);
@@ -47,10 +47,10 @@ const nftbyID = async (req, res) => {
 const updateNftHandler = async (req, res) => {
 
     const { description } = req.body;
-    const {id} = req.params;
+    const { id } = req.params;
 
     try {
-        const response = await updateNftDescription(id,description);
+        const response = await updateNftDescription(id, description);
         res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -58,10 +58,10 @@ const updateNftHandler = async (req, res) => {
 }
 const deleteNftHandler = async (req, res) => {
 
-    const {id} = req.params;
+    const { id } = req.params;
 
     try {
-        const response = await deleteNft(id,description);
+        const response = await deleteNft(id, description);
         res.status(200).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });

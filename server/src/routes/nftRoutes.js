@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 
-const { getNftHandler,postNftHandler, nftbyID }= require('../handlers/nftHandler')
+const { getNftHandler,postNftHandler, nftbyID, deleteNftHandler, updateNftHandler }= require('../handlers/nftHandler')
 
 
 router
