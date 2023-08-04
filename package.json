@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@greatsumini/react-facebook-login": "^3.3.3",
-    "@leecheuk/react-google-login": "^5.4.1",
-    "pg": "^8.11.2"
-  }
-}
