@@ -21,7 +21,7 @@ const createNft = async (iduser, name, description, image, price) => {
 const getNftById = async (id) => {
   try {
     const nft = await nfts.findByPk(id);
-    // console.log(id);
+    // console.log(id); 
     console.log(nft);
     return (
       {
