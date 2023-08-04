@@ -118,7 +118,7 @@ const GoogleButton = () => {
       };
 
       return (
-        <div>
+        <div className='AboutProContainer'>
         <h1 className='titulo'>About Programmers</h1>
         <h2 className='subtitulo'>This is our great team of programmers, thanks for your passion and dedication, this project has been successfully consolidated.</h2>
         <div className='card-container'>

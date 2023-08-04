@@ -1,3 +1,17 @@
+.AboutProContainer{
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
 .card-client {
     background: #2cb5a0;
     width: 11rem;
