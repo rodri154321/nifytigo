@@ -1,4 +1,4 @@
-const { allNft, createNft } = require('../controllers/nftController')
+const { allNft, createNft, deleteNft, updateNftDescription } = require('../controllers/nftController')
 
 
 const getNftHandler = async (req, res) => {
@@ -32,8 +32,35 @@ const postNftHandler = async (req, res) => {
     }
 }
 
+const updateNftHandler = async (req, res) => {
+
+    const { description } = req.body;
+    const {id} = req.params;
+
+    try {
+        const response = await updateNftDescription(id,description);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+const deleteNftHandler = async (req, res) => {
+
+    const {id} = req.params;
+
+    try {
+        const response = await deleteNft(id,description);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
 
 module.exports = {
     getNftHandler,
-    postNftHandler
+    postNftHandler,
+    deleteNftHandler,
+    updateNftHandler
+    
 }
