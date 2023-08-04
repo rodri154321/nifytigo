@@ -3,17 +3,50 @@
     min-height: 100vh;
     margin: 0%;
     padding: 0%;
-    display: flex;
-    justify-content: start;
+   /* display: flex;*/
+    justify-content:center;
     align-items: center;
     flex-direction: column;
     position: relative;
     background: linear-gradient(180deg, #242424 0%, #e0d9d9d7 100%);
-    padding: 20px;
+    margin-top: 3rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    display: grid;
+    gap: 20px; /* Espacio entre los elementos */
 }
 
+.eachContainer {
+    grid-column: 1 / span 3; /* Los elementos dentro de eachContainer ocupan tres columnas */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Cada elemento dentro de eachContainer ocupa una columna */
+    gap: 20px; /* Espacio entre los elementos dentro de eachContainer */
+    margin-top: 3rem;
+    margin-left: 45rem;
+    margin-right: 50rem;
+    margin-top: 0;
+    padding: 0;
+  }
+  
+  .containerAboutUs {
+    grid-column: 1; /* ContainerAboutUs estará en la primera columna */
+    grid-row: 1; /* ContainerAboutUs estará en la primera fila */
+    margin-left: 10rem;
+  }
+  
+  .containerMission {
+    grid-column: 3; /* ContainerMission estará en la tercera columna */
+    grid-row: 1; /* ContainerMission estará en la segunda fila */
+
+    margin-top: 7rem;
+    margin-right:10rem;
+  }
+  
+  .containerVision {
+    grid-column: 2; /* ContainerVision estará en la segunda columna */
+    grid-row: 2; /* ContainerVision estará en la segunda fila */
+    margin-right: 2rem;
+    margin-bottom: 5rem;
+  }
 .containerAboutUs,
 .containerMission,
 .containerVision {
@@ -32,6 +65,7 @@
 .containerMission h3,
 .containerVision h3 {
     opacity: 1;
+    
 
 }
 
@@ -47,6 +81,8 @@
     z-index: 1;
     opacity: 1;
     transition: opacity 0.3s;
+    font-size: 42px;
+    color: #232323;
 }
 
 .containerAboutUs:hover h2,
