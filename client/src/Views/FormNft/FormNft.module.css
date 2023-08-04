@@ -1,7 +1,7 @@
 /* Estilos para el contenedor de la página */
 .containerPage {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0%;
   padding: 0%;
   display: flex;
@@ -9,21 +9,21 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  background: linear-gradient(180deg,  #5CE1E6 0%,#faf8f8 100%);
+ /* background: linear-gradient(180deg,  #5CE1E6 0%,#faf8f8 100%);*/
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
 }
-
 /* Estilos para el contenedor principal */
 .containerFormImg {
   background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
+  width: 1700px;
+  height: 1700px;
 }
 
 /* Estilos para el título */
