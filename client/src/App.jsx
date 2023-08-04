@@ -1,5 +1,7 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
+//import Home from './Views/Home/Home'
+
 
 //import Collections from './Views/Collections/Collections'
 
@@ -30,6 +32,7 @@ function App() {
         <Route path="/" element={<Cards />} />
         <Route path="/detail/:id" element={<Detail />}/>
         
+
         {/*
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />}/>
@@ -38,6 +41,10 @@ function App() {
 
         <Route path="/FormImg" element={<FormImg />}/>
 
+
+        <Route exact path="/collections" element={<Collections />}/>
+        <Route exact path="/CardContainer" element={<CardContainer />}/>
+        
         {/*
         <Route patch="/Detail" element={<Detail />}/>
 
