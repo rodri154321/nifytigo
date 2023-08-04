@@ -1,5 +1,5 @@
 #root {
-
+  
   padding: 0;
   max-width:fit-content;
   margin: 0 auto;
@@ -16,4 +16,28 @@
   height: 100%;
   object-fit: cover;
   z-index: -1;
+}
+#container{
+  width: 100vw;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#containerFooter {
+  position: relative;
+  left: 0;
+  right: 0; 
+  flex-direction: column;
+  height: 17rem;
+  border-top: 1px solid #ffb109;
+  background-color: #242424;
+}
+#Routes{
+flex: 1;
 }

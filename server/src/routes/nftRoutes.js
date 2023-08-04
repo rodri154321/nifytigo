@@ -2,12 +2,14 @@ const { Router } = require("express");
 
 const router = Router();
 
-const { getNftHandler,postNftHandler }= require('../handlers/nftHandler')
+const { getNftHandler,postNftHandler/* ,deleteNftHandler, updateNftHandler*/ }= require('../handlers/nftHandler')
 
 
 router
 .get('/', getNftHandler)
-router.post('/', postNftHandler)
+.post('/create', postNftHandler)
+/*.delete('/delete/:id', deleteNftHandler)
+.put('/update/:id', updateNftHandler)*/
 
 
 module.exports = router;

@@ -1,64 +1,55 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
+//import Home from './Views/Home/Home'
 
-//import Collections from './Views/Collections/Collections'
 
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
-//import About from './Views/About/About'
+import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 //import Contact from './Views/Contact/Contact'
-import videoBackground from '../src/assets/background_video/Forms.webm'
+
+
 //import FormImg from './Views/FormImg/FormImg'
 
 function App() {
   /*const location = useLocation();*/
 
   return (
-
     <>
-      {
-        location.pathname === "/" && <NavBar />
-        
-      }
-
+      <div id="container"><NavBar /> </div>
+      <div id="Routes">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Cards />} />
-        <Route path="/detail/:id" element={<Detail />}/>
-        
-        {/*
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />}/>
-
+        <Route path="/AboutProgrammers" element={<AboutProgrammers />}/>
+        <Route path='/Login' element= {<Login />}/>       
+        <Route path="/Detail" element={<Detail />}/>
+        <Route path="/FormNft" element={<FormNft />}/>
         
-
-        <Route path="/FormImg" element={<FormImg />}/>
-
         {/*
-        <Route patch="/Detail" element={<Detail />}/>
-
-        <Route patch="/FormCollection" element={<FormCollection />}/>
-
-        <Route patch="/Admin" element={<Admin />}/>
-        <Route patch="/Success" element={<Success />}/>
-        <Route patch="/AboutProgrammers" element={<AboutProgrammers />}/>
-        <Route patch="/Failure" element={<Failure />}/>
-        <Route patch="/TermsOfService" element={<TermsOfService />}/>
-        <Route patch="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
-        <Route patch="/FrequentQuestions" element={<FrequentQuestions />}/>*/
+        <Route path="/FormCollection" element={<FormCollection />}/>
+        <Route path="/Admin" element={<Admin />}/>
+        <Route path="/Success" element={<Success />}/>
+        <Route path="/Failure" element={<Failure />}/>
+        <Route path="/TermsOfService" element={<TermsOfService />}/>
+        <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
+        <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
+        <Route path="/Loader" element={<Loader />}/>*/
         }
       </Routes>
-
+      </div>
       {
         location.pathname === "/" && <Footer />
         
       }
-      <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
     </>
   )
 }
 
 export default App
+
