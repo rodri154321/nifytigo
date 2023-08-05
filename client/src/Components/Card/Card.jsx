@@ -10,17 +10,17 @@ function Card(ejemplo) {
         <div className={style.card} >
         <div className={style.card2}>
 
-        
-        <h1>name: {ejemplo.name}</h1>
-        <p>description: {ejemplo.description}</p>
         <div>
           <img src={ejemplo.image}/>
         </div>
-        <h2>price: {ejemplo.price}</h2>
-        <h3>user: {ejemplo.user.name}</h3>
+        
+        {/* <h3>user: {ejemplo.user.name}</h3> */}
             </div>
         </div>
         </NavLink>
+        <h1>{ejemplo.name}</h1>
+      <h2>price: {ejemplo.price}</h2>
+        
     </div>
   )
 }
