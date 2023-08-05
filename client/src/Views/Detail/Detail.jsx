@@ -30,7 +30,11 @@ return (
  
     <br /><br /><br /><br /><br /><br /><br />
       <p id="card-content">
-              {gameID.description}  
+        <br />
+        <p>{gameID.description} </p>
+              
+              <br /> 
+             <p> {gameID.user}</p>
           </p>
           <span id="see-more"> <p>{gameID.price}</p></span>
           <div id="date-box">

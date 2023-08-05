@@ -1,7 +1,7 @@
 import { Route, Routes,/*useLocation */ } from 'react-router-dom'
 import './App.css'
 //import Home from './Views/Home/Home'
-import videoBackground from './assets/Forms.webm'
+//import videoBackground from './assets/Forms.webm'
 
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
@@ -13,7 +13,7 @@ import Contact from './Views/Contact/Contact'
 //import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
-import Account from './Views/Account/Account'
+//import Account from './Views/Account/Account'
 
 function App() {
   /*const location = useLocation();*/
