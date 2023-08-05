@@ -1,11 +1,17 @@
-const { allNft, createNft, deleteNft, updateNftDescription } = require('../controllers/nftController')
+const { allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
 
 
 const getNftHandler = async (req, res) => {
 
+    const { name } = req.query;
+
     try {
+        if (name) {
+            console.log(name);
+            const nfts = await allNft(name);
+            return res.status(200).json(nfts)
+        }
         const nfts = await allNft();
-        console.log(nfts);
         res.status(200).json(nfts)
 
     } catch (error) {
@@ -26,38 +32,47 @@ const postNftHandler = async (req, res) => {
     }
 }
 
-const deleteNftHandler = async (req, res) => {
-    const {id} = req.params;
-    console.log( id);
+const nftbyID = async (req, res) => {
     try {
-        const deleted = await deleteNft(id);
-        if (!deleted) {
-            res.status(404).json({ error: 'No se encontró la NFT con ese ID' });
-        } else {
-            res.status(200).json({ message: 'La NFT se eliminó con éxito' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: 'Hubo un error al intentar eliminar la NFT' });
+        const { id } = req.params;
+        // console.log(id);
+        const nft = await getNftById(id);
+        res.status(200).json(nft);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send(e.message)
     }
 }
 
 const updateNftHandler = async (req, res) => {
-    const {id} = req.params;
-    const { description } = req.body;
-  
-    try {
-      const updatedNft = await updateNftDescription(id, description);
-      res.status(200).json(updatedNft);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
 
+    const { description } = req.body;
+    const { id } = req.params;
+
+    try {
+        const response = await updateNftDescription(id, description);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+const deleteNftHandler = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        const response = await deleteNft(id, description);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
 
 
 module.exports = {
     getNftHandler,
     postNftHandler,
     deleteNftHandler,
-    updateNftHandler
+    updateNftHandler,
+    nftbyID
 }

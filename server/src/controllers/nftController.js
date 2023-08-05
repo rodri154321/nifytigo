@@ -1,14 +1,24 @@
 const { nfts, users } = require('../db');
 
 
-const allNft = async () => {
+const allNft = async (name) => {
   const allNftsDb = await nfts.findAll({
-       include: {
+    include: {
       model: users,
       attributes: ["name"],
     },
   });
-  
+
+  if (name) {
+    
+    let filterNft = allNftsDb.filter((nft) => 
+      nft.name.toLowerCase().includes(name.toLowerCase()));
+    //validacion para que no devuelva un array u objeto vacio 
+
+    if (!filterNft.length)
+      throw new Error(`No se encontro el juego con el nombre ${name}`);
+    return filterNft;
+  }
   return allNftsDb;
 };
 
@@ -19,6 +29,27 @@ const createNft = async (iduser, name, description, image, price) => {
   await newNft.setUser(iduser);
   return newNft;
 };
+const getNftById = async (id) => {
+  try {
+    const nft = await nfts.findByPk(id,{include: {
+      model: users,
+      attributes: ["name","id"],
+    },});
+    return (
+      {
+        id: nft.id,
+        name: nft.name,
+        description: nft.description,
+        image: nft.image,
+        price: nft.price,
+        user:nft.user.name,
+        userid: nft.user.id
+      });
+  } catch (error) {
+    throw new Error('Error retrieving NFT');
+  }
+};
+
 
 
 const deleteNft = async (id) => {
@@ -42,4 +73,4 @@ const updateNftDescription = async (id, description) => {
 
 
 
-module.exports = { allNft, createNft, deleteNft, updateNftDescription };
+module.exports = { allNft, createNft, deleteNft, updateNftDescription, getNftById };
