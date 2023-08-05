@@ -18,7 +18,7 @@ const ejemplo = useSelector((state) => state.ejemplo)
 
  const [currentPage, setCurrentPage] = useState(1);
 
- const [videogamesPerPage] = useState(15);
+ const [videogamesPerPage] = useState(8);
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
@@ -36,8 +36,8 @@ const ejemplo = useSelector((state) => state.ejemplo)
        <div id='HomeContainer'>
             {/* <NavBar></NavBar> */}
             <Filters></Filters>
-            <Pagination cardsPerPage={videogamesPerPage} paginate={paginate}></Pagination>
-        <label>Este es el home</label>
+            <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
+        
             {/* <Collection allCards={currentCards}></Collection> */}
  <div id="cards">
         
@@ -65,7 +65,7 @@ const ejemplo = useSelector((state) => state.ejemplo)
         </div>
 
 
-            <Pagination cardsPerPage={videogamesPerPage}  paginate={paginate}></Pagination>
+        <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
             
         </div>
        

@@ -9,6 +9,7 @@
 }
 #container{
   width: 100vw;
+
   margin: 0%;
   padding: 0%;
   display: flex;
@@ -20,7 +21,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 #containerFooter {
-  position: relative;
+  position: static;
   left: 0;
   right: 0; 
   flex-direction: column;
@@ -30,4 +31,13 @@
 }
 #Routes{
 flex: 1;
+}
+#videoBack{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }

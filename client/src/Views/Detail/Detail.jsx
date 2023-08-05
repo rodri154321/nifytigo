@@ -30,8 +30,7 @@ return (
  
     <br /><br /><br /><br /><br /><br /><br />
       <p id="card-content">
-              {gameID.description}
-             
+              {gameID.description}  
           </p>
           <span id="see-more"> <p>{gameID.price}</p></span>
           <div id="date-box">
