@@ -31,16 +31,19 @@ const createNft = async (iduser, name, description, image, price) => {
 };
 const getNftById = async (id) => {
   try {
-    const nft = await nfts.findByPk(id);
-    // console.log(id); 
-    console.log(nft);
+    const nft = await nfts.findByPk(id,{include: {
+      model: users,
+      attributes: ["name","id"],
+    },});
     return (
       {
         id: nft.id,
         name: nft.name,
         description: nft.description,
         image: nft.image,
-        price: nft.price
+        price: nft.price,
+        user:nft.user.name,
+        userid: nft.user.id
       });
   } catch (error) {
     throw new Error('Error retrieving NFT');
