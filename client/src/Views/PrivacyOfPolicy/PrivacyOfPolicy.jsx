@@ -1,6 +1,15 @@
 import "./privacyOfPolicy.modules.css";
+import { useNavigate } from "react-router-dom";
+
 
 export const PrivacyOfPolicy = () => {
+
+  const Navigate = useNavigate();
+
+  const handleGoBack = () => {
+      Navigate("/");
+    };
+
   return (
     <div className="privacy-policy">
       <div className="Card-policy">
@@ -51,6 +60,7 @@ export const PrivacyOfPolicy = () => {
             </h2>
           </li>
         </ol>
+        <button className="buttonbackPrivacy" onClick={handleGoBack}>Back</button>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
 import { PrivacyOfPolicy } from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Account from './Views/Account/Account'
+import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 
 function App() {
   /*const location = useLocation();*/
@@ -29,7 +30,7 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
-
+          <Route path="/TermsOfService" element={<TermsOfService />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/FormNft" element={<FormNft />} />
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
@@ -45,7 +46,7 @@ function App() {
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Success" element={<Success />} />
           <Route path="/Failure" element={<Failure />} />
-          <Route path="/TermsOfService" element={<TermsOfService />} />
+          
           
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Loader" element={<Loader />} />
