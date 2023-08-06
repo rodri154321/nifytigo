@@ -1,16 +1,13 @@
 import { Route, Routes,/*useLocation */} from 'react-router-dom'
 import './App.css'
-//import Home from './Views/Home/Home'
-
-
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
 import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
-//import Contact from './Views/Contact/Contact'
-
+// import Contact from './Views/Contact/Contact'
+import videoBackground from './assets/background_video/Forms.webm'
 
 //import FormImg from './Views/FormImg/FormImg'
 
@@ -25,11 +22,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Cards />} />
         <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />}/>
-        <Route path="/AboutProgrammers" element={<AboutProgrammers />}/>
-        <Route path='/Login' element= {<Login />}/>       
+        {/* <Route path="/Contact" element={<Contact />}/> */}
+        {/* <Route path="/AboutProgrammers" element={<AboutProgrammers />}/> */}
+        {/* <Route path='/Login' element= {<Login />}/>        */}
         <Route path="/Detail" element={<Detail />}/>
-        <Route path="/FormNft" element={<FormNft />}/>
+        {/* <Route path="/FormNft" element={<FormNft />}/> */}
         
         {/*
         <Route path="/FormCollection" element={<FormCollection />}/>
@@ -47,6 +44,7 @@ function App() {
         location.pathname === "/" && <Footer />
         
       }
+      <video id='videoBack' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
     </>
   )
 }

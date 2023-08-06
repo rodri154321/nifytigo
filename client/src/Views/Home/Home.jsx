@@ -34,17 +34,13 @@ const ejemplo = useSelector((state) => state.ejemplo)
     return (
         <div>
        <div id='HomeContainer'>
-            {/* <NavBar></NavBar> */}
             <Filters></Filters>
-            <Pagination cardsPerPage={videogamesPerPage} paginate={paginate}></Pagination>
-        <label>Este es el home</label>
-            {/* <Collection allCards={currentCards}></Collection> */}
- <div id="cards">
+            {/* <Pagination cardsPerPage={15} paginate={paginate} totalCards={150}></Pagination> */}
+            <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
+     <div id="cards">
         
         { currentEjemplo?.map((eje) =>{
-  
       return(
-     
             
             <Cards
             key={eje.id}
@@ -54,42 +50,14 @@ const ejemplo = useSelector((state) => state.ejemplo)
             image={eje.image}
             price={eje.price}
             user={eje.user}
-            
-
-            />
-        
-     
+            />     
       )
        })}
-       
         </div>
 
-
-            <Pagination cardsPerPage={videogamesPerPage}  paginate={paginate}></Pagination>
-            
+        <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
         </div>
        
-    
-
-{/*
-//const [currentPage, setCurrentPage] = useState(1);
-//const cardsPerPage=15;
-//const cardsFiltered = useSelector((state) => state.cardsFiltered);
-
-
-  //! Lógica para paginado
-//   const indexOfLastCard = currentPage * cardsPerPage;                                                             //Obtiene el index del ultimo juego p/pagina
-//   const indexOfFirstCard = indexOfLastCard - cardsPerPage;                                                        //Obtiene el index del primer juego p/pagina
-//   const currentCards = cardsFiltered.slice(indexOfFirstCard, indexOfLastCard);                                    // Seccionado de juegos por página
-
-  
-*/}
-  
-    
-
-
-
-
      
        
         </div>
