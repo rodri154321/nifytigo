@@ -1,8 +1,9 @@
+
+
 /* Estilos para .privacy-policy */
 .privacy-policy {
     display: flex;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin: 3rem;
   }
   
   /* Estilos para .Card-policy */

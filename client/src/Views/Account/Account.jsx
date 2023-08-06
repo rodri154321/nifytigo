@@ -82,7 +82,7 @@ const Account = ({ onSubmit }) => {
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Welcome Back !</h2>
           <p className="switch__description description">To keep connected with us please login with your personal info</p>
-          <button className="switch__button button switch-btn" onClick={handleSignUp}>SIGN IN</button>
+          {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
         </div>
       </div>
     </div>

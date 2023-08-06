@@ -16,8 +16,10 @@ function Home(){
 const ejemplo = useSelector((state) => state.ejemplo)
 
  const [currentPage, setCurrentPage] = useState(1);
+
  const [isLoading,setIsLoading] = useState(true);
  const [videogamesPerPage] = useState(8);
+
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
@@ -51,7 +53,11 @@ const ejemplo = useSelector((state) => state.ejemplo)
             image={eje.image}
             price={eje.price}
             user={eje.user}
-            />     
+            categories={eje.categories}
+            
+
+            />
+        
       )
        })}
         { isLoading && <Loader></Loader> }
