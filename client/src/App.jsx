@@ -20,10 +20,8 @@ function App() {
 
   return (
     <div>
-      
       <div id="container"><NavBar /> </div>
       <div id="Routes">
-        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/" element={<Cards />} />
