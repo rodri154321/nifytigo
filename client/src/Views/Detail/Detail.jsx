@@ -11,7 +11,7 @@ export default function Detail() {
     const { id } = useParams();
     const [gameID, setGameID] = useState({})
     useEffect(() => {
-        axios(`http://localhost:3001/videogames/${id}`).then(({ data }) => {
+        axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
            if (data.name) {
             setGameID(data);
            } else {
@@ -26,13 +26,13 @@ return (
 <div id="detail">
    <div id='detailOne'>
       <div id='content-box'>
-      <span id="card-title"> {gameID.id}</span>
+      <span id="card-title"> {gameID.name}</span>
  
     <br /><br /><br /><br /><br /><br /><br />
       <p id="card-content">
-              {gameID.description}
+              {gameID.description}  
           </p>
-          <span id="see-more"> <p>{gameID.name}</p> See More</span>
+          <span id="see-more"> <p>{gameID.price}</p></span>
           <div id="date-box">
        
           <img src={gameID.image} alt="" /> 

@@ -1,4 +1,3 @@
-
 import './home_styles.css';
 import {useEffect,useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
@@ -8,7 +7,7 @@ import { getEjemplo } from "../../Redux/getEjemplo"
 import Filters from '../../Components/Filters/Filters';
 // import videoBackground from '../../assets/background_video/Waves.webm'
 import Pagination from '../../Components/Pagination/Pagination'
-
+import Loader from '../../Components/Loader/Loader';
 
 function Home(){
  const dispatch = useDispatch()
@@ -17,8 +16,8 @@ function Home(){
 const ejemplo = useSelector((state) => state.ejemplo)
 
  const [currentPage, setCurrentPage] = useState(1);
-
- const [videogamesPerPage] = useState(15);
+ const [isLoading,setIsLoading] = useState(true);
+ const [videogamesPerPage] = useState(8);
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
@@ -29,15 +28,17 @@ const ejemplo = useSelector((state) => state.ejemplo)
 
  useEffect(()=>{
     dispatch(getEjemplo())
-   }, [dispatch])
+    setTimeout(() => {
+        setIsLoading(false);
+      }, 500); // Puedes ajustar el tiempo aquí
+    }, [dispatch]);
 
     return (
-        <div>
+        <div id='Homes'>
        <div id='HomeContainer'>
             <Filters></Filters>
-            {/* <Pagination cardsPerPage={15} paginate={paginate} totalCards={150}></Pagination> */}
             <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
-     <div id="cards">
+        <div id="cards">
         
         { currentEjemplo?.map((eje) =>{
       return(
@@ -53,13 +54,14 @@ const ejemplo = useSelector((state) => state.ejemplo)
             />     
       )
        })}
+        { isLoading && <Loader></Loader> }
+        { isLoading && <div className='loaderBack'/>}
         </div>
+        
 
-        <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
+      
         </div>
-       
-     
-       
+        <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
         </div>
         
     );

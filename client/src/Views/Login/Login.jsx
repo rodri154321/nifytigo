@@ -1,3 +1,7 @@
+
+import React from 'react';
+import './index.css'
+
 import { useState } from 'react'
 import style from './Login.module.css'
 import validation from './validation';
@@ -42,73 +46,38 @@ const Login = ({ login }) => {
     login(userData);
   }
 
+
+const Login = () => {
   return (
-    <form onSubmit={handleSubmit} className={style.loginContain} autoComplete="off">
-      <div className={style.blurIn}>
-        <div className={style.topContainer}>
-          <div className={style.wobblehorizontalTop}>
-            <img src='https://img.freepik.com/foto-gratis/concepto-alojamiento-sitios-web-luz-brillante_23-2149406783.jpg' alt='Login' /></div>
-
-          <label htmlFor='username' className={style.usernameLabel}>
-            <div className={style.trackinginexpandforwardbottom}>
-              USERNAME :
-
-            </div>
-          </label>
-
-          <input
-            autoComplete="off"
-            type='text'
-            name='username'
-            placeholder='hello@example.com'
-            value={userData.username}
-            onChange={handleInputChange}
-          />
-          {errors.username && <p className={style.validacion}>{errors.username}</p>}
-
-          <label htmlFor='password' className={style.passwordLabel}>
-            <div className={style.scaleupbottom}>
-              PASSWORD:
-            </div>
-
-          </label>
-
-          <input
-            autoComplete="off"
-            type='password'
-            name='password'
-            placeholder='.......'
-            value={userData.password}
-            onChange={handleInputChange}
-          />
-          {errors.password && <p className={style.validacion}>{errors.password}</p>}
-          <br></br>
-          <FacebookLogin
-            appId="604618028449505"
-            autoLoad={false}
-            fields="name,email,picture"
-            buttonText="Login with Facebook"
-            callback={responseFacebook}
-            icon="fa-facebook" />
-            <br></br>
-          <GoogleLogin
-            clientId="520462004631-6pc5a0sbv00p5cg51rqrb5mqqep566rd.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={respuestaGoogle}
-            onFailure={respuestaGoogle}
-            cookiePolicy={'single_host_origin'} />
-
-          <div className={style.bottomContainer}>
-            <div className={style.rotatehorizontalcenter}>
-              <button className={style.loginButton}>LOGIN
-                <span class="material-symbols-outlined">
-                </span></button>
-            </div>
+    <div className='LoginContainer'>
+    <div className="main">
+      <div className="container b-container" id="b-container">
+        <form className="form" id="b-form" method="" action="">
+          <h2 className="form_title title">Sign in to Website</h2>
+          <div className="form__icons">
+            <img className="form__icon" src="" alt="" />
+            <img className="form__icon" src="" />
+            <img className="form__icon" src="" />
           </div>
+          <span className="form__span">or use your email account</span>
+          <input className="form__input" type="text" placeholder="Email" />
+          <input className="form__input" type="password" placeholder="Password" />
+          <a className="form__link">Forgot your password?</a>
+          <button className="form__button button submit">SIGN IN</button>
+        </form>
+      </div>
+      <div className="switch" id="switch-cnt">
+        <div className="switch__circle"></div>
+        <div className="switch__circle switch__circle--t"></div>
+        <div className="switch__container" id="switch-c1">
+          <h2 className="switch__title title">Hello Friend !</h2>
+          <p className="switch__description description">Enter your personal details and start journey with us</p>
+          <button className="switch__button button switch-btn"><a href="/Account">SIGN UP</a></button>
         </div>
       </div>
-    </form>
+    </div>
+    </div>
   );
-}
+};
 
 export default Login;

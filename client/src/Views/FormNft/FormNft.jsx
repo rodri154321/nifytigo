@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./FormNft.module.css";
-import { useState, useEffect } from "react";
-import validate from "./validate";
-import { useNavigate } from "react-router-dom";
+//import validate from "./validate";
+import { useDispatch } from "react-redux";
+import { postNft } from "../../Redux/postNft";
+import Swal from "sweetalert2";
+
 
 export default function FormNft() {
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState({
     name: "",
     description: "",
-    image: [],
+    image:[],
     price: undefined,
     category: [],
+    iduser: "e975a13b-058f-4239-a807-0c6713ad019c"
   });
 
   const [errors, setErrors] = useState({});
-
   const [selectedCategory, setSelectedCategory] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
@@ -41,11 +45,10 @@ export default function FormNft() {
       });
       setErrors({
         ...errors,
-        category: "", // Limpiar el error de categoría al seleccionar una nueva categoría
+        category: "",
       });
     }
   };
-
 
   const handleRemove = (name, value) => {
     setForm({
@@ -62,9 +65,9 @@ export default function FormNft() {
     if (imageUrl) {
       setForm({
         ...form,
-        image: [...form.image, imageUrl], // Agregar la URL ingresada al array de contenido
+        image: [...form.image, imageUrl],
       });
-      setImageUrl(""); // Limpiar el campo de la URL después de agregarlo
+      setImageUrl("");
     }
   };
 
@@ -77,7 +80,9 @@ export default function FormNft() {
     });
   };
 
-  const handleSubmit = (event) => {
+
+  
+ {/* const handleSubmit = (event) => {
     event.preventDefault();
     const errorSave = validate(form);
     const existName = allImagen.find(
@@ -109,9 +114,9 @@ export default function FormNft() {
       })
     }
     else {
-      dispatch(postActivity(form));
+      dispatch(postNft(form));
       Swal.fire({
-        text: 'Actividad Creada!',
+        text: 'Creat NFT!',
         icon: 'success',
         showConfirmButton: true,
         showCancelButton: true,
@@ -135,11 +140,21 @@ export default function FormNft() {
         description: "",
       });
     }
-  };
+  */}
 
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if(!form.image.length)errors.image="You must upload a file";
+    if (!form.name || !/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(form.name)) {errors.name = "Make sure the name is 3-25 characters long and consists of only letters and numbers";}
+    if(!form.price || form.price<1 || !/^[0-9]+$/.test(form.price))errors.price="A valid price must be provided";
+    if(!form.description)errors.description ="A brief description must be provided";
+    return errors;
+  };
+  
   return (
     <div className={style.containerPage}>
-      <form className={style.containerFormImg}>
+      <form className={style.containerFormImg}onSubmit={handleSubmit}>
         <h2>Create your NFT:</h2>
         <div className={style.inputs}>
 
@@ -190,9 +205,9 @@ export default function FormNft() {
             {errors.image && <p>{errors.image}</p>}
           </div>*/}
 
-          <div className={style.image}>
-            {/*************Category*************/}
-            <select
+          {/* <div className={style.image}>
+           {/*************Category*************/}
+            {/* <select
               type="text"
               name="category"
               value={selectedCategory} // Utiliza la prop `value` para establecer la opción seleccionada
@@ -200,7 +215,7 @@ export default function FormNft() {
               className={`${style.inputForm} ${style.categorySelect}`}
             >
               <option value="" disabled> {/* No necesitas usar `selected` en la opción predeterminada */}
-                Select Category
+              {/*   Select Category
               </option>
               <option value="Art">Art</option>
               <option value="Gaming">Gaming</option>
@@ -226,7 +241,7 @@ export default function FormNft() {
               </div>
 
             </div>
-          </div>
+          </div>*/}
 
 
           <div className={style.image}>
@@ -234,8 +249,8 @@ export default function FormNft() {
             {/* Cambiar `value` a `defaultValue` y agregar el controlador `onChange` */}
             <input
               type="text"
-              defaultValue={form.name}
-              name="name"
+              defaultValue={form}
+              //name="name"
               onChange={handleChange}
               placeholder="Name"
               className={style.inputForm}
