@@ -1,7 +1,9 @@
-import "./privacyOfPolicy.modules.css";
+import React from 'react';
+import "./PrivacyOfPolicy.modules.css";
 
-export const PrivacyOfPolicy = () => {
+const PrivacyOfPolicy = () => {
   return (
+    <div className="container-privacy-policy">
     <div className="privacy-policy">
       <div className="Card-policy">
         <h1 className="ache1">Privacy policy</h1>
@@ -53,5 +55,7 @@ export const PrivacyOfPolicy = () => {
         </ol>
       </div>
     </div>
+    </div>
   );
 };
+export default PrivacyOfPolicy;

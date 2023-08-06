@@ -11,50 +11,44 @@ import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft' 
+import FormNft from './Views/FormNft/FormNft'
 import Account from './Views/Account/Account'
-//import PrivacyOfPolicy from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
-import Loader from './Components/Loader/Loader'
+import PrivacyOfPolicy from './Views/PrivacyOfPolicy/PrivacyOfPolicy';
+//import TermsOfService  from './Views/TermsOfService/TermsOfService'
+//import FrequentQuestions from './Views/FrequentQuestions/FrequentQuestions'
 
 function App() {
   /*const location = useLocation();*/
   return (
     <div>
       <div id="container"><NavBar /> </div>
-<div id="Routes">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/" element={<Cards />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />}/>
-        <Route path="/AboutProgrammers" element={<AboutProgrammers />}/>
-          
-        <Route path="/detail/:id" element={<Detail />}/>
-        <Route path="/FormNft" element={<FormNft />}/>
+      <div id="Routes">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Cards />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/FormNft" element={<FormNft />} />
+          <Route path="/Account" element={<Account />} />
+          <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
+          <Route path='/Login' element={<Login />} />
 
-        <Route path="/Account" element={<Account/>}/>
-    
 
-  
-        <Route path='/Login' element= {<Login />}/>   
-
-        <Route path="/FormCollection" element={<FormCollection />}/>
+          {/*
+        <Route path="/TermsOfService" element={<TermsOfService />}/>
+        <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
         <Route path="/Failure" element={<Failure />}/>
-        <Route path="/TermsOfService" element={<TermsOfService />}/>
-        <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />}/>
-        <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
-        <Route path="/Loader" element={<Loader />}/>
-       
-     
-      </Routes>
+       */}
 
-<div id="containerFooter"><Footer/> </div>
+        </Routes>
 
+        <div id="containerFooter"><Footer /> </div>
 
-</div>
-
+      </div>
     </div>
   )
 }

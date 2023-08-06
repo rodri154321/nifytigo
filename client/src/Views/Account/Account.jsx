@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css'
+import { Link } from "react-router-dom";
 
 const Account = () => {
   return (
@@ -26,7 +27,9 @@ const Account = () => {
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Welcome Back !</h2>
           <p className="switch__description description">To keep connected with us please login with your personal info</p>
-          {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
+          <Link to="/Login" className="form__button button submit">
+            SIGN IN
+          </Link>
         </div>
       </div>
     </div>

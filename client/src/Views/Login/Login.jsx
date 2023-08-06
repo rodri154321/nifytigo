@@ -1,51 +1,6 @@
-
 import React from 'react';
 import './index.css'
-
-import { useState } from 'react'
-import style from './Login.module.css'
-import validation from './validation';
-import GoogleLogin from '@leecheuk/react-google-login';
-import FacebookLogin from '@greatsumini/react-facebook-login';
-
-const responseFacebook = (response) => {
-  console.log(response);
-}
-const respuestaGoogle = (respuesta) => {
-  console.log(respuesta);
-  console.log(respuesta.profileObj);
-}
-
-const Login = ({ login }) => {
-
-  const [userData, setUserData] = useState({
-    username: '',
-    password: ''
-  });
-
-  const [errors, setErrors] = useState({
-    username: '',
-    password: ''
-  })
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setUserData({
-      ...userData,
-      [name]: value
-    });
-    setErrors(validation({
-      ...userData,
-      [name]: value
-    }));
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login(userData);
-  }
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -68,16 +23,18 @@ const Login = () => {
       </div>
       <div className="switch" id="switch-cnt">
         <div className="switch__circle"></div>
-        <div className="switch__circle switch__circle--t"></div>
+        <div className="switch_circle switch_circle--t"></div>
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Hello Friend !</h2>
           <p className="switch__description description">Enter your personal details and start journey with us</p>
-          <button className="switch__button button switch-btn"><a href="/Account">SIGN UP</a></button>
+          <Link to="/Account" className="form__button button submit">
+            SIGN UP
+          </Link>
         </div>
       </div>
     </div>
     </div>
   );
 };
-}
+
 export default Login;
