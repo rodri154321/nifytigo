@@ -1,12 +1,15 @@
-import { GET_EJEMPLO } from "./actionTypes";
-import { POST_NFT } from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES } from "./actionTypes";
 
 const initialState = {
+    categories: [],
     ejemplo: [],
+
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+
+
         case GET_EJEMPLO:
             return {
                 ...state,
@@ -18,6 +21,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 ejemplo: action.payload
             };
+
+        case GET_CATEGORIES:
+            return {
+                ...state,
+                ejemplo: action.payload,
+                categories: action.payload,
+            }
+
         default:
             return { ...state };
     }

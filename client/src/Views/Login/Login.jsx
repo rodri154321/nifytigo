@@ -1,58 +1,71 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import Account from '../Account/Account'
 import './index.css'
 
-import { useState } from 'react'
-import style from './Login.module.css'
-import validation from './validation';
-import GoogleLogin from '@leecheuk/react-google-login';
-import FacebookLogin from '@greatsumini/react-facebook-login';
+function validate(user) {
+  let errors = {};
 
-const responseFacebook = (response) => {
-  console.log(response);
+  if (!user.email) {
+    errors.email = "Enter your email";
+  }
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+    errors.email = "Invalid email";
+  }
+  if (user.email.length >= 35) {
+    errors.email = "Invalid email";
+  }
+
+  if (!/\d/.test(user.password)) {
+    errors.password = "Password must contain a letter";
+  }
+
+  if (user.password.length < 6 || user.password.length > 10) {
+    errors.password = "Password must be between 6 and 10 characters";
+  }
+
+  return errors;
 }
-const respuestaGoogle = (respuesta) => {
-  console.log(respuesta);
-  console.log(respuesta.profileObj);
-}
 
-const Login = ({ login }) => {
-
-  const [userData, setUserData] = useState({
-    username: '',
-    password: ''
+const Login = ({ loginc }) => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
   });
+  const [errors, setErrors] = useState({email: "", password: ""});
 
-  const [errors, setErrors] = useState({
-    username: '',
-    password: ''
-  })
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setUserData({
-      ...userData,
-      [name]: value
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
     });
-    setErrors(validation({
-      ...userData,
-      [name]: value
-    }));
+
+    setErrors(
+      validate({
+        ...user,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login(userData);
+  const handleSubmit = (e) => {
+    e.preventDefault(user);
+
+    if (!errors.email && !errors.password) {
+      loginc(user);
+    } else {
+      alert("Incorrect data");
+    }
   }
 
+  const handleSignUp = () => {
+    window.location.href = Account;
+  };
 
-const Login = () => {
   return (
     <div className='LoginContainer'>
     <div className="main">
       <div className="container b-container" id="b-container">
-        <form className="form" id="b-form" method="" action="">
+        <form className="form" id="b-form" onSubmit={handleSubmit}>
           <h2 className="form_title title">Sign in to Website</h2>
           <div className="form__icons">
             <img className="form__icon" src="" alt="" />
@@ -60,10 +73,26 @@ const Login = () => {
             <img className="form__icon" src="" />
           </div>
           <span className="form__span">or use your email account</span>
-          <input className="form__input" type="text" placeholder="Email" />
-          <input className="form__input" type="password" placeholder="Password" />
+          <input
+            className="form__input"
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={userData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <div className="error">{errors.email}</div>}
+          <input
+            className="form__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={userData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <div className="error">{errors.password}</div>}
           <a className="form__link">Forgot your password?</a>
-          <button className="form__button button submit">SIGN IN</button>
+          <button className="form__button button submit" onClick={handleSubmit}>SIGN IN</button>
         </form>
       </div>
       <div className="switch" id="switch-cnt">

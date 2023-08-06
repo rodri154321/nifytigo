@@ -1,8 +1,15 @@
+
+
 /* Estilos para .privacy-policy */
 .privacy-policy {
+<<<<<<< HEAD
     display: inline-block;
     margin-left: 2%;
     margin-right: 2%;
+=======
+    display: flex;
+    margin: 3rem;
+>>>>>>> ddf6555a7edc71c98909e59ec800817363977b78
   }
   
   /* Estilos para .Card-policy */

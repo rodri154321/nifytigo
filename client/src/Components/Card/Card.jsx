@@ -18,7 +18,13 @@ function Card(ejemplo) {
         </div>
         <h2>price: {ejemplo.price}</h2>
         <h3>user: {ejemplo.name}</h3>
-            </div>
+       {/* <h3>categories: {ejemplo.categories && ejemplo.categories.join(", ")}</h3>
+        <h4>Categories: {ejemplo.categories.map((category) => category).join("   ")}</h4>
+        <h4>Categories: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.join(", ") : "Sin categorías disponibles"}</h4>*/}
+        <h4>Categorías: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.map(category => category.name).join(", ") : "Sin categorías disponibles"}</h4>
+
+        {console.log (ejemplo.categories)}
+          </div>
         </div>
         </NavLink>
     </div>
