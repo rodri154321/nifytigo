@@ -1,7 +1,12 @@
 import React from 'react';
 import './AboutPro.css'
-import Bryan from '../../img/Bryan.jpg'
+// import Jose from '../../img/Jose.jpg'
 import Alejandro from '../../img/Alejandro.jpg'
+import Bryan from '../../img/Bryan.jpg'
+import Rodrigo from '../../img/Rodrigo.jpg'
+import Julian from '../../img/Julian.jpg'
+// import Brandon from '../../img/Brandon.jpg'
+import Brian from '../../img/Brian.jpg'
 import Leidy from '../../img/Leidy.jpg'
 
 const GoogleButton = () => {
@@ -15,7 +20,7 @@ const GoogleButton = () => {
         { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
         { icon: 'github', tooltip: 'Github', link: '#'},
       ],
-      imageUrl: Alejandro
+      imageUrl: Jose
     },
     {
         name: 'Alejandro Prieto',
@@ -42,20 +47,20 @@ const GoogleButton = () => {
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
-          { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
+          { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/rodrigo-augusto-amaya-9a04161b5' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Rodrigo
       },
       {
         name: 'Julian Tejeda',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
-          { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
-          { icon: 'github', tooltip: 'Github', link: '#'},
+          { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/julian-tejada-079325198' },
+          { icon: 'github', tooltip: 'Github', link: 'https://github.com/TomateComunista'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Julian
       },
       {
         name: 'Brandon Barrera',
@@ -65,24 +70,24 @@ const GoogleButton = () => {
           { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Brandon
       },
       {
         name: 'Brian Gelvez',
         role: 'Programador Full Stack',
         socialMedia: [
-          { icon: 'twitter', tooltip: 'Twitter', link: '#' },
-          { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
+          { icon: 'twitter', tooltip: 'Twitter', link: 'https://www.instagram.com/brian.gelvez/' },
+          { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/briangelvez97/' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Brian
       },
       {
         name: 'leidy Sánchez',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
-          { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
+          { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/leidy-johanna-s%C3%A1nchez-zamora-9370731a3/' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
         imageUrl: Leidy

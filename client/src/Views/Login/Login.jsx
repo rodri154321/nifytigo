@@ -1,33 +1,62 @@
 import React, { useState } from 'react';
-import loginValidation from './loginValidation';
 import Account from '../Account/Account'
+import './index.css'
 
-const Login = ({ onSubmit }) => {
-  const [userData, setUserData] = useState({
-    email: '',
-    password: '',
+function validate(user) {
+  let errors = {};
+
+  if (!user.email) {
+    errors.email = "Enter your email";
+  }
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+    errors.email = "Invalid email";
+  }
+  if (user.email.length >= 35) {
+    errors.email = "Invalid email";
+  }
+
+  if (!/\d/.test(user.password)) {
+    errors.password = "Password must contain a letter";
+  }
+
+  if (user.password.length < 6 || user.password.length > 10) {
+    errors.password = "Password must be between 6 and 10 characters";
+  }
+
+  return errors;
+}
+
+const Login = ({ loginc }) => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({email: "", password: ""});
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      [name]: value,
-    }));
-  };
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formErrors = loginValidation(userData);
-    if (Object.keys(formErrors).length === 0) {
-      // Aquí puedes hacer la llamada al servidor o ejecutar cualquier acción con los datos
-      onSubmit(userData);
+    setErrors(
+      validate({
+        ...user,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault(user);
+
+    if (!errors.email && !errors.password) {
+      loginc(user);
     } else {
-      // Si hay errores, los establecemos en el estado para mostrarlos en el formulario
-      setErrors(formErrors);
+      alert("Incorrect data");
     }
-  };
+  }
+
   const handleSignUp = () => {
     window.location.href = Account;
   };
