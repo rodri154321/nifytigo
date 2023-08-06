@@ -1,6 +1,8 @@
 import React from 'react';
 import './AboutPro.css'
+import Bryan from '../../img/Bryan.jpg'
 import Alejandro from '../../img/Alejandro.jpg'
+import Leidy from '../../img/Leidy.jpg'
 
 const GoogleButton = () => {
 
@@ -30,10 +32,10 @@ const GoogleButton = () => {
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },
-          { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
-          { icon: 'github', tooltip: 'Github', link: '#'},
+          { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/bryan-fausto-coaguila-torres-ab9365181/ ' },
+          { icon: 'github', tooltip: 'Github', link: 'https://github.com/bryan201429'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Bryan
       },
       {
         name: 'Rodrigo Amaya',
@@ -83,7 +85,7 @@ const GoogleButton = () => {
           { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
-        imageUrl: Alejandro
+        imageUrl: Leidy
       },
   ];
 
