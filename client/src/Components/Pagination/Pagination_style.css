@@ -5,13 +5,11 @@
   justify-content: center;
   height: 4vh;
   padding: 0;
-}
-
-ul {
   list-style: none;
 }
 
-li {
+
+.pageItem {
   width: 1.5vw;
   margin: 5px;
   --border-color: linear-gradient(-45deg, #ff6200, #0354aa, #00fffb);
@@ -47,14 +45,14 @@ li {
   transition: color 250ms;
 }
 
-li::after,
-li::before {
+.pageItem::after,
+.pageItem::before {
   content: '';
   position: absolute;
   inset: 0;
 }
 
-li::before {
+.pageItem::before {
   background: var(--border-color);
   background-size: 300% 300%;
   animation: move-bg7234 5s ease infinite;
@@ -75,7 +73,7 @@ li::before {
   }
 }
 
-li::after {
+.pageItem::after {
   background: var(--bg);
   z-index: -1;
   clip-path: polygon(
@@ -99,7 +97,7 @@ li::after {
   transition: clip-path 500ms;
 }
 
-li:where(:hover, :focus)::after {
+.pageItem:where(:hover, :focus)::after {
   clip-path: polygon(
                 /* Top-left */
                 calc(100% - var(--border-width)) 
@@ -129,7 +127,7 @@ li:where(:hover, :focus)::after {
   transition: 200ms;
 }
 
-li:where(:hover, :focus) {
+.pageItem:where(:hover, :focus) {
   color: #fff;
 }
   

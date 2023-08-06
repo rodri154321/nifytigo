@@ -13,6 +13,7 @@ import Contact from './Views/Contact/Contact'
 //import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
+import { PrivacyOfPolicy } from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Account from './Views/Account/Account'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
 
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/FormNft" element={<FormNft />} />
+          <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
 
         {/*
           <Route path="/Account" element={<Account />} />
@@ -44,7 +46,7 @@ function App() {
           <Route path="/Success" element={<Success />} />
           <Route path="/Failure" element={<Failure />} />
           <Route path="/TermsOfService" element={<TermsOfService />} />
-          <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
+          
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Loader" element={<Loader />} />
 
