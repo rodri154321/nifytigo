@@ -16,6 +16,7 @@ import FormNft from './Views/FormNft/FormNft'
 import { PrivacyOfPolicy } from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Account from './Views/Account/Account'
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
+import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 
 function App() {
   /*const location = useLocation();*/
@@ -34,7 +35,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/FormNft" element={<FormNft />} />
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-
+          <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
         {/*
           <Route path="/Account" element={<Account />} />
 
