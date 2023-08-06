@@ -1,6 +1,14 @@
 import "./FrequentQuestions.modules.css";
+import { useNavigate } from "react-router-dom";
 
 export const FrequentQuestions = () => {
+
+  const Navigate = useNavigate();
+
+  const handleGoBack = () => {
+      Navigate("/");
+    };
+
   return (
     <div className="component">
       <div className="title1">
@@ -68,6 +76,11 @@ export const FrequentQuestions = () => {
           </div>
         </div>
       </div>
+      <div>
+          <button className="buttonbackTermsOfService" onClick={handleGoBack}>
+            Back
+          </button>
+        </div>
     </div>
   );
 };
