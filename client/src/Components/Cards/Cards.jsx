@@ -15,6 +15,7 @@ function Cards(ejemplo) {
             image={ejemplo.image}
             price={ejemplo.price}
             user={ejemplo.user}
+            categories={ejemplo.categories}
           />
     </div>
   );

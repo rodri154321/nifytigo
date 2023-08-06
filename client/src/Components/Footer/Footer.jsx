@@ -27,7 +27,7 @@ const Footer = () => {
             <div className={style.column}>
               <h3 className={style.title}>Our company</h3>
               <NavLink to='/About' className={style.navlink} onClick={goToTopPage}>About</NavLink>
-              {/*<NavLink to='/TermsOfService' className={style.navlink} onClick={goToTopPage}>Terms of use</NavLink>*/}
+              <NavLink to='/TermsOfService' className={style.navlink} onClick={goToTopPage}>Terms of use</NavLink>
               <NavLink to='/PrivacyOfPolicy' className={style.navlink} onClick={goToTopPage}>Privacy of policy</NavLink>
             </div>
             <div className={style.column}>

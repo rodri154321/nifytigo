@@ -1,9 +1,9 @@
-const data = require("../utils/users");
+import { find } from "../utils/users";
 
 function loginc(req, res) {
   const {email, password} = req.query;
 
-  const found = data.find(
+  const found = find(
     (user) => user.email === email && user.password === password
   );
 
@@ -11,4 +11,4 @@ function loginc(req, res) {
   res.status(200).json({access});
 }
 
-module.exports = loginc;
+export default loginc;
