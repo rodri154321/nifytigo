@@ -4,7 +4,6 @@ import validate from "./validate";
 import { useDispatch } from "react-redux";
 import axios from "axios"
 
-
 export default function FormNft() {
   const dispatch = useDispatch();
 
@@ -13,7 +12,7 @@ export default function FormNft() {
     description: "",
     image: "",
     price: "",
-    iduser: "e975a13b-058f-4239-a807-0c6713ad019c"
+    iduser: "9cd47551-b429-45b9-b9c4-95fe8a70973f"
   });
 
   const [errors, setErrors] = useState({
@@ -23,8 +22,6 @@ export default function FormNft() {
     price: "",
   });
 
-
-  //const [imageUrl, setImageUrl] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault()
     axios
@@ -90,19 +87,6 @@ export default function FormNft() {
             />
             {errors.image && <p>{errors.image}</p>}
           </div>
-            {/*<button type="button" onClick={handleAddImage}>
-              Add
-            </button>
-            <div className={style.imagepreview}>
-              {form.image && form.image.map((image, index) => (
-                <div key={index} className={style.imageContainer}>
-                  <img src={image} alt="NFT" className={style.imgPreview} />
-                  <button onClick={() => handleRemoveImage(index)} className={style.removebutton}>
-                    X
-                  </button>
-                </div>
-              ))}
-            </div>*/}
 
           <div className={style.image}>
             {/*************Name*************/}
@@ -158,3 +142,4 @@ export default function FormNft() {
     </div>
   );
 }
+
