@@ -22,10 +22,10 @@ const getNftHandler = async (req, res) => {
 
 const postNftHandler = async (req, res) => {
 
-    const { iduser, name, description, image, price } = req.body;
+    const { iduser, name, description, image, price, categorie } = req.body;
 
     try {
-        const response = await createNft(iduser, name, description, image, price);
+        const response = await createNft(iduser, name, description, image, price, categorie);
         res.status(201).json(response);
     } catch (error) {
         res.status(400).json({ error: error.message });
