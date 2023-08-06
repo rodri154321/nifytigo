@@ -17,7 +17,7 @@ function Card(ejemplo) {
           <img src={ejemplo.image}/>
         </div>
         <h2>price: {ejemplo.price}</h2>
-        <h3>user: {ejemplo.user.name}</h3>
+        <h3>user: {ejemplo.name}</h3>
             </div>
         </div>
         </NavLink>
