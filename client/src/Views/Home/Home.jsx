@@ -65,20 +65,3 @@ const ejemplo = useSelector((state) => state.ejemplo)
     );
 }
 export default Home
-       
-    
-
-{/*
-//const [currentPage, setCurrentPage] = useState(1);
-//const cardsPerPage=15;
-//const cardsFiltered = useSelector((state) => state.cardsFiltered);
-
-
-  //! Lógica para paginado
-//   const indexOfLastCard = currentPage * cardsPerPage;                                                             //Obtiene el index del ultimo juego p/pagina
-//   const indexOfFirstCard = indexOfLastCard - cardsPerPage;                                                        //Obtiene el index del primer juego p/pagina
-//   const currentCards = cardsFiltered.slice(indexOfFirstCard, indexOfLastCard);                                    // Seccionado de juegos por página
-
-  
-*/}
-
