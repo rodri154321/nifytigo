@@ -70,7 +70,7 @@ const Login = ({ onSubmit }) => {
         <div className="switch__circle switch__circle--t"></div>
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Hello Friend !</h2>
-          <p className="switch__description description">Enter your personal details and start journey with us</p>
+          <p className="switch__description description">Enter your personal details and start journey with us.</p>
           <button className="switch__button button switch-btn" onClick={handleSignUp}>SIGN UP</button>
         </div>
       </div>
