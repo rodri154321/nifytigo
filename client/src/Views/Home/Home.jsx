@@ -54,6 +54,7 @@ const ejemplo = useSelector((state) => state.ejemplo)
             image={eje.image}
             price={eje.price}
             user={eje.user}
+            categories={eje.categories}
             
 
             />

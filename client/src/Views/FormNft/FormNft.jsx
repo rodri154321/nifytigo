@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./FormNft.module.css";
 import validate from "./validate";
-import { useDispatch } from "react-redux";
 import axios from "axios"
+import {getCategories} from '../../Redux/getCategories';
+//import { postNft } from "../../Redux/postNft";
 
 export default function FormNft() {
-  const dispatch = useDispatch();
 
   const [form, setForm] = useState({
     name: "",
+    categories: [],
     description: "",
     image: "",
     price: "",
-    iduser: "9cd47551-b429-45b9-b9c4-95fe8a70973f"
+    iduser: "b6274428-dbde-4bba-8019-ed45841a8a49",
   });
 
   const [errors, setErrors] = useState({
     name: "",
+    categories: [],
     description: "",
     image: "",
     price: "",
   });
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     axios
       .post(`http://localhost:3001/nft/create`, form)
       .then((res) => alert('you have created your nft'))
@@ -31,6 +34,7 @@ export default function FormNft() {
     setForm(
       {
         name: "",
+        categories: [],
         description: "",
         image: "",
         price: "",
@@ -51,24 +55,30 @@ export default function FormNft() {
     );
   };
 
-  const handleAddImage = () => {
-    if (image) {
+
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch]);
+
+
+  const handleCategories = (event) => {
+    if (!form.categories.includes(event.target.value)) {
       setForm({
         ...form,
-        image: [...form.image, image],
+        categories: [...form.categories, event.target.value],
       });
-      setImageUrl("");
+      setErrors({
+        ...form,
+        categories: [...form.categories, event.target.value],
+      });
     }
   };
 
-  const handleRemoveImage = (index) => {
-    const updatedImage = [...form.image];
-    updatedImage.splice(index, 1);
-    setForm({
-      ...form,
-      image: updatedImage,
-    });
-  };
+
+
 
   return (
     <div className={style.containerPage}>
@@ -79,8 +89,8 @@ export default function FormNft() {
           <div className={style.image}>
             {/************* Image *************/}
             <input
-              type="text"
-              defaultValue={form.image}
+              type="url"
+              defaultvalue={form.image}
               onChange={handleChange}
               placeholder="Enter URL"
               className={style.inputForm}
@@ -92,7 +102,7 @@ export default function FormNft() {
             {/*************Name*************/}
             {/* Cambiar `value` a `defaultValue` y agregar el controlador `onChange` */}
             <input
-              type="url"
+              type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
@@ -101,6 +111,49 @@ export default function FormNft() {
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
+
+
+          <div className={style.image}>
+            <select
+              name="categories"
+              value={categories}
+              onChange={handleCategories}
+              className={style.inputForm}
+            >
+              <option value="" disabled>
+                Categorías
+              </option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+
+            {/*   <option value="Art">Art</option>
+              <option value="Gaming">Gaming</option>
+              <option value="PFPs">PFPs</option>
+              <option value="Photography">Photography</option>
+  <option value="Music">Music</option> */}
+
+            {form.categories.length > 0 && (
+              <div className={style.selectedCategories}>
+                {form.categories.map((category, index) => (
+                  <div key={index} className={style.categoryTag}>
+                    {category}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveCategory(category)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {errors.categories && <p>{errors.categories}</p>}
+          </div>
+
 
           <div className={style.image}>
             {/************Price:*************/}
@@ -138,8 +191,10 @@ export default function FormNft() {
             </button>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
+
+
 

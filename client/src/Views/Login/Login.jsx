@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import loginValidation from './loginValidation';
 import Account from '../Account/Account'
+import './index.css'
 
 const Login = ({ onSubmit }) => {
   const [userData, setUserData] = useState({
