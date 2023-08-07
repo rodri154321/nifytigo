@@ -188,7 +188,7 @@ const Login = () => {
 
       if (isValidUser) {
         setIsLoggedIn(true); // Usuario autenticado correctamente
-        navigate('/Home'); // Realizar la redirección utilizando useNavigate
+        navigate('/'); // Realizar la redirección utilizando useNavigate
       } else {
         console.log("Credenciales incorrectas");
       }
@@ -199,7 +199,7 @@ const Login = () => {
 
   // Si isLoggedIn es verdadero, redirige a la página deseada
   if (isLoggedIn) {
-    return <Redirect to="/Home" />;
+    return <Redirect to="/" />;
   }
 
   return (
@@ -241,7 +241,7 @@ const Login = () => {
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Hello Friend !</h2>
           <p className="switch__description description">Enter your personal details and start journey with us</p>
-          <button className="switch__button button switch-btn" onClick={handleSignUp}>SIGN UP</button>
+          <button onClick={getAccount} className="switch__button button switch-btn"> <a href ='/Account'>SIGN UP</a></button>
         </div>
       </div>
     </div>

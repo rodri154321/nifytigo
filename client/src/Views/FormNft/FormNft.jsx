@@ -9,7 +9,7 @@ const FormNft = () => {
   const categories = useSelector((state) => state.categories);
 
   const [formData, setFormData] = useState({
-    iduser: "73c46fa9-f8df-4cd4-a80c-2fc34f6afd53",//73c46fa9-f8df-4cd4-a80c-2fc34f6afd53
+    iduser: "6a24c2ea-867b-4b14-acc0-cf48a6b0ddd7",//73c46fa9-f8df-4cd4-a80c-2fc34f6afd53
     image: "",
     name: "",
     description: "",
