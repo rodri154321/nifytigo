@@ -27,7 +27,6 @@ const findUserName = async (username, password) => {
         throw Error(`Usuario Incorrecto`);
     }
 
-
 }
 
 module.exports = { allUsers, createUser, findUserName }

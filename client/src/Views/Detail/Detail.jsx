@@ -36,7 +36,7 @@ return (
               <br /> 
              <p> {gameID.user}</p>
           </p>
-          <span id="see-more"> <p>{gameID.price}</p></span>
+          <span id="see-more"> <p>{gameID.price}</p> See More</span>
           <div id="date-box">
        
           <img src={gameID.image} alt="" /> 

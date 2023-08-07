@@ -52,19 +52,21 @@
 .containerVision {
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-out;
     width: 500px;
     height: 500px;
     position: relative;
     transform-style: preserve-3d;
-    background: radial-gradient(circle, #dfd6df, #8d775a,#241e11);
+    background: radial-gradient(circle, #dfd6df, #e79639e7,#ad5a22,#4e301c);
 }
 
 .containerAboutUs h3,
 .containerMission h3,
 .containerVision h3 {
     opacity: 1;
+    font-size:20px;
+    color:black;
 }
 
 .containerAboutUs h2,
@@ -79,8 +81,9 @@
     z-index: 1;
     opacity: 1;
     transition: opacity 0.3s;
-    font-size: 42px;
+    font-size: 52px;
     color: #232323;
+    font-family:monospace;
 }
 
 .containerAboutUs:hover h2,
