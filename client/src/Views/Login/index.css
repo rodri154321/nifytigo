@@ -103,6 +103,7 @@ body {
   cursor: pointer;
 }
 .form__input {
+  color: #181818;
   width: 350px;
   height: 40px;
   margin: 4px 0;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./privacyOfPolicy.modules.css";
 import { useNavigate } from "react-router-dom";
 
@@ -11,12 +10,6 @@ export const PrivacyOfPolicy = () => {
       Navigate("/");
     };
 
-=======
-import React from 'react';
-import "./PrivacyOfPolicy.modules.css";
-
-const PrivacyOfPolicy = () => {
->>>>>>> ddf6555a7edc71c98909e59ec800817363977b78
   return (
     <div className="container-privacy-policy">
     <div className="privacy-policy">
