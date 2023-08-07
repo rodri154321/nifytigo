@@ -9,16 +9,16 @@ const FormNft = () => {
   const categories = useSelector((state) => state.categories);
 
   const [formData, setFormData] = useState({
-    iduser: "72728d42-c637-4804-8aba-b710c11a22a5",
-    imageUrl: "",
+    iduser: "73c46fa9-f8df-4cd4-a80c-2fc34f6afd53",//73c46fa9-f8df-4cd4-a80c-2fc34f6afd53
+    image: "",
     name: "",
     description: "",
     price: "",
-    selectedCategories: [],
+    categorie: [],
   });
 
   const [formErrors, setFormErrors] = useState({
-    imageUrl: "",
+    image: "",
     name: "",
     description: "",
     price: "",
@@ -40,7 +40,7 @@ const FormNft = () => {
   const validateField = (fieldName, value) => {
     let errors = "";
     switch (fieldName) {
-      case "imageUrl":
+      case "image":
         // Validar la URL de la imagen con una expresión regular
         if (!/^.{1,210}$/.test(value)) {
           errors = "La URL debe tener hasta 210 caracteres y no debe contener espacios en blanco.";
@@ -65,9 +65,15 @@ const FormNft = () => {
   };
 
   const handleCategoryChange = (event) => {
-    const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
-    setFormData({ ...formData, selectedCategories: selectedOptions });
-  };
+console.log(formData)
+    setFormData({
+      ...formData,
+      ...formData.categorie.push(event.target.value)
+    })
+  }
+  //const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+  //setFormData({ ...formData, categorie: selectedOptions });
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -84,14 +90,14 @@ const FormNft = () => {
           <h3 htmlFor="imageUrl">URL de la Imagen:</h3>
           <input
             type="text"
-            id="imageUrl"
-            name="imageUrl"
-            value={formData.imageUrl}
+            id="image"
+            name="image"
+            value={formData.image}
             onChange={handleInputChange}
             required
             className={style.input}
           />
-          {formErrors.imageUrl && <p className={style.error}>{formErrors.imageUrl}</p>}
+          {formErrors.image && <p className={style.error}>{formErrors.image}</p>}
 
           <h3 htmlFor="name">Nombre:</h3>
           <input
@@ -103,7 +109,7 @@ const FormNft = () => {
             required
           />
           {formErrors.name && <p className={style.error}>{formErrors.name}</p>}
-         
+
 
           <h3 htmlFor="description">Descripción:</h3>
           <textarea
@@ -114,7 +120,7 @@ const FormNft = () => {
             rows="4"
             required
           ></textarea>
-           {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
+          {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
 
 
           <h3 htmlFor="price">Precio:</h3>
@@ -127,24 +133,22 @@ const FormNft = () => {
             step="0.01"
             required
           />
-           {formErrors.price && <p className={style.error}>{formErrors.price}</p>}
+          {formErrors.price && <p className={style.error}>{formErrors.price}</p>}
 
           <h3 htmlFor="categories">Categorías:</h3>
           <select
             multiple
             id="categories"
-            name="selectedCategories"
-            value={formData.selectedCategories}
             onChange={handleCategoryChange}
             required
           >
             {categories.map((category) => (
-              <option key={category.id} value={category.name}>
+              <option key={category.name} value={category.name}>
                 {category.name}
               </option>
             ))}
           </select>
-
+          {formData.categorie.map((cat) => <p> Categorias Seleccionadas:{cat}</p>)}
           <button type="submit" className={style.button}>
             Create NFT
           </button>
