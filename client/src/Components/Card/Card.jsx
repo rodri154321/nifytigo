@@ -22,6 +22,7 @@ function Card(ejemplo) {
         <h4>Categories: {ejemplo.categories.map((category) => category).join("   ")}</h4>
         <h4>Categories: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.join(", ") : "Sin categorías disponibles"}</h4>*/}
         <h4>Categorías: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.map(category => category.name).join(", ") : "Sin categorías disponibles"}</h4>
+        
 {console.log (ejemplo.categories)}
         
           </div>
