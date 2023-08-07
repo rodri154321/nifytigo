@@ -1,16 +1,25 @@
-// Account.js
-import { useState } from 'react';
-import validation from './validation';
-import './index.css'
-import Login from '../Login/Login'
+import { useState } from "react";
+import validation from "./validation";
+import "./index.css";
+import Login from "../Login/Login";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../Redux/userActions";
 
 const Account = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+
   const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    username: "",
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    cellPhone: "",
+    country: "",
   });
   const [errors, setErrors] = useState({});
+  const [userCreationStatus, setUserCreationStatus] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,14 +29,20 @@ const Account = ({ onSubmit }) => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formErrors = validation(userData);
     if (Object.keys(formErrors).length === 0) {
-      // Aquí puedes hacer la llamada al servidor o ejecutar cualquier acción con los datos
-      onSubmit(userData);
+      try {
+        // Aquí llamamos a la acción createUser con los datos del formulario
+        dispatch(createUser(userData));
+        setUserCreationStatus('User created successfully!');
+        setErrorMessage(''); // Limpiamos el mensaje de error en caso de existir previamente
+      } catch (error) {
+        setUserCreationStatus('User creation failed.');
+        setErrorMessage(error.message);
+      }
     } else {
-      // Si hay errores, los establecemos en el estado para mostrarlos en el formulario
       setErrors(formErrors);
     }
   };
@@ -37,56 +52,96 @@ const Account = ({ onSubmit }) => {
   };
 
   return (
-    <div className='AccountContainer'>
-    <div className="main">
-    
-      <div className="container a-container" id="a-container">
-        <form className="form" id="a-form" onSubmit={handleSubmit}>
-          <h2 className="form_title title">Create Account</h2>
-          <div className="form__icons">
-            <img className="form__icon" src="" alt="" />
-            <img className="form__icon" src="" />
-            <img className="form__icon" src="" />
+    <div className="AccountContainer">
+      <div className="main">
+        <div className="container a-container" id="a-container">
+          <form className="form" id="a-form" onSubmit={handleSubmit}>
+            <h2 className="form_title title">Create Account</h2>
+            <div className="form__icons">
+              <img className="form__icon" src="" alt="" />
+              <img className="form__icon" src="" />
+              <img className="form__icon" src="" />
+            </div>
+            <span className="form__span">or use email for registration</span>
+            <input
+              className="form__input"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={userData.username}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={userData.name}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={userData.lastName}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={userData.email}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={userData.password}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="text"
+              name="cellPhone"
+              placeholder="Cell Phone"
+              value={userData.cellPhone}
+              onChange={handleChange}
+            />
+            <input
+              className="form__input"
+              type="text"
+              name="country"
+              placeholder="Country"
+              value={userData.country}
+              onChange={handleChange}
+            />
+            {errors.password && <div className="error">{errors.password}</div>}
+            <button
+              className="form__button button submit"
+              onClick={handleSubmit}
+            >
+              SIGN UP
+            </button>
+          </form>
+        </div>
+        <div className="switch" id="switch-cnt">
+          <div className="switch__container" id="switch-c1">
+            <h2 className="switch__title title">Welcome Back !</h2>
+            <p className="switch__description description">
+              To keep connected with us please login with your personal info
+            </p>
+            {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
           </div>
-          <span className="form__span">or use email for registration</span>
-          <input
-            className="form__input"
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={userData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <div className="error">{errors.name}</div>}
-          <input
-            className="form__input"
-            type="text"
-            name="email"
-            placeholder="Email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="error">{errors.email}</div>}
-          <input
-            className="form__input"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={userData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <div className="error">{errors.password}</div>}
-          <button className="form__button button submit" onClick={handleSubmit}>SIGN UP</button>
-        </form>
-      </div>
-      <div className="switch" id="switch-cnt">
-        <div className="switch__container" id="switch-c1">
-          <h2 className="switch__title title">Welcome Back !</h2>
-          <p className="switch__description description">To keep connected with us please login with your personal info</p>
-          {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
+        </div>
+        <div>
+          <p>{userCreationStatus}</p>
+          {errorMessage && <p className="error">{errorMessage}</p>}
         </div>
       </div>
-    </div>
     </div>
   );
 };
