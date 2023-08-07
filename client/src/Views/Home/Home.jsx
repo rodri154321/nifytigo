@@ -12,14 +12,12 @@ import Loader from '../../Components/Loader/Loader';
 function Home(){
  const dispatch = useDispatch()
  
-
 const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
 
  const [currentPage, setCurrentPage] = useState(1);
 
  const [isLoading,setIsLoading] = useState(true);
  const [videogamesPerPage] = useState(8);
-
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
@@ -30,9 +28,9 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
 
  useEffect(()=>{
     dispatch(getEjemplo())
-    setTimeout(() => {
+    setTimeout(() => {          //Loader
         setIsLoading(false);
-      }, 500); // Puedes ajustar el tiempo aquí
+      }, 500); //
     }, [dispatch]);
 
     return (
