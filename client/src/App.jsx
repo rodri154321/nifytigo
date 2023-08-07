@@ -2,7 +2,6 @@ import { Route, Routes,/*useLocation */ } from 'react-router-dom'
 import './App.css'
 
 import videoBackground from './assets/Forms.webm'
-
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
@@ -58,10 +57,8 @@ function App() {
         </Routes>
         
         <div id="containerFooter"><Footer /> </div>
-
       </div>
       <video id='videoback' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
-
     </div>
   )
 }
