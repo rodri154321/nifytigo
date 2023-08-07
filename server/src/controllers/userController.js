@@ -11,6 +11,11 @@ const createUser = async (username, name, lastName, email, password, cellPhone, 
     return newUser
 }
 
+const getUserId = async (id) => {
+    const user = await users.findByPk(id);
+    return user;
+}
+
 const findUserName = async (username, password) => {
 
     const exist = await users.findOne({ where: { username: username } });
@@ -29,4 +34,5 @@ const findUserName = async (username, password) => {
 
 }
 
-module.exports = { allUsers, createUser, findUserName }
+
+module.exports = { allUsers, createUser, findUserName, getUserId }

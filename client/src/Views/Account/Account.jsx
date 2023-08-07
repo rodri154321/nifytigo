@@ -80,8 +80,6 @@ const Account = ({ onSubmit }) => {
         </form>
       </div>
       <div className="switch" id="switch-cnt">
-      <div className="switch__circle"></div>
-        <div className="switch__circle switch__circle--t"></div>
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Welcome Back !</h2>
           <p className="switch__description description">To keep connected with us please login with your personal info</p>

@@ -1,4 +1,4 @@
-const { allUsers, createUser,findUserName } = require('../controllers/userController')
+const { allUsers, createUser,findUserName, getUserId } = require('../controllers/userController')
 
 const getUsersHandler = async (req, res) => {
 
@@ -38,9 +38,25 @@ const getUserNameHandler = async (req, res) => {
     }
 }
 
+const getUserIdHandler = async (req, res) => {
+    const {id} = req.params
+    console.log(id);
+    try {
+        const user = await getUserId(id);
+        if (user) {
+            res.status(200).json(user)
+        } else {
+            res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al buscar el usuario' });
+    }
+}
+
 
 module.exports = {
     getUsersHandler,
     createUsersHandler,
-    getUserNameHandler
+    getUserNameHandler,
+    getUserIdHandler
 }
