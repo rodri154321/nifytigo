@@ -38,10 +38,10 @@ function Filters({paginate}){
     return(
         <div id='filterContainer'>
             <div className='filterNames'>
-                <label>FILTROS</label>
+                <label>Filters</label>
             </div>  
 
-            <div className='filtersBox'>
+            {/* <div className='filtersBox'>
                 <label>COLLECTION: </label>
                 <select onChange={handleFilterByCollection}>
                     {["A","B","C"].map((origin) => (
@@ -50,7 +50,7 @@ function Filters({paginate}){
                         </option>
                     ))}
                 </select>
-            </div>
+            </div> */}
 
             <div className='filtersBox'>
                 <label>SORT: </label>
