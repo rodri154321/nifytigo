@@ -1,9 +1,26 @@
 import './Filters_Styles.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { sortAlfa } from '../../Redux/sortAlfa'; 
+import { getCategories } from '../../Redux/getCategories';
+import { filterCategories } from '../../Redux/filterCategories';
+import { useState } from 'react';
+
+
 
 function Filters({paginate}){
+
+
+    const[selectedCategorie, setselectedCategorie]=useState("");
+    const[aux, setAux] = useState(false);
+
+    const categories = useSelector((state)=> state.categories);
     const dispatch=useDispatch();
+
+    useEffect(()=>{
+        dispatch(getCategories());
+    },[dispatch]);
+
 
     const handleFilterByCollection=(e)=>{
         
@@ -13,7 +30,8 @@ function Filters({paginate}){
         paginate(1);
     }
     const handleFilterByCategory=(e)=>{
-
+        dispatch(filterCategories(e.target.value))
+        paginate(1);
     }
 
 
@@ -48,9 +66,9 @@ function Filters({paginate}){
             <div className='filtersBox' id='genresFilterBox'>
                 <label>Category: </label>
                 <select onChange={handleFilterByCategory}>
-                    {["All Genres","Art","Membership","Game","PFP","Photography","Domain Names","Music","Sports Collectibles","Virtual Worlds"].map((gender) => (
-                        <option key={gender} value={gender}>
-                            {gender}
+                    {categories.map((gender) => (
+                        <option key={gender.name} value={gender.name}>
+                            {gender.name}
                         </option>
                     ))}
                 </select>
