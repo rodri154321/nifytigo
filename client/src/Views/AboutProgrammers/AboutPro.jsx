@@ -76,7 +76,7 @@ const GoogleButton = () => {
         name: 'Brian Gelvez',
         role: 'Programador Full Stack',
         socialMedia: [
-          { icon: 'twitter', tooltip: 'Twitter', link: 'https://www.instagram.com/brian.gelvez/' },
+          { icon: 'instagram', tooltip: 'instagram', link: 'https://www.instagram.com/brian.gelvez/' },
           { icon: 'linkedin', tooltip: 'LinkedIn', link: 'https://www.linkedin.com/in/briangelvez97/' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
