@@ -117,9 +117,10 @@
 
 // export default Login;
 
-import React, { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import './index.css';
+import { useState } from 'react';
 
 function validate(user) {
   let errors = {};
@@ -152,13 +153,14 @@ function authenticateUser(email, password) {
   return email === 'usuario1@gmail.com' && password === 'usuario1';
 }
 
-const Login = ({ }) => {
+const Login = () => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Nueva variable de estado para rastrear el estado del inicio de sesión
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -173,7 +175,9 @@ const Login = ({ }) => {
     }));
   };
 
-  const navigate = useNavigate();
+  const getAccount = () => {
+    navigate("/Account")
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -237,7 +241,11 @@ const Login = ({ }) => {
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Hello Friend !</h2>
           <p className="switch__description description">Enter your personal details and start journey with us</p>
+<<<<<<< HEAD
+          <button onClick={getAccount} className="switch__button button switch-btn"><a href="/Account">SIGN UP</a></button>
+=======
           <button className="switch__button button switch-btn" onClick={handleSignUp}>SIGN UP</button>
+>>>>>>> af0438675455c5a38d769e3144d00befc69559e9
         </div>
       </div>
     </div>
