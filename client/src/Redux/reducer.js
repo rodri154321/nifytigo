@@ -28,6 +28,11 @@ const rootReducer = (state = initialState, action) => {
                 ejemplo: action.payload,
                 categories: action.payload,
             }
+        case 'GET_GAMENAME':
+            return {
+                ...state,
+                ejemplo: action.payload
+            }
 
         default:
             return { ...state };
