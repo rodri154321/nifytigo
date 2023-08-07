@@ -1,15 +1,16 @@
 import './Filters_Styles.css'
 import { useDispatch } from 'react-redux';
+import { sortAlfa } from '../../Redux/sortAlfa'; 
 
-
-function Filters(){
-    //const dispatch=useDispatch();
+function Filters({paginate}){
+    const dispatch=useDispatch();
 
     const handleFilterByCollection=(e)=>{
         
     }
     const handleSort=(e)=>{
-
+        dispatch(sortAlfa(e.target.value))
+        paginate(1);
     }
     const handleFilterByCategory=(e)=>{
 
@@ -36,9 +37,9 @@ function Filters(){
             <div className='filtersBox'>
                 <label>SORT: </label>
                 <select onChange={handleSort}>
-                    {["A-Z","Z-A","Rating(Best First)","Rating(Worst First)"].map((gender) => (
-                        <option key={gender} value={gender}>
-                            {gender}
+                    {["A-Z","Z-A","Price (Higher First)","Price (Lower First)"].map((sort) => (
+                        <option key={sort} value={sort}>
+                            {sort}
                         </option>
                     ))}
                 </select>
