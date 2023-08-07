@@ -13,7 +13,7 @@ function Home(){
  const dispatch = useDispatch()
  
 
-const ejemplo = useSelector((state) => state.ejemplo)
+const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
 
  const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,28 +38,24 @@ const ejemplo = useSelector((state) => state.ejemplo)
     return (
         <div id='Homes'>
        <div id='HomeContainer'>
-            <Filters></Filters>
+            <Filters paginate={paginate}></Filters>
             <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
         <div id="cards">
         
-        { currentEjemplo?.map((eje) =>{
-      return(
-            
-            <Cards
-            key={eje.id}
-            id={eje.id}
-            name={eje.name}
-            description={eje.description}
-            image={eje.image}
-            price={eje.price}
-            user={eje.user}
-            categories={eje.categories}
-            
-
-            />
-        
-      )
-       })}
+        {currentEjemplo?.map((eje) =>{
+          return(
+                <Cards
+                key={eje.id}
+                id={eje.id}
+                name={eje.name}
+                description={eje.description}
+                image={eje.image}
+                price={eje.price}
+                user={eje.user}
+                categories={eje.categories}
+                />
+          )
+          })}
         { isLoading && <Loader></Loader> }
         { isLoading && <div className='loaderBack'/>}
         </div>
@@ -69,4 +65,4 @@ const ejemplo = useSelector((state) => state.ejemplo)
         
     );
 }
-export default Home
+export default Home;

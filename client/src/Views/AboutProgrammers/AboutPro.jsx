@@ -20,7 +20,7 @@ const GoogleButton = () => {
         { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
         { icon: 'github', tooltip: 'Github', link: '#'},
       ],
-      imageUrl: Jose
+      // imageUrl: Jose
     },
     {
         name: 'Alejandro Prieto',
@@ -70,7 +70,7 @@ const GoogleButton = () => {
           { icon: 'linkedin', tooltip: 'LinkedIn', link: '#' },
           { icon: 'github', tooltip: 'Github', link: '#'},
         ],
-        imageUrl: Brandon
+        // imageUrl: Brandon
       },
       {
         name: 'Brian Gelvez',
