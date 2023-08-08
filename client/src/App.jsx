@@ -12,7 +12,7 @@ import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
 
 
-// import Login from './Views/Login/Login'
+import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
 
@@ -40,6 +40,7 @@ function App() {
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
+          <Route path="/Profile" element={<Profile />} />
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
