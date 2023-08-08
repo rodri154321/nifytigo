@@ -1,6 +1,7 @@
 // Account.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import validation from './validation';
+import './index.css'
 import Login from '../Login/Login'
 
 const Account = ({ onSubmit }) => {
@@ -36,7 +37,9 @@ const Account = ({ onSubmit }) => {
   };
 
   return (
+    <div className='AccountContainer'>
     <div className="main">
+    
       <div className="container a-container" id="a-container">
         <form className="form" id="a-form" onSubmit={handleSubmit}>
           <h2 className="form_title title">Create Account</h2>
@@ -85,6 +88,7 @@ const Account = ({ onSubmit }) => {
           {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
         </div>
       </div>
+    </div>
     </div>
   );
 };
