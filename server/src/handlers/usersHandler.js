@@ -1,6 +1,6 @@
-const { allUsers, createUser,findUserName, getUserId } = require('../controllers/userController')
-const WelcomeEmail = require('../nodemailer/userNodemailer')
-const useNodemailer = require('../nodemailer/userNodemailer')
+const { allUsers, createUser, findUserName, getUserId, updateUser } = require('../controllers/userController')
+// const WelcomeEmail = require('../nodemailer/userNodemailer')
+// const useNodemailer = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
 
@@ -20,8 +20,8 @@ const createUsersHandler = async (req, res) => {
     try {
 
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
-        const userEmail = newUser.email
-        await WelcomeEmail(userEmail)
+        // const userEmail = newUser.email
+        // await WelcomeEmail(userEmail)
 
         res.status(200).json(newUser)
     } catch (error) {
@@ -31,19 +31,19 @@ const createUsersHandler = async (req, res) => {
 
 const getUserNameHandler = async (req, res) => {
 
-    const {username,password} = req.body
+    const { username, password } = req.body
     try {
 
-        const UserName = await findUserName(username,password)
+        const UserName = await findUserName(username, password)
         res.status(200).json(UserName)
 
     } catch (error) {
-        res.status(400).json({ error: error})
+        res.status(400).json({ error: error })
     }
- }
+}
 
 const getUserIdHandler = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     console.log(id);
     try {
         const user = await getUserId(id);
@@ -57,10 +57,22 @@ const getUserIdHandler = async (req, res) => {
     }
 }
 
+const updateUserHandler = async (req, res) => {
+    try {
+    const { id } = req.params
+    const { username, name, lastName, email, password, cellPhone, country } = req.body
+        const user = await updateUser(id, username, name, lastName, email, password, cellPhone, country);
+        return res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({ message: 'No se pudo actualizar el Usuario' });
+    }
+}
+
 
 module.exports = {
     getUsersHandler,
     createUsersHandler,
     getUserNameHandler,
-    getUserIdHandler
+    getUserIdHandler,
+    updateUserHandler
 }

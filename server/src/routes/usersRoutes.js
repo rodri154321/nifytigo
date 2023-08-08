@@ -6,7 +6,8 @@ const {
     getUsersHandler,
     createUsersHandler,
     getUserNameHandler,
-    getUserIdHandler
+    getUserIdHandler,
+    updateUserHandler
 }= require('../handlers/usersHandler')
 
 
@@ -15,5 +16,6 @@ router
 .get('/username', getUserNameHandler)
 .get('/:id', getUserIdHandler)
 .post('/', createUsersHandler)
+.put('/update/:id', updateUserHandler)
 
 module.exports = router;

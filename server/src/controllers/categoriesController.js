@@ -6,8 +6,6 @@ const allcategories = async() => {
 }
 
 const postCategory = async(name) => {
-
-    console.log(name);
     const newCategory = await categories.create({name});
     return newCategory;
 }
