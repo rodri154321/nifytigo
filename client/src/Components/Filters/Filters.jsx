@@ -1,9 +1,26 @@
 import './Filters_Styles.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { sortAlfa } from '../../Redux/sortAlfa'; 
+import { getCategories } from '../../Redux/getCategories';
+import { filterCategories } from '../../Redux/filterCategories';
+import { useState } from 'react';
+
+
 
 function Filters({paginate}){
+
+
+    const[selectedCategorie, setselectedCategorie]=useState("");
+    const[aux, setAux] = useState(false);
+
+    const categories = useSelector((state)=> state.categories);
     const dispatch=useDispatch();
+
+    useEffect(()=>{
+        dispatch(getCategories());
+    },[dispatch]);
+
 
     const handleFilterByCollection=(e)=>{
         
@@ -13,17 +30,18 @@ function Filters({paginate}){
         paginate(1);
     }
     const handleFilterByCategory=(e)=>{
-
+        dispatch(filterCategories(e.target.value))
+        paginate(1);
     }
 
 
     return(
         <div id='filterContainer'>
             <div className='filterNames'>
-                <label>FILTROS</label>
+                <label>Filters</label>
             </div>  
 
-            <div className='filtersBox'>
+            {/* <div className='filtersBox'>
                 <label>COLLECTION: </label>
                 <select onChange={handleFilterByCollection}>
                     {["A","B","C"].map((origin) => (
@@ -32,11 +50,11 @@ function Filters({paginate}){
                         </option>
                     ))}
                 </select>
-            </div>
+            </div> */}
 
             <div className='filtersBox'>
-                <label>SORT: </label>
-                <select onChange={handleSort}>
+                <label>Sort: </label>
+                <select className='selector' onChange={handleSort}>
                     {["A-Z","Z-A","Price (Higher First)","Price (Lower First)"].map((sort) => (
                         <option key={sort} value={sort}>
                             {sort}
@@ -47,10 +65,10 @@ function Filters({paginate}){
 
             <div className='filtersBox' id='genresFilterBox'>
                 <label>Category: </label>
-                <select onChange={handleFilterByCategory}>
-                    {["All Genres","Art","Membership","Game","PFP","Photography","Domain Names","Music","Sports Collectibles","Virtual Worlds"].map((gender) => (
-                        <option key={gender} value={gender}>
-                            {gender}
+                <select className='selector' onChange={handleFilterByCategory}>
+                    {categories.map((gender) => (
+                        <option key={gender.name} value={gender.name}>
+                            {gender.name}
                         </option>
                     ))}
                 </select>
