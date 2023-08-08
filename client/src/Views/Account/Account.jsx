@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "./validation";
 import "./index.css";
 import Login from "../Login/Login";
@@ -19,7 +19,7 @@ const Account = ({ onSubmit }) => {
   });
   const [errors, setErrors] = useState({});
   const [userCreationStatus, setUserCreationStatus] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,6 +47,19 @@ const Account = ({ onSubmit }) => {
     }
   };
 
+  useEffect(() => {
+    // Creamos un temporizador para limpiar el mensaje después de 3 segundos
+    const timer = setTimeout(() => {
+      setUserCreationStatus("");
+      setErrorMessage("");
+    }, 3000);
+
+    // Limpiamos el temporizador cuando el componente se desmonte o se actualice el estado showUserCreationStatus
+    return () => clearTimeout(timer);
+  }, [userCreationStatus, errorMessage]);
+
+
+
   const handleSignUp = () => {
     window.location.href = Login;
   };
@@ -57,6 +70,10 @@ const Account = ({ onSubmit }) => {
         <div className="container a-container" id="a-container">
           <form className="form" id="a-form" onSubmit={handleSubmit}>
             <h2 className="form_title title">Create Account</h2>
+            <div>
+          {userCreationStatus && <h1>{userCreationStatus}</h1>}
+          {errorMessage && <h1 className="error">{errorMessage}</h1>}
+        </div>
             <div className="form__icons">
               <img className="form__icon" src="" alt="" />
               <img className="form__icon" src="" />
@@ -136,10 +153,6 @@ const Account = ({ onSubmit }) => {
             </p>
             {/*<button className="switch__button button switch-btn">SIGN IN</button>*/}
           </div>
-        </div>
-        <div>
-          <p>{userCreationStatus}</p>
-          {errorMessage && <p className="error">{errorMessage}</p>}
         </div>
       </div>
     </div>
