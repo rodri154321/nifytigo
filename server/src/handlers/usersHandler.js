@@ -1,4 +1,4 @@
-const {usersById,searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName } = require('../controllers/userController')
+const {usersById,searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName, deleteSearchName } = require('../controllers/userController')
 
 const getUsersHandler = async (req, res) => {
 const {username} = req.query
@@ -69,22 +69,25 @@ res.status(200).json(usersDelete)
 }
 }
 
-const getDeleteUsersHandler= async()=>{
+const getDeleteUsersnameHandler=async (req,res)=>{
+ const {username} = req.body
     try {
 
-     const results = 'funciona?'
+        
+        const results =  await deleteSearchName({username})
+
         res.status(200).json(results)
         
     } catch (error) {
         res.status(400).json({ error: error.message })
-    } 
-}
+    }
+} 
 
 module.exports = {
     getUsersHandler, 
     createUsersHandler,
     getUserNameHandler, 
     deleteUsersHandler,
-    getDeleteUsersHandler,
+    getDeleteUsersnameHandler,
     getIdUsersHandler
 }

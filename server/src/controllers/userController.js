@@ -77,5 +77,24 @@ const searchUsersnameByName = async(username)=>{
     
 }
 
-module.exports = {usersById,searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById }
+
+
+const deleteSearchName = async(username)=>{
+       
+    const exist = await users.findOne({ where: { username: username } });
+    if (exist) {
+        if(exist.username === username) {
+            users.destroy({
+                where: {username:username}
+             })
+
+             return 'usuario eliminado'
+        }
+        return 'usuario inexistente'
+
+
+    
+    }}
+
+module.exports = {deleteSearchName,usersById,searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById }
  
