@@ -1,4 +1,6 @@
-const { allUsers, createUser,findUserName } = require('../controllers/userController')
+const { allUsers, createUser,findUserName, getUserId } = require('../controllers/userController')
+const WelcomeEmail = require('../nodemailer/userNodemailer')
+const useNodemailer = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
 
@@ -18,6 +20,8 @@ const createUsersHandler = async (req, res) => {
     try {
 
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
+        const userEmail = newUser.email
+        await WelcomeEmail(userEmail)
 
         res.status(200).json(newUser)
     } catch (error) {
@@ -36,11 +40,27 @@ const getUserNameHandler = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error})
     }
+ }
+
+const getUserIdHandler = async (req, res) => {
+    const {id} = req.params
+    console.log(id);
+    try {
+        const user = await getUserId(id);
+        if (user) {
+            res.status(200).json(user)
+        } else {
+            res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al buscar el usuario' });
+    }
 }
 
 
 module.exports = {
     getUsersHandler,
     createUsersHandler,
-    getUserNameHandler
+    getUserNameHandler,
+    getUserIdHandler
 }
