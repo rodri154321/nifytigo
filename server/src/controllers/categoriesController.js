@@ -2,7 +2,7 @@ const { categories } = require('../db.js');
 
 const allcategories = async() => {
     const cat = await categories.findAll()
-    return cat
+    return cat;
 }
 
 const postCategory = async(name) => {
