@@ -1,20 +1,21 @@
 import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES } from "./actionTypes";
 
 const initialState = {
+    user: null,
+    loading: false,
+    error: null,
     categories: [],
     ejemplo: [],                //Todas las cards
-    cardsFiltered:[]
+    cardsFiltered: []
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-
-
         case GET_EJEMPLO:
             return {
                 ...state,
                 ejemplo: action.payload,
-                cardsFiltered:action.payload
+                cardsFiltered: action.payload
             };
 
         case POST_NFT:
@@ -42,18 +43,18 @@ const rootReducer = (state = initialState, action) => {
             switch (action.payload) {
                 case 'A-Z':
                     cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.name.localeCompare(b.name));
-                break;
+                    break;
                 case 'Z-A':
                     cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.name.localeCompare(a.name));
-                break;
+                    break;
                 case 'Price (Higher First)':
                     cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.price - a.price);
-                break;
+                    break;
                 case 'Price (Lower First)':
                     cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.price - b.price);
-                break;
+                    break;
                 default:
-                break;
+                    break;
             }
             return {
                 ...state,
@@ -63,10 +64,8 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_CATEGORIES:
             const allGamesGenre = [...state.cardsFiltered];
             console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
-
             let filteredGamesByGenres = allGamesGenre.filter((game) => {
                 console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
-        
               if (game.categories) {
                 // console.log(game.categories)
                 let cats=game.categories.map(cat=>cat.name)
@@ -92,7 +91,24 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               ejemplo: filteredGamesByGenres,
             };
-
+        case 'CREATE_USER_START':
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case 'CREATE_USER_SUCCESS':
+            return {
+                ...state,
+                user: action.payload,
+                loading: false,
+            };
+        case 'CREATE_USER_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
         default:
             return state;
     }
