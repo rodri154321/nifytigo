@@ -16,8 +16,6 @@ function Card(ejemplo) {
       <div>
           <img src={ejemplo.image}/>
         </div>
-    
-
         
       </div>
     </div>

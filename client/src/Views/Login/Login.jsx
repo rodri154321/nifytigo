@@ -103,7 +103,6 @@
 //       </div>
 //       <div className="switch" id="switch-cnt">
 //         <div className="switch__circle"></div>
-//         <div className="switch__circle switch__circle--t"></div>
 //         <div className="switch__container" id="switch-c1">
 //           <h2 className="switch__title title">Hello Friend !</h2>
 //           <p className="switch__description description">Enter your personal details and start journey with us</p>
@@ -204,6 +203,7 @@ const Login = () => {
 
   return (
     <div className="main">
+      <div className='contenedorDelLogin'>
       <div className="container b-container" id="b-container">
         <form className="form" id="b-form" onSubmit={handleSubmit}>
           <h2 className="form_title title">Sign in to Website</h2>
@@ -241,8 +241,9 @@ const Login = () => {
         <div className="switch__container" id="switch-c1">
           <h2 className="switch__title title">Hello Friend !</h2>
           <p className="switch__description description">Enter your personal details and start journey with us</p>
-          <button onClick={getAccount} className="switch__button button switch-btn"> <a href ='/Account'>SIGN UP</a></button>
+          <button onClick={getAccount} className="switch__button button switch-btn"><a href="/Account">SIGN UP</a></button>
         </div>
+      </div>
       </div>
     </div>
   );
