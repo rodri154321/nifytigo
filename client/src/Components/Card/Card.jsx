@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import style from "./Card.module.css"
+import "./Card.css"
 
 function Card(ejemplo) {
   return (
@@ -7,25 +7,52 @@ function Card(ejemplo) {
       {/*${nft.id}
       <h1>id: {ejemplo.id}</h1> */}
         <NavLink to={`/detail/${ejemplo.id}`}>
-        <div className={style.card} >
-        <div className={style.card2}>
-
-        <div>
+        
+<div className="card">
+  <div className="content">
+    <div className="back">
+      <div className="back-content">
+       
+      <div>
           <img src={ejemplo.image}/>
         </div>
-        <h2>price: {ejemplo.price}</h2>
-        <h3>user: {ejemplo.name}</h3>
-       {/* <h3>categories: {ejemplo.categories && ejemplo.categories.join(", ")}</h3>
-        <h4>Categories: {ejemplo.categories.map((category) => category).join("   ")}</h4>
-        <h4>Categories: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.join(", ") : "Sin categorías disponibles"}</h4>*/}
-        <h4>Categorías: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.map(category => category.name).join(", ") : "Sin categorías disponibles"}</h4>
-{console.log (ejemplo.categories)}
+    
+
         
-          </div>
+      </div>
+    </div>
+    <div className="front">
+      
+      <div className="img">
+        <div className="circle">
         </div>
+        <div className="circle" id="right">
+        </div>
+        <div className="circle" id="bottom">
+        </div>
+      </div>
+
+      <div className="front-content">
+         <h1></h1>{ejemplo.name} 
+        <div className="description">
+        <div className="description">
+          <div className="title">
+        <p>  {ejemplo.price}</p> 
+          </div>
+          <p className="card-footer">
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</div>
+      
+     
+        
+     
         </NavLink>
-        <h1>{ejemplo.name}</h1>
-      <h2>price: {ejemplo.price}</h2>
         
     </div>
   )
@@ -34,3 +61,12 @@ function Card(ejemplo) {
 
 
 export default Card
+
+
+
+/*  <h3>{ejemplo.name}</h3>
+        <div>
+          <img src={ejemplo.image}/>
+        </div>
+        <h2>PRICE: {ejemplo.price}</h2>
+      */
