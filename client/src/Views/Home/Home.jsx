@@ -24,7 +24,10 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
 
- const currentEjemplo= ejemplo.slice(firstIndex, lastIndex);
+ console.log('Valor actual de ejemplo:', ejemplo);
+ const currentEjemplo = ejemplo.slice(firstIndex, lastIndex);
+ console.log('currentEjemplo:', currentEjemplo);
+ 
  //EL SLICE 
  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
