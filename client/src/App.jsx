@@ -10,7 +10,7 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
-
+import TopRating from './Views/TopRating/TopRating'
 
 // import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
@@ -40,6 +40,7 @@ function App() {
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
+          <Route path="/TopRating" element={<TopRating/>}/>
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
