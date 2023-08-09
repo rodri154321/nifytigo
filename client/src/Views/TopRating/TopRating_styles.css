@@ -1,0 +1,33 @@
+#topContainer{
+    width: 100vw;
+    height: 100vh;
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+#cardsTop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top:3em ;
+}
+.loaderBack{
+    position: fixed;
+    width: 100vw;
+    height: 150vh;
+    background-color: rgba(80,80,80,0.3);
+    z-index: 999;
+}
+.Loader{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}

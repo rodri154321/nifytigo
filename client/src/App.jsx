@@ -1,7 +1,7 @@
 import { Route, Routes,/*useLocation */ } from 'react-router-dom'
 import './App.css'
 
-import videoBackground from './assets/Forms.webm'
+import videoBackground from './assets/Forms1080.webm'
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
@@ -10,7 +10,7 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
-
+import TopRating from './Views/TopRating/TopRating'
 
 // import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
@@ -40,6 +40,7 @@ function App() {
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
+          <Route path="/TopRating" element={<TopRating/>}/>
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />

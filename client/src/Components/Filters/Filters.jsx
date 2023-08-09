@@ -53,8 +53,8 @@ function Filters({paginate}){
             </div> */}
 
             <div className='filtersBox'>
-                <label>SORT: </label>
-                <select onChange={handleSort}>
+                <label>Sort: </label>
+                <select className='selector' onChange={handleSort}>
                     {["A-Z","Z-A","Price (Higher First)","Price (Lower First)"].map((sort) => (
                         <option key={sort} value={sort}>
                             {sort}
@@ -65,7 +65,7 @@ function Filters({paginate}){
 
             <div className='filtersBox' id='genresFilterBox'>
                 <label>Category: </label>
-                <select onChange={handleFilterByCategory}>
+                <select className='selector' onChange={handleFilterByCategory}>
                     {categories.map((gender) => (
                         <option key={gender.name} value={gender.name}>
                             {gender.name}
