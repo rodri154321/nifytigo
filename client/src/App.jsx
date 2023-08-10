@@ -20,6 +20,8 @@ import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
+import Carrito from './Views/Carrito/Carrito'
+import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 
 function App() {
   /*const location = useLocation();*/
@@ -40,6 +42,7 @@ function App() {
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
+          <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
         {/*
           
@@ -62,7 +65,7 @@ function App() {
   */}
 
         </Routes>
-        
+        <CarritoLogo />
         <div id="containerFooter"><Footer /> </div>
       </div>
       <video id='videoback' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
