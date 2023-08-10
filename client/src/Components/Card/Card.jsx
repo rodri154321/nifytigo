@@ -4,17 +4,28 @@ import style from "./Card.module.css"
 function Card(ejemplo) {
   return (
     <div>
-      {/*${nft.id} */}
+      {/*${nft.id}
+      <h1>id: {ejemplo.id}</h1> */}
         <NavLink to={`/detail/${ejemplo.id}`}>
         <div className={style.card} >
         <div className={style.card2}>
 
-        <h1>id: {ejemplo.id}</h1>
-        <p>name: {ejemplo.name}</p>
+        
+        <h1>name: {ejemplo.name}</h1>
         <p>description: {ejemplo.description}</p>
-
-        <img src={ejemplo.image}/>
-            </div>
+        <div>
+          <img src={ejemplo.image}/>
+        </div>
+        <h2>price: {ejemplo.price}</h2>
+        <h3>user: {ejemplo.user.name}</h3>
+       {/* <h3>categories: {ejemplo.categories && ejemplo.categories.join(", ")}</h3>
+        <h4>Categories: {ejemplo.categories.map((category) => category).join("   ")}</h4>
+        <h4>Categories: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.join(", ") : "Sin categorías disponibles"}</h4>*/}
+        <h4>Categorías: {ejemplo.categories && ejemplo.categories.length > 0 ? ejemplo.categories.map(category => category.name).join(", ") : "Sin categorías disponibles"}</h4>
+        
+{console.log (ejemplo.categories)}
+        
+          </div>
         </div>
         </NavLink>
     </div>
