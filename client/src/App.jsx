@@ -37,12 +37,16 @@ function App() {
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/TermsOfService" element={<TermsOfService />} />
           <Route path="/detail/:id" element={<Detail />} />
+          
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
+
+
+          
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />

@@ -2,7 +2,7 @@ const server = require("./src/server");
 const { conn } = require("./src/db");
 const PORT = 3001;
            //alter
-conn.sync({ force: false }).then(() => {
+conn.sync({ alter: false }).then(() => {
     server.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     })

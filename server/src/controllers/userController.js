@@ -11,10 +11,7 @@ const createUser = async (username, name, lastName, email, password, cellPhone, 
     return newUser
 }
 
-const getUserId = async (id) => {
-    const user = await users.findByPk(id);
-    return user;
-}
+
 
 const findUserName = async (username, password) => {
 
@@ -25,15 +22,82 @@ const findUserName = async (username, password) => {
             return login;
         }else{
             login = false;
-            throw Error(`Contraseña Incorrecta`);
+           return `Contraseña Incorrecta`
         }
     }else{
         login = false;
-        throw Error(`Usuario Incorrecto`);
+       return `Usuario Incorrecto`
     }
 
 };
 
+
+const deleteUsersById= async(id)=>{
+
+   let idUser = await users.findByPk(id)
+    if(idUser){
+  users.destroy({
+    where: {id:id}
+ })
+ return 'usuario eliminado'
+    }
+
+    return 'usuario inexistente'
+}  
+
+
+const usersById = async(id)=>{
+
+    let idUser = await users.findByPk(id)
+ 
+    return idUser
+
+}
+
+
+
+const searchUsersnameByName = async(username)=>{
+    if(username){
+    let palabraM = username.username.toUpperCase()
+    let primeraLetra = palabraM[0] 
+    
+    let minuscula = username.username.toLowerCase().slice(1)
+    
+    let nombre = primeraLetra + minuscula 
+
+ let union = username.username = nombre 
+
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}else{
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}
+    
+}
+
+
+
+const deleteSearchName = async(username)=>{
+       
+    const exist = await users.findOne({ where: { username: username } });
+    if (exist) {
+        if(exist.username === username) {
+            users.destroy({
+                where: {username:username}
+             })
+
+             return 'usuario eliminado'
+        }
+        return 'usuario inexistente'
+
+
+    
+    }}
+
+ 
 const updateUser = async (id, username, name, lastName, email, password, cellPhone, country) => {
 
     const userUp = await users.findByPk(id);
@@ -98,4 +162,4 @@ const updateUser = async (id, username, name, lastName, email, password, cellPho
 };
 
 
-module.exports = { allUsers, createUser, findUserName, getUserId, updateUser }
+module.exports = {deleteSearchName,usersById,searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser}

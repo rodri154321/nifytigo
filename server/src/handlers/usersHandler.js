@@ -1,18 +1,37 @@
-const { allUsers, createUser, findUserName, getUserId, updateUser } = require('../controllers/userController')
+const {usersById,searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName, deleteSearchName,uptadeUser } = require('../controllers/userController')
+//const { allUsers, createUser, findUserName, getUserId, updateUser } = require('../controllers/userController')
 // const WelcomeEmail = require('../nodemailer/userNodemailer')
 // const useNodemailer = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
-
+const {username} = req.query
     try {
-        const results = await allUsers()
+
+        
+        const results = username
+        
+       ? await searchUsersnameByName({username}): await allUsers()
+
         res.status(200).json(results)
+        
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
 }
 
+const getIdUsersHandler = async(req,res)=>{
+    const {id} = req.params
+try {
+    const usersId = await usersById(id);
+    
+res.status(200).json(usersId)
+ 
+} catch (error) {
+    res.status(400).json({error: error.message}) 
 
+}
+}
+  
 
 const createUsersHandler = async (req, res) => {
 
@@ -42,20 +61,7 @@ const getUserNameHandler = async (req, res) => {
     }
 }
 
-const getUserIdHandler = async (req, res) => {
-    const { id } = req.params
-    console.log(id);
-    try {
-        const user = await getUserId(id);
-        if (user) {
-            res.status(200).json(user)
-        } else {
-            res.status(404).json({ message: 'Usuario no encontrado' });
-        }
-    } catch (error) {
-        res.status(500).json({ message: 'Error al buscar el usuario' });
-    }
-}
+
 
 const updateUserHandler = async (req, res) => {
     try {
@@ -68,11 +74,39 @@ const updateUserHandler = async (req, res) => {
     }
 }
 
+const deleteUsersHandler = async(req, res)=>{
+    const {id}= req.params
+try {
+    const usersDelete = await deleteUsersById(id);
+    
+res.status(200).json(usersDelete)
+
+} catch (error) {
+    res.status(400).json({error: error.message})
+
+}
+}
+
+const getDeleteUsersnameHandler=async (req,res)=>{
+ const {username} = req.body
+    try {
+
+        
+        const results =  await deleteSearchName({username})
+
+        res.status(200).json(results)
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+} 
 
 module.exports = {
-    getUsersHandler,
+    getUsersHandler, 
     createUsersHandler,
-    getUserNameHandler,
-    getUserIdHandler,
+    getUserNameHandler, 
+    deleteUsersHandler,
+    getDeleteUsersnameHandler,
+    getIdUsersHandler,
     updateUserHandler
 }

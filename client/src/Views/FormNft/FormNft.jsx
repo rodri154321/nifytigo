@@ -23,7 +23,7 @@ const FormNft = () => {
 
   const [formData, setFormData] = useState({
 
-      iduser: "214891cc-6378-475b-98a7-67cf1fbb2ffd",
+      iduser: "8b9815f2-0a2d-4b97-b8c3-cc06e8730a15",
       image: [],
       name: "",
       description: "",

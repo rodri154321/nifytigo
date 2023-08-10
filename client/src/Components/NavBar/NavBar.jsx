@@ -36,6 +36,7 @@ const NavBar = () => {
         <NavLink to="/About" className={style.navlink}>
           About
         </NavLink>
+      
 
         {/*{isClient === "true" && (
           <NavLink to="/dashboard" className={style.navlink}>

@@ -6,16 +6,20 @@ const {
     getUsersHandler,
     createUsersHandler,
     getUserNameHandler,
-    getUserIdHandler,
-    updateUserHandler
+    updateUserHandler,
+    deleteUsersHandler,
+    getDeleteUsersnameHandler,
+    getIdUsersHandler,
 }= require('../handlers/usersHandler')
 
 
 router
-.get('/all', getUsersHandler)
+.get('/', getUsersHandler)
 .get('/username', getUserNameHandler)
-.get('/:id', getUserIdHandler)
 .post('/', createUsersHandler)
 .put('/update/:id', updateUserHandler)
-
+.get('/:id', getIdUsersHandler)
+.delete('/:id', deleteUsersHandler)
+.delete('/', getDeleteUsersnameHandler) 
+ 
 module.exports = router;
