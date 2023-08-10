@@ -8,9 +8,11 @@ import Filters from '../../Components/Filters/Filters';
 // import videoBackground from '../../assets/background_video/Waves.webm'
 import Pagination from '../../Components/Pagination/Pagination'
 import Loader from '../../Components/Loader/Loader';
+//import { buscarName } from "../../Redux/buscarNftName"
 
 function Home(){
- const dispatch = useDispatch()
+
+  const dispatch = useDispatch()
  
 const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
 
@@ -22,7 +24,8 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
 
- const currentEjemplo= ejemplo.slice(firstIndex, lastIndex);
+ const currentEjemplo = Array.isArray(ejemplo) ? ejemplo.slice(firstIndex, lastIndex) : [];
+ 
  //EL SLICE 
  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -32,6 +35,13 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
         setIsLoading(false);
       }, 500); //
     }, [dispatch]);
+
+
+
+
+
+
+
 
     return (
         <div id='Homes'>

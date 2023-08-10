@@ -1,7 +1,7 @@
 import { Route, Routes,/*useLocation */ } from 'react-router-dom'
 import './App.css'
 
-import videoBackground from './assets/Forms.webm'
+import videoBackground from './assets/Forms1080.webm'
 import Home from './Views/Home/Home'
 import Cards from './Components/Cards/Cards'
 import Detail from './Views/Detail/Detail'
@@ -12,7 +12,7 @@ import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
 
 
-// import Login from './Views/Login/Login'
+import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
 
@@ -43,6 +43,7 @@ function App() {
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
+          <Route path="/Profile" element={<Profile />} />
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />

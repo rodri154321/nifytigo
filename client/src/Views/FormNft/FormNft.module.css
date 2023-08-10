@@ -12,13 +12,16 @@
 }
 
 .containerMain {
-  width:600px;
-  height: 700px;
   margin: 4rem;
   padding: 60px;
-  background-color: #161313;
+  background-color: #0b0b0b;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
 
 h1 {
@@ -29,6 +32,7 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
 label {
@@ -43,6 +47,7 @@ select {
   padding: 10px;
   border: 1px solid #aa9b9bd8;
   border-radius: 10px;
+  width: 500px;
 }
 
 button {
@@ -66,4 +71,41 @@ button {
 
 button:hover {
   background-color: #0c0c0c;
+}
+.removeButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FF914D;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 4px 8px; /* Ajusta el padding según tus preferencias */
+}
+.imagepreview{
+max-width: 600px;
+max-height: 600px;
+flex-direction: row;
+display: flex;
+justify-content: center;
+}
+.imagecontainer{
+  max-width: 600px;
+  max-height: 700px;
+  margin-top:2rem;
+  }
+
+.inputContainer{
+  width:600px;
+  margin:1rem
+}
+.nftImage {
+width: 300px;
+height: 300px;
+margin-top:2rem;
+margin-bottom:4rem;
+justify-content: center;
+
 }
