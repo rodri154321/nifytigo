@@ -9,22 +9,18 @@ import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
-import Account from './Views/Account/Account'
-
-
-import Profile from './Views/Profile/Profile'
+import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
-
-import { TermsOfService } from './Views/TermsOfService/TermsOfService'
-import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
-import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
-import Login from './Views/Login/Login'
-import Carrito from './Views/Carrito/Carrito'
-import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
+import Account from './Views/Account/Account'
+import PrivacyOfPolicy from './Views/PrivacyOfPolicy/PrivacyOfPolicy';
+//import TermsOfService  from './Views/TermsOfService/TermsOfService'
+//import FrequentQuestions from './Views/FrequentQuestions/FrequentQuestions'
 
 function App() {
   /*const location = useLocation();*/
+  const domain = import.meta.env.REACT_APP_AUTH0_DOMAIN;
+  const clientId = import.meta.env.REACT_APP_AUTH0_CLIENT_ID;
   return (
     <div>
       <div id="container"><NavBar /> </div>
@@ -39,12 +35,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-          <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
-          <Route path="/Account" element={<Account />} />
-          <Route path='/' element={<Carrito /> }/>
-          <Route path="/Profile" element={<Profile />} />
-
 
           
         {/*
@@ -68,10 +59,11 @@ function App() {
   */}
 
         </Routes>
-        <CarritoLogo />
+        
         <div id="containerFooter"><Footer /> </div>
       </div>
       <video id='videoback' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
+
     </div>
   )
 }
