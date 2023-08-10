@@ -37,7 +37,7 @@ function App() {
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/TermsOfService" element={<TermsOfService />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/FormNft" element={<FormNft />} />
+          
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
