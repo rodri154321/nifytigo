@@ -44,6 +44,9 @@ function App() {
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
+
+
+          
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
