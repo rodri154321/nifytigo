@@ -23,14 +23,13 @@ const FormNft = () => {
 
   const [formData, setFormData] = useState({
 
-    iduser: "8b9815f2-0a2d-4b97-b8c3-cc06e8730a15",//214891cc-6378-475b-98a7-67cf1fbb2ffd
-    image: [],
-
-    name: "",
-    description: "",
-    price: "",
-    categorie: [],
-  });
+      iduser: "8b9815f2-0a2d-4b97-b8c3-cc06e8730a15",
+      image: [],
+      name: "",
+      description: "",
+      price: "",
+      categorie: [],
+    });
 
   const [formErrors, setFormErrors] = useState({
     image: [],
@@ -55,11 +54,11 @@ const FormNft = () => {
   const validateField = (fieldName, value) => {
     let errors = "";
     switch (fieldName) {
-      case "image":
-        if (formData.image.length === 0) {
-          errors = "Please select an NFT";
-        }
-        break;
+     // case "image":
+       // if (formData.image.length === 0) {
+         // errors = "Please select an NFT";
+       // }
+        //break;
       case "name":
         if (!/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(value)) {
           errors = "El nombre debe tener entre 3 y 25 letras o numeros y no debe contener espacios seguidos en blanco.";
@@ -209,7 +208,7 @@ const FormNft = () => {
         background: '#000000', // Color de fondo negro
         confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
         cancelButtonColor: '#FF914D', // Color del botón de cancelación
-       // confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
+       // 
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/Profile");
@@ -227,8 +226,8 @@ const FormNft = () => {
 
         <h1>Create NFT</h1>
         <form onSubmit={handleSubmit}>
-          <div className={style.inputContainer}>
-            <h3 htmlFor="imageUrl">Enter a Nft:</h3>
+          <div className={style.inputContainerFormNft}>
+            <h2 htmlFor="imageUrl">Enter a Nft:</h2>
             <input
               type="file"
               accept="image/*"
@@ -238,12 +237,12 @@ const FormNft = () => {
             />
             <div className={style.imagepreview}>
               {formData.image?.map((imageUrl) => (
-                <div key={imageUrl} className={style.imagecontainer}>
+                <div key={imageUrl} className={style.imageContainerFormNft}>
                   <Image publicId={imageUrl} cloudName={CLOUD_NAME}className={style.nftImage}>
                     <Transformation width="100" height="100" crop="thumb" />
                   </Image>
                   <button
-                    className={style.removebutton}
+                    className={style.removebuttonFormNft}
                     onClick={() => handleRemoveImage(imageUrl)}
                   >
                     X
@@ -255,7 +254,7 @@ const FormNft = () => {
           </div>
 
 
-          <div className={style.inputContainer}>
+          <div className={style.inputContainerFormNft}>
             {/*<h3 htmlFor="name">NFT name:</h3>*/}
             <input
               type="text"
@@ -269,7 +268,7 @@ const FormNft = () => {
             {formErrors.name && <p className={style.error}>{formErrors.name}</p>}
           </div>
 
-          <div className={style.inputContainer}>
+          <div className={style.inputContainerFormNft}>
             {/*<h3 htmlFor="description"></h3>*/}
             <textarea
               id="description"
@@ -283,7 +282,7 @@ const FormNft = () => {
             {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
           </div>
 
-          <div  className={style.inputContainer}>
+          <div  className={style.inputContainerFormNft}>
             {/*<h3 htmlFor="price">Price:</h3>*/}
             <input
               type="number"
@@ -298,8 +297,8 @@ const FormNft = () => {
             {formErrors.price && <p className={style.error}>{formErrors.price}</p>}
           </div>
 
-          <div className={style.inputContainer}>
-            <h3 htmlFor="categories">Categories:</h3>
+          <div className={style.inputContainerFormNft}>
+            <h2 htmlFor="categories">Categories:</h2>
             <select
               multiple
               id="categories"
@@ -317,14 +316,14 @@ const FormNft = () => {
               {formData.categorie.map((cat) => (
                 <div key={cat}>
                   <span>{cat}</span>
-                  <button onClick={() => handleRemoveCategory(cat)}>Quitar</button>
+                  <button onClick={() => handleRemoveCategory(cat)} className={style.removebuttonFormNft}> x </button>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <button type="submit" className={style.button}>
+            <button type="submit" className={style.buttonFormNft}>
               Create NFT
             </button>
           </div>
