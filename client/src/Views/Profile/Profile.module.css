@@ -168,7 +168,7 @@ h2{
     text-decoration:none;
     color: white;
 }
-.btn {
+.btnProfile {
     height: 35px;
     width: 10rem;
     transition: all .5s;
@@ -185,23 +185,23 @@ h2{
     color:#FF914D ;
 }
   
-.btn:hover {
+.btnProfile:hover {
     background-color: rgb(255, 255, 255);
     color: black;
 }
 
-.btn:hover a{
+.btnProfile:hover a{
     color: black;
     transition: all .5s;
 }
 
-.btn:disabled{
+.btnProfile:disabled{
   color: rgb(110, 110, 110);
   transform: none;
   cursor:default;
   background: none;
 }
-.btn:disabled::before{
+.btnProfile:disabled::before{
   color: rgb(110, 110, 110);
   transform: none;
   background: none;

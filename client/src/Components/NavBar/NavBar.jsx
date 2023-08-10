@@ -36,9 +36,6 @@ const NavBar = () => {
         <NavLink to="/About" className={style.navlink}>
           About
         </NavLink>
-        <NavLink to="/FormNft" className={style.navlink}>
-          Create NFT
-        </NavLink>
 
         {/*{isClient === "true" && (
           <NavLink to="/dashboard" className={style.navlink}>
