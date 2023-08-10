@@ -16,7 +16,8 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
         },
         image: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1000),
+            allowNull: true,
         },
         price: {
             type: DataTypes.DECIMAL(10, 2), // Tipo de dato para almacenar precios en formato decimal (10 dígitos enteros y 2 decimales)
