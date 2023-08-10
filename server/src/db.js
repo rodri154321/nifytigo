@@ -24,7 +24,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 modelDefiners.forEach(model => model(sequelize));
 
 // Definición de las relaciones
-const { favorites, nfts, users, categories } = sequelize.models;
+const { favorites, nfts, users, categories, cart} = sequelize.models;
 
 // 1. Relación uno a muchos: users -> nfts
 users.hasMany(nfts, {
@@ -50,6 +50,23 @@ categories.belongsToMany(nfts, {
   through: 'nfts_categories', // Nombre de la tabla intermedia que contiene las relaciones
 });
 
+cart.belongsTo(users,{
+  foreignKey: 'userId',
+})
+
+users.hasMany(cart,{
+  foreignKey: 'userId'
+})
+
+cart.belongsToMany(nfts,{
+through: 'cart_nfts'
+})
+
+nfts.belongsToMany(cart,{
+  through: 'cart_nfts'
+  })
+
+  
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
