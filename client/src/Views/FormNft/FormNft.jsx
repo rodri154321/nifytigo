@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postNft } from "../../Redux/postNft"; // Asegúrate de importar las acciones correctas
+import { postNft } from "../../Redux/postNft";
 import { getCategories } from "../../Redux/getCategories";
-import style from "./FormNft.module.css"; // Importa los estilos CSS correspondientes
+import style from "./FormNft.module.css";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -21,10 +21,8 @@ const FormNft = () => {
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
 
-
-
   const [formData, setFormData] = useState({
-    iduser: "214891cc-6378-475b-98a7-67cf1fbb2ffd",//214891cc-6378-475b-98a7-67cf1fbb2ffd
+    iduser: "214891cc-6378-475b-98a7-67cf1fbb2ffd",
     image: [],
     name: "",
     description: "",
@@ -56,21 +54,23 @@ const FormNft = () => {
     let errors = "";
     switch (fieldName) {
       case "image":
-        // Validar la URL de la imagen con una expresión regular
-        if (!formData.image.length) {
-          errors = "Por favor, ingrese un NFT";
+        if (formData.image.length === 0) {
+          errors = "Please select an NFT";
         }
         break;
       case "name":
-        // Validar el nombre con una expresión regular
         if (!/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(value)) {
-          errors = "El nombre debe tener entre 3 y 25 caracteres y no debe contener espacios en blanco.";
+          errors = "El nombre debe tener entre 3 y 25 letras o numeros y no debe contener espacios seguidos en blanco.";
         }
         break;
       case "description":
-        // Validar la descripción con la longitud máxima
         if (value.length > 210) {
           errors = "La descripción no debe exceder los 210 caracteres.";
+        }
+        break;
+      case "categories":
+        if (!value || value.length === 0) {
+          errors = "Please enter an category";
         }
         break;
       default:
@@ -80,11 +80,15 @@ const FormNft = () => {
   };
 
   const handleCategoryChange = (event) => {
-   // console.log(formData)
-    setFormData({
-      ...formData,
-      categorie: [...formData.categorie, event.target.value]//...formData.categorie.push(event.target.value)
-    })
+    const selectedCategory = event.target.value;
+
+    // Verificar si la categoría seleccionada ya está en la lista
+    if (!formData.categorie.includes(selectedCategory)) {
+      setFormData({
+        ...formData,
+        categorie: [...formData.categorie, selectedCategory]
+      });
+    }
   }
 
   const handleRemoveImage = (imageUrl) => {
@@ -101,7 +105,7 @@ const FormNft = () => {
       const formData = new FormData();
       formData.append("file", files[0]);
       formData.append("upload_preset", PRESET);
-  
+
       console.log("Sending upload request...");
       fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
         method: "POST",
@@ -110,15 +114,15 @@ const FormNft = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log("Image upload successful:", data);
-  
+
           // Actualizar el estado del formulario solo con la URL de la imagen subida
           setFormData((prevFormData) => ({
             ...prevFormData,
             image: [...prevFormData.image, data.secure_url],
           }));
-  
+
           // Validar el campo "image" y asignar los errores correspondientes
-          const errors = validateField("image", prevFormData.image);
+          const errors = validateField("image", formData.image);
           setFormErrors({ ...formErrors, image: errors });
         })
         .catch((error) => {
@@ -127,119 +131,202 @@ const FormNft = () => {
     }
   };
 
+  const handleRemoveCategory = (categoryToRemove) => {
+    const updatedCategories = formData.categorie.filter(category => category !== categoryToRemove);
+
+    setFormData({
+      ...formData,
+      categorie: updatedCategories
+    });
+  }
+
   const handleSubmit = async (event) => {
+    console.log("Submit button clicked");
     event.preventDefault();
+
+    // Validar que todos los campos estén llenos
+    if (
+      formData.image.length === 0 ||
+      formData.name === "" ||
+      formData.description === "" ||
+      formData.price === "" ||
+      formData.categorie.length === 0
+    ) {
+      console.log("Missing fields detected");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please complete all the fields to create the NFT.",
+        background: '#000000',
+        confirmButtonColor: '#5CE1E6',
+      });
+      return;
+    }
+
+    // Validar campos específicos
+    if (formData.image.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Image Missing",
+        text: "Please select an image for your NFT.",
+      });
+      return;
+    }
+
+    if (formData.categorie.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Category Missing",
+        text: "Please select at least one category for your NFT.",
+      });
+      return;
+    }
+
     try {
       // Convertir el arreglo de imágenes en una cadena separada por comas
       const imageString = formData.image.join(',');
-  
+
       // Crear una copia del formData con el arreglo convertido en cadena
       const formDataToSend = {
         ...formData,
         image: imageString,
       };
-  
+
       // Llamar a la acción para enviar los datos al servidor
       const response = await dispatch(postNft(formDataToSend));
-      console.log("Server response:", response);
+
+      // Resto del código para mostrar la alerta de éxito y redireccionar
       Swal.fire({
         icon: "success",
         title: "Your NFT has been successfully created",
-        text: "Now you can see your NFTs in your profile.",
-        showConfirmButton: true,
-      }).then(() => {
-        navigate("/Profile"); // Redireccionar a la página de perfil
+        text: "What would you like to do?",
+        showCancelButton: true,
+        confirmButtonText: "Profile",
+        cancelButtonText: "Home",
+        reverseButtons: true,
+        background: '#000000', // Color de fondo negro
+        confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
+        cancelButtonColor: '#FF914D', // Color del botón de cancelación
+        confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/Profile");
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          navigate("/");
+        }
       });
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
     }
   };
-
   return (
     <div className={style.containerFormNft}>
       <div className={style.containerMain}>
 
-        <h1>Crear NFT</h1>
+        <h1>Create NFT</h1>
         <form onSubmit={handleSubmit}>
-          <h3 htmlFor="imageUrl">URL de la Imagen:</h3>
-          <input
-            type="file"
-            accept="image/*"
-            //value={formData.image}
-            onChange={handleImageUpload}
-            disabled={formData.image.length === 1}
-            className={style.input}
-          />
-          <div className={style.imagepreview}>
-            {formData.image?.map((imageUrl) => (
-              <div key={imageUrl} className={style.imagecontainer}>
-                <Image publicId={imageUrl} cloudName={CLOUD_NAME}>
-                  <Transformation width="100" height="100" crop="thumb" />
-                </Image>
-                <button
-                  className={style.removebutton}
-                  onClick={() => handleRemoveImage(imageUrl)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
+          <div className={style.inputContainer}>
+            <h3 htmlFor="imageUrl">Enter a Nft:</h3>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={formData.image.length === 1}
+              className={style.input}
+            />
+            <div className={style.imagepreview}>
+              {formData.image?.map((imageUrl) => (
+                <div key={imageUrl} className={style.imagecontainer}>
+                  <Image publicId={imageUrl} cloudName={CLOUD_NAME}className={style.nftImage}>
+                    <Transformation width="100" height="100" crop="thumb" />
+                  </Image>
+                  <button
+                    className={style.removebutton}
+                    onClick={() => handleRemoveImage(imageUrl)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+            {formErrors.image && <p className={style.error}>{formErrors.image}</p>}
           </div>
 
-          {formErrors.image && <p className={style.error}>{formErrors.image}</p>}
 
-          <h3 htmlFor="name">Nombre:</h3>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-          {formErrors.name && <p className={style.error}>{formErrors.name}</p>}
+          <div className={style.inputContainer}>
+            {/*<h3 htmlFor="name">NFT name:</h3>*/}
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              placeholder="NFT name"
+            />
+            {formErrors.name && <p className={style.error}>{formErrors.name}</p>}
+          </div>
 
-          <h3 htmlFor="description">Descripción:</h3>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            rows="4"
-            required
-          ></textarea>
-          {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
+          <div className={style.inputContainer}>
+            {/*<h3 htmlFor="description"></h3>*/}
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              rows="4"
+              required
+              placeholder="Description"
+            ></textarea>
+            {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
+          </div>
 
+          <div  className={style.inputContainer}>
+            {/*<h3 htmlFor="price">Price:</h3>*/}
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={formData.price}
+              onChange={handleInputChange}
+              step="0.01"
+              required
+              placeholder="Price"
+            />
+            {formErrors.price && <p className={style.error}>{formErrors.price}</p>}
+          </div>
 
-          <h3 htmlFor="price">Precio:</h3>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-            step="0.01"
-            required
-          />
-          {formErrors.price && <p className={style.error}>{formErrors.price}</p>}
+          <div className={style.inputContainer}>
+            <h3 htmlFor="categories">Categories:</h3>
+            <select
+              multiple
+              id="categories"
+              onChange={handleCategoryChange}
+              required
+            >
+              {categories.map((category) => (
+                <option key={category.name} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <div>
+              <p>Selected Categories:</p>
+              {formData.categorie.map((cat) => (
+                <div key={cat}>
+                  <span>{cat}</span>
+                  <button onClick={() => handleRemoveCategory(cat)}>Quitar</button>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <h3 htmlFor="categories">Categorías:</h3>
-          <select
-            multiple
-            id="categories"
-            onChange={handleCategoryChange}
-            required
-          >
-            {categories.map((category) => (
-              <option key={category.name} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-          {formData.categorie.map((cat) => <p> Categorias Seleccionadas:{cat}</p>)}
-          <button type="submit" className={style.button}>
-            Create NFT
-          </button>
+          <div>
+            <button type="submit" className={style.button}>
+              Create NFT
+            </button>
+          </div>
+
         </form>
       </div>
     </div>
