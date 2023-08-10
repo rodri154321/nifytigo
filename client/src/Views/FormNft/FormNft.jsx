@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postNft } from "../../Redux/postNft";
 import { getCategories } from "../../Redux/getCategories";
@@ -209,7 +209,7 @@ const FormNft = () => {
         background: '#000000', // Color de fondo negro
         confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
         cancelButtonColor: '#FF914D', // Color del botón de cancelación
-        confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
+       // confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/Profile");
