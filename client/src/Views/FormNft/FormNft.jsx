@@ -207,7 +207,7 @@ const FormNft = () => {
         background: '#000000', // Color de fondo negro
         confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
         cancelButtonColor: '#FF914D', // Color del botón de cancelación
-        confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
+        
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/Profile");
