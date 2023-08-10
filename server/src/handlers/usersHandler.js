@@ -1,4 +1,7 @@
-const {usersById,searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName, deleteSearchName } = require('../controllers/userController')
+const {usersById,searchUsersnameByName,deleteUsersById, allUsers, createUser,findUserName, deleteSearchName,uptadeUser } = require('../controllers/userController')
+//const { allUsers, createUser, findUserName, getUserId, updateUser } = require('../controllers/userController')
+// const WelcomeEmail = require('../nodemailer/userNodemailer')
+// const useNodemailer = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
 const {username} = req.query
@@ -36,6 +39,8 @@ const createUsersHandler = async (req, res) => {
     try {
 
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
+        // const userEmail = newUser.email
+        // await WelcomeEmail(userEmail)
 
         res.status(200).json(newUser)
     } catch (error) {
@@ -45,14 +50,27 @@ const createUsersHandler = async (req, res) => {
 
 const getUserNameHandler = async (req, res) => {
 
-    const {username,password} = req.body
+    const { username, password } = req.body
     try {
 
-        const UserName = await findUserName(username,password)
+        const UserName = await findUserName(username, password)
         res.status(200).json(UserName)
 
     } catch (error) {
-        res.status(400).json({ error: error})
+        res.status(400).json({ error: error })
+    }
+}
+
+
+
+const updateUserHandler = async (req, res) => {
+    try {
+    const { id } = req.params
+    const { username, name, lastName, email, password, cellPhone, country } = req.body
+        const user = await updateUser(id, username, name, lastName, email, password, cellPhone, country);
+        return res.status(200).json(user)
+    } catch (error) {
+        res.status(500).json({ message: 'No se pudo actualizar el Usuario' });
     }
 }
 
@@ -89,5 +107,6 @@ module.exports = {
     getUserNameHandler, 
     deleteUsersHandler,
     getDeleteUsersnameHandler,
-    getIdUsersHandler
+    getIdUsersHandler,
+    updateUserHandler
 }
