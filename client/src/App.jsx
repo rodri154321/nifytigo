@@ -10,7 +10,7 @@ import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
-
+import TopRating from './Views/TopRating/TopRating'
 
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
@@ -44,9 +44,7 @@ function App() {
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
-
-
-          
+          <Route path="/TopRating" element={<TopRating/>}/>
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
