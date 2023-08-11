@@ -10,17 +10,18 @@ import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
 //import Contact from './Views/Contact/Contact'
-import Account from './Views/Account/Account'
+// import Account from './Views/Account/Account'
 import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
-import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
+// import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import Account from './Views/Account/Account'
+import Carrito from './Components/CarritoLogo/CarritoLogo';
 
 function App() {
   const location = useLocation();
