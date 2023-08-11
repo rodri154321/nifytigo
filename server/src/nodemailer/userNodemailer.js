@@ -1,9 +1,8 @@
 require('dotenv').config();
 const { GMAIL_USER, GMAIL_PASSWORD } = process.env;
-const nodemailer = require('nodemailer')
-
-
-
+const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
 
 const WelcomeEmail = async (email) => {
     try {
@@ -15,19 +14,21 @@ const WelcomeEmail = async (email) => {
             },
         });
 
+        // Leer el contenido del template HTML
+        const templatePath = path.join(__dirname, 'template.html');
+        const templateContent = fs.readFileSync(templatePath, 'utf-8');
+
         const mailOptions = {
             from: GMAIL_USER,
             to: email,
-            subjet: 'Bienvenido a nuestra pagina!',
-            text: 'gracias por registrarte a NifytiGo, ahora puedes comprar y vender Nfts en el momento que quieras',
-        }
+            subject: 'Bienvenido a nuestra página!',
+            html: templateContent, // Usar el contenido del template HTML aquí
+        };
 
-        await transporter.sendMail(mailOptions)
+        await transporter.sendMail(mailOptions);
     } catch (error) {
-        console.error('Error al enviar el correo electónico: ', error);
+        console.error('Error al enviar el correo electrónico: ', error);
     }
 };
 
 module.exports = WelcomeEmail;
-
-

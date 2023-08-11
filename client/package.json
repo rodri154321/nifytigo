@@ -10,9 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@paypal/react-paypal-js": "^8.1.1",
     "alert": "^5.1.4",
     "axios": "^1.4.0",
     "cloudinary": "^1.40.0",
