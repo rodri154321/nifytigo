@@ -28,6 +28,7 @@ const postNftHandler = async (req, res) => {
         const response = await createNft(iduser, name, description, image, price, categorie);
         res.status(201).json(response);
     } catch (error) {
+        console.log(error)
         res.status(400).json({ error: error.message });
     }
 }

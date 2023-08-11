@@ -11,13 +11,13 @@
     background-color: rgba(50, 50, 50, 0.6); 
     backdrop-filter: blur(10px); 
     border-radius: 10px; 
-
 }
 #detailPurchaseContainer{
     width: 50%;
     height: 80vh;
     display: flex;
-    
+    align-items: center;
+    justify-content: center;
 }
 #paymentsContainer{
     width: 50%;
@@ -29,7 +29,6 @@
     background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 0 10px 10px 0; 
 }
-
 #title{
     margin-top: 50px;
     margin-bottom: auto;

@@ -37,12 +37,6 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
     }, [dispatch]);
 
 
-
-
-
-
-
-
     return (
         <div id='Homes'>
        <div id='HomeContainer'>

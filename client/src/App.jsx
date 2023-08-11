@@ -15,7 +15,7 @@ import Purchase from './Views/Purchase/Purchase'
 
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft'
+// import FormNft from './Views/FormNft/FormNft'
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
@@ -50,18 +50,11 @@ function App() {
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-          
-
-
-
-         <Route path='/Login' element={<Login />} /> 
-
+          <Route path='/Login' element={<Login />} /> 
           <Route path="/FormCollection" element={<FormCollection />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Success" element={<Success />} />
           <Route path="/Failure" element={<Failure />} />
-          
-          
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Loader" element={<Loader />} />
 
