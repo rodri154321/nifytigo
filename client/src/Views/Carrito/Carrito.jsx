@@ -5,21 +5,23 @@ const Carrito = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    // Obtener la lista de productos al cargar la página
-    axios.get('/api/products')
-      .then(response => setProducts(response.data))
+  const getToCart = (userId) => {
+    axios.get('http://localhost:3001/shop/add', {  userId: userId })
+      .then(response => {
+        console.log(response.data.message);
+        setCart([...cart]);
+      })
       .catch(error => console.error(error));
-  }, []);
+  };
 
-  const addToCart = (product) => {
-    axios.post('/api/cart/add', { productId: product.id })
+  /*const addToCart = (product) => {
+    axios.post('http://localhost:3001/shop/add', { productId: product.id })
       .then(response => {
         console.log(response.data.message);
         setCart([...cart, product]);
       })
       .catch(error => console.error(error));
-  };
+  };*/
 
   const removeFromCart = (productId) => {
     axios.delete(`/api/cart/remove/${productId}`)
@@ -42,13 +44,15 @@ const Carrito = () => {
       <div>
         <h2>Productos Disponibles</h2>
         <ul>
-          {products.map(product => (
+          {cart.map(product => (
             <li key={product.id}>
               {product.name} - ${product.price}
-              <button onClick={() => addToCart(product)}>Agregar al carrito</button>
+              <button onClick={() => getToCart(product.id)}> <h1>ver</h1></button>
             </li>
+            
           ))}
         </ul>
+        
       </div>
       
       <div>

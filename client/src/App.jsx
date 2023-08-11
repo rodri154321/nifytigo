@@ -14,7 +14,7 @@ import Account from './Views/Account/Account'
 
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft'
+//import FormNft from './Views/FormNft/FormNft'
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
@@ -38,6 +38,8 @@ function App() {
           <Route path="/TermsOfService" element={<TermsOfService />} />
           <Route path="/detail/:id" element={<Detail />} />
           
+          <Route path='/Carrito/:id' element={<CarritoLogo />}/>
+
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />

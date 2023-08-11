@@ -27,6 +27,7 @@ try {
 
 const getUserCart = async(req,res)=>{
     const {userId} = req.body
+    console.log(userId)
 try {
     const myCart = await getMyCart(userId)
     res.status(200).json(myCart)
