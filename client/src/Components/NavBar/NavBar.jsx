@@ -12,13 +12,13 @@ const NavBar = () => {
  // const loger = localStorage.getItem("loger");
  // const isClient = localStorage.getItem("isClient");
 
-  const handleLogout = () => {
-    dispatch(logout()).then(() => {
-      navigate("/home");
-    });
+ // const handleLogout = () => {
+    //dispatch(logout()).then(() => {
+      //navigate("/home");
+   // });
    // localStorage.setItem("loger", false);
    // localStorage.setItem("detail", null);
-  };
+ // };
   return (
     <div className={style.container}>
       <NavLink to="/">
@@ -30,12 +30,14 @@ const NavBar = () => {
         <SearchBar />
       </div>
       <div className={style.navegation}>
+        <NavLink to="/" className={style.navlink}>
+          Home
+        </NavLink>
         <NavLink to="/About" className={style.navlink}>
           About
         </NavLink>
-        <NavLink to="/FormNft" className={style.navlink}>
-          Create NFT
-        </NavLink>
+      
+
         {/*{isClient === "true" && (
           <NavLink to="/dashboard" className={style.navlink}>
             <button className={style.avatarButton}>

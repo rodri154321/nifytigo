@@ -22,7 +22,9 @@ export default function Detail() {
      }, [id]);
 
 return (
+ <div className='containerDetail'>
 
+ 
 <div className="detail">
     
    <img src={gameID.image} alt="" /> 
@@ -36,7 +38,7 @@ return (
     <button className="detail__button">{gameID.price}</button>
   </div>
 </div>
-
+</div>
     );
 }
 /*
