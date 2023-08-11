@@ -117,11 +117,8 @@
 // export default Login;
 
 
-<<<<<<< HEAD
 {/* import { useNavigate } from 'react-router-dom';
 import './index.css';
-=======
->>>>>>> dbe09b86329f3d1566c29d963e03d05742cbcf5c
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

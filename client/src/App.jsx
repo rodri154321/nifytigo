@@ -9,7 +9,6 @@ import Detail from './Views/Detail/Detail'
 import About from './Views/About/About'
 import NavBar from './Components/NavBar/NavBar'
 import Footer from './Components/Footer/Footer'
-//import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
 import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
@@ -19,8 +18,8 @@ import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
-import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import Account from './Views/Account/Account'
+import Carrito from './Views/Carrito/Carrito'
+import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 
 function App() {
   const location = useLocation();
@@ -36,6 +35,7 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/detail/:id" element={<Detail />} />
+          
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
@@ -48,6 +48,7 @@ function App() {
           <Route path="/TermsOfService" element={<TermsOfService />}/>
           
         {/*
+        <Route path='/:id' element={<CarritoLogo />}/>
         <Route path="/Admin" element={<Admin />}/>
         <Route path="/Success" element={<Success />}/>
         <Route path="/Failure" element={<Failure />}/>
@@ -56,6 +57,7 @@ function App() {
        */}
 
         </Routes>
+        <CarritoLogo/>
         <div id="containerFooter"><Footer /> </div>
       </div>
       <video id='videoback' muted autoPlay loop> <source src={videoBackground} type="video/webm" /></video>
