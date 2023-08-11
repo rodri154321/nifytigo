@@ -16,7 +16,7 @@ const PaypalButton = (props)=>{
                 style={{
                     layout: "horizontal",
                     color: "blue",
-                    shape: "pill",
+                    shape: "rect",
                     label: "buynow",
                     tagline: "false",
                     
