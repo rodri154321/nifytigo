@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
 import TopRating from './Views/TopRating/TopRating'
+import Purchase from './Views/Purchase/Purchase'
 
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
@@ -45,6 +46,7 @@ function App() {
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
+          <Route path="/Purchase" element={<Purchase/>}/>
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
