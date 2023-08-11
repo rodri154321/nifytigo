@@ -1,77 +1,61 @@
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import { useSelector } from "react-redux"
+
+
 
 const Carrito = () => {
-  //const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  
-
-  const getToCart = (userId) => {
-    axios.get(`http://localhost:3001/shop/add/`, {  userId: userId })  // Usamos userId en la URL
-      .then(response => {
-        console.log(response.data);
-        setCart(response.data.nfts); // Actualizamos el estado del carrito con los NFTs
-      })
-      .catch(error => console.error(error));
-  };
-
-  useEffect(() => {
-    const userId = '8b9815f2-0a2d-4b97-b8c3-cc06e8730a15'; // Cambiar por el ID del usuario real
-    getToCart(userId);
-  }, []); 
-
-  /*const addToCart = (product) => {
-    axios.post('http://localhost:3001/shop/add', { productId: product.id })
-      .then(response => {
-        console.log(response.data.message);
-        setCart([...cart, product]);
-      })
-      .catch(error => console.error(error));
-  };*/
-
-  /*const removeFromCart = (productId) => {
-    axios.delete(`/api/cart/remove/${productId}`)
-      .then(response => {
-        console.log(response.data.message);
-        const updatedCart = cart.filter(item => item.id !== productId);
-        setCart(updatedCart);
-      })
-      .catch(error => console.error(error));
-  };
-
-  const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
-  };
-*/
-  return (
+  const {myFavorites} = useSelector(state=>state)
+  return(
     <div >
-      <h1>Carrito de Compras</h1>
-      
-      <h2>Shopping Cart</h2>
-      <ul>
-        {cart.map((nft, index) => (
-          <li key={index}>
-            <p>Name: {nft.name}</p>
-            <p>Price: ${nft.price}</p>
-          </li>
-        ))}
-      </ul>
-      
-      <div>
-        <h2>Carrito</h2>
-        <ul>
-          {/*cart.map(item => (
-            <li key={item.id}>
-              {item.name} - ${item.price}
-              <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
-            </li>
-          ))*/}
-        </ul>
-        {/* <p>Total: ${calculateTotal()}</p> */}
-      </div>
+      {
+          myFavorites.map((character)=>{
+              return(
+                  // eslint-disable-next-line react/jsx-key
+                  <div>      
+                  <div className="card"   display="flex" >
+                    <div className="content">
+                      <div className="back">
+                        <div className="back-content">
+                         
+                        <div>
+                            <img src={character.image}/>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div className="front">
+                        
+                        <div className="img">
+                          <div className="circle">
+                          </div>
+                          <div className="circle" id="right">
+                          </div>
+                          <div className="circle" id="bottom">
+                          </div>
+                        </div>
+                  
+                        <div className="front-content">
+                       
+                           <h1>{character.name}</h1> 
+                          <div className="description">
+                          <div className="description">
+                            <div className="title">
+                          <p> {character.price}</p> 
+                            </div>
+                            <p className="card-footer">
+                              
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                  </div></div>
+              )
+          })
+      }
     </div>
-  );
+  )
 };
 
 export default Carrito;

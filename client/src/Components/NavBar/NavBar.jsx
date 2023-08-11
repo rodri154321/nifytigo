@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink,  } from "react-router-dom";
 //import { useDispatch } from "react-redux";
 import style from "./NavBar.module.css";
 import logo from "../../assets/NifytiGo4.png";
