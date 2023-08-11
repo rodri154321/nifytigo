@@ -1,14 +1,15 @@
-import { find } from "../utils/users";
+const { User } = require("../db.js");
 
-function loginc(req, res) {
-  const {email, password} = req.query;
+const postLogin = async({email, password}) =>{
+      const user = await User.findOne({ where: { email } });
+  
+      if (!user) throw Error("Usuario no encontrado")
+  
+      if (user.password !== password) throw Error("Contraseña Invalida")
 
-  const found = find(
-    (user) => user.email === email && user.password === password
-  );
-
-  const access = found ? true : false;
-  res.status(200).json({access});
+      return user;
 }
 
-export default loginc;
+module.exports = {
+    postLogin
+}

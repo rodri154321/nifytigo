@@ -1,4 +1,5 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, ADD_FAVORITE, DELETE_FAVORITE} from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, ADD_FAVORITE, DELETE_FAVORITE,LOGIN_GOOGLE,LOGIN,LOGOUT} from "./actionTypes";
+
 
 const initialState = {
     user: null,
@@ -42,6 +43,7 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case SORT_ALFA:
+            // eslint-disable-next-line no-case-declarations
             let cardsFilteredAlfa = [...state.ejemplo];
 
             switch (action.payload) {
@@ -64,10 +66,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 ejemplo: cardsFilteredAlfa,
               };
-
+              
         case FILTER_CATEGORIES:
+            // eslint-disable-next-line no-case-declarations
             const allGamesGenre = [...state.cardsFiltered];
             console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
+            // eslint-disable-next-line no-case-declarations
             let filteredGamesByGenres = allGamesGenre.filter((game) => {
                 console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
               if (game.categories) {
@@ -95,6 +99,39 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               ejemplo: filteredGamesByGenres,
             };
+
+            case LOGIN:
+                localStorage.setItem("clientId", action.payload.user.id);
+                localStorage.setItem("isClient", action.payload.user.client);
+                /* localStorage.setItem("access", true) */
+                return {
+                  ...state,
+                  clientId: action.payload.id,
+                  isClient: action.payload.client,
+                  access: true,
+                };
+          
+              case LOGOUT:
+                return {
+                  ...state,
+                  clientId: 0,
+                  isClient: true,
+                  access: false,
+                };
+          
+              case LOGIN_GOOGLE:
+                localStorage.setItem("clientId", action.payload.id);
+                localStorage.setItem("isClient", action.payload.client);
+                localStorage.setItem("loger", true);
+                return {
+                  ...state,
+                  clientId: action.payload.id,
+                  isClient: action.payload.client,
+                  access: true,
+                };
+
+
+
         case 'CREATE_USER_START':
             return {
                 ...state,
@@ -141,7 +178,11 @@ const rootReducer = (state = initialState, action) => {
 
         default:
             return state;
-    }
+    
+    
+    
+        }
+    
 };
 
 export default rootReducer;

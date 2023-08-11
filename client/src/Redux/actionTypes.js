@@ -6,3 +6,6 @@ export const FILTER_CATEGORIES='FILTER_CATEGORIES';
 
 export const ADD_FAVORITE = "ADD_FAVORITE"
 export const DELETE_FAVORITE= "DELETE_FAVORITE"
+export const LOGIN ='LOGIN';
+export const LOGOUT ='LOGOUT';
+export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
