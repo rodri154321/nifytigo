@@ -3,3 +3,6 @@ export const POST_NFT = "POST_NFT";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SORT_ALFA='SORT_ALFA';
 export const FILTER_CATEGORIES='FILTER_CATEGORIES';
+
+export const ADD_FAVORITE = "ADD_FAVORITE"
+export const DELETE_FAVORITE= "DELETE_FAVORITE"

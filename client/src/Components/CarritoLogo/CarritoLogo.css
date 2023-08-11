@@ -13,7 +13,14 @@
     padding: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   } */
-  
+  .info-component {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    left: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
   
   .logo-image {
     width: 80px; /* Ajusta el tamaño según tus necesidades */

@@ -1,16 +1,17 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import "./Card.css"
-import axios from 'axios';
-import  { useState } from 'react';
+import { useState, useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
 
+import { addFavorite, deleteFavorite } from "../../Redux/ActionsCarrito";
+function Card({id,name,price,image}) {
 
-function Card(ejemplo) {
-
-  const [cart, setCart] = useState([]);
+ //const [cart, setCart] = useState([]);
 
   
 
-  const addToCart = (userId, nftId) => {
+  /*const addToCart = (userId, nftId) => {
+    console.log(userId)
     axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
         console.log(response.data.message);
@@ -19,7 +20,28 @@ function Card(ejemplo) {
       .catch(error => console.error(error));
   };
 
-  
+  <Carrito params={ejemplo}/>*/
+
+  const dispatch = useDispatch(); 
+  const myFavorites = useSelector(state => state.myFavorites)
+
+  const [isFav, setIsFav] = useState(false);
+const handleFavorite = ()=>{
+if(isFav){
+  setIsFav(false);
+  dispatch(deleteFavorite(id))
+} else {
+  setIsFav(true);
+  dispatch(addFavorite({id,name,price,image}))
+}}
+
+useEffect(() => {
+  myFavorites.forEach((fav) => {
+     if (fav.id === id) {
+        setIsFav(true);
+     }
+  });
+}, [myFavorites]);
 
 
   return (
@@ -27,12 +49,20 @@ function Card(ejemplo) {
 
       {/*${nft.id}
       <h1>id: {ejemplo.id}</h1> */}
-  
-
-        <button onClick={() => addToCart("8b9815f2-0a2d-4b97-b8c3-cc06e8730a15", ejemplo.id)}>Agregar al carrito</button>
+ { 
+<div>
+{  
+isFav ? (
+   <button onClick={handleFavorite}>Borrar del carrito</button>
+) : (
+   <button onClick={handleFavorite}>poner al carrito</button>
+)
+}  
+</div>}
+{  /* <button onClick={() => addToCart(ejemplo.userId, ejemplo.id)}>Agregar al carrito</button>*/}
       
 
-        <NavLink to={`/detail/${ejemplo.id}`}>
+        <NavLink to={`/detail/${id}`}>
        
 <div className="card">
   <div className="content">
@@ -40,7 +70,7 @@ function Card(ejemplo) {
       <div className="back-content">
        
       <div>
-          <img src={ejemplo.image}/>
+          <img src={image}/>
         </div>
         
       </div>
@@ -58,11 +88,11 @@ function Card(ejemplo) {
 
       <div className="front-content">
      
-         <h1>{ejemplo.name}</h1> 
+         <h1>{name}</h1> 
         <div className="description">
         <div className="description">
           <div className="title">
-        <p>  {ejemplo.price}</p> 
+        <p>  {price}</p> 
           </div>
           <p className="card-footer">
             
@@ -78,7 +108,9 @@ function Card(ejemplo) {
         
      
         </NavLink>
-        
+
+        <Link to='/Favorites'>Fav</Link>
+
     </div>
   )
 }
