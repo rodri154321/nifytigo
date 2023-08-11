@@ -6,7 +6,8 @@ const initialState = {
     error: null,
     categories: [],
     ejemplo: [],                //Todas las cards
-    cardsFiltered: []
+    cardsFiltered: [],
+    isLoggeIn: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -109,6 +110,24 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload,
             };
+            case 'LOGIN_SUCCESS':
+                return {
+                  ...state,
+                  isLoggedIn: true,
+                  error: null,
+                };
+              case 'LOGIN_ERROR':
+                return {
+                  ...state,
+                  isLoggedIn: false,
+                  error: action.payload,
+                };
+              case 'LOGOUT':
+                return {
+                  ...state,
+                  isLoggedIn: false,
+                  error: null,
+                };
         default:
             return state;
     }

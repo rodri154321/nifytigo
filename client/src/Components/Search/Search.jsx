@@ -7,7 +7,7 @@ import lupa from "../../assets/lupa.png"
 
 export default function SearchBar() {
 
-    const { pathname } = useLocation();
+     const { pathname } = useLocation();
     const dispatch = useDispatch()
 
 
@@ -24,8 +24,8 @@ export default function SearchBar() {
 
         <div className={style.container}>
             <img src={lupa} className={style.img}/>
-            <input disabled={pregunta()} placeholder="Buscar por nombre" type="text" name="name" onChange={handleChange} />
+            <input disabled={pregunta()} placeholder="Search for name" type="text" name="name" onChange={handleChange} />
         </div>
-
+    
     );
 }

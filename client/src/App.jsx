@@ -11,8 +11,9 @@ import Footer from './Components/Footer/Footer'
 import Contact from './Views/Contact/Contact'
 import Account from './Views/Account/Account'
 import TopRating from './Views/TopRating/TopRating'
+import Purchase from './Views/Purchase/Purchase'
 
-// import Login from './Views/Login/Login'
+import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import FormNft from './Views/FormNft/FormNft'
 
@@ -20,6 +21,8 @@ import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
+import Carrito from './Views/Carrito/Carrito'
+import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 
 function App() {
   /*const location = useLocation();*/
@@ -35,12 +38,15 @@ function App() {
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/TermsOfService" element={<TermsOfService />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/FormNft" element={<FormNft />} />
+          
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path='/Login' element={<Login />} />
           <Route path="/Account" element={<Account />} />
+          <Route path='/' element={<Carrito /> }/>
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
+          <Route path="/Purchase" element={<Purchase/>}/>
         {/*
           
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
@@ -62,7 +68,7 @@ function App() {
   */}
 
         </Routes>
-        
+        <CarritoLogo />
         <div id="containerFooter"><Footer /> </div>
       </div>
       <video id='videoback' muted autoPlay loop> <source src={videoBackground} type="video/webm"/></video>
