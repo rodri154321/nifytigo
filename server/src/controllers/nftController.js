@@ -33,6 +33,7 @@ const createNft = async (iduser, name, description, image, price, cate) => {
   const newNft = await nfts.create({ name, description, image, price });
   await newNft.setUser(iduser);
   for (const cateName of cate) {
+
     
     const cat = await categories.findOne({ where: { name: cateName } });
     
