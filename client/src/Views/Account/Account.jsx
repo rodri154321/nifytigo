@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import validation from "./validation";
 import "./index.css";
-import Login from "../Login/Login";
+//import Login from "../Login/Login";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/userActions";
 
