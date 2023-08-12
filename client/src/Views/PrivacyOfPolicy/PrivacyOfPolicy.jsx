@@ -1,7 +1,15 @@
-import React from 'react';
-import "./PrivacyOfPolicy.modules.css";
+import "./privacyOfPolicy.modules.css";
+import { useNavigate } from "react-router-dom";
 
-const PrivacyOfPolicy = () => {
+
+export const PrivacyOfPolicy = () => {
+
+  const Navigate = useNavigate();
+
+  const handleGoBack = () => {
+      Navigate("/");
+    };
+
   return (
     <div className="container-privacy-policy">
     <div className="privacy-policy">
@@ -53,6 +61,7 @@ const PrivacyOfPolicy = () => {
             </h2>
           </li>
         </ol>
+        <button className="buttonbackPrivacy" onClick={handleGoBack}>Back</button>
       </div>
     </div>
     </div>

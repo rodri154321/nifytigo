@@ -1,208 +1,236 @@
-/* Estilos para el contenedor de la página */
-.containerPage {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0%;
-  padding: 0%;
+/* FormNft.css */
+.containerFormNft {
+    max-width: 100vw;
+    min-height: 100vh;
+    margin: 3rem;
+    padding: 0%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.containerMainFormNft {
+  margin: 4rem;
+  padding: 60px;
+  background-color: #0b0b0b;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
   position: relative;
- /* background: linear-gradient(180deg,  #5CE1E6 0%,#faf8f8 100%);*/
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-/* Estilos para el contenedor principal */
-.containerFormImg {
-  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  width: 700px;
-  height: 700px;
 }
 
-/* Estilos para el título */
-.containerFormImg h2 {
+h1 {
   font-size: 24px;
-  margin-bottom: 16px;
-}
-
-/* Estilos para los campos de entrada y área de texto */
-.containerFormImg input,
-.containerFormImg textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-
-/* Estilos para el botón de eliminación de contenido */
-.containerFormImg .removebutton {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 10px; /* Ajustar el ancho */
-  height: 10px; /* Ajustar la altura */
-  font-size: 10px; /* Ajustar el tamaño de la fuente */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-}
-
-
-/* Estilos para el contenedor de imágenes de vista previa */
-.containerFormImg .imagepreview {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Estilos para cada contenido en la vista previa */
-.containerFormImg .imageContainer {
-  position: relative;
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-/* Estilos para la imagen de vista previa */
-.containerFormImg img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-/* Estilos para mensajes de error */
-.containerFormImg p {
-  color: #ff0000;
-  margin-top: 4px;
   margin-bottom: 20px;
-  font-size: 14px;
-}
-.btnAdd{
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  overflow: unset;
-  transition-duration: .3s;
-  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
-  background-color: rgb(226, 122, 24);
-  letter-spacing: 1px;
 }
 
-/* Estilos para el botón */
-.btn {
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  overflow: unset;
-  transition-duration: .3s;
-  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
-  background-color: rgb(226, 122, 24);
-  letter-spacing: 1px;
-}
-
-/* Estilos para la vista previa de imágenes */
-.imagepreview {
+.FormNft {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-button:before {
-  background-color: #242424;
-  border: 1px solid rgb(0, 255, 213);
-  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+  flex-direction: column;
+  align-items: stretch;
 }
 
-/* Estilos para el botón en estado hover */
-button:hover {
-  background-color: #242424;
-  border: 1px solid rgb(0, 255, 213);
-  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
-
-/* Estilos para el texto */
-.text {
-  font-size: .8em;
-  font-weight: 600;
-  transition-duration: .3s;
-  padding: 0.8rem;
-}
-
-
-
-
-
-/* Estilos para la lista de categorías seleccionadas */
-.categoryList {
-  margin-top: 10px;
-  background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+input,
+textarea,
+select {
+  margin-bottom: 12px;
   padding: 10px;
-  border-radius: 4px;
+  border: 1px solid #aa9b9bd8;
+  border-radius: 13px;
+  width: 450px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
 }
 
-/* Estilos para cada categoría en la lista */
-.categoryItem {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-/* Estilos para el botón de eliminación de categoría */
-.categoryItem.removebutton {
-  width: 24px;
-  height: 24px;
+.removebuttonFormNft{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FF914D;
   border: none;
-  border-radius: 50%;
-  background-color: #ff0000;
-  color: #18c3da;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
   cursor: pointer;
-  margin-right: 8px;
+  font-size: 10px;
+  padding: 2px 6px; /* Ajusta el padding según tus preferencias */
+  margin: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  display:inline;
+}
+.removeButtonFormNft:hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #c3c1c1;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 4px 8px; /* Ajusta el padding según tus preferencias */
+  margin-left: 1rem;
 }
 
-/* Estilos para el texto de la categoría */
-.categoryItem h3 {
+
+.imagepreview{
+max-width: 600px;
+max-height: 600px;
+flex-direction: row;
+display: flex;
+justify-content: center;
+}
+.imageContainerFormNft{
+  max-width: 600px;
+  max-height: 700px;
+  margin-top:2rem;
+  }
+
+.inputContainerFormNft{
+  width:600px;
+  margin:1rem
+}
+.nftImage {
+width: 300px;
+height: 300px;
+margin-top:2rem;
+margin-bottom:4rem;
+justify-content: center;
+
+}
+.titleFormNft{
   font-size: 18px;
-  margin: 0;
-}
-.containerFormImg .imagepreview {
-  /* Estilos para el contenedor de imágenes de vista previa */
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
 }
 
-.containerFormImg .imageContainer {
-  /* Estilos para cada contenido en la vista previa */
+.titleTwoFormNft{
+  font-size: 16px;
+}
+.buttonFormNft {
+  align-items: center;
+  justify-content:center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
   position: relative;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  width: 100px; /* Ajustar el ancho según sea necesario */
+  overflow:unset;
+  transition-duration: .3s;
+  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
+  background-color:rgb(226, 122, 24);
+  font-weight: 600;
+  padding: 0.8rem;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  margin: 1.2rem;
 }
 
-.containerFormImg img {
-  /* Estilos para la imagen de vista previa */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
+.buttonFormNft:hover {
+  background-color: #111313;
+
+}
+
+.buttonFormNft::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.buttonFormNft:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+  background-color: transparent;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+.buttonFormNft:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.buttonFormNft:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+.categoriesFormNft{
+display:inline-table;
+}
+.optionFormNft{
+  font-family: "Montserrat", sans-serif;
+}
+@keyframes glitch_4011 {
+  0% {
+    clip-path: var(--move1);
+    transform: translate(0px,-10px);
+  }
+
+  10% {
+    clip-path: var(--move2);
+    transform: translate(-10px,10px);
+  }
+
+  20% {
+    clip-path: var(--move3);
+    transform: translate(10px,0px);
+  }
+
+  30% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  40% {
+    clip-path: var(--move5);
+    transform: translate(10px,-10px);
+  }
+
+  50% {
+    clip-path: var(--move6);
+    transform: translate(-10px,10px);
+  }
+
+  60% {
+    clip-path: var(--move1);
+    transform: translate(10px,-10px);
+  }
+
+  70% {
+    clip-path: var(--move3);
+    transform: translate(-10px,10px);
+  }
+
+  80% {
+    clip-path: var(--move2);
+    transform: translate(10px,-10px);
+  }
+
+  90% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  100% {
+    clip-path: var(--move1);
+    transform: translate(0);
+  }
 }

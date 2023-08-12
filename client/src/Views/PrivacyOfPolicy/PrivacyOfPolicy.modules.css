@@ -2,8 +2,14 @@
 
 /* Estilos para .privacy-policy */
 .privacy-policy {
+<<<<<<< HEAD
+    display: inline-block;
+    margin-left: 2%;
+    margin-right: 2%;
+=======
     display: flex;
     margin: 3rem;
+>>>>>>> ddf6555a7edc71c98909e59ec800817363977b78
   }
   
   /* Estilos para .Card-policy */
@@ -12,7 +18,7 @@
     margin-bottom: 2%;
     margin-right: 40px; /* Ajustar el margen derecho para separar los elementos */
     background: #2cb5a0;
-    width: 30%;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 25px;
     padding-left: 20px;
@@ -58,7 +64,10 @@
     font-size: 50px;
   }
 
-
+  .buttonbackPrivacy {
+        background-color: black;
+    width: 30%;
+  }
   
   ol {
     list-style: none; /* Eliminar los números predeterminados */

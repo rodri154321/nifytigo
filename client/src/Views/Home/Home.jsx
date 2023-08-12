@@ -8,58 +8,62 @@ import Filters from '../../Components/Filters/Filters';
 // import videoBackground from '../../assets/background_video/Waves.webm'
 import Pagination from '../../Components/Pagination/Pagination'
 import Loader from '../../Components/Loader/Loader';
+//import { buscarName } from "../../Redux/buscarNftName"
 
 function Home(){
- const dispatch = useDispatch()
- 
 
-const ejemplo = useSelector((state) => state.ejemplo)
+  const dispatch = useDispatch()
+ 
+const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
 
  const [currentPage, setCurrentPage] = useState(1);
 
  const [isLoading,setIsLoading] = useState(true);
- const [videogamesPerPage] = useState(8);
-
+ const [videogamesPerPage] = useState(16);
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;
 
- const currentEjemplo= ejemplo.slice(firstIndex, lastIndex);
+ const currentEjemplo = Array.isArray(ejemplo) ? ejemplo.slice(firstIndex, lastIndex) : [];
+ 
  //EL SLICE 
  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
  useEffect(()=>{
     dispatch(getEjemplo())
-    setTimeout(() => {
+    setTimeout(() => {          //Loader
         setIsLoading(false);
-      }, 500); // Puedes ajustar el tiempo aquí
+      }, 500); //
     }, [dispatch]);
+
+
+
+
+
+
+
 
     return (
         <div id='Homes'>
        <div id='HomeContainer'>
-            <Filters></Filters>
+            <Filters paginate={paginate}></Filters>
             <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
         <div id="cards">
         
-        { currentEjemplo?.map((eje) =>{
-      return(
-            
-            <Cards
-            key={eje.id}
-            id={eje.id}
-            name={eje.name}
-            description={eje.description}
-            image={eje.image}
-            price={eje.price}
-            user={eje.user}
-            categories={eje.categories}
-            
-
-            />
-        
-      )
-       })}
+        {currentEjemplo?.map((eje) =>{
+          return(
+                <Cards
+                key={eje.id}
+                id={eje.id}
+                name={eje.name}
+                description={eje.description}
+                image={eje.image}
+                price={eje.price}
+                user={eje.user}
+                categories={eje.categories}
+                />
+          )
+          })}
         { isLoading && <Loader></Loader> }
         { isLoading && <div className='loaderBack'/>}
         </div>
@@ -69,4 +73,4 @@ const ejemplo = useSelector((state) => state.ejemplo)
         
     );
 }
-export default Home
+export default Home;
