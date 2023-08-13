@@ -1,13 +1,13 @@
-const { User } = require("../db.js");
+const { users } = require("../db.js");
 
 const postLogin = async({email, password}) =>{
-      const user = await User.findOne({ where: { email } });
-  
-      if (!user) throw Error("Usuario no encontrado")
-  
-      if (user.password !== password) throw Error("Contraseña Invalida")
 
-      return user;
+        const exist = await users.findOne({ where: { email: email } });
+      if (!exist) throw Error("Usuario no encontrado")
+  
+      if (exist.password !== password) throw Error("Contraseña Invalida")
+
+      return exist;
 }
 
 module.exports = {
