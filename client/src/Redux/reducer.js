@@ -1,4 +1,4 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES,LOGIN_GOOGLE,LOGIN,LOGOUT, ADD_FAVORITE,DELETE_FAVORITE} from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES,LOGIN_GOOGLE,LOGIN,LOGOUT, ADD_CART,DELETE_CART, GET_CARRITOS} from "./actionTypes";
 
 const initialState = {
     user: null,
@@ -169,11 +169,11 @@ const rootReducer = (state = initialState, action) => {
                   isLoggedIn: false,
                   error: null,
                 };
-                case ADD_FAVORITE:
+                case ADD_CART:
                     return  {...state, 
                         myFavorites:[...state.allCharacter, action.payload],
                     allCharacter:[...state.myFavorites, action.payload]}
-                case DELETE_FAVORITE:
+                case DELETE_CART:
                     return {...state,
                         myFavorites: state.myFavorites.filter(char => char.id !== action.payload)};
                         default:

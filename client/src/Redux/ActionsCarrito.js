@@ -1,11 +1,11 @@
-import { ADD_FAVORITE, DELETE_FAVORITE,GET_CARRITOS } from "./actionTypes"
+import { ADD_CART, DELETE_CART,GET_CARRITOS } from "./actionTypes"
 import axios from "axios"
-export const addFavorite =(character)=>{
-    return {type:ADD_FAVORITE, payload: character}
+export const addToCard =(character)=>{
+    return {type:ADD_CART, payload: character}
 }
 
-export const deleteFavorite = (id)=>{
-    return {type: DELETE_FAVORITE, payload: id}
+export const deleteToCart = (id)=>{
+    return {type: DELETE_CART, payload: id}
 }
 
 
@@ -24,6 +24,8 @@ console.log(error)
     
     }
     }
+
+ 
 
 //Ahora debemos implementar una action en el cual nos diga que dependiendo el id del usuario no muestre la informacion correspondiente
 //como le pasamos algo porn body desde el front?
