@@ -37,9 +37,9 @@ try {
 }
 
 const deleteNftCart = async(req,res)=>{
-    const {cartId, nftId, userId} = req.body
+    const {cartId, nftId} = req.body
 try {
-    const deleteNft = await deleteCartNft(cartId,nftId,userId)
+    const deleteNft = await deleteCartNft(cartId,nftId)
     res.status(200).json(deleteNft)
 } catch (error) {
     res.status(400).json({ error: error.message });
