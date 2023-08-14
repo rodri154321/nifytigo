@@ -16,12 +16,11 @@ export default function Detail() {
    
     
     useEffect(() => {
-<<<<<<< HEAD
-        axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
-=======
-        //axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
-         axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
->>>>>>> 9d9e09631200fea8c11c6eb8c17d1ee78d1a10cf
+
+        // axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
+
+        axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
+
            if (data.name) {
             setGameID(data);
            } else {

@@ -1,26 +1,37 @@
-import { useSelector } from "react-redux"
-import "./Favoritos.css"
-import { NavLink } from "react-router-dom"
-const Favoritos = ()=>{
-    const {myFavorites} = useSelector(state=>state)
-return(
-  <div className="Cardone" >
-   
 
-   
-    {
-        myFavorites.map((character)=>{
-            return(
-                // eslint-disable-next-line react/jsx-key
-                 <NavLink to={`/detail/${character.id}`}>
-                <div >       
+import { useSelector } from "react-redux"
+import { useState } from "react";
+import "./Favoritos.css"
+import axios from "axios";
+import { useEffect } from "react";
+const Favoritos = ()=>{
+
+    const [cart, setCart] = useState({
+	id: "",
+	price: "",
+	status: "",
+	userId:"" ,
+	nfts: []
+});
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(async()=>{
+  userId = '24107191-db0d-4e10-803c-e7ff5aba1c61'
+const responce = (await axios.get(`http://localhost:3001/shop/cart`,userId)).data
+setCart(responce)
+},[])
+
+return(
+  <div>
+  
+                <div>       
                 <div className="card">
                   <div className="content">
                     <div className="back">
                       <div className="back-content">
                        
                       <div>
-                          <img src={character.image}/>
+                         
                         </div>
                         
                       </div>
@@ -38,11 +49,11 @@ return(
                 
                       <div className="front-content">
                      
-                         <h1>{character.name}</h1> 
+                         <h1>{cart.name}</h1> 
                         <div className="description">
                         <div className="description">
                           <div className="title">
-                        <p> {character.price}</p> 
+                        <p> {cart.price}</p> 
                           </div>
                           <p className="card-footer">
                             
@@ -53,10 +64,7 @@ return(
                   </div>
                 </div> 
                 </div></div>
-                </NavLink>
-            )
-        })
-    } 
+     
   </div>
 )
   

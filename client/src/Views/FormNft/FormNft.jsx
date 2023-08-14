@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postNft } from "../../Redux/postNft";
-import { getCategories } from "../../Redux/getCategories";
+import { postNft } from "../../Redux/postNft"
+import { getCategories } from "../../Redux/getCategories"
 import style from "./FormNft.module.css";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import { useNavigate } from "react-router-dom";

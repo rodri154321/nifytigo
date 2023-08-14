@@ -1,4 +1,15 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, ADD_FAVORITE, DELETE_FAVORITE,LOGIN_GOOGLE,LOGIN,LOGOUT} from "./actionTypes";
+import { GET_EJEMPLO,
+   POST_NFT, 
+   GET_CATEGORIES, 
+   SORT_ALFA, 
+   FILTER_CATEGORIES, 
+  //  ADD_FAVORITE, 
+  //  DELETE_FAVORITE, 
+   LOGIN_GOOGLE, 
+   LOGIN, 
+   LOGOUT,
+   GET_CART
+  } from "./actionTypes"
 
 
 const initialState = {
@@ -11,7 +22,7 @@ const initialState = {
     isLoggeIn: false,
     allCharacter: [],
     myFavorites: [],
-
+    cart:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -168,14 +179,18 @@ const rootReducer = (state = initialState, action) => {
                   isLoggedIn: false,
                   error: null,
                 };
-                case ADD_FAVORITE:
-                    return  {...state, 
-                        myFavorites:[...state.allCharacter, action.payload],
-                    allCharacter:[...state.myFavorites, action.payload]}
-                case DELETE_FAVORITE:
-                    return {...state,
-                        myFavorites: state.myFavorites.filter(char => char.id !== action.payload)}
-
+                // case ADD_FAVORITE:
+                //     return  {...state, 
+                //         myFavorites:[...state.allCharacter, action.payload],
+                //     allCharacter:[...state.myFavorites, action.payload]}
+                // case DELETE_FAVORITE:
+                //     return {...state,
+                //         myFavorites: state.myFavorites.filter(char => char.id !== action.payload)}
+              case GET_CART:
+                return {
+                  ...state,
+                  cart: action.payload
+                }
         default:
             return state;
     

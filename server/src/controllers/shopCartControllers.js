@@ -10,10 +10,10 @@ const getShopCartController = async (userId) => {
     return cartShop;
 }
 
-const createShopCart = async (idUser) => {
+const createShopCart = async (userId) => {
     const newCart = await cart.create({ status: "pending" })
 
-    await newCart.setUser(idUser)
+    await newCart.setUser(userId)
     return newCart
 
 }
