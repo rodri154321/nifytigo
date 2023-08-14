@@ -5,7 +5,7 @@
   align-items: center;
   flex-direction: column;
   position:relative;
-  min-height: 100hv;;
+  min-height: 100hv;
 }
 
 
@@ -140,6 +140,7 @@ body {
   letter-spacing: 0.25px;
   text-align: center;
   line-height: 1.6;
+  background-color: #232323b9;
 }
 
 .button {
@@ -155,6 +156,8 @@ body {
   box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
   border: none;
   outline: none;
+  padding: 8px;
+  margin-bottom: 2rem;
 }
 
 /**/
