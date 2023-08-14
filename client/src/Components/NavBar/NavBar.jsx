@@ -40,8 +40,8 @@ const NavBar = () => {
         <NavLink to="/Purchase" className={style.navlinkNavBar}>
           Purchase PP
         </NavLink>
-        <NavLink to="/create-order" className={style.navlinkNavBar}>
-          Purchase MP
+        <NavLink to="/MPButton" className={style.navlink}>
+          MPButton
         </NavLink>
 
         {access ?(
