@@ -16,7 +16,9 @@ const createUsersHandler = async (req, res) => {
     const { username, name, lastName, email, password, cellPhone, country } = req.body
     try {
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
+        console.log(newUser);
         const userEmail = newUser.email
+        console.log(userEmail);
         await WelcomeEmail(userEmail)
         res.status(200).json(newUser)
     } catch (error) {
