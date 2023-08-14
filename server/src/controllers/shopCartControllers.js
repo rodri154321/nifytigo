@@ -51,7 +51,7 @@ console.log(cartResults.price)
   const cartShops = await cart.findByPk(cartShop.id,{
     include: {
       model: nfts,
-      attributes: ["name","price"],
+      attributes: ["id","name","image","price"],
       through: { attributes: [] }
     },
   });
@@ -59,7 +59,7 @@ return cartShops
  
 }
 
-const  deleteCartNft = async(cartId,nftId,userId)=>{
+const  deleteCartNft = async(cartId,nftId)=>{
 const carts = await cart.findByPk(cartId)
 const nft = await nfts.findByPk(nftId)
 

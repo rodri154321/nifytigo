@@ -16,34 +16,89 @@ const Favoritos = ()=>{
     dispatch(getCarrito())
   
         },[dispatch])*/
+        const [deleteStatus, setDeleteStatus] = useState(null);
 
     const [cart, setCart] = useState({
       id: "",
       price: "",
+      image:"",
       status: "",
       userId: "",
       nfts: []
     });
+    /*
 useEffect(() => {
   const fetchData = async () => {
     try {
       const userId = '112c6e93-9118-4755-8984-bca1848ea962';
       const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+      if(response){
       setCart(response);
       console.log(response)
+    }else{
+      return setCart({})
+    }
 
     } catch (error) { 
       
      
-      // Manejo de errores
+      //  alert('No hay personajes con ese ID');
     }
   };
 
   fetchData();
-}, []);
+}, [cart]);*/
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const userId = '112c6e93-9118-4755-8984-bca1848ea962';
+      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+      if (response) {
+        setCart(response);
+        console.log(response);
+      } else {
+        setCart({});
+      }
+    } catch (error) {
+      // alert('No hay personajes con ese ID');
+    }
+  };
+
+  fetchData();
+}, []); // Pasamos un arreglo vacío como dependencia
+/*
+useEffect(()=>{
+  
+setCart({})
+},[cart])*/
 
 
 
+
+
+/*
+useEffect(async() => {
+  const userId = '112c6e93-9118-4755-8984-bca1848ea962';
+  const response =  (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+  if(response){setCart(response)}
+}, [cart]);
+*/
+const deleteToCart = (cartId, nftId) => {
+
+  console.log(cartId)
+  axios.delete('http://localhost:3001/shop/delete',   {   data: {
+    cartId: cartId,
+    nftId: nftId,
+  },}  )
+    .then(response => {
+    console.log('delete')
+
+      console.log(response.data.message);
+      setDeleteStatus([...deleteStatus]);
+    })
+    .catch(error => console.error(error));  
+};
 
 console.log(cart)
 return (
@@ -51,7 +106,8 @@ return (
   
 
   
-                <div>       
+                <div>  
+     
                 <div className="card">
                   <div className="content">
                     <div className="back">
@@ -94,6 +150,9 @@ return (
                 </div>
           {cart && cart.nfts.map((nft, index) => (
         <li key={index}>
+            <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', nft.id)}>eliminar Nft</button>
+
+          <img src={nft.image}/>
           <p>Nombre: {nft.name}</p>
           <p>Precio: {nft.price}</p>
         </li>
