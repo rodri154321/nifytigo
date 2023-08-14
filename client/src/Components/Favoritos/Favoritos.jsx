@@ -29,7 +29,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const userId = '81a9c70e-06e3-496e-a0af-e93a364ac424';
-      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
       console.log(response)
@@ -125,7 +125,7 @@ return (
                 </div>
           {cart && cart.nfts.map((nft, index) => (
         <li key={index}>
-            <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', nft.id)}>eliminar Nft</button>
+            <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>eliminar Nft</button>
 
           <img src={nft.image}/>
           <p>Nombre: {nft.name}</p>

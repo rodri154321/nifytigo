@@ -6,17 +6,12 @@ import { useDispatch } from "react-redux";
 function Card(ejemplo) {
 
  const [cart, setCart] = useState([]);
- /*const dispatch  = useDispatch()
- const [isCart, setIsCart] = useState(false);*/
-
  const [deleteStatus, setDeleteStatus] = useState(null);
 
 
-  
-
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
-    axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
         console.log('add')
         console.log(response.data.message);
@@ -24,10 +19,12 @@ function Card(ejemplo) {
       })
       .catch(error => console.error(error));
   };
+
+
   const deleteToCart = (cartId, nftId) => {
 
-    console.log(cartId)
-    axios.delete('http://localhost:3001/shop/delete',   {   data: {
+    console.log(nftId)
+    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
       cartId: cartId,
       nftId: nftId,
     },}  )
@@ -39,15 +36,7 @@ function Card(ejemplo) {
       })
       .catch(error => console.error(error));  
   };
-/*
-  const handleCart = ()=>{
-    if(isCart){
-      setIsCart(false);
-      dispatch(deleteToCart(ejemplo.id))
-    } else {
-      setIsCart(true);
-      dispatch(addToCart(ejemplo))
-    }}*/
+
    
 
   return (
@@ -55,7 +44,7 @@ function Card(ejemplo) {
 
 
 
-  <button onClick={() => deleteToCart('81a9c70e-06e3-496e-a0af-e93a364ac424', ejemplo.id)}>eliminar el carrito</button>
+  <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
 
   {deleteStatus === 'success' ? (
         <p>¡El NFT se ha eliminado correctamente!</p>

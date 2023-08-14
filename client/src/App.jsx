@@ -14,6 +14,8 @@ import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
+//import FormNft from './Views/FormNft/FormNft'
+
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'

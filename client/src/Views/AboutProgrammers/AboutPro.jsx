@@ -83,7 +83,7 @@ const GoogleButton = () => {
         imageUrl: Brian
       },
       {
-        name: 'leidy Sánchez',
+        name: 'Leidy Sánchez',
         role: 'Programador Full Stack',
         socialMedia: [
           { icon: 'twitter', tooltip: 'Twitter', link: '#' },

@@ -4,6 +4,7 @@ import { useEffect, useState} from 'react'
 import {  useParams } from 'react-router-dom';
 import axios from 'axios';
 import  "./Detail.css"
+import { NavLink} from "react-router-dom";
 
 export default function Detail() {
   const [gameID, setGameID] = useState({})
@@ -30,6 +31,10 @@ export default function Detail() {
         return setGameID({});
      }, [id]);
 
+     const handlePurchaseButton=()=>{
+         console.log('comprando')
+     }
+
 return (
  <div className='containerDetail'>
 
@@ -46,7 +51,7 @@ return (
         
      {gameID.categories && gameID.categories.length > 0 ? gameID.categories.map(category => category.name).join(", ") : "Sin categorías disponibles"}
     </p>
-    <button className="detail__button">{gameID.price}</button>
+    <NavLink to={`/Purchase?id=${id}`}><button className="detail__button">{gameID.price}</button></NavLink>
   </div>
   <div>
    <button>
