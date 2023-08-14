@@ -25,14 +25,55 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 0 10px 10px 0; 
+    position: relative;
 }
 #title{
     margin-top: 50px;
-    margin-bottom: auto;
+    margin-bottom: 0px;
     margin-right: auto;
-    margin-left: 50px;
+    margin-left: 5%;
     font-size: xx-large;
+    color: black;
+    padding: 0;
+}
+#titleSeparator{
+    border-top: 2px solid rgb(255, 102, 0);
+    width: 92%;
+    margin: 20px;    
+}
+.subtitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    color: rgb(40, 40, 40);
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+.subtitleItem{
+    padding: 0;
+}
+.itemList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    color: rgb(76, 76, 76);
+    /* margin-bottom: auto; */
+    margin-top: 0;
+}
+.itemDescription{
+    /* margin: 15%; */
+    padding: 0;
+}
+.PaypalButtonContainer{
+        margin-top: auto;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      
 }

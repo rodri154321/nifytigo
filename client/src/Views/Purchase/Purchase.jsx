@@ -3,16 +3,24 @@ import PaypalButton from '../../Components/PayPalButton/PayPalButton';
 import Cards from '../../Components/Cards/Cards';
 import { useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const Purchase=(items)=>{
     const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
+    let price=0;
     
-    let price=15;
+    const location = useLocation();
+    const searchParams=new URLSearchParams(location.search);
+    const id= searchParams.get('id');
+    
+    const currentItem=ejemplo.filter(card=>card.id==id)
+    console.log(currentItem[0]);
+    if (currentItem) {price=parseFloat(currentItem[0].price); console.log('El precio es:',price)}
 
     return(
         <div id='purchaseContainer'>
             <div id='detailPurchaseContainer'>
-            {ejemplo?.map((eje) =>{
+            {currentItem?.map((eje) =>{
                 return(
                         <Cards
                         key={eje.id}
@@ -27,9 +35,21 @@ const Purchase=(items)=>{
                 )
             })}
             </div>
+
             <div id='paymentsContainer'>
-                <h1 id='title'>MAKE "NFT NAME" YOURS NOW</h1>
-                <PaypalButton  totalValue={price} invoice={'Informacion de lo que se compro'}></PaypalButton>
+                <h1 id='title'>Purchase detail</h1>
+                <hr id='titleSeparator'></hr>
+                <div className='subtitle'><h2 className='subtitleItem'>Item Name</h2><h2 className='subtitleItem'>Price</h2></div>
+                
+                {currentItem?.map((item)=>{
+                    return(
+                        <div className='itemList'>
+                            <h3 className='itemDescription'>{item.name}</h3>
+                            <h3 className='itemDescription'> {item.price}</h3>
+                        </div>
+                    )
+                })}
+                <div className='PaypalButtonContainer'>{currentItem &&<PaypalButton  totalValue={price} invoice={'Informacion de lo que se compro'} ></PaypalButton>}</div>
             </div>
         </div>
 

@@ -18,8 +18,8 @@ export const createUser = (userData) => async (dispatch) => {
   try {
     dispatch(createUserStart());
     // Hacer la llamada al servidor para crear el usuario utilizando Axios
-    //const response = await axios.post('http://localhost:3001/users', userData,
-    const response = await axios.post('https://nifytigo.onrender.com/users', userData,
+    const response = await axios.post('http://localhost:3001/users', userData,
+    // const response = await axios.post('https://nifytigo.onrender.com/users', userData,
     {
       headers: {
         'Content-Type': 'application/json',
