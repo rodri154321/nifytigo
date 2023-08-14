@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
 import axios from "axios";
+import Cards from "../../Components/Cards/Cards"
+import Card from "../../Components/Card/Card";
 
 const Profile = () => {
 
@@ -127,22 +129,34 @@ const Profile = () => {
       <div className={style.games}>
         <h1 className={style.reserva}>Profile</h1>
 
-        <div className={style.navlinkCreateNft} >
-          <div>
-            <h1 onClick={toggleInfoFour} className={style.navlinkFormn} >
-              My NFT's
-            </h1>
-          </div>
-          <div className={style.CreateNftFormNft}>
-            {infoVisibleFour && (
-              <ul>
-                {userNFTs.map(nft => (
-                  <li key={nft.id}>{nft.title}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
+
+<div className={style.navlinkCreateNft}>
+  <div>
+    <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
+      Mis NFT's
+    </h1>
+  </div>
+  <div className={style.CreateNftFormNft}>
+    {infoVisibleFour && (
+      <Card>
+        {userNFTs.map(nft => {
+          
+          if (nft.idUsuario === idUser || nft.idGoogle === tuIdGoogle) {
+            console.log(userNFTs)
+            return (
+              <div key={nft.id}>
+                {nft.title}
+                {/* Renderiza otros detalles de la carta aquí si es necesario */}
+              </div>
+            );
+          } else {
+            return null; 
+          }
+        })}
+      </Card>
+    )}
+  </div>
+</div>
 
         <div className={style.navlinkCreateNft} >
           <div>
