@@ -1,11 +1,64 @@
+// import mercadopage from "mercadopago";
+// import { MERCADOPAGO_API_KEY } from "./config.js";
+
+// export const createOrder = async (req, res) => {
+//   mercadopage.configure({
+//     access_token: MERCADOPAGO_API_KEY,
+//   });
+
+//   try {
+//     const result = await mercadopage.preferences.create({
+//       items: [
+//         {
+//           title: "Laptop",
+//           unit_price: 500,
+//           currency_id: "COP",
+//           quantity: 1,
+//         },
+//       ],
+//       notification_url: "https://33f4-181-53-12-37.ngrok.io//webhook",
+//       back_urls: {
+//         success: "http://localhost:3000/success",
+//         // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
+//         // failure: "https://e720-190-237-16-208.sa.ngrok.io/failure",
+//       },
+//     });
+
+//     console.log(result);
+
+//     // res.json({ message: "Payment creted" });
+//     res.json(result.body);
+//   } catch (error) {
+//     return res.status(500).json({ message: "Something goes wrong" });
+//   }
+// };
+
+// export const receiveWebhook = async (req, res) => {
+//   try {
+//     const payment = req.query;
+//     console.log(payment);
+//     if (payment.type === "payment") {
+//       const data = await mercadopage.payment.findById(payment["data.id"]);
+//       console.log(data);
+//     }
+
+//     res.sendStatus(204);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ message: "Something goes wrong" });
+//   }
+// };
+
+
+// payment.controller.js
 import mercadopage from "mercadopago";
 import { MERCADOPAGO_API_KEY } from "./config.js";
 
-export const createOrder = async (req, res) => {
-  mercadopage.configure({
-    access_token: MERCADOPAGO_API_KEY,
-  });
+mercadopage.configure({
+  access_token: MERCADOPAGO_API_KEY,
+});
 
+export const createOrder = async (req, res) => {
   try {
     const result = await mercadopage.preferences.create({
       items: [
@@ -16,18 +69,15 @@ export const createOrder = async (req, res) => {
           quantity: 1,
         },
       ],
-      notification_url: "https://33f4-181-53-12-37.ngrok.io//webhook",
+      notification_url: "https://33f4-181-53-12-37.ngrok.io//webhook", // Replace with your ngrok URL
       back_urls: {
-        success: "http://localhost:3000/success",
-        // pending: "https://e720-190-237-16-208.sa.ngrok.io/pending",
-        // failure: "https://e720-190-237-16-208.sa.ngrok.io/failure",
+        success: "http://localhost:3000/success", // Replace with your frontend success URL
+        // pending: "https://your-frontend-url.com/pending",
+        // failure: "https://your-frontend-url.com/failure",
       },
     });
 
-    console.log(result);
-
-    // res.json({ message: "Payment creted" });
-    res.json(result.body);
+    res.json(result);
   } catch (error) {
     return res.status(500).json({ message: "Something goes wrong" });
   }

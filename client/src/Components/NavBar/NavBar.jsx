@@ -43,7 +43,7 @@ const NavBar = () => {
           Purchase PP
         </NavLink>
         <NavLink to="/MPButton" className={style.navlink}>
-          MPButton
+          ButtonMP
         </NavLink>
 
         {/*{isClient === "true" && (

@@ -12,6 +12,7 @@ import Footer from './Components/Footer/Footer'
 import Account from './Views/Account/Account'
 import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
+// import PurchaseMP from './Views/PurchaseMP/PurchaseMP'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
@@ -42,7 +43,8 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
           <Route path="/Purchase" element={<Purchase/>}/>
-          <Route path="/MPButton" element={<MPButton/>}/>
+          {/* <Route path="/PurchaseMP" element={<PurchaseMP/>}/> */}
+          <Route path="/MPButton" element={<MPButton />} />
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/Profile" element={<Profile/>} />
           <Route path='/Login' element={<Login />} />

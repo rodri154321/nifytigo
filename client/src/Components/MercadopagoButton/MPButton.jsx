@@ -1,3 +1,4 @@
+// MPButton.js
 import React from 'react';
 
 class MPButton extends React.Component {
@@ -7,7 +8,7 @@ class MPButton extends React.Component {
         method: "POST",
       });
       const data = await res.json();
-      window.location.href = data.init_point;
+      window.location.href = data.init_point; // Redirige al usuario a la página de pago
     } catch (error) {
       console.error("Error during checkout:", error);
     }
@@ -16,6 +17,7 @@ class MPButton extends React.Component {
   render() {
     return (
       <button id="checkout" onClick={this.handleCheckout}>
+        Pay with MercadoPago
       </button>
     );
   }
