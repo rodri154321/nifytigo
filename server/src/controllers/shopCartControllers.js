@@ -30,7 +30,7 @@ const cartShop = await  getShopCartController(userId)
 const cartResults = await cart.findByPk(cartShop.id,{
     include: {
       model: nfts,
-      attributes: ["name","price"],
+      attributes: ["id","name","image","price"],
       through: { attributes: [] }
 
     },
@@ -51,7 +51,7 @@ console.log(cartResults.price)
   const cartShops = await cart.findByPk(cartShop.id,{
     include: {
       model: nfts,
-      attributes: ["name","price"],
+      attributes: ["id","name","image","price"],
       through: { attributes: [] }
     },
   });

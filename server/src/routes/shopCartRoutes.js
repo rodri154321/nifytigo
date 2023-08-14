@@ -6,9 +6,9 @@ const { getShopCart,postNftCart,getUserCart,deleteNftCart }= require('../handler
 
 
 router
-.get('/', getShopCart)
+.get('/carti', getShopCart)
 .post('/add',postNftCart)
-.get('/cart', getUserCart)
+.get('/cart/:id', getUserCart)
 .delete("/delete",deleteNftCart)
 module.exports = router;
 
