@@ -2,15 +2,27 @@ import { NavLink, } from "react-router-dom"
 import "./Card.css"
 import { useState} from "react";
 import axios from "axios"
+import { useDispatch } from "react-redux";
 function Card(ejemplo) {
 
  const [cart, setCart] = useState([]);
+ /*const dispatch  = useDispatch()
+ const [isCart, setIsCart] = useState(false);*/
 
   
 
   const addToCart = (userId, nftId) => {
     console.log(userId)
-    axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
+      .then(response => {
+        console.log(response.data.message);
+        setCart([...cart]);
+      })
+      .catch(error => console.error(error));
+  };
+ /* const deleteToCart = (cartId, nftId) => {
+    console.log(cartId)
+    axios.delete('https://nifytigoserver.onrender.com/shop/delete', {  cartId: cartId , nftId: nftId })
       .then(response => {
         console.log(response.data.message);
         setCart([...cart]);
@@ -18,15 +30,27 @@ function Card(ejemplo) {
       .catch(error => console.error(error));
   };
 
-
+  const handleCart = ()=>{
+    if(isCart){
+      setIsCart(false);
+      dispatch(deleteToCart(ejemplo.id))
+    } else {
+      setIsCart(true);
+      dispatch(addToCart(ejemplo))
+    }}*/
+   
 
   return (
     <div>
+ <button onClick={() => addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424', ejemplo.id)}>Agregar al carrito</button>
+{/* {
+isCart ? (
+  <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', ejemplo.id)}>eliminar el carrito</button>
 
-      
- 
-  <button onClick={() => addToCart('24107191-db0d-4e10-803c-e7ff5aba1c61', ejemplo.id)}>Agregar al carrito</button>
-      
+) : (
+  
+)
+} */}
 
         <NavLink to={`/detail/${ejemplo.id}`}>
        

@@ -3,11 +3,9 @@ export const POST_NFT = "POST_NFT";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SORT_ALFA='SORT_ALFA';
 export const FILTER_CATEGORIES='FILTER_CATEGORIES';
-
-export const ADD_FAVORITE = "ADD_FAVORITE"
-export const DELETE_FAVORITE= "DELETE_FAVORITE"
 export const LOGIN ='LOGIN';
 export const LOGOUT ='LOGOUT';
 export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
-
-export const GET_CART = "GET_CART"
+export const ADD_FAVORITE = "ADD_FAVORITE";
+export const DELETE_FAVORITE= "DELETE_FAVORITE";
+export const GET_CARRITOS="GET_CARRITOS"

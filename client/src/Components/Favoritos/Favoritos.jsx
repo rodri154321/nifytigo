@@ -5,24 +5,49 @@ import "./Favoritos.css"
 import axios from "axios";
 import { useEffect } from "react";
 const Favoritos = ()=>{
+/*
+  const cart = useSelector(state => state.getCarritos)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getCarrito())
+  
+        },[dispatch])*/
 
     const [cart, setCart] = useState({
-	id: "",
-	price: "",
-	status: "",
-	userId:"" ,
-	nfts: []
-});
+      id: "",
+      price: "",
+      status: "",
+      userId: "",
+      nfts: []
+    });
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const userId = '81a9c70e-06e3-496e-a0af-e93a364ac424';
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      setCart(response);
+      console.log(response)
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
-useEffect(async()=>{
-  userId = '24107191-db0d-4e10-803c-e7ff5aba1c61'
-const responce = (await axios.get(`http://localhost:3001/shop/cart`,userId)).data
-setCart(responce)
-},[])
+    } catch (error) { 
+      
+     
+      // Manejo de errores
+    }
+  };
 
-return(
-  <div>
+  fetchData();
+}, []);
+
+
+
+
+console.log(cart)
+return (
+  
+  
+
   
                 <div>       
                 <div className="card">
@@ -48,12 +73,13 @@ return(
                       </div>
                 
                       <div className="front-content">
-                     
-                         <h1>{cart.name}</h1> 
+                     <h1>{cart.status}</h1>
+                         <h1>{cart.userId}</h1>
                         <div className="description">
                         <div className="description">
                           <div className="title">
                         <p> {cart.price}</p> 
+    
                           </div>
                           <p className="card-footer">
                             
@@ -63,10 +89,15 @@ return(
                     </div>
                   </div>
                 </div> 
-                </div></div>
-     
+                </div>
+          {cart && cart.nfts.map((nft, index) => (
+        <li key={index}>
+          <p>Nombre: {nft.name}</p>
+          <p>Precio: {nft.price}</p>
+        </li>
+      ))}
   </div>
-)
+);
   
 }
 
