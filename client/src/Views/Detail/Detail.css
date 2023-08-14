@@ -88,6 +88,10 @@
   background: #777;
   border: none;
   color: white;
+  cursor: pointer;
+}
+.detail__button:hover{
+  background-color: red;
 }
 
 .secondary {
