@@ -26,10 +26,10 @@ try {
 }
 
 const getUserCart = async(req,res)=>{
-    const {userId} = req.body
-    console.log(userId)
+    const {id} = req.params
+    console.log(id)
 try {
-    const myCart = await getMyCart(userId)
+    const myCart = await getMyCart(id)
     res.status(200).json(myCart)
 } catch (error) {
     res.status(400).json({ error: error.message });

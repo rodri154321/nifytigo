@@ -23,7 +23,7 @@ const FormNft = () => {
 
   const [formData, setFormData] = useState({
 
-      iduser: "8b9815f2-0a2d-4b97-b8c3-cc06e8730a15",
+      iduser: "6c55d3ee-8d6d-42b7-862d-a5e76fc05fd3",
       image: [],
       name: "",
       description: "",
@@ -222,12 +222,10 @@ const FormNft = () => {
   };
   return (
     <div className={style.containerFormNft}>
-      <div className={style.containerMain}>
-
-        <h1>Create NFT</h1>
-        <form onSubmit={handleSubmit}>
+      <div className={style.containerMainFormNft}>
+        <form onSubmit={handleSubmit} className={style.FormNft}>
           <div className={style.inputContainerFormNft}>
-            <h2 htmlFor="imageUrl">Enter a Nft:</h2>
+            <h2 htmlFor="imageUrl" className={style.titleFormNft}>Enter a Nft:</h2>
             <input
               type="file"
               accept="image/*"
@@ -278,6 +276,7 @@ const FormNft = () => {
               rows="4"
               required
               placeholder="Description"
+              
             ></textarea>
             {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
           </div>
@@ -298,7 +297,7 @@ const FormNft = () => {
           </div>
 
           <div className={style.inputContainerFormNft}>
-            <h2 htmlFor="categories">Categories:</h2>
+            <h2 htmlFor="categories" className={style.titleFormNft}>Categories:</h2>
             <select
               multiple
               id="categories"
@@ -306,16 +305,16 @@ const FormNft = () => {
               required
             >
               {categories.map((category) => (
-                <option key={category.name} value={category.name}>
-                  {category.name}
+                <option key={category.name} value={category.name} className={style.optionFormNft}>
+                  {category.name} 
                 </option>
               ))}
             </select>
             <div>
               <p>Selected Categories:</p>
               {formData.categorie.map((cat) => (
-                <div key={cat}>
-                  <span>{cat}</span>
+                <div key={cat} className={style.categoriesFormNft}>
+                  <span className={style.titleTwoFormNft}>{cat}</span>
                   <button onClick={() => handleRemoveCategory(cat)} className={style.removebuttonFormNft}> x </button>
                 </div>
               ))}

@@ -19,7 +19,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
  const [currentPage, setCurrentPage] = useState(1);
 
  const [isLoading,setIsLoading] = useState(true);
- const [videogamesPerPage] = useState(8);
+ const [videogamesPerPage] = useState(16);
 
  const lastIndex = currentPage * videogamesPerPage; 
  const firstIndex = lastIndex - videogamesPerPage;

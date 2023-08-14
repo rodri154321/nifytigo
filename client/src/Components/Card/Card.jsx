@@ -1,16 +1,15 @@
 import { NavLink, Link } from "react-router-dom"
 import "./Card.css"
-import { useState, useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useState} from "react";
+import axios from "axios"
+function Card(ejemplo) {
 
-import { addFavorite, deleteFavorite } from "../../Redux/ActionsCarrito";
-function Card({id,name,price,image}) {
-
- //const [cart, setCart] = useState([]);
+ const [cart, setCart] = useState([]);
+ const [isCart, setIsCart] = useState(false);
 
   
 
-  /*const addToCart = (userId, nftId) => {
+  const addToCart = (userId, nftId) => {
     console.log(userId)
     axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
@@ -19,50 +18,39 @@ function Card({id,name,price,image}) {
       })
       .catch(error => console.error(error));
   };
+  const deleteToCart = (cartId, nftId) => {
+    console.log(cartId)
+    axios.delete('http://localhost:3001/shop/delete', {  cartId: cartId , nftId: nftId })
+      .then(response => {
+        console.log(response.data.message);
+        setCart([...cart]);
+      })
+      .catch(error => console.error(error));
+  };
 
-  <Carrito params={ejemplo}/>*/
-
-  const dispatch = useDispatch(); 
-  const myFavorites = useSelector(state => state.myFavorites)
-
-  const [isFav, setIsFav] = useState(false);
-const handleFavorite = ()=>{
-if(isFav){
-  setIsFav(false);
-  dispatch(deleteFavorite(id))
-} else {
-  setIsFav(true);
-  dispatch(addFavorite({id,name,price,image}))
-}}
-
-useEffect(() => {
-  myFavorites.forEach((fav) => {
-     if (fav.id === id) {
-        setIsFav(true);
-     }
-  });
-}, [myFavorites]);
-
+  const handleCart = ()=>{
+    if(isCart){
+      setIsCart(false);
+      dispatch(deleteToCart(ejemplo.id))
+    } else {
+      setIsFav(true);
+      dispatch(addToCart(ejemplo))
+    }}
+   
 
   return (
     <div>
 
-      {/*${nft.id}
-      <h1>id: {ejemplo.id}</h1> */}
- { 
-<div>
-{  
-isFav ? (
-   <button onClick={handleFavorite}>Borrar del carrito</button>
-) : (
-   <button onClick={handleFavorite}>poner al carrito</button>
-)
-}  
-</div>}
-{  /* <button onClick={() => addToCart(ejemplo.userId, ejemplo.id)}>Agregar al carrito</button>*/}
-      
+{
+isCart ? (
+  <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', ejemplo.id)}>eliminar el carrito</button>
 
-        <NavLink to={`/detail/${id}`}>
+) : (
+  <button onClick={() => addToCart('112c6e93-9118-4755-8984-bca1848ea962', ejemplo.id)}>Agregar al carrito</button>
+)
+}
+
+        <NavLink to={`/detail/${ejemplo.id}`}>
        
 <div className="card">
   <div className="content">
@@ -70,7 +58,7 @@ isFav ? (
       <div className="back-content">
        
       <div>
-          <img src={image}/>
+          <img src={ejemplo.image}/>
         </div>
         
       </div>
@@ -88,11 +76,11 @@ isFav ? (
 
       <div className="front-content">
      
-         <h1>{name}</h1> 
+         <h1>{ejemplo.name}</h1> 
         <div className="description">
         <div className="description">
           <div className="title">
-        <p>  {price}</p> 
+        <p>  {ejemplo.price}</p> 
           </div>
           <p className="card-footer">
             
@@ -121,9 +109,3 @@ export default Card
 
 
 
-/*  <h3>{ejemplo.name}</h3>
-        <div>
-          <img src={ejemplo.image}/>
-        </div>
-        <h2>PRICE: {ejemplo.price}</h2>
-      */

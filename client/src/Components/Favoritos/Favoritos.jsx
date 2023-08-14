@@ -1,13 +1,56 @@
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { getCarrito} from "../../Redux/ActionsCarrito";
+import { useState } from "react";
 import "./Favoritos.css"
+import CardDtc from "../CardDct/CardDtc";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Favoritos = ()=>{
-    const {myFavorites} = useSelector(state=>state)
-return(
-  <div>
-    {
-        myFavorites.map((character)=>{
-            return(
+/*
+  const cart = useSelector(state => state.getCarritos)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getCarrito())
+  
+        },[dispatch])*/
+
+    const [cart, setCart] = useState({
+      id: "",
+      price: "",
+      status: "",
+      userId: "",
+      nfts: []
+    });
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const userId = '112c6e93-9118-4755-8984-bca1848ea962';
+      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+      setCart(response);
+      console.log(response)
+
+    } catch (error) { 
+      
+     
+      // Manejo de errores
+    }
+  };
+
+  fetchData();
+}, []);
+
+
+
+
+console.log(cart)
+return (
+  
+  
+
+  
                 <div>       
                 <div className="card">
                   <div className="content">
@@ -15,7 +58,7 @@ return(
                       <div className="back-content">
                        
                       <div>
-                          <img src={character.image}/>
+                         
                         </div>
                         
                       </div>
@@ -32,12 +75,13 @@ return(
                       </div>
                 
                       <div className="front-content">
-                     
-                         <h1>{character.name}</h1> 
+                     <h1>{cart.status}</h1>
+                         <h1>{cart.userId}</h1>
                         <div className="description">
                         <div className="description">
                           <div className="title">
-                        <p> {character.price}</p> 
+                        <p> {cart.price}</p> 
+    
                           </div>
                           <p className="card-footer">
                             
@@ -47,12 +91,15 @@ return(
                     </div>
                   </div>
                 </div> 
-                </div></div>
-            )
-        })
-    }
+                </div>
+          {cart && cart.nfts.map((nft, index) => (
+        <li key={index}>
+          <p>Nombre: {nft.name}</p>
+          <p>Precio: {nft.price}</p>
+        </li>
+      ))}
   </div>
-)
+);
   
 }
 
