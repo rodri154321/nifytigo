@@ -5,14 +5,13 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
 import axios from "axios";
-import Cards from "../../Components/Cards/Cards"
+//import Cards from "../../Components/Cards/Cards"
 import Card from "../../Components/Card/Card";
 
 const Profile = () => {
 
   const loger = localStorage.getItem('loger')
   const idUser = localStorage.getItem("clientId");
-
 
   const reload = () => {
     window.location.reload(false);
@@ -41,11 +40,13 @@ const Profile = () => {
               image: profile.getImageUrl(),
             });
           } else {
-            const response = await axios.get(`http://localhost:3001/users/${idUser}`);
+            //const response = await axios.get(`http://localhost:3001/users/${idUser}`);
+            const response = await axios.get(`https://nifytigoserver.onrender.com/users/${idUser}`);
             setUserData(response.data);
           }
         } else {
-          const response = await axios.get(`http://localhost:3001/users/${idUser}`);
+          //const response = await axios.get(`http://localhost:3001/users/${idUser}`);
+          const response = await axios.get(`https://nifytigoserver.onrender.com/users/${idUser}`);
           setUserData(response.data);
         }
       } catch (error) {
@@ -56,7 +57,8 @@ const Profile = () => {
 
     const fetchUserNFTs = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/nfts?userId=${idUser}`);
+        //const response = await axios.get(`http://localhost:3001/nfts?userId=${idUser}`);
+        const response = await axios.get(`https://nifytigoserver.onrender.com/nfts?userId=${idUser}`);
         setUserNFTs(response.data);
       } catch (error) {
         console.error(error);
@@ -130,7 +132,7 @@ const Profile = () => {
         <h1 className={style.reserva}>Profile</h1>
 
 
-<div className={style.navlinkCreateNft}>
+{/*<div className={style.navlinkCreateNft}>
   <div>
     <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
       Mis NFT's
@@ -147,7 +149,7 @@ const Profile = () => {
               <div key={nft.id}>
                 {nft.title}
                 {/* Renderiza otros detalles de la carta aquí si es necesario */}
-              </div>
+             {/* </div>
             );
           } else {
             return null; 
@@ -156,7 +158,7 @@ const Profile = () => {
       </Card>
     )}
   </div>
-</div>
+  </div>*/}
 
         <div className={style.navlinkCreateNft} >
           <div>
@@ -173,6 +175,17 @@ const Profile = () => {
           <div>
             <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
               Favorites
+            </h1>
+          </div>
+          <div classname={style.CreateNftFormNft}>
+            {/*{infoVisibleFive && <FormNft />}*/}
+          </div>
+        </div>
+
+        <div className={style.navlinkCreateNft} >
+          <div>
+            <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
+              My NFT's
             </h1>
           </div>
           <div classname={style.CreateNftFormNft}>
