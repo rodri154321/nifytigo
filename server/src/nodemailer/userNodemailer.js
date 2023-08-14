@@ -31,4 +31,4 @@ const WelcomeEmail = async (email) => {
     }
 };
 
-module.exports = WelcomeEmail;
+module.exports = {WelcomeEmail};
