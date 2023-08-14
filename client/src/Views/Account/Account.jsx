@@ -37,6 +37,7 @@ const [errorMessage, setErrorMessage] = useState('');
         // Aquí llamamos a la acción createUser con los datos del formulario
         dispatch(createUser(userData));
         setUserCreationStatus('User created successfully!');
+        
         setErrorMessage(''); // Limpiamos el mensaje de error en caso de existir previamente
       } catch (error) {
         setUserCreationStatus('User creation failed.');

@@ -44,11 +44,12 @@ textarea,
 select {
   margin-bottom: 12px;
   padding: 10px;
-  border: 1px solid #aa9b9bd8;
+  border: 1px solid #f1ebebd8;
   border-radius: 13px;
   width: 450px;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
+  background-color: rgba(228, 228, 228, 0.788);
 }
 
 .removebuttonFormNft{
@@ -178,6 +179,8 @@ display:inline-table;
 .optionFormNft{
   font-family: "Montserrat", sans-serif;
 }
+
+
 @keyframes glitch_4011 {
   0% {
     clip-path: var(--move1);

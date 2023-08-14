@@ -13,9 +13,11 @@
     height: 30vh;
     align-self: center;
     justify-self: center;
-    margin: 0px;
+    margin: 0;
     padding: 0%;
     object-fit: cover;
+    border-radius: 150px;
+    box-shadow: 1px 2px 4px 4px #363535e5,#0e0d0de5 ;
 }
 .imgBoxProfile{
     display: flex;
@@ -169,7 +171,7 @@ h2{
     text-decoration:none;
     color: white;
 }
-.buttonFormNft {
+.btnProfile{
     height: 35px;
     width: 10rem;
     transition: all .5s;
@@ -380,6 +382,67 @@ h2{
     transform: translate(0%) scale(1.0);
   }
 
-
+  .buttonProfile {
+    align-items: center;
+    justify-content:center;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow:unset;
+    transition-duration: .3s;
+    box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
+    background-color:rgb(226, 122, 24);
+    font-weight: 600;
+    padding: 0.8rem;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    letter-spacing: 2px;
+    margin: 2rem;
+    flex-direction: column;
+    width: 100px;
+  }
+  
+  .buttonProfile:hover {
+    background-color: #111313;
+  
+  }
+  
+  .buttonProfile::after {
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+  
+  .buttonProfile:hover::after {
+    animation: glitch_4011 1s;
+    text-shadow: 10px 10px 10px black;
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+    background-color: black;
+    border: 3px solid rgb(0, 255, 213);
+  }
+  
+  .buttonProfile:hover {
+    text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+  }
+  
+  .buttonProfile:hover {
+    background-color: transparent;
+    border: 1px solid rgb(0, 255, 213);
+    box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+  }
 
 
