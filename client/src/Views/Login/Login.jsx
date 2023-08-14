@@ -216,7 +216,7 @@ export default Login;  */}
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { login } from "../../Redux/login";
 import { loginGoogle } from "../../Redux/loginGoogle";
@@ -300,71 +300,36 @@ const Login = () => {
     );
   };
 
+  const access = useSelector((state) => state.access)
+  console.log(access);
+
+  useEffect(() => {
+    if(access){
+      Swal.fire({
+        icon: "success",
+        title: "Login successful",
+        showConfirmButton: false,
+        timer: 2000,
+        background: "#666",
+        color: "#FFFFFF"
+      });
+      setUser({
+        email: "",
+        password: "",
+      });
+      navigate('/')
+    }
+  }, [access]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const errorSave = validate(user);
-
     if (Object.keys(errorSave).length === 0) {
       dispatch(login(user))
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Login successful",
-            showConfirmButton: false,
-            timer: 2000,
-            background: "#666",
-            color: "#FFFFFF"
-          });
-
-          setUser({
-            email: "",
-            password: "",
-          });
-
-          if (profile !== "null") {
-            navigate(`/profile/${Number(profile)}`);
-          } else {
-            navigate("/");
-          }
-
-          localStorage.setItem("loger", true);
-        })
-        .catch((error) => {
-          if (error.response) {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: error.response.data.error,
-              background: "#666",
-              color: "#FFFFFF",
-              showConfirmButton: false,
-              timer: 2000
-            });
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: error.message,
-              background: "#666",
-              color: "#FFFFFF",
-              showConfirmButton: false,
-              timer: 2000
-            });
-          }
-        });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Error de validación",
-        text: "Please, fill all the fields correctly.",
-        background: "#666",
-        color: "#FFFFFF",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true
-      });
     }
   };
+    
+  
 
   return (
     <div className={style.LoginContainer}>
