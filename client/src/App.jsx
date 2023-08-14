@@ -14,6 +14,8 @@ import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
+import FormNft from './Views/FormNft/FormNft'
+
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
@@ -44,19 +46,21 @@ function App() {
           <Route path="/Purchase" element={<Purchase/>}/>
           <Route path="/MPButton" element={<MPButton/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-          <Route path="/Profile" element={<Profile/>} />
-          <Route path='/Login' element={<Login />} />
-          <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
-          <Route path="/TermsOfService" element={<TermsOfService />}/>
           
-        {/*
-        <Route path='/:id' element={<CarritoLogo />}/>
-        <Route path="/Admin" element={<Admin />}/>
-        <Route path="/Success" element={<Success />}/>
-        <Route path="/Failure" element={<Failure />}/>
-        <Route path="/FormNft" element={<FormNft />} />
-        <Route path="/Contact" element={<Contact />} />
-       */}
+
+
+
+         <Route path='/Login' element={<Login />} /> 
+
+          {/* <Route path="/FormCollection" element={<FormCollection />} /> */}
+          {/* <Route path="/Admin" element={<Admin />} /> */}
+          {/* <Route path="/Success" element={<Success />} /> */}
+          {/* <Route path="/Failure" element={<Failure />} /> */}
+          
+          
+          {/* <Route path="/FrequentQuestions" element={<FrequentQuestions />} /> */}
+          {/* <Route path="/Loader" element={<Loader />} /> */}
+
 
         </Routes>
         <CarritoLogo/>

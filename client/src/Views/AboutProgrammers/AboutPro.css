@@ -1,15 +1,16 @@
 .AboutProContainer{
-  position: relative;
-  min-height: 100vh;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0%;
   padding: 0%;
-  display: flex;
-  justify-content: start;
+  justify-content:center;
   align-items: center;
   flex-direction: column;
-  position: relative;
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 20px; /* Espacio entre los elementos */
   
 }
 
@@ -136,6 +137,8 @@
     justify-content: center;
     align-items: center;
     margin-bottom: -100px;
+    margin-right: 5rem;
+    margin-left: 5rem;
   }
 
   .titulo {
@@ -148,4 +151,5 @@
   .subtitulo{
     text-align: center;
     color: #fff;
+    margin: 2rem;
   }
