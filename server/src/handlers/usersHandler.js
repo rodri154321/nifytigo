@@ -1,5 +1,5 @@
 const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, uptadeUser } = require('../controllers/userController')
-const WelcomeEmail = require('../nodemailer/userNodemailer')
+const {WelcomeEmail} = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
     const { username } = req.query
