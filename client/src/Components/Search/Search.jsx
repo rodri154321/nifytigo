@@ -22,9 +22,9 @@ export default function SearchBar() {
 
     return (
 
-        <div className={style.container}>
+        <div className={style.containerSearch}>
             <img src={lupa} className={style.img}/>
-            <input disabled={pregunta()} placeholder="Search for name" type="text" name="name" onChange={handleChange} />
+            <input className= {style.inputSearch} disabled={pregunta()} placeholder="Search for name" type="text" name="name" onChange={handleChange} />
         </div>
     
     );
