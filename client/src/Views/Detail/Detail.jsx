@@ -13,7 +13,9 @@ export default function Detail() {
     const [gameID, setGameID] = useState({})
     useEffect(() => {
         axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
-         // axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
+
+         //axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
+
            if (data.name) {
             setGameID(data);
            } else {

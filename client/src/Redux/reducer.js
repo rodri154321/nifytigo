@@ -1,4 +1,4 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, LOGIN_GOOGLE, LOGIN, LOGOUT } from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, LOGIN_GOOGLE, LOGIN, LOGOUT, GET_USER_ID } from "./actionTypes";
 
 const initialState = {
   user: null,
@@ -12,7 +12,6 @@ const initialState = {
   isClient: true,
   access: false,
   userDetail: [],
-  allNfts: [],
   allUsers: []
 }
 
@@ -22,7 +21,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ejemplo: action.payload,
-        cardsFiltered: action.payload
+        cardsFiltered: action.payload,
       };
 
     case POST_NFT:
@@ -135,8 +134,12 @@ const rootReducer = (state = initialState, action) => {
         access: true,
       };
 
-
-
+    case GET_USER_ID:
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+      
     case 'CREATE_USER_START':
       return {
         ...state,
