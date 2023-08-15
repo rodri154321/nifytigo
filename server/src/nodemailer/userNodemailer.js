@@ -18,7 +18,7 @@ const WelcomeEmail = async (email, name) => {
         const templatePath = path.join(__dirname, 'template.html');
         const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
-        templateContent = templateContent.replace('[nombre del Usuario]', name);
+        templateContent = templateContent.replace('[Nombre del Usuario]', name);
 
         const mailOptions = {
             from: GMAIL_USER,
@@ -33,4 +33,4 @@ const WelcomeEmail = async (email, name) => {
     }
 };
 
-module.exports = {WelcomeEmail};
+module.exports = WelcomeEmail;
