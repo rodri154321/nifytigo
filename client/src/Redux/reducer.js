@@ -141,6 +141,7 @@ const rootReducer = (state = initialState, action) => {
             userDetail: action.payload,
           };
         case GET_NFTS_FOR_USER:
+          console.log(action.payload);
           return {
             ...state,
             userNFTs: action.payload,

@@ -2,10 +2,11 @@ import style from "./Profile.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { updateUserDetail } from "../../Redux/updateUserDetail";
-import { getUserIdAsync, getNftsForUser } from "../../Redux/getUser"; // Cambia la importación a una versión asincrónica
+import { getUserIdAsync, getNftsForUser } from "../../Redux/getUser"; 
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
+import Cards from "../../Components/Card/Card";
 
 
 const Profile = () => {
@@ -14,16 +15,12 @@ const Profile = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserIdAsync(loger, storedUserId));
-    dispatch(getNftsForUser(storedUserId));
-  }, [dispatch, storedUserId, loger]);
-
   const userDetail = useSelector(state => state.userDetail);
   const userNFTs = useSelector(state => state.userNFTs);
 
-  const [showBackdrop, setShowBackdrop] = useState(false);
-  const [showAlertLog, setShowAlertLog] = useState(false);
+  useEffect(() => {
+    setStoredUserId(localStorage.getItem("clientId"));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,14 +40,12 @@ const Profile = () => {
               image: profile.getImageUrl(),
             };
             dispatch(updateUserDetail(updatedUserDetail));
-          } else {
-            dispatch(getUserIdAsync(loger, storedUserId));
           }
-        } else {
-          dispatch(getUserIdAsync(loger, storedUserId));
         }
 
-        dispatch(getNftsForUser(storedUserId));
+        // Get user ID and user NFTs
+        await dispatch(getUserIdAsync(loger, storedUserId));
+        await dispatch(getNftsForUser(storedUserId));
       } catch (error) {
         console.error(error);
       }
@@ -117,7 +112,7 @@ const Profile = () => {
         <h1 className={style.reserva}>Profile</h1>
 
 
-{/*<div className={style.navlinkCreateNft}>
+        {/*<div className={style.navlinkCreateNft}>
   <div>
     <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
       Mis NFT's
@@ -134,7 +129,7 @@ const Profile = () => {
               <div key={nft.id}>
                 {nft.title}
                 {/* Renderiza otros detalles de la carta aquí si es necesario */}
-             {/* </div>
+        {/* </div>
             );
           } else {
             return null; 
@@ -144,6 +139,7 @@ const Profile = () => {
     )}
   </div>
   </div>*/}
+
 
         <div className={style.navlinkCreateNft} >
           <div>
@@ -156,6 +152,8 @@ const Profile = () => {
           </div>
         </div>
 
+
+
         <div className={style.navlinkCreateNft} >
           <div>
             <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
@@ -167,14 +165,30 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className={style.navlinkCreateNft} >
+        <div className={style.navlinkCreateNft}>
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
+            <h1 onClick={toggleInfoFive} className={style.navlinkFormn}>
               My NFT's
             </h1>
           </div>
-          <div classname={style.CreateNftFormNft}>
-            {/*{infoVisibleFive && <FormNft />}*/}
+          <div className={style.CreateNftFormNft}>
+            {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
+              <div>
+                {userNFTs.nfts.map(nft => (
+                  <Cards
+                    key={nft.id}
+                    id={nft.id}
+                    name={nft.name}
+                    description={nft.description}
+                    image={nft.image}
+                    price={nft.price}
+                    user={userNFTs}
+                    categories={nft.categories}
+                  />
+                ))}
+              </div>
+            ) : null}
+            {console.log("NFTs del usuario:", userNFTs.nfts)}
           </div>
         </div>
 
@@ -182,4 +196,5 @@ const Profile = () => {
     </div>
   )
 };
+
 export default Profile;
