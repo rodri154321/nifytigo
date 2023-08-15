@@ -1,4 +1,4 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, LOGIN_GOOGLE, LOGIN, LOGOUT, GET_USER_ID } from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, LOGIN_GOOGLE, LOGIN, LOGOUT, GET_USER_ID,GET_NFTS_FOR_USER,UPDATE_USER_DETAIL,UPDATE_USER } from "./actionTypes";
 
 const initialState = {
   user: null,
@@ -11,8 +11,9 @@ const initialState = {
   clientId: 0,
   isClient: true,
   access: false,
+  allUsers: [],
   userDetail: [],
-  allUsers: []
+  userNFTs:[],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -130,15 +131,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         clientId: action.payload.googleId,
         //isClient: action.payload.client,
-
         access: true,
       };
-
-    case GET_USER_ID:
-      return {
-        ...state,
-        userDetail: action.payload,
-      };
+      
+      case GET_USER_ID:
+        case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí
+          return {
+            ...state,
+            userDetail: action.payload,
+          };
+        case GET_NFTS_FOR_USER:
+          return {
+            ...state,
+            userNFTs: action.payload,
+          };
+        case UPDATE_USER:
+          return { ...state };
       
     case 'CREATE_USER_START':
       return {
@@ -178,7 +186,6 @@ const rootReducer = (state = initialState, action) => {
       };
     default:
       return state;
-
 
 
   }
