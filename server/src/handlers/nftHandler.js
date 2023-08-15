@@ -22,7 +22,7 @@ const getNftHandler = async (req, res) => {
 
 const postNftHandler = async (req, res) => {
     const {email} = req.params
-    console.log(email);
+    console.log("EMAIL = "email);
     
     const { iduser, name, description, image, price, categorie } = req.body;
     try {
