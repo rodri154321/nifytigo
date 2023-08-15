@@ -21,7 +21,7 @@ const WelcomeEmail = async (email) => {
         const mailOptions = {
             from: GMAIL_USER,
             to: email,
-            subject: 'Bienvenido a nuestra página!',
+            subject: 'Bienvenido a NifytiGo!',
             html: templateContent, // Usar el contenido del template HTML aquí
         };
 
