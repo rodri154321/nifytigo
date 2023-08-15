@@ -26,7 +26,7 @@ const Favoritos = ()=>{
       userId: "",
       nfts: []
     });
-    /*
+    
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -47,8 +47,8 @@ useEffect(() => {
   };
 
   fetchData();
-}, [cart]);*/
-
+}, [cart]);
+/*
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -66,7 +66,9 @@ useEffect(() => {
   };
 
   fetchData();
-}, []); // Pasamos un arreglo vacío como dependencia
+}, []); // Pasamos un arreglo vacío como <dependencia></dependencia>*/
+
+
 /*
 useEffect(()=>{
   
