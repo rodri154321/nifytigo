@@ -18,9 +18,8 @@ const createUsersHandler = async (req, res) => {
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
 
         const userEmail = newUser.email;
-        const userName = newUser.name;
         
-        await WelcomeEmail(userEmail, userName)
+        await WelcomeEmail(userEmail)
         res.status(200).json(newUser)
     } catch (error) {
         res.status(400).json({ error: error.message = 'No se creo el usuario' })
