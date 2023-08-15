@@ -10,16 +10,18 @@ const {
     deleteUsersHandler,
     getDeleteUsersnameHandler,
     getIdUsersHandler,
+    getNftsUsersHandler
 }= require('../handlers/usersHandler')
 
 
 router
 .get('/', getUsersHandler)
 .get('/username', getUserNameHandler)
+.get('/:id', getIdUsersHandler)
+.get('/nfts/:id', getNftsUsersHandler)
 .post('/username', getUserNameHandler)
 .post('/', createUsersHandler)
 .put('/update/:id', updateUserHandler)
-.get('/:id', getIdUsersHandler)
 .delete('/:id', deleteUsersHandler)
 .delete('/', getDeleteUsersnameHandler) 
  
