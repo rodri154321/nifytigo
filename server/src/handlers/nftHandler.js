@@ -23,6 +23,7 @@ const getNftHandler = async (req, res) => {
 const postNftHandler = async (req, res) => {
     const {email} = req.params
     console.log(email);
+    
     const { iduser, name, description, image, price, categorie } = req.body;
     try {
         const response = await createNft(iduser, name, description, image, price, categorie);
