@@ -13,18 +13,20 @@ const getUsersHandler = async (req, res) => {
 }
 
 const createUsersHandler = async (req, res) => {
-    const { username, name, lastName, email, password, cellPhone, country } = req.body
+    const { username, name, lastName, email, password, cellPhone, country } = req.body;
     try {
-        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
+        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country);
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
-        await WelcomeEmail(userEmail, nameuser)
-        res.status(200).json(newUser)
+        await WelcomeEmail(userEmail, nameuser);
+        
+        res.status(200).json(newUser);
     } catch (error) {
-        res.status(400).json({ error: error.message = 'No se creo el usuario' })
+        res.status(400).json({ error: error.message }); // Enviar el mensaje de error original
     }
-}
+};
+
 
 const getUserNameHandler = async (req, res) => {
     const { username, password } = req.method === 'GET' ? req.query : req.body;
