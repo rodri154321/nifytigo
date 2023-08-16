@@ -127,13 +127,12 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
-      console.log(action.payload);
-      localStorage.setItem("clientId", action.payload.googleId);
-      localStorage.setItem("isClient", action.payload.client);
-      localStorage.setItem("loger", true);
+      localStorage.setItem("clientId", action.payload.user.id);
+      localStorage.setItem("isClient", action.payload.user.client);
+      localStorage.setItem("access", true)
       return {
         ...state,
-        clientId: action.payload.googleId,
+        clientId: action.payload.id,
         isClient: action.payload.client,
         access: true,
       };

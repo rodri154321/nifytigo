@@ -3,7 +3,7 @@ const { users } = require("../db.js");
 const postLoginGoogle = async(user) =>{
     console.log("EMAIL", user.email, "GOOGLEID", user.googleId, "NAME", user.name);
 
-    const newUser = await users.findOrCreate({ 
+    const user = await users.findOrCreate({ 
         where: { email : email },
         defaults: {
             name: user.name,
@@ -16,7 +16,7 @@ const postLoginGoogle = async(user) =>{
         } 
     });
 
-    return newUser;
+    return user;
     
 }
 
