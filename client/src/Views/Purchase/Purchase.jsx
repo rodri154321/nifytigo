@@ -43,6 +43,7 @@ const Purchase=(items)=>{
                 
                 {currentItem?.map((item)=>{
                     return(
+                        // eslint-disable-next-line react/jsx-key
                         <div className='itemList'>
                             <h3 className='itemDescription'>{item.name}</h3>
                             <h3 className='itemDescription'> {item.price}</h3>

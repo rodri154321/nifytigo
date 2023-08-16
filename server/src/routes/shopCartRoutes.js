@@ -10,5 +10,6 @@ router
 .post('/add',postNftCart)
 .get('/carti', getShopCart)
 .delete("/delete",deleteNftCart)
+
 module.exports = router;
 

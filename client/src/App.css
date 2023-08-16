@@ -40,3 +40,10 @@ flex: 1;
   object-fit: cover;
   z-index: -1;
 }
+ /* .favoritos{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}  */

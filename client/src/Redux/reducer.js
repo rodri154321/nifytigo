@@ -11,11 +11,11 @@ const initialState = {
   clientId: 0,
   isClient: true,
   access: false,
-  allUsers: [],
   userDetail: [],
-  userNFTs:[],
+  allUsers: []
 }
 
+//traer los carritos dependiendo del id
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_EJEMPLO:
@@ -44,60 +44,65 @@ const rootReducer = (state = initialState, action) => {
         ejemplo: action.payload
       }
 
-    case SORT_ALFA:
-      let cardsFilteredAlfa = [...state.ejemplo];
+        case SORT_ALFA:
+            // eslint-disable-next-line no-case-declarations
+            let cardsFilteredAlfa = [...state.ejemplo];
 
-      switch (action.payload) {
-        case 'A-Z':
-          cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.name.localeCompare(b.name));
-          break;
-        case 'Z-A':
-          cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.name.localeCompare(a.name));
-          break;
-        case 'Price (Higher First)':
-          cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.price - a.price);
-          break;
-        case 'Price (Lower First)':
-          cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.price - b.price);
-          break;
-        default:
-          break;
-      }
-      return {
-        ...state,
-        ejemplo: cardsFilteredAlfa,
-      };
+            switch (action.payload) {
+                case 'A-Z':
+                    cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'Z-A':
+                    cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'Price (Higher First)':
+                    cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => b.price - a.price);
+                    break;
+                case 'Price (Lower First)':
+                    cardsFilteredAlfa = cardsFilteredAlfa.sort((a, b) => a.price - b.price);
+                    break;
+                default:
+                    break;
+            }
+            return {
+                ...state,
+                ejemplo: cardsFilteredAlfa,
+              };
+              
+        case FILTER_CATEGORIES:
+            // eslint-disable-next-line no-case-declarations
+            const allGamesGenre = [...state.cardsFiltered];
+            console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
+            // eslint-disable-next-line no-case-declarations
+            let filteredGamesByGenres = allGamesGenre.filter((game) => {
+                console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
+              if (game.categories) {
+                // console.log(game.categories)
+                let cats=game.categories.map(cat=>cat.name)
+                // console.log("categorias extraidas",cats)
+                return cats.includes(action.payload);   //Devuelve los juegos en los que se encontro la cate
+              }
+              return false;
+            });
+            console.log('Cards ya filtradas:',filteredGamesByGenres);
 
-    case FILTER_CATEGORIES:
-      const allGamesGenre = [...state.cardsFiltered];
-      console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
-      let filteredGamesByGenres = allGamesGenre.filter((game) => {
-        console.log("Game en el reducer filter:", game, 'el payload es:', action.payload);
-        if (game.categories) {
-          // console.log(game.categories)
-          let cats = game.categories.map(cat => cat.name)
-          // console.log("categorias extraidas",cats)
-          return cats.includes(action.payload);   //Devuelve los juegos en los que se encontro la cate
-        }
-        return false;
-      });
-      console.log('Cards ya filtradas:', filteredGamesByGenres);
+            if(action.payload==='All'){
+                filteredGamesByGenres=allGamesGenre;
+              }
+            // else {
+            //     if (state.ejemplo.length > 0) {
+            //       filteredGamesByGenres = filteredGamesByGenres.filter((game) =>
+            //         state.ejemplo.includes(game)
+            //   );
+            //   }
+            // }
+      
+            return {
+              ...state,
+              ejemplo: filteredGamesByGenres,
+            };
 
-      if (action.payload === 'All') {
-        filteredGamesByGenres = allGamesGenre;
-      }
-      // else {
-      //     if (state.ejemplo.length > 0) {
-      //       filteredGamesByGenres = filteredGamesByGenres.filter((game) =>
-      //         state.ejemplo.includes(game)
-      //   );
-      //   }
-      // }
-
-      return {
-        ...state,
-        ejemplo: filteredGamesByGenres,
-      };
+ 
 
     case LOGIN:
       localStorage.setItem("clientId", action.payload.user.id);
@@ -186,6 +191,7 @@ const rootReducer = (state = initialState, action) => {
       };
     default:
       return state;
+
 
 
   }
