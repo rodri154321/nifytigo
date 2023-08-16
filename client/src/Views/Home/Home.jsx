@@ -30,6 +30,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
  useEffect(()=>{
+  console.log(localStorage.getItem('clientId'));
     dispatch(getEjemplo())
     setTimeout(() => {          //Loader
         setIsLoading(false);
@@ -37,10 +38,6 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
     }, [dispatch]);
 
 
-
-
-    
-       
     return (
         <div id='Homes'>
        <div id='HomeContainer'>

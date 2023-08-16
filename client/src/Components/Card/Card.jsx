@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom"
 import "./Card.css"
 import { useState} from "react";
+import { useEffect } from "react";
 import axios from "axios"
 function Card(ejemplo) {
 
@@ -9,12 +10,13 @@ function Card(ejemplo) {
 
  const [deleteStatus, setDeleteStatus] = useState(null);
 
+ const localStorageKey = `cartState_${ejemplo.id}`;
 
   
 
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
-    axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
         console.log('add')
         console.log(response.data.message);
@@ -25,7 +27,7 @@ function Card(ejemplo) {
   const deleteToCart = (cartId, nftId) => {
 
     console.log(cartId)
-    axios.delete('http://localhost:3001/shop/delete',   {   data: {
+    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
       cartId: cartId,
       nftId: nftId,
     },}  )
@@ -37,35 +39,57 @@ function Card(ejemplo) {
       })
       .catch(error => console.error(error));  
   };
-/*
+
+  useEffect(() => {
+    const storedIsCart = localStorage.getItem(localStorageKey);
+    if (storedIsCart) {
+      setIsCart(JSON.parse(storedIsCart));
+    }
+  }, [localStorageKey]);
+  
   const handleCart = ()=>{
     if(isCart){
       setIsCart(false);
-      dispatch(deleteToCart(ejemplo.id))
+       deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20',ejemplo.id)
     } else {
-      setIsFav(true);
-      dispatch(addToCart(ejemplo))
-    }}*/
+      setIsCart(true);
+    addToCart('2fcf8b23-6c07-416e-bb6c-99cb1f797dc2',ejemplo.id)
+    }}
    
+   
+    useEffect(() => {
+      localStorage.setItem(localStorageKey, JSON.stringify(isCart));
+    }, [localStorageKey, isCart]);
+    
+
+    
+  deleteStatus === 'success' ? (
+    <p>¡El NFT se ha eliminado correctamente!</p>
+  ) : deleteStatus === 'error' ? (
+    <p>Hubo un error al eliminar el NFT.</p>
+  ) : (
+    <p>Eliminando el NFT...</p>
+  )
+
+ 
 
   return (
     <div>
 
+{
+isCart ? (
+   <button onClick={handleCart}>❤️</button>
+) : (
+   <button onClick={handleCart}>🤍</button>
+)
 
+}
+{/*
+  <button onClick={() => deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20', ejemplo.id)}>eliminar el carrito</button>
 
-  <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', ejemplo.id)}>eliminar el carrito</button>
-
-  {deleteStatus === 'success' ? (
-        <p>¡El NFT se ha eliminado correctamente!</p>
-      ) : deleteStatus === 'error' ? (
-        <p>Hubo un error al eliminar el NFT.</p>
-      ) : (
-        <p>Eliminando el NFT...</p>
-      )}
-
-  <button onClick={() => addToCart('112c6e93-9118-4755-8984-bca1848ea962', ejemplo.id)}>Agregar al carrito</button>
-
-
+  <button onClick={() => addToCart('2fcf8b23-6c07-416e-bb6c-99cb1f797dc2', ejemplo.id)}>Agregar al carrito</button>
+*/
+}
 
         <NavLink to={`/detail/${ejemplo.id}`}>
        

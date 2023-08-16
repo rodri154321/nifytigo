@@ -21,13 +21,11 @@ try {
     res.status(200).json(addNft)
 } catch (error) {
     res.status(400).json({ error: error.message });
-
 }
 }
 
 const getUserCart = async(req,res)=>{
     const {id} = req.params
-    console.log(id)
 try {
     const myCart = await getMyCart(id)
     res.status(200).json(myCart)
@@ -39,7 +37,6 @@ try {
 
 const deleteNftCart = async(req,res)=>{
     const {cartId, nftId} = req.body
-    console.log(cartId, nftId)
 try {
     const deleteNft = await deleteCartNft(cartId,nftId)
     res.status(200).json(deleteNft)

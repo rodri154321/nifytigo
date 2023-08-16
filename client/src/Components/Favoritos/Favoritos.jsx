@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux"
-import { getCarrito} from "../../Redux/ActionsCarrito";
 import { useState } from "react";
 import "./Favoritos.css"
 import CardDtc from "../CardDct/CardDtc";
@@ -30,8 +29,8 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = '112c6e93-9118-4755-8984-bca1848ea962';
-      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+      const userId = '2fcf8b23-6c07-416e-bb6c-99cb1f797dc2';
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
       console.log(response)
@@ -89,7 +88,7 @@ useEffect(async() => {
 const deleteToCart = (cartId, nftId) => {
 
   console.log(cartId)
-  axios.delete('http://localhost:3001/shop/delete',   {   data: {
+  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
     cartId: cartId,
     nftId: nftId,
   },}  )
@@ -152,7 +151,7 @@ return (
                 </div>
           {cart && cart.nfts.map((nft, index) => (
         <li key={index}>
-            <button onClick={() => deleteToCart('afd406d5-d644-4f40-89d3-99cf96efc3b6', nft.id)}>eliminar Nft</button>
+            <button onClick={() => deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20', nft.id)}>eliminar Nft</button>
 
           <img src={nft.image}/>
           <p>Nombre: {nft.name}</p>

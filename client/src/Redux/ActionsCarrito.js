@@ -1,4 +1,4 @@
-import { ADD_CART, DELETE_CART,GET_CARRITOS } from "./actionTypes"
+/*import { ADD_CART, DELETE_CART,GET_CARRITOS } from "./actionTypes"
 import axios from "axios"
 export const addToCard =(character)=>{
     return {type:ADD_CART, payload: character}
@@ -28,4 +28,4 @@ console.log(error)
  
 
 //Ahora debemos implementar una action en el cual nos diga que dependiendo el id del usuario no muestre la informacion correspondiente
-//como le pasamos algo porn body desde el front?
+//como le pasamos algo porn body desde el front?*/

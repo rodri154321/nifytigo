@@ -1,5 +1,5 @@
 const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, uptadeUser } = require('../controllers/userController')
-const WelcomeEmail = require('../nodemailer/userNodemailer')
+const {WelcomeEmail} = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
     const { username } = req.query
@@ -16,8 +16,11 @@ const createUsersHandler = async (req, res) => {
     const { username, name, lastName, email, password, cellPhone, country } = req.body
     try {
         const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
-        const userEmail = newUser.email
-        await WelcomeEmail(userEmail)
+
+        const userEmail = newUser.email;
+        const userName = newUser.name;
+        
+        await WelcomeEmail(userEmail, userName)
         res.status(200).json(newUser)
     } catch (error) {
         res.status(400).json({ error: error.message = 'No se creo el usuario' })

@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 
-const WelcomeEmail = async (email) => {
+const WelcomeEmail = async (email, name) => {
     try {
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -18,10 +18,12 @@ const WelcomeEmail = async (email) => {
         const templatePath = path.join(__dirname, 'template.html');
         const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
+        templateContent = templateContent.replace('[nombre del Usuario]', name);
+
         const mailOptions = {
             from: GMAIL_USER,
             to: email,
-            subject: 'Bienvenido a nuestra página!',
+            subject: 'Bienvenido a NifytiGo!',
             html: templateContent, // Usar el contenido del template HTML aquí
         };
 
@@ -31,4 +33,4 @@ const WelcomeEmail = async (email) => {
     }
 };
 
-module.exports = WelcomeEmail;
+module.exports = {WelcomeEmail};
