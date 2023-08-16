@@ -14,8 +14,12 @@ const Purchase=(items)=>{
     const id= searchParams.get('id');
     
     const currentItem=ejemplo.filter(card=>card.id==id)
-    console.log(currentItem[0]);
+
     if (currentItem) {price=parseFloat(currentItem[0].price); console.log('El precio es:',price)}
+    let purchaseData={
+        idUser:'',
+        idNFT:''
+    }
 
     return(
         <div id='purchaseContainer'>
@@ -49,7 +53,7 @@ const Purchase=(items)=>{
                         </div>
                     )
                 })}
-                <div className='PaypalButtonContainer'>{currentItem &&<PaypalButton  totalValue={price} invoice={'Informacion de lo que se compro'} ></PaypalButton>}</div>
+                <div className='PaypalButtonContainer'>{currentItem &&<PaypalButton purchaseData={''} totalValue={price} invoice={'Informacion de lo que se compro'} ></PaypalButton>}</div>
             </div>
         </div>
 
