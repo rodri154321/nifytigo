@@ -48,8 +48,8 @@ const nftPurchaseNotification = async (email, nftName, name) => {
         const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
         const modifiedTemplate = templateContent
-        .replace("[Nombre del Usuario]", nftName)
-        .replace("[Nombre del NFT]", name)
+        .replace("[Nombre del Usuario]", name)
+        .replace("[Nombre del NFT]", nftName)
         
 
         const mailOptions = {
