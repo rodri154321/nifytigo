@@ -23,10 +23,9 @@ const createUsersHandler = async (req, res) => {
         
         res.status(200).json(newUser);
     } catch (error) {
-        res.status(400).json({ error: error.message }); // Enviar el mensaje de error original
+        res.status(400).json({ error: error.message });
     }
 };
-
 
 const getUserNameHandler = async (req, res) => {
     const { username, password } = req.method === 'GET' ? req.query : req.body;

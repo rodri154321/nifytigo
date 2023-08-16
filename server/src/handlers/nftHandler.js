@@ -24,7 +24,7 @@ const getNftHandler = async (req, res) => {
 }
 
 const postNftHandler = async (req, res) => {
-    const {email, nameUser} = req.params
+    const {email} = req.params
     console.log("EMAIL = ", email);
     
     const { iduser, name, description, image, price, categorie } = req.body;
@@ -32,7 +32,7 @@ const postNftHandler = async (req, res) => {
         const response = await createNft(iduser, name, description, image, price, categorie);
 
         const usuarioEmail = email;
-        const nombreUsuario = nameUser;
+        const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
         await nftPurchaseNotification(usuarioEmail, nombreUsuario, nombreNFT)

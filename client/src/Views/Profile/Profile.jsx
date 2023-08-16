@@ -188,7 +188,7 @@ const Profile = () => {
                 ))}
               </div>
             ) : null}
-            {console.log("NFTs del usuario:", userNFTs.nfts)}
+            {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
           </div>
         </div>
 
