@@ -1,114 +1,181 @@
-import { useState } from 'react'
-import style from './Login.module.css'
-import validation from './validation';
-import GoogleLogin from '@leecheuk/react-google-login';
-import FacebookLogin from '@greatsumini/react-facebook-login';
 
-const responseFacebook = (response) => {
-  console.log(response);
-}
-const respuestaGoogle = (respuesta) => {
-  console.log(respuesta);
-  console.log(respuesta.profileObj);
-}
+import style from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { login } from "../../Redux/login";
+import { loginGoogle } from "../../Redux/loginGoogle";
+import validate from "./validate";
+import Swal from "sweetalert2";
+import GoogleLogin from "react-google-login";
+import { gapi } from "gapi-script";
 
-const Login = ({ login }) => {
+const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [userData, setUserData] = useState({
-    username: '',
-    password: ''
+  const detail = localStorage.getItem("profile");
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
   });
 
+  const [loger, setLoger] = useState(localStorage.getItem("loger") ?? false);
+
   const [errors, setErrors] = useState({
-    username: '',
-    password: ''
-  })
+    email: "",
+    googleId: "",
+    imageUrl: "",
+    name: "",
+  });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  useEffect(() => {
+    localStorage.setItem("loger", loger);
+  }, [loger]);
 
-    setUserData({
-      ...userData,
-      [name]: value
+  //Autenticación con Google
+  const clientID =
+    "382815966378-j7fpqsigtlqffijmrdc2di4ehsrf9phe.apps.googleusercontent.com";
+
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID,
+      });
+    };
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const onSuccess = (response) => {
+    console.log(response)
+    const user = {
+      email: response.profileObj.email,
+      googleId: response.profileObj.googleId,
+      name: response.profileObj.name,
+    };
+    dispatch(loginGoogle(user)).then(() => {
+      navigate(`/profile/${Number(profile)}`); // Redirige al usuario a la página de perfil
     });
-    setErrors(validation({
-      ...userData,
-      [name]: value
-    }));
-  }
+
+    //if (detail !== "null") {
+    //navigate(`/detail/${Number(detail)}`);
+    //} else {
+    //navigate("/");
+    //}
+    //});
+  };
+
+  const onFailure = () => {
+    console.log("could not log inn");
+  };
+
+  //--------------------------
+  const handleChange = (event) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    });
+
+    setErrors(
+      validate({
+        ...user,
+        [event.target.name]: event.target.value,
+      })
+    );
+  };
+
+  const access = useSelector((state) => state.access)
+
+  useEffect(() => {
+    if (access) {
+      Swal.fire({
+        icon: "success",
+        title: "Login successful",
+        showConfirmButton: false,
+        timer: 2000,
+        background: "#666",
+        color: "#FFFFFF"
+      });
+      setUser({
+        email: "",
+        password: "",
+      });
+      navigate('/')
+    }
+  }, [access]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(userData);
-  }
+    const errorSave = validate(user);
+    if (Object.keys(errorSave).length === 0) {
+      dispatch(login(user))
+    }
+  };
+
+
 
   return (
-    <form onSubmit={handleSubmit} className={style.loginContain} autoComplete="off">
-      <div className={style.blurIn}>
-        <div className={style.topContainer}>
-          <div className={style.wobblehorizontalTop}>
-            <img src='https://img.freepik.com/foto-gratis/concepto-alojamiento-sitios-web-luz-brillante_23-2149406783.jpg' alt='Login' /></div>
-
-          <label htmlFor='username' className={style.usernameLabel}>
-            <div className={style.trackinginexpandforwardbottom}>
-              USERNAME :
-
-            </div>
-          </label>
-
-          <input
-            autoComplete="off"
-            type='text'
-            name='username'
-            placeholder='hello@example.com'
-            value={userData.username}
-            onChange={handleInputChange}
-          />
-          {errors.username && <p className={style.validacion}>{errors.username}</p>}
-
-          <label htmlFor='password' className={style.passwordLabel}>
-            <div className={style.scaleupbottom}>
-              PASSWORD:
-            </div>
-
-          </label>
-
-          <input
-            autoComplete="off"
-            type='password'
-            name='password'
-            placeholder='.......'
-            value={userData.password}
-            onChange={handleInputChange}
-          />
-          {errors.password && <p className={style.validacion}>{errors.password}</p>}
-          <br></br>
-          <FacebookLogin
-            appId="604618028449505"
-            autoLoad={false}
-            fields="name,email,picture"
-            buttonText="Login with Facebook"
-            callback={responseFacebook}
-            icon="fa-facebook" />
-            <br></br>
-          <GoogleLogin
-            clientId="520462004631-6pc5a0sbv00p5cg51rqrb5mqqep566rd.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={respuestaGoogle}
-            onFailure={respuestaGoogle}
-            cookiePolicy={'single_host_origin'} />
-
-          <div className={style.bottomContainer}>
-            <div className={style.rotatehorizontalcenter}>
-              <button className={style.loginButton}>LOGIN
-                <span class="material-symbols-outlined">
-                </span></button>
-            </div>
-          </div>
+    <div className={style.LoginContainer}>
+      <div className={style.gridContainer}></div>
+      <div className={style.switchLogin} id="switch-cnt">
+        <div className="switch__container" id="switch-c1">
+          <h2 className="switch__title title">Welcome Back Nifytigo!</h2>
+          <button className="switch__button button switch-btn">
+            <NavLink to="/Account" className="navlink-style">
+              SIGN UP
+            </NavLink>
+          </button>
         </div>
       </div>
-    </form>
+
+
+      <form className={style.formLogin} onSubmit={(event) => handleSubmit(event)}>
+        <h2>Login</h2>
+        <div className={style.text}>
+          <div className={style.content}>
+            <input
+              type="text"
+              name="email"
+              value={user.email}
+              placeholder="Email"
+              onChange={(event) => handleChange(event)}
+              className={style.formInputLogin}
+            />
+            {errors.email && (
+              <span className={style.error}>{errors.email}</span>
+            )}
+          </div>
+          <div className={style.content}>
+            <input
+              type="password"
+              name="password"
+              value={user.password}
+              placeholder="Password"
+              onChange={(event) => handleChange(event)}
+              className={style.formInputLogin}
+            />
+            {errors.password && (
+              <span className={style.error}>{errors.password}</span>
+            )}
+          </div>
+        </div>
+        <div>
+          <button className={style.btnLogin}>Access</button>
+        </div>
+        <p className={style.loginAccount}>O access for</p>
+        <div className={style.googleContainer}>
+          <GoogleLogin
+            clientId={clientID}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
+      </form>
+    </div>
   );
-}
+};
 
 export default Login;

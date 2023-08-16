@@ -1,11 +1,19 @@
-.container {
-    color: rgba(252, 250, 250, 0.534);
+.containerSearch {
+    color: rgba(252, 250, 250, 0.37);
     margin-right: 2rem;
     display: flex;
     align-items: center;
+    margin-top: 1rem
 }
 
+.inputSearch {
+    width: auto;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 8px;
+}
 .img {
     width: 18px;
     margin-right: 10px;
+    margin-bottom: 1rem;
 }
