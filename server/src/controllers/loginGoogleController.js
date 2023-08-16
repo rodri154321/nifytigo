@@ -1,22 +1,24 @@
-const { User } = require("../db.js");
+const { users } = require("../db.js");
 
-const postLoginGoogle = async({email, googleId, name}) =>{
+const postLoginGoogle = async(user) =>{
+    console.log("EMAIL", user.email, "GOOGLEID", user.googleId, "NAME", user.name);
 
-
-    const user = await User.findOrCreate({ 
-        where: { email },
+    const newuser = await users.findOrCreate({ 
+        where: { email : email },
         defaults: {
-            name: name,
-            email,
-            password: googleId,
+            name: user.name,
+            email: user.email,
+            password: user.googleId,
+            cellPhone:"",
+            country:"",
+            username:"",
+            lastName:"",
         } 
     });
 
-    return user;
+    return newuser;
     
 }
-
-
 
 module.exports = {
     postLoginGoogle

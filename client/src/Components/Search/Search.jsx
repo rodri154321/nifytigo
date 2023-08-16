@@ -20,6 +20,7 @@ export default function SearchBar() {
         else return true;
       }
 
+
     return (
 
         <div className={style.containerSearch}>

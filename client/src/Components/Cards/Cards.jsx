@@ -10,6 +10,7 @@ function Cards(ejemplo) {
           <Card
             key={ejemplo.id}
             id={ejemplo.id}
+            userId={ejemplo.userId}
             name={ejemplo.name}
             description={ejemplo.description}
             image={ejemplo.image}

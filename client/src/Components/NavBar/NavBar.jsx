@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./NavBar.module.css";
 import logo from "../../assets/NifytiGo4.png";
@@ -7,16 +7,14 @@ import avatar from "../../assets/avatarNav.png";
 import SearchBar from "../../Components/Search/Search";
 
 const NavBar = () => {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const loger = localStorage.getItem("loger");
-  //const isClient = localStorage.getItem("isClient");
   const access = useSelector((state) => state.access);
 
   const handleLogout = () => {
     dispatch(logout())
     //localStorage.setItem("loger", false);
-    // localStorage.setItem("detail", null);
+    //localStorage.setItem("detail", null);
   };
 
 
@@ -37,12 +35,6 @@ const NavBar = () => {
         <NavLink to="/About" className={style.navlinkNavBar}>
           About
         </NavLink>
-        <NavLink to="/Purchase" className={style.navlinkNavBar}>
-          Purchase PP
-        </NavLink>
-       {/*<NavLink to="/create-order" className={style.navlinkNavBar}>
-          Purchase MP
-        </NavLink>*/}
 
         {access ?(
         <NavLink to="/Profile" className={style.navlinkNavBar}>

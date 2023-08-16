@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST_NFT } from "./actionTypes";
+import { POST_NFT } from "./actionTypes"
 
 export const postNft = (formData) => {
   return async function (dispatch) {
