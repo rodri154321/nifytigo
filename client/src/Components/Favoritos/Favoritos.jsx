@@ -4,8 +4,9 @@ import { useState } from "react";
 import "./Favoritos.css"
 import axios from "axios";
 import { useEffect } from "react";
+import { NavLink, } from "react-router-dom"
 const Favoritos = ()=>{
-/*
+/*  redux
   const cart = useSelector(state => state.getCarritos)
 
   const dispatch = useDispatch()
@@ -14,6 +15,12 @@ const Favoritos = ()=>{
     dispatch(getCarrito())
   
         },[dispatch])*/
+
+
+    
+
+
+ 
         const [deleteStatus, setDeleteStatus] = useState(null);
 
     const [cart, setCart] = useState({
@@ -81,57 +88,47 @@ return (
   
 
   
-                <div>  
-     
-                <div className="card">
-                  <div className="content">
-                    <div className="back">
-                      <div className="back-content">
-                       
-                      <div>
-                         
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <div className="front">
-                      
-                      <div className="img">
-                        <div className="circle">
-                        </div>
-                        <div className="circle" id="right">
-                        </div>
-                        <div className="circle" id="bottom">
-                        </div>
-                      </div>
-                
-                      <div className="front-content">
-                     <h1>{cart.status}</h1>
-                         <h1>{cart.userId}</h1>
-                        <div className="description">
-                        <div className="description">
-                          <div className="title">
-                        <p> {cart.price}</p> 
-    
-                          </div>
-                          <p className="card-footer">
-                            
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                </div>
-          {cart && cart.nfts.map((nft, index) => (
-        <li key={index}>
-            <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>eliminar Nft</button>
+                <div className="ContainerFav">  
+  
+                  <div className="one-div">
+                    <div className="text"> 
+                    <p>{cart.status}</p>
 
+                   <h1>Price Total: {cart.price}</h1> 
+                   </div>
+                   </div>
+                   
+                    
+             <div className="CartsNFt">      
+ {cart && cart.nfts.map((nft, index) => (
+            <li className="est" key={index}>     
+                 
+        
+            
+   
+ 
+        <div className="nft">
+         
           <img src={nft.image}/>
-          <p>Nombre: {nft.name}</p>
-          <p>Precio: {nft.price}</p>
-        </li>
+          <h2>{nft.name}</h2> 
+          
+          <NavLink className="link" to={`/detail/${nft.id}`}  >
+         <div className="Btn">
+           <h2>Pay: {nft.price}</h2>
+         </div>
+             
+         
+          </NavLink> 
+             
+        
+         
+      </div>
+      <bdo className="bn" onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>delete Nft </bdo>
+   </li>
       ))}
+                     
+         </div> 
+                   
   </div>
 );
   

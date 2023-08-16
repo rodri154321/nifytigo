@@ -2,13 +2,14 @@ import { NavLink, } from "react-router-dom"
 import "./Card.css"
 import { useState} from "react";
 import axios from "axios"
-import { useDispatch } from "react-redux";
-function Card(ejemplo) {
 
+import { useEffect } from "react";
+function Card(ejemplo) {
+/*redux */
  const [cart, setCart] = useState([]);
  const [deleteStatus, setDeleteStatus] = useState(null);
 
-
+//AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
     axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
@@ -20,7 +21,7 @@ function Card(ejemplo) {
       .catch(error => console.error(error));
   };
 
-
+//SE ELIMINA EL NFT QUE ESTA EN EL CARRITO 
   const deleteToCart = (cartId, nftId) => {
 
     console.log(nftId)
@@ -37,24 +38,59 @@ function Card(ejemplo) {
       .catch(error => console.error(error));  
   };
 
-   
+/*ESTADO PARA QUE CAMBIE EL BOTON Y SUS FUNCIONES */
 
-  return (
-    <div>
+const [isCart, setIsCart] = useState(false);
+const localStorageKey = `cartState_${ejemplo.id}`;
+
+useEffect(() => {
+  const storedIsCart = localStorage.getItem(localStorageKey);
+  if (storedIsCart) {
+    setIsCart(JSON.parse(storedIsCart));
+  }
+}, [localStorageKey]);
+
+const handleCart = ()=>{
+  if(isCart){
+    setIsCart(false);
+     deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8',ejemplo.id)
+  } else {
+    setIsCart(true);
+  addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424',ejemplo.id)
+  }}
+ 
+ 
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(isCart));
+  }, [localStorageKey, isCart]);
 
 
 
-  <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
-
-  {deleteStatus === 'success' ? (
+   deleteStatus === 'success' ? (
         <p>¡El NFT se ha eliminado correctamente!</p>
       ) : deleteStatus === 'error' ? (
         <p>Hubo un error al eliminar el NFT.</p>
       ) : (
         <p>Eliminando el NFT...</p>
-      )}
+      )
 
+  return (
+    <div>
+{
+isCart ? (
+   <button onClick={handleCart}>❤️</button>
+) : (
+   <button onClick={handleCart}>🤍</button>
+)
+
+}
+
+{/*
+
+   <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
   <button onClick={() => addToCart("81a9c70e-06e3-496e-a0af-e93a364ac424", ejemplo.id)}>Agregar al carrito</button>
+
+  */}
 
 
 

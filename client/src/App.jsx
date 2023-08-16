@@ -39,7 +39,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/Account" element={<Account />} />
           <Route path="/Profile" element={<Profile />} />
-           <Route path="/Carritos" element={<Favoritos />} />
+        
 
        
           
