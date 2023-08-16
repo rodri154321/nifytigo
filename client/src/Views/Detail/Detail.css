@@ -1,4 +1,18 @@
+.containerDetail {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0%;
+  padding: 0%;
+ display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  /*background: linear-gradient(180deg, #242424 0%, #e0d9d9d7 100%);*/
+  margin-top: 3rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+}
 .detail {
   position: relative;
   width: 350px;
@@ -74,6 +88,10 @@
   background: #777;
   border: none;
   color: white;
+  cursor: pointer;
+}
+.detail__button:hover{
+  background-color: red;
 }
 
 .secondary {

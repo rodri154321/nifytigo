@@ -1,4 +1,4 @@
-const { users } = require('../db')
+const { users, nfts } = require('../db')
 
 
 const allUsers = async () => {
@@ -8,13 +8,16 @@ const allUsers = async () => {
 
 const createUser = async (username, name, lastName, email, password, cellPhone, country) => {
     const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country })
+    
     return newUser
 }
 
-
+const getUserId = async (id) => {
+    const user = await users.findByPk(id);
+    return user;
+}
 
 const findUserName = async (username, password) => {
-
     const exist = await users.findOne({ where: { username: username } });
     if (exist) {
         if(exist.password === password) {
@@ -22,82 +25,15 @@ const findUserName = async (username, password) => {
             return login;
         }else{
             login = false;
-           return `Contraseña Incorrecta`
+           return (`Contraseña Incorrecta`);
         }
     }else{
         login = false;
-       return `Usuario Incorrecto`
+       throw Error(`Usuario Incorrecto`);
     }
 
 };
 
-
-const deleteUsersById= async(id)=>{
-
-   let idUser = await users.findByPk(id)
-    if(idUser){
-  users.destroy({
-    where: {id:id}
- })
- return 'usuario eliminado'
-    }
-
-    return 'usuario inexistente'
-}  
-
-
-const usersById = async(id)=>{
-
-    let idUser = await users.findByPk(id)
- 
-    return idUser
-
-}
-
-
-
-const searchUsersnameByName = async(username)=>{
-    if(username){
-    let palabraM = username.username.toUpperCase()
-    let primeraLetra = palabraM[0] 
-    
-    let minuscula = username.username.toLowerCase().slice(1)
-    
-    let nombre = primeraLetra + minuscula 
-
- let union = username.username = nombre 
-
-    const user = await users.findAll({where: username}) 
-
-    return user 
-}else{
-    const user = await users.findAll({where: username}) 
-
-    return user 
-}
-    
-}
-
-
-
-const deleteSearchName = async(username)=>{
-       
-    const exist = await users.findOne({ where: { username: username } });
-    if (exist) {
-        if(exist.username === username) {
-            users.destroy({
-                where: {username:username}
-             })
-
-             return 'usuario eliminado'
-        }
-        return 'usuario inexistente'
-
-
-    
-    }}
-
- 
 const updateUser = async (id, username, name, lastName, email, password, cellPhone, country) => {
 
     const userUp = await users.findByPk(id);
@@ -162,4 +98,68 @@ const updateUser = async (id, username, name, lastName, email, password, cellPho
 };
 
 
-module.exports = {deleteSearchName,usersById,searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser}
+const deleteUsersById= async(id)=>{
+
+   let idUser = await users.findByPk(id)
+    if(idUser){
+  users.destroy({
+    where: {id:id}
+ })
+ return 'usuario eliminado'
+    }
+
+    return 'usuario inexistente'
+}  
+
+
+
+const searchUsersnameByName = async(username)=>{
+    if(username){
+    let palabraM = username.username.toUpperCase()
+    let primeraLetra = palabraM[0] 
+    
+    let minuscula = username.username.toLowerCase().slice(1)
+    
+    let nombre = primeraLetra + minuscula 
+
+ let union = username.username = nombre 
+
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}else{
+    const user = await users.findAll({where: username}) 
+
+    return user 
+}
+    
+}
+
+
+
+const deleteSearchName = async(username)=>{
+       
+    const exist = await users.findOne({ where: { username: username } });
+    if (exist) {
+        if(exist.username === username) {
+            users.destroy({
+                where: {username:username}
+             })
+
+             return 'usuario eliminado'
+        }
+        return 'usuario inexistente'
+
+
+    
+    }};
+
+    const searchUserNft = async (id) =>{
+        const user = await users.findByPk(id,{include: [{
+            model: nfts
+          }]})
+          return user
+    };
+
+
+module.exports = {deleteSearchName, getUserId, searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser,searchUserNft}

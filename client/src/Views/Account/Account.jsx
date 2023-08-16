@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import validation from "./validation";
 import "./index.css";
-import Login from "../Login/Login";
+//import Login from "../Login/Login";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/userActions";
 
@@ -37,6 +37,7 @@ const [errorMessage, setErrorMessage] = useState('');
         // Aquí llamamos a la acción createUser con los datos del formulario
         dispatch(createUser(userData));
         setUserCreationStatus('User created successfully!');
+        
         setErrorMessage(''); // Limpiamos el mensaje de error en caso de existir previamente
       } catch (error) {
         setUserCreationStatus('User creation failed.');

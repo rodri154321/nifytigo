@@ -1,4 +1,4 @@
-.user{
+.containerProfile{
     display: grid;
     grid-template: 9fr 1fr / 1fr 2fr;
     margin: 2rem;
@@ -9,15 +9,17 @@
     height: fit-content;
     margin-right: 3rem;
 }
-.img{
+.imgProfile{
     height: 30vh;
     align-self: center;
     justify-self: center;
-    margin: 0px;
+    margin: 0;
     padding: 0%;
     object-fit: cover;
+    border-radius: 150px;
+    box-shadow: 1px 2px 4px 4px #363535e5,#0e0d0de5 ;
 }
-.imgBox{
+.imgBoxProfile{
     display: flex;
     background-color: grey;
     height: 32vh;
@@ -29,7 +31,7 @@
     margin:1rem
 }
 
-.data{
+.dataimgProfile{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +43,7 @@
     height: 7rem;
     margin-top: 1rem;
 }
-.title {
+.titleProfile {
     grid-area: 1 / 1 / 3 / 2;
     display: flex;
     width: 80%;
@@ -86,6 +88,7 @@ h1{
     font-size: 3rem;
     padding: 0.5rem;
     font-weight: bold;
+  
 }
 h2{
     padding: .5rem;
@@ -168,7 +171,7 @@ h2{
     text-decoration:none;
     color: white;
 }
-.btn {
+.btnProfile{
     height: 35px;
     width: 10rem;
     transition: all .5s;
@@ -185,23 +188,23 @@ h2{
     color:#FF914D ;
 }
   
-.btn:hover {
+.btnProfile:hover {
     background-color: rgb(255, 255, 255);
     color: black;
 }
 
-.btn:hover a{
+.btnProfile:hover a{
     color: black;
     transition: all .5s;
 }
 
-.btn:disabled{
+.btnProfile:disabled{
   color: rgb(110, 110, 110);
   transform: none;
   cursor:default;
   background: none;
 }
-.btn:disabled::before{
+.btnProfile:disabled::before{
   color: rgb(110, 110, 110);
   transform: none;
   background: none;
@@ -358,3 +361,88 @@ h2{
     height: 100%;
    
   }
+
+  .navlinkCreateNft {
+    text-decoration: none;
+    color:#5CE1E6 ;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    font-weight: bold;
+  }
+  .navlinkFormn {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto auto auto;
+    gap: 10px; /* Espacio entre elementos */
+    grid-column: 3; /* Coloca este elemento en la tercera columna */
+  }
+  
+  .navlinkCreateNft:hover {
+    transform: translate(0%) scale(1.0);
+  }
+
+  .buttonProfile {
+    align-items: center;
+    justify-content:center;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow:unset;
+    transition-duration: .3s;
+    box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
+    background-color:rgb(226, 122, 24);
+    font-weight: 600;
+    padding: 0.8rem;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    letter-spacing: 2px;
+    margin: 2rem;
+    flex-direction: column;
+    width: 100px;
+  }
+  
+  .buttonProfile:hover {
+    background-color: #111313;
+  
+  }
+  
+  .buttonProfile::after {
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+  
+  .buttonProfile:hover::after {
+    animation: glitch_4011 1s;
+    text-shadow: 10px 10px 10px black;
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+    background-color: black;
+    border: 3px solid rgb(0, 255, 213);
+  }
+  
+  .buttonProfile:hover {
+    text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+  }
+  
+  .buttonProfile:hover {
+    background-color: transparent;
+    border: 1px solid rgb(0, 255, 213);
+    box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+  }
+
+

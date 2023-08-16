@@ -1,8 +1,8 @@
 /* FormNft.css */
 .containerFormNft {
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
-    margin: 0%;
+    margin: 3rem;
     padding: 0%;
     display: flex;
     justify-content: start;
@@ -11,7 +11,7 @@
     position: relative;
 }
 
-.containerMain {
+.containerMainFormNft {
   margin: 4rem;
   padding: 60px;
   background-color: #0b0b0b;
@@ -29,7 +29,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-form {
+.FormNft {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -37,44 +37,22 @@ form {
 
 label {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
 }
-
 input,
 textarea,
 select {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   padding: 10px;
-  border: 1px solid #aa9b9bd8;
+  border: 1px solid #f1ebebd8;
   border-radius: 13px;
   width: 450px;
   font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgba(228, 228, 228, 0.788);
 }
 
-.buttonFormNft {
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  width: 100px;
-  height: 50px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  position: relative;
-  overflow:unset;
-  transition-duration: .3s;
-  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
-  background-color:rgb(226, 122, 24);
-  font-weight: 600;
-  padding: 0.8rem;
-  font-size: 21px;
-}
-
-.buttonFormNft:hover {
-  background-color: #0c0c0c;
-}
-.removeButtonFormNft {
-  position: absolute;
+.removebuttonFormNft{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -83,8 +61,11 @@ select {
   color: white;
   cursor: pointer;
   font-size: 10px;
-  padding: 4px 8px; /* Ajusta el padding según tus preferencias */
-  margin-left: 1rem;
+  padding: 2px 6px; /* Ajusta el padding según tus preferencias */
+  margin: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  display:inline;
 }
 .removeButtonFormNft:hover {
   position: absolute;
@@ -124,4 +105,135 @@ margin-top:2rem;
 margin-bottom:4rem;
 justify-content: center;
 
+}
+.titleFormNft{
+  font-size: 18px;
+}
+
+.titleTwoFormNft{
+  font-size: 16px;
+}
+.buttonFormNft {
+  align-items: center;
+  justify-content:center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow:unset;
+  transition-duration: .3s;
+  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
+  background-color:rgb(226, 122, 24);
+  font-weight: 600;
+  padding: 0.8rem;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  margin: 1.2rem;
+}
+
+.buttonFormNft:hover {
+  background-color: #111313;
+
+}
+
+.buttonFormNft::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.buttonFormNft:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+  background-color: transparent;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+.buttonFormNft:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.buttonFormNft:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+.categoriesFormNft{
+display:inline-table;
+}
+.optionFormNft{
+  font-family: "Montserrat", sans-serif;
+}
+
+
+@keyframes glitch_4011 {
+  0% {
+    clip-path: var(--move1);
+    transform: translate(0px,-10px);
+  }
+
+  10% {
+    clip-path: var(--move2);
+    transform: translate(-10px,10px);
+  }
+
+  20% {
+    clip-path: var(--move3);
+    transform: translate(10px,0px);
+  }
+
+  30% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  40% {
+    clip-path: var(--move5);
+    transform: translate(10px,-10px);
+  }
+
+  50% {
+    clip-path: var(--move6);
+    transform: translate(-10px,10px);
+  }
+
+  60% {
+    clip-path: var(--move1);
+    transform: translate(10px,-10px);
+  }
+
+  70% {
+    clip-path: var(--move3);
+    transform: translate(-10px,10px);
+  }
+
+  80% {
+    clip-path: var(--move2);
+    transform: translate(10px,-10px);
+  }
+
+  90% {
+    clip-path: var(--move4);
+    transform: translate(-10px,10px);
+  }
+
+  100% {
+    clip-path: var(--move1);
+    transform: translate(0);
+  }
 }
