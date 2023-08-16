@@ -1,5 +1,5 @@
 
-import { useSelector } from "react-redux"
+
 import { useState } from "react";
 import "./Favoritos.css"
 import axios from "axios";
@@ -35,7 +35,7 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = '81a9c70e-06e3-496e-a0af-e93a364ac424';
+      const userId = '9b36566a-573e-4f44-a19f-41999b4f7251';
       const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
@@ -123,7 +123,7 @@ return (
         
          
       </div>
-      <bdo className="bn" onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>delete Nft </bdo>
+      <bdo className="bn" onClick={() => deleteToCart('f1341af7-b67b-4822-b9c5-10dd66a79578', nft.id)}>delete Nft </bdo>
    </li>
       ))}
                      
