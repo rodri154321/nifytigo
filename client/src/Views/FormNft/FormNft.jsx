@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postNft } from "../../Redux/postNft";
-import { getCategories } from "../../Redux/getCategories";
+import { postNft } from "../../Redux/postNft"
+import { getCategories } from "../../Redux/getCategories"
 import style from "./FormNft.module.css";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ const FormNft = () => {
 
   const [formData, setFormData] = useState({
 
-      iduser: "f11db94d-5cae-426f-a734-143183a204f4",
+      iduser: "ad5eba57-8bce-41c2-8aca-6651c28bbbad",
       image: [],
       name: "",
       description: "",

@@ -1,0 +1,137 @@
+
+import { useSelector } from "react-redux"
+import { useState } from "react";
+import "./Favoritos.css"
+import axios from "axios";
+import { useEffect } from "react";
+import { NavLink, } from "react-router-dom"
+const Favoritos = ()=>{
+/*  redux
+  const cart = useSelector(state => state.getCarritos)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getCarrito())
+  
+        },[dispatch])*/
+
+
+    
+
+
+ 
+        const [deleteStatus, setDeleteStatus] = useState(null);
+
+    const [cart, setCart] = useState({
+      id: "",
+      price: "",
+      image:"",
+      status: "",
+      userId: "",
+      nfts: []
+    });
+    
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const userId = '81a9c70e-06e3-496e-a0af-e93a364ac424';
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      if(response){
+      setCart(response);
+      console.log(response)
+    }else{
+      return setCart({})
+    }
+
+    } catch (error) { 
+      
+     
+      //  alert('No hay personajes con ese ID');
+    }
+  };
+
+  fetchData();
+}, []);
+
+
+
+
+
+
+/*
+useEffect(async() => {
+  const userId = '112c6e93-9118-4755-8984-bca1848ea962';
+  const response =  (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
+  if(response){setCart(response)}
+}, [cart]);
+*/
+const deleteToCart = (cartId, nftId) => {
+
+  console.log(cartId)
+  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
+    cartId: cartId,
+    nftId: nftId,
+  },}  )
+    .then(response => {
+    console.log('delete')
+
+      console.log(response.data.message);
+      setDeleteStatus([...deleteStatus]);
+    })
+    .catch(error => console.error(error));  
+};
+
+console.log(cart)
+return (
+  
+  
+
+  
+                <div className="ContainerFav">  
+  
+                  <div className="one-div">
+                    <div className="text"> 
+                    <p>{cart.status}</p>
+
+                   <h1>Price Total: {cart.price}</h1> 
+                   </div>
+                   </div>
+                   
+                    
+             <div className="CartsNFt">      
+ {cart && cart.nfts.map((nft, index) => (
+            <li className="est" key={index}>     
+                 
+        
+            
+   
+ 
+        <div className="nft">
+         
+          <img src={nft.image}/>
+          <h2>{nft.name}</h2> 
+          
+          <NavLink className="link" to={`/detail/${nft.id}`}  >
+         <div className="Btn">
+           <h2>Pay: {nft.price}</h2>
+         </div>
+             
+         
+          </NavLink> 
+             
+        
+         
+      </div>
+      <bdo className="bn" onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>delete Nft </bdo>
+   </li>
+      ))}
+                     
+         </div> 
+                   
+  </div>
+);
+  
+}
+
+export default Favoritos

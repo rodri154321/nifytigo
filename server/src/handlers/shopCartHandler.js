@@ -1,7 +1,7 @@
 const {getShopCartController, addNftCart, getMyCart,  deleteCartNft}= require('../controllers/shopCartControllers')
 
 const getShopCart = async (req, res) => {
-    const {userId}= req.body
+    const {userId} = req.params;
 try {
 const result=await getShopCartController(userId)
 
@@ -26,9 +26,9 @@ try {
 }
 
 const getUserCart = async(req,res)=>{
-    const {userId} = req.body
+    const {id} = req.params
 try {
-    const myCart = await getMyCart(userId)
+    const myCart = await getMyCart(id)
     res.status(200).json(myCart)
 } catch (error) {
     res.status(400).json({ error: error.message });
@@ -37,9 +37,9 @@ try {
 }
 
 const deleteNftCart = async(req,res)=>{
-    const {cartId, nftId, userId} = req.body
+    const {cartId, nftId} = req.body
 try {
-    const deleteNft = await deleteCartNft(cartId,nftId,userId)
+    const deleteNft = await deleteCartNft(cartId,nftId)
     res.status(200).json(deleteNft)
 } catch (error) {
     res.status(400).json({ error: error.message });
