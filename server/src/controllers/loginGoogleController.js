@@ -4,19 +4,21 @@ const postLoginGoogle = async({email, googleId, name}) =>{
 
 
     const user = await User.findOrCreate({ 
-        where: { email },
+        where: { email : email },
         defaults: {
             name: name,
-            email,
+            email: email,
             password: googleId,
+            cellPhone:"",
+            country:"",
+            username:"",
+            lastName:"",
         } 
     });
 
     return user;
     
 }
-
-
 
 module.exports = {
     postLoginGoogle
