@@ -7,18 +7,17 @@ import { useSelector } from "react-redux";
 
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
-const PaypalButton = (purchaseData)=>{
-    let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-
+const PaypalButton = (props)=>{
+    console.log('Data Ingresante para comprar en Paypal(idUser+NFT),', props)      //! ID
+    
+    
+    let total=props.totalValue;
+    console.log('Precio en el Pbutton:', total)
     const handlePay = async (orderR)=>{
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');
 
-        let buyData={
-            idUser:'f11db94d-5cae-426f-a734-143183a204f4',
-            idNFT:[]
-        }; //ID del comprador mas NFTs comprados
-        const responseBack=await axios.post('http://localhost:3001/nft/create',buyData);
+        const responseBack = await axios.post('http://localhost:3001/nft/create',buyData);
         console.log(responseBack.data);
     }
 
@@ -47,10 +46,8 @@ const PaypalButton = (purchaseData)=>{
                 onApprove={async(data,actions)=>{
                     const order = await actions.order?.capture();
                     handlePay(order)
-                    
                 }}
             />
-
     )
 }
 

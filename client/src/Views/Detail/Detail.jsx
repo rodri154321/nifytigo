@@ -10,11 +10,7 @@ export default function Detail() {
   const [gameID, setGameID] = useState({})
    
   const { id } = useParams();
-  
 
-
-
-   
     
     useEffect(() => {
 
