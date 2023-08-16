@@ -53,10 +53,10 @@ useEffect(() => {
 const handleCart = ()=>{
   if(isCart){
     setIsCart(false);
-     deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8',ejemplo.id)
+     deleteToCart('bff6a42a-c16d-4932-9618-6c81fdd60f11',ejemplo.id)
   } else {
     setIsCart(true);
-  addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424',ejemplo.id)
+  addToCart('b5a12bbc-b81d-4e33-a7fc-5a0eaed85098',ejemplo.id)
   }}
  
  

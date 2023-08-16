@@ -3,12 +3,13 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import './PayPalButton_style.css'
 import axios from "axios";
 import { useState } from "react";
-import { useSelector, UseSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const PaypalButton = (purchaseData)=>{
-    let idUserActual=useSelector((state)=>state.clientId);
+    let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
+
     const handlePay = async (orderR)=>{
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');
