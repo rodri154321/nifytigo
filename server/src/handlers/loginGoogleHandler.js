@@ -3,7 +3,7 @@ const { postLoginGoogle } = require("../controllers/loginGoogleController");
 
 const loginGoogle = async (req, res) => {
   const {user} = req.body;
-  console.log(user);
+  console.log("user",user);
   try {
     const response = await postLoginGoogle(user);
 
