@@ -1,4 +1,4 @@
-const { users } = require('../db')
+const { users, nfts } = require('../db')
 
 
 const allUsers = async () => {
@@ -8,6 +8,7 @@ const allUsers = async () => {
 
 const createUser = async (username, name, lastName, email, password, cellPhone, country) => {
     const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country })
+    
     return newUser
 }
 
@@ -153,5 +154,12 @@ const deleteSearchName = async(username)=>{
     
     }};
 
+    const searchUserNft = async (id) =>{
+        const user = await users.findByPk(id,{include: [{
+            model: nfts
+          }]})
+          return user
+    };
 
-module.exports = {deleteSearchName, getUserId, searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser}
+
+module.exports = {deleteSearchName, getUserId, searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser,searchUserNft}

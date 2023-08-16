@@ -49,7 +49,7 @@ function App() {
           <Route path="/TopRating" element={<TopRating/>}/>
           <Route path="/Purchase" element={<Purchase/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-          <Route path="/Profile" element={<Profile/>} />
+  
           <Route path='/Login' element={<Login />} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
           <Route path="/TermsOfService" element={<TermsOfService />}/>
