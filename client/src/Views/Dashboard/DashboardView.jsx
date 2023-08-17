@@ -3,6 +3,9 @@ import React from "react";
 import classNames from "classnames";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import {useEffect,useState} from 'react';
+import {useDispatch,useSelector} from 'react-redux';
+import axios from "axios";
 
 // reactstrap components
 import {
@@ -32,6 +35,10 @@ import chartExample3 from "../../variables/charts.js";
 import chartExample4 from "../../variables/charts.js";
 
 function DashboardView(props) {
+  useEffect(async ()=>{
+    const response = await axios.get(`https://nifytigo.onrender.com/dashboard`)
+    }, []);
+  
   const [bigChartData, setbigChartData] = React.useState("data1");
   const setBgChartData = (name) => {
     setbigChartData(name);
