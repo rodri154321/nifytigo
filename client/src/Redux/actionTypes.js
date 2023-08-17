@@ -6,6 +6,7 @@ export const FILTER_CATEGORIES='FILTER_CATEGORIES';
 export const LOGIN ='LOGIN';
 export const LOGOUT ='LOGOUT';
 export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
+export const BUY_NFT = 'BUY_NFT';
 
 export const GET_USER_ID = 'GET_USER_ID';
 export const GET_NFTS_FOR_USER = 'GET_NFTS_FOR_USER';

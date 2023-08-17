@@ -1,13 +1,24 @@
 import React from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import './PayPalButton_style.css'
+import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const PaypalButton = (props)=>{
-
-    const handlePay=(orderR)=>{
+    console.log('Data Ingresante para comprar en Paypal(idUser+NFT),', props)      //! ID
+    
+    
+    let total=props.totalValue;
+    console.log('Precio en el Pbutton:', total)
+    const handlePay = async (orderR)=>{
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');
+        console.log('Nfts a guardar',props.purchaseData)
+        const responseBack = await axios.post('http://localhost:3001/',buyData);
+        console.log(responseBack.data);
     }
 
     return(
@@ -35,10 +46,8 @@ const PaypalButton = (props)=>{
                 onApprove={async(data,actions)=>{
                     const order = await actions.order?.capture();
                     handlePay(order)
-                    
                 }}
             />
-
     )
 }
 
