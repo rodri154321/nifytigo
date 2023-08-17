@@ -32,10 +32,10 @@ const postNftHandler = async (req, res) => {
         const response = await createNft(iduser, name, description, image, price, categorie);
 
         const usuarioEmail = email;
-        const nombreUsuario = '[nombre del usuario]';
+        // const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
-        await nftPurchaseNotification(usuarioEmail, nombreUsuario, nombreNFT)
+        await nftPurchaseNotification(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -71,7 +71,6 @@ const updateNftHandler = async (req, res) => {
 const deleteNftHandler = async (req, res) => {
 
     const { id } = req.params;
-    //por que estaba descripcion como argumento ?
     try {
         const response = await deleteNft(id);
         res.status(200).json(response);

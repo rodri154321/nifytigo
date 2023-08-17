@@ -1,70 +1,58 @@
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useSelector } from "react-redux"
 
 const Carrito = () => {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    // Obtener la lista de productos al cargar la página
-    axios.get('/api/products')
-      .then(response => setProducts(response.data))
-      .catch(error => console.error(error));
-  }, []);
-
-  const addToCart = (product) => {
-    axios.post('/api/cart/add', { productId: product.id })
-      .then(response => {
-        console.log(response.data.message);
-        setCart([...cart, product]);
-      })
-      .catch(error => console.error(error));
-  };
-
-  const removeFromCart = (productId) => {
-    axios.delete(`/api/cart/remove/${productId}`)
-      .then(response => {
-        console.log(response.data.message);
-        const updatedCart = cart.filter(item => item.id !== productId);
-        setCart(updatedCart);
-      })
-      .catch(error => console.error(error));
-  };
-
-  const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
-  };
-
-  return (
+  const {myFavorites} = useSelector(state=>state)
+  return(
     <div >
-      <h1>Carrito de Compras</h1>
-      
-      <div>
-        <h2>Productos Disponibles</h2>
-        <ul>
-          {products.map(product => (
-            <li key={product.id}>
-              {product.name} - ${product.price}
-              <button onClick={() => addToCart(product)}>Agregar al carrito</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <div>
-        <h2>Carrito</h2>
-        <ul>
-          {cart.map(item => (
-            <li key={item.id}>
-              {item.name} - ${item.price}
-              <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
-            </li>
-          ))}
-        </ul>
-        <p>Total: ${calculateTotal()}</p>
-      </div>
+      {
+          myFavorites.map((character)=>{
+              return(
+                  // eslint-disable-next-line react/jsx-key
+                  <div>      
+                  <div className="card"   display="flex" >
+                    <div className="content">
+                      <div className="back">
+                        <div className="back-content">
+                         
+                        <div>
+                            <img src={character.image}/>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div className="front">
+                        
+                        <div className="img">
+                          <div className="circle">
+                          </div>
+                          <div className="circle" id="right">
+                          </div>
+                          <div className="circle" id="bottom">
+                          </div>
+                        </div>
+                  
+                        <div className="front-content">
+                       
+                           <h1>{character.name}</h1> 
+                          <div className="description">
+                          <div className="description">
+                            <div className="title">
+                          <p> {character.price}</p> 
+                            </div>
+                            <p className="card-footer">
+                              
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                  </div></div>
+              )
+          })
+      }
     </div>
-  );
+  )
 };
 
 export default Carrito;
@@ -80,3 +68,18 @@ export default Carrito;
 
 
 export default Carrito*/
+
+
+/* <div>
+        <h2>Productos Disponibles</h2>
+        <ul>
+          {cart.map(product => (
+            <li key={product.id}>
+              {product.name} - ${product.price}
+              <button onClick={() => getToCart(product.id)}> <h1>ver</h1></button>
+            </li>
+            
+          ))}
+        </ul>
+        
+      </div> */

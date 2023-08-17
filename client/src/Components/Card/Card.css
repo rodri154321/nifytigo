@@ -3,6 +3,7 @@
     height: 99%;
  
 }
+
 .card  {
     color: #000000;
 }
@@ -10,6 +11,10 @@
     overflow: visible;
     width: 190px;
     height: 254px;
+   
+
+     
+   
   }
   
   .content {

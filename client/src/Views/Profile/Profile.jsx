@@ -1,78 +1,67 @@
 import style from "./Profile.module.css";
-//import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { updateUserDetail } from "../../Redux/updateUserDetail";
+import { getUserIdAsync, getNftsForUser } from "../../Redux/getUser"; 
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
-import axios from "axios";
-//import Cards from "../../Components/Cards/Cards"
-import Card from "../../Components/Card/Card";
+import Cards from "../../Components/Card/Card";
+
 
 const Profile = () => {
+  const loger = localStorage.getItem('loger');
+  const [storedUserId, setStoredUserId] = useState(localStorage.getItem("clientId"));
 
-  const loger = localStorage.getItem('loger')
-  const idUser = localStorage.getItem("clientId");
+  const dispatch = useDispatch();
 
-  const reload = () => {
-    window.location.reload(false);
-  };
-  // Estado local para almacenar los datos del usuario
-  const [userData, setUserData] = useState(null);
-  const [userNFTs, setUserNFTs] = useState([]);
-
+  const userDetail = useSelector(state => state.userDetail);
+  const userNFTs = useSelector(state => state.userNFTs);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    setStoredUserId(localStorage.getItem("clientId"));
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
         if (loger === 'true') {
-          // Verificar si el usuario ha iniciado sesión con Google
           const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
           const isGoogleSignIn = googleUser.isSignedIn();
           if (isGoogleSignIn) {
             const profile = googleUser.getBasicProfile();
-            setUserData({
+            const updatedUserDetail = {
               username: profile.getName(),
               name: profile.getGivenName(),
               lastName: profile.getFamilyName(),
-              country: 'Please update your country', // Agrega el país si está disponible en Google
-              cellPhone: 'Please update your cellPhone', // Agrega el número de teléfono si está disponible en Google
+              country: '',
+              cellPhone: '',
               email: profile.getEmail(),
               image: profile.getImageUrl(),
-            });
-          } else {
-            //const response = await axios.get(`http://localhost:3001/users/${idUser}`);
-            const response = await axios.get(`https://nifytigoserver.onrender.com/users/${idUser}`);
-            setUserData(response.data);
+            };
+            dispatch(updateUserDetail(updatedUserDetail));
           }
-        } else {
-          //const response = await axios.get(`http://localhost:3001/users/${idUser}`);
-          const response = await axios.get(`https://nifytigoserver.onrender.com/users/${idUser}`);
-          setUserData(response.data);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    
 
-    const fetchUserNFTs = async () => {
-      try {
-        //const response = await axios.get(`http://localhost:3001/nfts?userId=${idUser}`);
-        const response = await axios.get(`https://nifytigoserver.onrender.com/nfts?userId=${idUser}`);
-        setUserNFTs(response.data);
+        // Get user ID and user NFTs
+        await dispatch(getUserIdAsync(loger, storedUserId));
+        await dispatch(getNftsForUser(storedUserId));
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchUserData();
-    fetchUserNFTs();
-  }, [idUser, loger]);
-  
+    fetchData();
+  }, [dispatch, storedUserId, loger]);
+
+  useEffect(() => {
+    setStoredUserId(localStorage.getItem("clientId"));
+  }, []);
+
   const editProfile = () => {
     setShowAlertLog(true);
     setShowBackdrop(true);
-  }
+  };
   const [infoVisibleTwo, setInfoVisibleTwo] = useState(false);
   const [infoVisibleFour, setInfoVisibleFour] = useState(false);
   const [infoVisibleFive, setInfoVisibleFive] = useState(false);
@@ -89,14 +78,7 @@ const Profile = () => {
     setInfoVisibleFive(!infoVisibleFive);
   };
 
-
-  const userImage = (userData?.image === null || userData?.image === undefined) ? "https://cdn-icons-png.flaticon.com/512/309/309594.png?w=826&t=st=1691514627~exp=1691515227~hmac=ff66466c46bab20bb94370bfe8ba3111602743b23d53f4af10aadb499fa5ac0b" : (userData?.image)
-
-  //const handleDelete = ()=>{
-  //  event.preventDefault();
-  //dispatch(deleteReservation(selectedReservationId));
-  //7reload()
-  //}
+  const userImage = userDetail?.image || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSfXuM3iS_aGTL5IijNPFKi0Iu4x_J5l7zUpK6x3jvdYFAxDtjm";
 
   return (
     <div className={style.containerProfile}>
@@ -110,21 +92,19 @@ const Profile = () => {
         </div>
         <div className={style.data}>
           <img src={logo} alt="" />
-          {userData && (
+          {userDetail && (
             <>
-              <h2>User Name: {userData.username}</h2>
-              <h2>Name: {userData.name}</h2>
-              <h2>Last Name: {userData.lastName}</h2>
-              <h2>Country: {userData.country} </h2>
-              <h2>CellPhone: {userData.cellPhone} </h2>
-              <h2>E-mail: {userData.email}</h2>
+              <h2>User Name: {userDetail.username}</h2>
+              <h2>Name: {userDetail.name}</h2>
+              <h2>Last Name: {userDetail.lastName}</h2>
+              <h2>Country: {userDetail.country} </h2>
+              <h2>CellPhone: {userDetail.cellPhone} </h2>
+              <h2>E-mail: {userDetail.email}</h2>
             </>
           )}
           <button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>Update</button>
           <button className={style.buttonProfile}>
-            <NavLink to="/">
-              Back
-            </NavLink>
+            <NavLink to="/">Back</NavLink>
           </button>
         </div>
       </div>
@@ -132,7 +112,7 @@ const Profile = () => {
         <h1 className={style.reserva}>Profile</h1>
 
 
-{/*<div className={style.navlinkCreateNft}>
+        {/*<div className={style.navlinkCreateNft}>
   <div>
     <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
       Mis NFT's
@@ -149,7 +129,7 @@ const Profile = () => {
               <div key={nft.id}>
                 {nft.title}
                 {/* Renderiza otros detalles de la carta aquí si es necesario */}
-             {/* </div>
+        {/* </div>
             );
           } else {
             return null; 
@@ -171,6 +151,8 @@ const Profile = () => {
           </div>
         </div>
 
+
+
         <div className={style.navlinkCreateNft} >
           <div>
             <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
@@ -182,14 +164,30 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className={style.navlinkCreateNft} >
+        <div className={style.navlinkCreateNft}>
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
+            <h1 onClick={toggleInfoFive} className={style.navlinkFormn}>
               My NFT's
             </h1>
           </div>
-          <div classname={style.CreateNftFormNft}>
-            {/*{infoVisibleFive && <FormNft />}*/}
+          <div className={style.CreateNftFormNft}>
+            {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
+              <div>
+                {userNFTs.nfts.map(nft => (
+                  <Cards
+                    key={nft.id}
+                    id={nft.id}
+                    name={nft.name}
+                    description={nft.description}
+                    image={nft.image}
+                    price={nft.price}
+                    user={userNFTs}
+                    categories={nft.categories}
+                  />
+                ))}
+              </div>
+            ) : null}
+            {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
           </div>
         </div>
 
@@ -197,4 +195,5 @@ const Profile = () => {
     </div>
   )
 };
+
 export default Profile;
