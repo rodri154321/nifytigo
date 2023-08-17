@@ -4,7 +4,7 @@ const postLoginGoogle = async(user) =>{
     console.log("EMAIL", user.email, "GOOGLEID", user.googleId, "NAME", user.name);
 
     const newuser = await users.findOrCreate({ 
-        where: { email : email },
+        where: { email : user.email },
         defaults: {
             name: user.name,
             email: user.email,
