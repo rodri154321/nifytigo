@@ -89,7 +89,7 @@ const Login = () => {
     if (access) {
       Swal.fire({
         icon: "success",
-        title: "Inicio de sesión exitoso",
+        title: "Login successful",
         showConfirmButton: false,
         timer: 2000,
         background: "#666",
@@ -116,10 +116,10 @@ const Login = () => {
       <div className={style.gridContainer}></div>
       <div className={style.switchLogin} id="switch-cnt">
         <div className="switch__container" id="switch-c1">
-          <h2 className="switch__title title">¡Bienvenido de nuevo a Nifytigo!</h2>
+          <h2 className="switch__title title">¡Wellcome to Nifytigo!</h2>
           <button className="switch__button button switch-btn">
             <NavLink to="/Account" className="navlink-style">
-              REGISTRARSE
+              SING UP
             </NavLink>
           </button>
         </div>
@@ -129,14 +129,14 @@ const Login = () => {
         className={style.formLogin}
         onSubmit={(event) => handleSubmit(event)}
       >
-        <h2>Iniciar sesión</h2>
+        <h2>Login</h2>
         <div className={style.text}>
           <div className={style.content}>
             <input
               type="text"
               name="email"
               value={user.email}
-              placeholder="Correo electrónico"
+              placeholder="Email"
               onChange={(event) => handleChange(event)}
               className={style.formInputLogin}
             />
@@ -149,7 +149,7 @@ const Login = () => {
               type="password"
               name="password"
               value={user.password}
-              placeholder="Contraseña"
+              placeholder="Password"
               onChange={(event) => handleChange(event)}
               className={style.formInputLogin}
             />
@@ -159,7 +159,7 @@ const Login = () => {
           </div>
         </div>
         <div>
-          <button className={style.btnLogin}>Acceder</button>
+          <button className={style.btnLogin}>Access</button>
         </div>
         <p className={style.loginAccount}>O acceder mediante</p>
         <div className={style.googleContainer}>

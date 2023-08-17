@@ -14,7 +14,7 @@ import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft'
+//import FormNft from './Views/FormNft/FormNft'
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
@@ -28,6 +28,7 @@ function App() {
   const location = useLocation();
   const domain = import.meta.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = import.meta.env.REACT_APP_AUTH0_CLIENT_ID;
+
   const shouldRenderNavBar = location.pathname !== '/Login';
   return (
     <div>

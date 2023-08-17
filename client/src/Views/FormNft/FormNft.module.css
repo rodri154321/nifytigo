@@ -12,7 +12,7 @@
 }
 
 .containerMainFormNft {
-  margin: 4rem;
+  margin: 1rem;
   padding: 60px;
   background-color: #0b0b0b;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -22,12 +22,15 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+   box-shadow: -2px -2px 12px 12px  #4d4c4bd5;
 }
 
-h1 {
+.navlinkProfile{
   font-size: 24px;
   margin-bottom: 20px;
+  color: #111313;
 }
+
 
 .FormNft {
   display: flex;

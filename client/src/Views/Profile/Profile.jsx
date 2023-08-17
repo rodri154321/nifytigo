@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
 import Cards from "../../Components/Card/Card";
+import line from "../../assets/line.png"
 
 
 const Profile = () => {
@@ -109,9 +110,8 @@ const Profile = () => {
         </div>
       </div>
       <div className={style.games}>
-        <h1 className={style.reserva}>Profile</h1>
-
-
+       {/*  <h1 className={style.reserva}>Profile</h1>*/}
+          <img src={line} />
         {/*<div className={style.navlinkCreateNft}>
   <div>
     <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
@@ -143,7 +143,7 @@ const Profile = () => {
 
         <div className={style.navlinkCreateNft} >
           <div>
-            <h1 onClick={toggleInfoTwo} className={style.navlinkFormn} >
+            <h1 onClick={toggleInfoTwo} className={style.navlinkProfile} >
               Create NFT
             </h1>
           </div>
@@ -156,7 +156,7 @@ const Profile = () => {
 
         <div className={style.navlinkCreateNft} >
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
+            <h1 onClick={toggleInfoFive} className={style.navlinkProfile} >
               Favorites
             </h1>
           </div>
@@ -167,30 +167,31 @@ const Profile = () => {
 
         <div className={style.navlinkCreateNft}>
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn}>
+            <h1 onClick={toggleInfoFive} className={style.navlinkProfile}>
               My NFT's
             </h1>
           </div>
-          <div className={style.CreateNftFormNft}>
-            {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
-              <div>
-                {userNFTs.nfts.map(nft => (
-                  <Cards
-                    key={nft.id}
-                    id={nft.id}
-                    name={nft.name}
-                    description={nft.description}
-                    image={nft.image}
-                    price={nft.price}
-                    user={userNFTs}
-                    categories={nft.categories}
-                  />
-                ))}
-              </div>
-            ) : null}
-            {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
-          </div>
-        </div>
+
+          <div className={`${style.ContainerCreateNftFormNft} ${!infoVisibleFive ? style.hiddenContainer : ''}`}>
+    {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
+      <div className={style.CreateNftFormNft}>
+        {userNFTs.nfts.map(nft => (
+          <Cards
+            key={nft.id}
+            id={nft.id}
+            name={nft.name}
+            description={nft.description}
+            image={nft.image}
+            price={nft.price}
+            user={userNFTs}
+            categories={nft.categories}
+          />
+        ))}
+      </div>
+    ) : null}
+    {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
+  </div>
+</div>
 
       </div>
     </div>
