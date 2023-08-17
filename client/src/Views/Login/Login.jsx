@@ -14,6 +14,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const access = localStorage.getItem("access");
+
   const detail = localStorage.getItem("detail");
 
   const [user, setUser] = useState({
@@ -81,7 +83,7 @@ const Login = () => {
     );
   };
 
-  const access = useSelector((state) => state.access);
+  
 
   useEffect(() => {
     if (access) {

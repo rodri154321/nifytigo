@@ -9,7 +9,7 @@ import SearchBar from "../../Components/Search/Search";
 const NavBar = () => {
   const dispatch = useDispatch();
   const loger = localStorage.getItem("loger");
-  const access = useSelector((state) => state.access);
+  const access = localStorage.getItem("access");
 
   const handleLogout = () => {
     dispatch(logout())
