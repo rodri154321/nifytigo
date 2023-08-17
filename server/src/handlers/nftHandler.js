@@ -71,7 +71,6 @@ const updateNftHandler = async (req, res) => {
 const deleteNftHandler = async (req, res) => {
 
     const { id } = req.params;
-    //por que estaba descripcion como argumento ?
     try {
         const response = await deleteNft(id);
         res.status(200).json(response);
