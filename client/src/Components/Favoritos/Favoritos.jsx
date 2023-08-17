@@ -16,11 +16,6 @@ const Favoritos = ()=>{
   
         },[dispatch])*/
 
-
-    
-
-
- 
         const [deleteStatus, setDeleteStatus] = useState(null);
 
     const [cart, setCart] = useState({
@@ -35,8 +30,8 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = '9b36566a-573e-4f44-a19f-41999b4f7251';
-      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      const userId = 'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098';                                              //! PONER SU ID DE USUARIO  
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data; 
       if(response){
       setCart(response);
       console.log(response)
@@ -82,7 +77,7 @@ const deleteToCart = (cartId, nftId) => {
     .catch(error => console.error(error));  
 };
 
-console.log(cart)
+// console.log('Contenido del carro',cart)
 return (
   
   
@@ -91,11 +86,14 @@ return (
                 <div className="ContainerFav">  
   
                   <div className="one-div">
-                    <div className="text"> 
-                    <p>{cart.status}</p>
+                    <NavLink to='/Purchase'>
+                      <div className="text"> 
+                      <p>{cart.status}</p>
 
-                   <h1>Price Total: {cart.price}</h1> 
-                   </div>
+                    <h1>Price Total: {cart.price}</h1>
+                      
+                    </div>
+                   </NavLink>
                    </div>
                    
                     
@@ -112,18 +110,16 @@ return (
           <img src={nft.image}/>
           <h2>{nft.name}</h2> 
           
-          <NavLink className="link" to={`/detail/${nft.id}`}  >
+          <NavLink className="link" to={`/Purchase?id=${nft.id}`}  >
          <div className="Btn">
            <h2>Pay: {nft.price}</h2>
          </div>
-             
-         
           </NavLink> 
              
         
          
       </div>
-      <bdo className="bn" onClick={() => deleteToCart('f1341af7-b67b-4822-b9c5-10dd66a79578', nft.id)}>delete Nft </bdo>
+      <bdo className="bn" onClick={() => deleteToCart('bff6a42a-c16d-4932-9618-6c81fdd60f11', nft.id)}>delete Nft </bdo>   //! PONER SU ID DE CARRITO!!!! 
    </li>
       ))}
                      

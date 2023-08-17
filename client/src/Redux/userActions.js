@@ -26,6 +26,7 @@ export const createUser = (userData) => async (dispatch) => {
       },
     });
     dispatch(createUserSuccess(response.data));
+    console.log(createUserSuccess);
   } catch (error) {
     dispatch(createUserFailure(error.message));
   }

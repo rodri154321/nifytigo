@@ -1,17 +1,18 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES,LOGIN_GOOGLE,LOGIN,LOGOUT} from "./actionTypes";
+import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES, LOGIN_GOOGLE, LOGIN, LOGOUT, GET_USER_ID,  GET_NFTS_FOR_USER, UPDATE_USER_DETAIL, UPDATE_USER } from "./actionTypes";
 
 const initialState = {
-    user: null,
-    loading: false,
-    error: null,
-    categories: [],
-    ejemplo: [],                //Todas las cards
-    cardsFiltered: [],
-    isLoggeIn: false,
-    allCharacter: [],
-    myFavorites: [],
-    getCarritos:[]
-
+  user: null,
+  loading: false,
+  error: null,
+  categories: [],
+  ejemplo: [],                //Todas las cards
+  cardsFiltered: [],
+  isLoggeIn: false,
+  clientId: 0,
+  isClient: true,
+  access: false,
+  userDetail: [],
+  allUsers: []
 }
 
 //traer los carritos dependiendo del id
@@ -23,7 +24,7 @@ const rootReducer = (state = initialState, action) => {
         ejemplo: action.payload,
         cardsFiltered: action.payload,
       };
-
+      
     case POST_NFT:
       return {
         ...state,
@@ -105,8 +106,7 @@ const rootReducer = (state = initialState, action) => {
 
     case LOGIN:
       localStorage.setItem("clientId", action.payload.user.id);
-      // console.log(action.payload.user.client);
-      // localStorage.setItem("isClient", action.payload.user.client);
+      localStorage.setItem("isClient", action.payload.user.client);
       localStorage.setItem("access", true)
       return {
         ...state,
@@ -116,9 +116,9 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGOUT:
-      localStorage.clear();
-      //localStorage.setItem("isClient", 0)
-      localStorage.setItem("access", false)
+     localStorage.clear();
+      // localStorage.setItem("isClient", 0)
+      // localStorage.setItem("access", false)
       return {
         ...state,
         clientId: 0,
@@ -127,23 +127,31 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
-      console.log(action.payload);
-      localStorage.setItem("clientId", action.payload.googleId);
-      //localStorage.setItem("isClient", action.payload.client);
-      localStorage.setItem("loger", true);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
+      localStorage.setItem("access", true)
       return {
         ...state,
-        clientId: action.payload.googleId,
-        //isClient: action.payload.client,
-
+        clientId: action.payload.id,
+        isClient: action.payload.client,
         access: true,
       };
-
-    // case GET_USER_ID:
-    //   return {
-    //     ...state,
-    //     userDetail: action.payload,
-    //   };
+      
+      
+      case GET_USER_ID:
+        case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí
+          return {
+            ...state,
+            userDetail: action.payload,
+          };
+        case GET_NFTS_FOR_USER:
+          console.log(action.payload);
+          return {
+            ...state,
+            userNFTs: action.payload,
+          };
+        case UPDATE_USER:
+          return { ...state };
       
     case 'CREATE_USER_START':
       return {
@@ -186,8 +194,6 @@ const rootReducer = (state = initialState, action) => {
 
 
 
-      
-                    
   }
 
 };

@@ -10,16 +10,12 @@ export default function Detail() {
   const [gameID, setGameID] = useState({})
    
   const { id } = useParams();
-  
 
-
-
-   
     
     useEffect(() => {
 
         // axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
-
+        // axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
         axios(`https://nifytigoserver.onrender.com/nft/${id}`).then(({ data }) => {
 
            if (data.name) {
