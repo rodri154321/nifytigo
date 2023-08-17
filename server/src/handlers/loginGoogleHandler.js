@@ -2,10 +2,10 @@ const { postLoginGoogle } = require("../controllers/loginGoogleController");
 //const emailer = require("../emailer");
 
 const loginGoogle = async (req, res) => {
-  const {email} = req.body;
-  console.log("user", email);
+  const {email, googleId,name} = req.body;
+  console.log("user", email,googleId,name);
   try {
-    const response = await postLoginGoogle(user);
+    const response = await postLoginGoogle(email,googleId,name);
 
    //emailer.sendMail({email, name});
 
