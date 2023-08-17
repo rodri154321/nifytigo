@@ -16,8 +16,8 @@ const PaypalButton = (props)=>{
     const handlePay = async (orderR)=>{
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');
-
-        const responseBack = await axios.post('http://localhost:3001/nft/create',buyData);
+        console.log('Nfts a guardar',props.purchaseData)
+        const responseBack = await axios.post('http://localhost:3001/',buyData);
         console.log(responseBack.data);
     }
 

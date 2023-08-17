@@ -47,9 +47,9 @@ const Purchase=(items)=>{
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-            let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;
-            console.log('Datos del carrito traidos desde el server',response)
-            setcarritoDataServer(response);
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;
+                console.log('Datos del carrito traidos desde el server',response)
+                setcarritoDataServer(response);
             }
             catch(error){}
             }
@@ -61,7 +61,6 @@ const Purchase=(items)=>{
             <div id='detailPurchaseContainer'>
             {currentItems?.map((eje) =>{
                 purchaseData.idNFT.push(eje.id)
-                
                 return(
                         <Cards
                         key={eje.id}
@@ -91,7 +90,9 @@ const Purchase=(items)=>{
                         </div>
                     )
                 })}
-                <div className='PaypalButtonContainer'>{totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Informacion de lo que se compro'} ></PaypalButton>}</div>
+                <hr id='titleSeparator'></hr>
+                <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
+                <div className='PaypalButtonContainer'>{totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} ></PaypalButton>}</div>
             </div>
         </div>
 
