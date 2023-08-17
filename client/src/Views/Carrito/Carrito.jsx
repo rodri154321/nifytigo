@@ -1,6 +1,4 @@
-
 import { useSelector } from "react-redux"
-
 
 const Carrito = () => {
   const {myFavorites} = useSelector(state=>state)
