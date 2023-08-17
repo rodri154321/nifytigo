@@ -51,8 +51,8 @@ const Login = () => {
 
   const onSuccess = (response) => {
     const user = {
-      //lastName:response.profileObj.lastName,
-      //username: response.profileObj.username,
+      // lastName:response.profileObj.lastName,
+      // username: response.profileObj.username,
       email: response.profileObj.email,
       googleId: response.profileObj.googleId,
       name: response.profileObj.name,
