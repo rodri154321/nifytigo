@@ -44,7 +44,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
           <Route path="/Purchase" element={<Purchase/>}/>
-          <Route path="/MPButton" element={<MPButton/>}/>
+          {/* <Route path="/MPButton" element={<MPButton/>}/> */}
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           
 
