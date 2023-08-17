@@ -24,7 +24,7 @@ const rootReducer = (state = initialState, action) => {
         ejemplo: action.payload,
         cardsFiltered: action.payload,
       };
-
+      
     case POST_NFT:
       return {
         ...state,
