@@ -22,7 +22,6 @@ import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
 import Carrito from './Views/Carrito/Carrito'
 import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
-import Favoritos from './Components/Favoritos/Favoritos'
 
 function App() {
   const location = useLocation();
@@ -45,9 +44,9 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
           <Route path="/Purchase" element={<Purchase/>}/>
+          <Route path="/MPButton" element={<MPButton/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
-          <Route path='/TermsOfService' element={<TermsOfService/>}/>
-          <Route path='/Carritos/:id' element={<Favoritos/>}/>
+          
 
 
 
