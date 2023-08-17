@@ -38,7 +38,7 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/detail/:id" element={<Detail />} />
-          
+           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
@@ -46,6 +46,7 @@ function App() {
           <Route path="/Purchase" element={<Purchase/>}/>
           <Route path="/MPButton" element={<MPButton/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
+          <Route path='/TermsOfService' element={<TermsOfService/>}/>
           
 
 
@@ -58,7 +59,7 @@ function App() {
           {/* <Route path="/Failure" element={<Failure />} /> */}
           
           
-          {/* <Route path="/FrequentQuestions" element={<FrequentQuestions />} /> */}
+         
           {/* <Route path="/Loader" element={<Loader />} /> */}
 
 
