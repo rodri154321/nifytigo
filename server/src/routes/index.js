@@ -20,6 +20,15 @@ router.use("/login/google", loginGoogleRoutes);
 
 //router.use('/videogames', videoGamesRouter)
 
+
+// routes.js
+
+const { saveBoughtNFT } = require('../controllers/nftsCompradasController');
+
+router.post('/profile/:userId/bought-nfts', saveBoughtNFT);
+
+
+
 module.exports = router;
 
 //Buscar por Id y por nombre los users. eso

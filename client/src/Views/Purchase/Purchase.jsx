@@ -47,7 +47,7 @@ const Purchase=(items)=>{
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'9b36566a-573e-4f44-a19f-41999b4f7251'}`)).data.nfts;
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
             }
@@ -56,6 +56,21 @@ const Purchase=(items)=>{
         getData();
         
     },[])
+    
+    const [boughtNFTs, setBoughtNFTs] = useState([]);
+
+    const buyNFT = (nftId) => {
+        axios.post(`https://nifytigoserver.onrender.com/profile/9b36566a-573e-4f44-a19f-41999b4f7251/bought-nfts`, { nftId })
+          .then(response => {
+            console.log(response.data.message);
+            // Actualiza la lista de NFTs compradas
+            setBoughtNFTs([...boughtNFTs, response.data.boughtNFT]);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
+
     return(
         <div id='purchaseContainer'>
             <div id='detailPurchaseContainer'>
@@ -92,7 +107,13 @@ const Purchase=(items)=>{
                 })}
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
-                <div className='PaypalButtonContainer'>{totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} ></PaypalButton>}</div>
+                
+                <div className='PaypalButtonContainer' >
+                    <button  onClick={buyNFT}>
+
+                    {totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} > </PaypalButton>}
+                    </button>
+                    </div>
             </div>
         </div>
 
