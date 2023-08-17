@@ -42,8 +42,8 @@ const NavBar = () => {
         <NavLink to="/Purchase" className={style.navlink}>
           Purchase PP
         </NavLink>
-        <NavLink to="/MPButton" className={style.navlink}>
-          ButtonMP
+        <NavLink to="/dashboard" className={style.navlink}>
+          dashboard
         </NavLink>
 
         {/*{isClient === "true" && (

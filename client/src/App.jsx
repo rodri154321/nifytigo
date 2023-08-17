@@ -22,6 +22,7 @@ import Login from './Views/Login/Login'
 import Carrito from './Views/Carrito/Carrito'
 import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 import MPButton from './Components/MercadopagoButton/MPButton'
+import DashboardView from './Views/Dashboard/DashboardView'
 
 function App() {
   const location = useLocation();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/Profile" element={<Profile/>} />
           <Route path='/Login' element={<Login />} />
+          <Route path='/dashboardview' element={<DashboardView/>} />
           <Route path="/FrequentQuestions" element={<FrequentQuestions />}/>
           <Route path="/TermsOfService" element={<TermsOfService />}/>
           
