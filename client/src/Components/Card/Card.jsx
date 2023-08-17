@@ -22,13 +22,14 @@ function Card(ejemplo) {
   };
 
 //SE ELIMINA EL NFT QUE ESTA EN EL CARRITO 
-  const deleteToCart = (cartId, nftId) => {
+  const deleteToCart = (cartId, nftId, userId) => {
 
     console.log(nftId)
     axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
       cartId: cartId,
       nftId: nftId,
-    },}  )
+      userId: userId
+    },})
       .then(response => {
       console.log('delete')
 

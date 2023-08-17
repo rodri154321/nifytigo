@@ -59,14 +59,16 @@ return cartShops
  
 }
 
-const  deleteCartNft = async(cartId,nftId)=>{
+const  deleteCartNft = async(cartId,nftId,userId)=>{
 const carts = await cart.findByPk(cartId)
 const nft = await nfts.findByPk(nftId)
 
 await carts.removeNfts(nft)
+const cart = await getMyCart(userId);
 
-return 'Eliminado' + nft  
+return cart  
 }
+
 //cuando el usuario hace click en el boton de abrir el carrito tendria que pasarnos el id...
 // del usuario para buscar el carrito asociado a ese ID
  

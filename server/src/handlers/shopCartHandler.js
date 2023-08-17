@@ -37,7 +37,7 @@ try {
 }
 
 const deleteNftCart = async(req,res)=>{
-    const {cartId, nftId} = req.body
+    const {cartId, nftId, userId} = req.body
 try {
     const deleteNft = await deleteCartNft(cartId,nftId)
     res.status(200).json(deleteNft)
