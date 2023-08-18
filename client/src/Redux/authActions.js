@@ -23,7 +23,7 @@ export const logout = () => {
 export const authenticateUser = (userData) => {
     return async (dispatch) => {
       try {
-        const response = await axios.get(`https://nifytigoserver.onrender.com/users/username`, {
+        const response = await axios.get(`https://nifytigo-49k6.onrender.com/users/username`, {
           params: userData, // Cambia de enviar una solicitud POST a una solicitud GET con parámetros
         });
   

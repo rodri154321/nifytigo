@@ -1,5 +1,5 @@
 
-
+/*profile prueba  */
 import  { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ function ProfileFalso() {
 
   useEffect(() => {
     // Carga las NFTs compradas por el usuario
-    axios.get(`https://localhost:3001/profile/${userId}/bought-nfts`)
+    axios.get(`https://nifytigo-49k6.onrender.com/profile/${userId}/bought-nfts`)
     .then(response => {
         setBoughtNFTs(response.data);
       })

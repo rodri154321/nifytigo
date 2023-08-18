@@ -48,6 +48,7 @@ function App() {
           <Route path="/Purchase" element={<Purchase/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path='/TermsOfService' element={<TermsOfService/>}/>
+          
           <Route path='/Carritos/:id' element={<Favoritos />} /> 
 
           <Route path='/profilefalso/:id/bought-nfts' element={<ProfileFalso />} />

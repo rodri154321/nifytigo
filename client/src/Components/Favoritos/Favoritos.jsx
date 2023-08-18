@@ -31,7 +31,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const userId = "9b36566a-573e-4f44-a19f-41999b4f7251";
-      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      const response = (await axios.get(`https://nifytigo-49k6.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
       console.log(response)

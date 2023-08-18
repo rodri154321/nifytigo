@@ -56,7 +56,8 @@ const Purchase=(items)=>{
         getData();
         
     },[])
-    
+
+    /*Nfts compradas */
     const [boughtNFTs, setBoughtNFTs] = useState([]);
 
     const buyNFT = (nftId) => {
@@ -109,6 +110,7 @@ const Purchase=(items)=>{
                 <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
                 
                 <div className='PaypalButtonContainer' >
+                    {/*boton nfts compradas */}
                     <button  onClick={buyNFT}>
 
                     {totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} > </PaypalButton>}

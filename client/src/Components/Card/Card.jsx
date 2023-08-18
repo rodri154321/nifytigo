@@ -17,7 +17,7 @@ function Card(ejemplo) {
 
   const addToCart = async (userId, nftId) => {
     try {
-      await axios.post('https://nifytigoserver.onrender.com/shop/add', { userId, nftId });
+      await axios.post('https://nifytigo-49k6.onrender.com/shop/add', { userId, nftId });
       setIsCart(true);
     } catch (error) {
       console.error(error);
@@ -26,7 +26,7 @@ function Card(ejemplo) {
 
   const deleteFromCart = async (cartId, nftId) => {
     try {
-      await axios.delete('https://nifytigoserver.onrender.com/shop/delete', {
+      await axios.delete('https://nifytigo-49k6.onrender.com/shop/delete', {
         data: {
           cartId,
           nftId,
@@ -40,9 +40,9 @@ function Card(ejemplo) {
 
   const handleCart = () => {
     if (isCart) {
-      deleteFromCart('f1341af7-b67b-4822-b9c5-10dd66a79578', ejemplo.id); // cartID 
+      deleteFromCart('', ejemplo.id); // cartID 
     } else {
-      addToCart("9b36566a-573e-4f44-a19f-41999b4f7251", ejemplo.id); // userID
+      addToCart("", ejemplo.id); // userID
     }
   };
 
@@ -52,7 +52,7 @@ function Card(ejemplo) {
 
   return (
     <div>
-      <button onClick={handleCart}>{isCart ? "❤️" : "🤍"}</button>
+      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        
