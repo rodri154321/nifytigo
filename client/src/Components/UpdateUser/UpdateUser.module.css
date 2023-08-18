@@ -1,38 +1,81 @@
-.label{
+.labelUpdateUser{
     color: white;
     font-size: large;
 }
-.divInput{
-    color: #9AC71F;
+.divInputUpdateUser{
+    color:#222424;
 }
-.input{
-    color:black;
+.inputUpdateContainer{
+  width:600px;
+  margin:1rem;
+  background-color: aliceblue;
 }
 .error{
     font-size: 15px;
     color:crimson;  
 }
-.editarBtn {
-    height: 80%;
-    width: 100%;
-    font-size: 19px;
-    border-radius: 13px;
-    font-weight: bold;
-    border: none;
-    transition: height 0.3s ease, width 0.3s ease, font-size 0.3s ease;
-  }
-  
-  .editarBtn {
-    background-color: #9AC71F;
-    color: #FDF2E9;
-    margin-top: 7px;
-  }
-  .editarBtn:hover {
-    height: 60%;
-    width: 90%;
-    font-size: 21px;
-    cursor: pointer;
-  }
+.buttonUpdateUser {
+  align-items: center;
+  justify-content:center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow:unset;
+  transition-duration: .3s;
+  box-shadow: 1px 1px 10px rgba(243, 226, 226, 0.301);
+  background-color:rgb(226, 122, 24);
+  font-weight: 600;
+  padding: 0.8rem;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  margin: 2rem;
+  flex-direction: column;
+  width: 150px;
+}
+
+.buttonUpdateUser:hover {
+  background-color: #111313;
+
+}
+
+.buttonUpdateUser::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.buttonUpdateUser:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10px 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+  background-color: black;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+.buttonUpdateUser:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.buttonUpdateUser:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
   .inputForm {
     width: 30rem;
     height: 40px;
@@ -52,22 +95,14 @@
     color: var(--font-color-sub);
     opacity: 0.8;
   }
-  .inputPass {
-    width: 26rem;
+  .inputPassUpdateUser {
+    width: 23rem;
     height: 40px;
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--font-color);
-    padding: 5px 10px;
-    outline: none;
-    margin-bottom: 3px;
+    margin-right: 1rem ;
+
   }
   
-  .inputPass input::placeholder{
+  .inputPassUpdateUser input::placeholder{
     color: var(--font-color-sub);
     opacity: 0.8;
   }
@@ -78,6 +113,9 @@
   .toggleButton {
     font-size: 1.5rem; 
     padding: 0 20px; 
+    border-radius: 12px;
+    border-color: #bec7c7;
+    background-color: rgba(218, 216, 215, 0.932);
   }
   .imagepreview {
     display: flex;
@@ -97,7 +135,7 @@
     width: 15rem;
     height: 15rem;
     object-fit: cover;
-    border-radius: 2rem;
+    border-radius: 11rem;
   }
   
 .removebutton {
@@ -106,4 +144,21 @@
   cursor: pointer;
   border: none;
   background: none;
+}
+
+.containerUpdateUser {
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: flex;
+  gap:1rem;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 2rem;
+  margin: 2.5rem;
+  padding: 2.5rem;
+  background: linear-gradient( #615f5c67,#69686571 );
+  border-radius: 12px;
+  box-shadow: -2px -2px 12px 12px  #4d4c4bd5;
 }

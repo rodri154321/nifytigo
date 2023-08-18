@@ -21,13 +21,13 @@ const UpdateUser = () => {
 
     const [form, setForm] = useState({
         image: '',
-        username: userDetail?.username,
-        name: userDetail?.name,
-        lastName: userDetail?.lastName,
-        country: userDetail?.country,
-        cellPhone: userDetail?.cellPhone,
-        email: userDetail?.email,
-        password: userDetail?.password,
+        username: userDetail?.username || "",
+        name: userDetail?.name || "",
+        lastName: userDetail?.lastName || "",
+        country: userDetail?.country || "",
+        cellPhone: userDetail?.cellPhone || "",
+        email: userDetail?.email || "",
+        password: userDetail?.password || "",
     });
 
     const [errors, setErrors] = useState({});
@@ -51,25 +51,49 @@ const UpdateUser = () => {
     };
 
     const validate = (form) => {
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         let errors = {};
 
+        if (!form.email) {
+            errors.email = "Complete the field please";
+        } else if (!regexEmail.test(form.email)) {
+            errors.email = "The email is not valid";
+        } else if (form.email.length > 50) {
+            errors.email = "The email must not exceed 50 characters";
+        }
+
         if (!form.name) {
-            errors.name = "Se requiere un nombre";
+            errors.name = "Complete the field please";
+        } else if (form.name.length > 35) {
+            errors.name = "The name must not exceed 35 characters";
         }
-        if (!/^(?! *$)[A-Za-z0-9 ]{5,25}$/.test(form.name)) {
-            errors.name = "El nombre debe contener letras 5-25 caracteres";
-        }
-        if (!/^[0-9]{1,10}$/.test(form.phone)) {
-            errors.phone = "El teléfono solo puede contener 10 números sin espacios";
-        }
+
         if (!form.password) {
-            errors.name = "Se requiere una contraseña";
+            errors.password = "Complete the field please";
+        } else if (!form.password.match(/\d/)) {
+            errors.password = "Password must have at least one number";
+        } else if (form.password.length < 6 || form.password.length > 15) {
+            errors.password = "Password must be between 6 and 15 characters";
         }
-        if (!/^(?! *$)[A-Za-z0-9 ]{6,25}$/.test(form.password)) {
-            errors.phone = "La contraseña debe contener 6-10 caracteres";
+        if (!form.cellPhone) {
+            errors.cellPhone = "Complete the field please";
+        } else if (!regexNumeric.test(form.cellPhone)) {
+            errors.cellPhone = "Cell phone must be numeric";
+        } else if (form.cellPhone.length !== 10) {
+            errors.cellPhone = "Cell phone must be 10 digits long";
+        }
+
+        if (!form.country) {
+            errors.country = "Complete the field please";
         }
         return errors;
     };
+
+
+
+
+
+
 
 
     const handleImageUpload = (event) => {
@@ -140,42 +164,60 @@ const UpdateUser = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className={style.divInput}>
-                <input className={style.inputForm} type="text" value={form.name} name="name" placeholder="Nombre" onChange={handleChange} />
-                {errors.name && <p className={style.error}>{errors.name}</p>}
-            </div>
+            <div className={style.containerUpdateUser}>
 
-            <div className={style.divInput}>
-                <input className={style.inputForm} type="text" value={form.phone} name="phone" placeholder="Teléfono" onChange={handleChange} />
-                {errors.phone && <p className={style.error}>{errors.phone}</p>}
-            </div>
-            {(userDetail?.password)?.length > 10 ? undefined :
-                <div className={style.divInput}>
-                    <input className={style.inputPass} type={showPassword ? "text" : "password"} value={form.password} name="password" placeholder="Contraseña" onChange={handleChange} />
-                    {errors.password && <p className={style.error}>{errors.password}</p>}
-                    <button type="button" className={style.toggleButton} onClick={togglePasswordVisibility}>
-                        {showPassword ? "⦿" : "◠"}
-                    </button>
-                </div>}
-
-            <div className={style.divInput}>
-                <input className={style.inputForm} type="file" accept="image/*" name="image" title="Subir Imagen" onChange={handleImageUpload} />
-                {errors.image && <p className={style.error}>{errors.image}</p>}
-            </div>
-            {imagePreviewUrl && (
-                <div className={style.imagepreview}>
-                    <div className={style.imagecontainer}>
-                        <button
-                            className={style.removebutton}
-                            onClick={() => handleRemoveImage()}
-                        >X</button>
-                        <img src={imagePreviewUrl} alt="Preview" />
-                    </div>
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="text" value={form.name} name="username" placeholder="Username" onChange={handleChange} />
+                    {errors.username && <p className={style.error}>{errors.username}</p>}
                 </div>
-            )}
-            <button className={style.editarBtn} type="submit" disabled={buttonDisabled}>
-                Aplicar Cambios
-            </button>
+
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="text" value={form.name} name="name" placeholder="Name" onChange={handleChange} />
+                    {errors.name && <p className={style.error}>{errors.name}</p>}
+                </div>
+
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="text" value={form.name} name="lastName" placeholder="Last name" onChange={handleChange} />
+                    {errors.lastName && <p className={style.error}>{errors.lastName}</p>}
+                </div>
+
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="text" value={form.name} name="country" placeholder="Country" onChange={handleChange} />
+                    {errors.country && <p className={style.error}>{errors.country}</p>}
+                </div>
+
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="text" value={form.phone} name="cellPhone" placeholder="Cell phone" onChange={handleChange} />
+                    {errors.cellPhone && <p className={style.error}>{errors.cellPhone}</p>}
+                </div>
+                {(userDetail?.password)?.length > 10 ? undefined :
+                    <div className={style.divInputUpdateUser}>
+                        <input className={style.inputPassUpdateUser} type={showPassword ? "text" : "password"} value={form.password} name="password" placeholder="Password" onChange={handleChange} />
+                        {errors.password && <p className={style.error}>{errors.password}</p>}
+                        <button type="button" className={style.toggleButton} onClick={togglePasswordVisibility}>
+                            {showPassword ? "•" : "👁️‍🗨️"}
+                        </button>
+                    </div>}
+
+                <div className={style.divInputUpdateUser}>
+                    <input className={style.inputUpdateUser} type="file" accept="image/*" name="image" title="Subir Imagen" onChange={handleImageUpload} />
+                    {errors.image && <p className={style.error}>{errors.image}</p>}
+                </div>
+                {imagePreviewUrl && (
+                    <div className={style.imagepreview}>
+                        <div className={style.imagecontainer}>
+                            <button
+                                className={style.removebutton}
+                                onClick={() => handleRemoveImage()}
+                            >X</button>
+                            <img src={imagePreviewUrl} alt="Preview" />
+                        </div>
+                    </div>
+                )}
+                <button className={style.buttonUpdateUser} type="submit" disabled={buttonDisabled}>
+                    Save
+                </button>
+            </div>
         </form>
     );
 };

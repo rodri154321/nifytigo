@@ -92,31 +92,34 @@ import TopRating from './Views/TopRating/TopRating';
 import Purchase from './Views/Purchase/Purchase';
 import Profile from './Views/Profile/Profile';
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro';
-// import FormNft from './Views/FormNft/FormNft';
+import UpdateUser from './Components/UpdateUser/UpdateUser';
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService';
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions';
 import { PrivacyOfPolicy } from './Views/PrivacyOfPolicy/PrivacyOfPolicy';
 import Login from './Views/Login/Login';
 import Carrito from './Views/Carrito/Carrito';
-// import CarritoLogo from './Components/CarritoLogo/CarritoLogo';
+import CarritoLogo from './Components/CarritoLogo/CarritoLogo';
+import Favoritos from './Components/Favoritos/Favoritos'
 
-// import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
-// import Favoritos from './Components/Favoritos/Favoritos'
 function App() {
   const location = useLocation();
+  const domain = import.meta.env.REACT_APP_AUTH0_DOMAIN;
+  const clientId = import.meta.env.REACT_APP_AUTH0_CLIENT_ID;
+
   const shouldRenderNavBar = location.pathname !== '/Login';
   return (
     <div>
       <div id="container"><NavBar /> </div>
       <div id="Routes">
         <Routes>
+        <Route path="/UpdateUser" element={<UpdateUser />} />
           <Route path="/" element={<Home />} />
           <Route path="/" element={<Cards />} />
           <Route path="/About" element={<About />} />
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/detail/:id" element={<Detail />} />
-           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
+          <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Account" element={<Account />} />
           <Route path='/' element={<Carrito /> }/>
           <Route path="/Profile" element={<Profile />} />
@@ -124,7 +127,7 @@ function App() {
           <Route path="/Purchase" element={<Purchase/>}/>
           <Route path="/PrivacyOfPolicy" element={<PrivacyOfPolicy />} />
           <Route path="/TermsOfService" element={<TermsOfService />} />
-
+          <Route path='/Carritos/:id' element={<Favoritos />} />
           <Route path="/Login" element={<Login />} />
         </Routes>
         <CarritoLogo/>
