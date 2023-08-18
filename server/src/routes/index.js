@@ -7,6 +7,7 @@ const categoriesRoutes = require('./categoriesRoutes')
 const shopCartRoutes = require('./shopCartRoutes')
 const loginRoutes = require('./loginRoutes')
 const loginGoogleRoutes = require('./loginGoogleRoutes')
+const dashboardRoutes = require('./dashboardRoutes')
 //const videoGamesRouter = require("./videoGamesRouter")
 
 router.use('/users', usersRoutes)
@@ -15,7 +16,7 @@ router.use('/categories', categoriesRoutes)
 router.use('/shop', shopCartRoutes)
 router.use("/login", loginRoutes);
 router.use("/login/google", loginGoogleRoutes);
-
+router.use('/dashboard', dashboardRoutes)
 //router.use('/videogames', videoGamesRouter)
 
 module.exports = router;
