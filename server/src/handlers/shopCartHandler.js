@@ -1,4 +1,4 @@
-const {getShopCartController, addNftCart, getMyCart,  deleteCartNft}= require('../controllers/shopCartControllers')
+const {getShopCartController, addNftCart, getMyCart,  deleteCartNft, completeCart}= require('../controllers/shopCartControllers')
 
 const getShopCart = async (req, res) => {
     const {userId} = req.params;
@@ -47,6 +47,18 @@ try {
 }
 }
 
+const updateCartHandler = async(req,res)=>{
+    const {cartId} = req.body
+try {
+    const complete = await completeCart(cartId)
+    res.status(200).json(complete)
+} catch (error) {
+    res.status(400).json({ error: error.message });
 
-module.exports = {getShopCart, postNftCart,getUserCart,deleteNftCart}
+}
+}
+
+
+
+module.exports = {getShopCart, postNftCart,getUserCart,deleteNftCart,updateCartHandler}
 
