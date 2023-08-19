@@ -21,7 +21,8 @@ const initialState = {
   isClient: true,
   access: false,
   userDetail: [],
-  allUsers: []
+  allUsers: [],
+  adminAccessGranted: false,
 }
 
 //traer los carritos dependiendo del id
@@ -198,6 +199,18 @@ const rootReducer = (state = initialState, action) => {
         isLoggedIn: false,
         error: null,
       };
+      case 'GRANT_ADMIN_ACCESS_SUCCESS':
+        return {
+            ...state,
+            adminAccessGranted: true,
+            error: null,
+        };
+    case 'GRANT_ADMIN_ACCESS_FAILURE':
+        return {
+            ...state,
+            adminAccessGranted: false,
+            error: action.error,
+        };
     default:
       return state;
 

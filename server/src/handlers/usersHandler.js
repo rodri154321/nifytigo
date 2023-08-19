@@ -1,4 +1,4 @@
-const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft } = require('../controllers/userController')
+const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft, grantAdminAcces } = require('../controllers/userController')
 const WelcomeEmail = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
@@ -54,6 +54,22 @@ const getIdUsersHandler = async (req, res) => {
     }
 }
 
+const grantAdminAccesHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const adminUser = await grantAdminAcces(id)
+        if (!adminUser) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        adminUser.admin = true;
+        await user.save();
+        return res.status(200).json({ message: 'Acceso de administrador otorgado con éxito' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error en el servidor' });
+    }
+}
+
 const updateUserHandler = async (req, res) => {
     try {
         const { id } = req.params
@@ -104,5 +120,6 @@ module.exports = {
     getDeleteUsersnameHandler,
     getIdUsersHandler,
     updateUserHandler,
-    getNftsUsersHandler
+    getNftsUsersHandler,
+    grantAdminAccesHandler
 }
