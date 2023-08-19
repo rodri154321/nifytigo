@@ -1,5 +1,5 @@
 const { allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
-const {nftPurchaseNotification} = require('../nodemailer/userNodemailer')
+const {nftPurchaseNotificationn} = require('../nodemailer/userNodemailer')
 
 
 
@@ -35,7 +35,7 @@ const postNftHandler = async (req, res) => {
         // const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
-        await nftPurchaseNotification(usuarioEmail, nombreNFT)
+        await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -82,9 +82,9 @@ const deleteNftHandler = async (req, res) => {
 
 const uptadeNftShop = async(req,res)=>{
     const {id} = req.params;
-
+    const {userId} = req.body;
     try {
-        const response = await putShopNft(id)
+        const response = await putShopNft(id , userId)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message });
