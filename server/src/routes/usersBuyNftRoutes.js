@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 
-const {getUserBuy, postUsersBuyNfts,getUsersBuyNfts }= require('../handlers/handlerUsersBuyNfts')
+const {postUsersBuyNfts,getUsersBuyNfts }= require('../handlers/handlerUsersBuyNfts')
 
 
 router

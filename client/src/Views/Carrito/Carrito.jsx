@@ -1,15 +1,16 @@
-import  { useState, useEffect } from 'react';
+
 import { useSelector } from "react-redux"
 
 
 const Carrito = () => {
   const {myFavorites} = useSelector(state=>state)
   return(
-    <div>
+    <div >
       {
           myFavorites.map((character)=>{
               return(
-                  <div>       
+                  // eslint-disable-next-line react/jsx-key
+                  <div>      
                   <div className="card"   display="flex" >
                     <div className="content">
                       <div className="back">
@@ -69,3 +70,18 @@ export default Carrito;
 
 
 export default Carrito*/
+
+
+/* <div>
+        <h2>Productos Disponibles</h2>
+        <ul>
+          {cart.map(product => (
+            <li key={product.id}>
+              {product.name} - ${product.price}
+              <button onClick={() => getToCart(product.id)}> <h1>ver</h1></button>
+            </li>
+            
+          ))}
+        </ul>
+        
+      </div> */

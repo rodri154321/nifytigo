@@ -1,7 +1,7 @@
 const {getShopCartController, addNftCart, getMyCart,  deleteCartNft}= require('../controllers/shopCartControllers')
 
 const getShopCart = async (req, res) => {
-    const {userId}= req.body
+    const {userId} = req.params;
 try {
 const result=await getShopCartController(userId)
 

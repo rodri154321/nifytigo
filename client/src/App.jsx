@@ -14,13 +14,13 @@ import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft'
+//import FormNft from './Views/FormNft/FormNft'
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
 import {PrivacyOfPolicy} from './Views/PrivacyOfPolicy/PrivacyOfPolicy'
 import Login from './Views/Login/Login'
-import Carrito from './Views/Carrito/Carrito'
+
 import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 import Favoritos from './Components/Favoritos/Favoritos'
 function App() {
@@ -37,9 +37,14 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/AboutProgrammers" element={<AboutProgrammers />} />
           <Route path="/detail/:id" element={<Detail />} />
-           <Route path="/FrequentQuestions" element={<FrequentQuestions />} />
           <Route path="/Account" element={<Account />} />
-          <Route path='/' element={<Carrito /> }/>
+          <Route path="/Profile" element={<Profile />} />
+        
+
+       
+          
+          <Route path="/Account" element={<Account />} />
+ 
           <Route path="/Profile" element={<Profile />} />
           <Route path="/TopRating" element={<TopRating/>}/>
           <Route path="/Purchase" element={<Purchase/>}/>

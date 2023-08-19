@@ -13,7 +13,9 @@ const buyNft = require('./usersBuyNftRoutes')
 router.use('/users', usersRoutes)
 router.use('/nft', nftRoutes)
 router.use('/categories', categoriesRoutes)
+
 router.use('/shop', shopCartRoutes)
+
 router.use("/login", loginRoutes);
 router.use("/login/google", loginGoogleRoutes);
 router.use('/buynft',buyNft)

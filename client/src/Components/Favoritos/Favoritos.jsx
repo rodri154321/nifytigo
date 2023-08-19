@@ -1,12 +1,12 @@
-import { useSelector, useDispatch } from "react-redux"
+
+import { useSelector } from "react-redux"
 import { useState } from "react";
 import "./Favoritos.css"
-import CardDtc from "../CardDct/CardDtc";
 import axios from "axios";
 import { useEffect } from "react";
-
+import { NavLink, } from "react-router-dom"
 const Favoritos = ()=>{
-/*
+/*  redux
   const cart = useSelector(state => state.getCarritos)
 
   const dispatch = useDispatch()
@@ -15,6 +15,12 @@ const Favoritos = ()=>{
     dispatch(getCarrito())
   
         },[dispatch])*/
+
+
+    
+
+
+ 
         const [deleteStatus, setDeleteStatus] = useState(null);
 
     const [cart, setCart] = useState({
@@ -29,8 +35,8 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = '2fcf8b23-6c07-416e-bb6c-99cb1f797dc2';
-      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      const userId = 'a4c97885-6310-4ee4-a42d-37a7f99ea765';
+      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
       console.log(response)
@@ -46,33 +52,8 @@ useEffect(() => {
   };
 
   fetchData();
-}, [cart]);
-/*
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const userId = '112c6e93-9118-4755-8984-bca1848ea962';
-      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
-      if (response) {
-        setCart(response);
-        console.log(response);
-      } else {
-        setCart({});
-      }
-    } catch (error) {
-      // alert('No hay personajes con ese ID');
-    }
-  };
+}, []);
 
-  fetchData();
-}, []); // Pasamos un arreglo vacío como <dependencia></dependencia>*/
-
-
-/*
-useEffect(()=>{
-  
-setCart({})
-},[cart])*/
 
 
 
@@ -88,7 +69,7 @@ useEffect(async() => {
 const deleteToCart = (cartId, nftId) => {
 
   console.log(cartId)
-  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
+  axios.delete('http://localhost:3001/shop/delete',   {   data: {
     cartId: cartId,
     nftId: nftId,
   },}  )
@@ -107,57 +88,47 @@ return (
   
 
   
-                <div>  
-     
-                <div className="card">
-                  <div className="content">
-                    <div className="back">
-                      <div className="back-content">
-                       
-                      <div>
-                         
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <div className="front">
-                      
-                      <div className="img">
-                        <div className="circle">
-                        </div>
-                        <div className="circle" id="right">
-                        </div>
-                        <div className="circle" id="bottom">
-                        </div>
-                      </div>
-                
-                      <div className="front-content">
-                     <h1>{cart.status}</h1>
-                         <h1>{cart.userId}</h1>
-                        <div className="description">
-                        <div className="description">
-                          <div className="title">
-                        <p> {cart.price}</p> 
-    
-                          </div>
-                          <p className="card-footer">
-                            
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> 
-                </div>
-          {cart && cart.nfts.map((nft, index) => (
-        <li key={index}>
-            <button onClick={() => deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20', nft.id)}>eliminar Nft</button>
+                <div className="ContainerFav">  
+  
+                  <div className="one-div">
+                    <div className="text"> 
+                    <p>{cart.status}</p>
 
+                   <h1>Price Total: {cart.price}</h1> 
+                   </div>
+                   </div>
+                   
+                    
+             <div className="CartsNFt">      
+ {cart && cart.nfts.map((nft, index) => (
+            <li className="est" key={index}>     
+                 
+        
+            
+   
+ 
+        <div className="nft">
+         
           <img src={nft.image}/>
-          <p>Nombre: {nft.name}</p>
-          <p>Precio: {nft.price}</p>
-        </li>
+          <h2>{nft.name}</h2> 
+          
+          <NavLink className="link" to={`/detail/${nft.id}`}  >
+         <div className="Btn">
+           <h2>Pay: {nft.price}</h2>
+         </div>
+             
+         
+          </NavLink> 
+             
+        
+         
+      </div>
+      <bdo className="bn" onClick={() => deleteToCart('69fff19f-c383-4a37-bf09-20fdbd5274ff', nft.id)}>delete Nft </bdo>
+   </li>
       ))}
+                     
+         </div> 
+                   
   </div>
 );
   

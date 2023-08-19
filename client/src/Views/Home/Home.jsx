@@ -38,6 +38,10 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
     }, [dispatch]);
 
 
+
+
+    
+       
     return (
         <div id='Homes'>
        <div id='HomeContainer'>
@@ -50,6 +54,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
                 <Cards
                 key={eje.id}
                 id={eje.id}
+               shop={eje.shop}
                 name={eje.name}
                 description={eje.description}
                 image={eje.image}

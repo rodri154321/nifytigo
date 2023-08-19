@@ -1,22 +1,18 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, } from "react-router-dom"
 import "./Card.css"
 import { useState} from "react";
 import { useEffect } from "react";
 import axios from "axios"
+
 function Card(ejemplo) {
-
+/*redux */
  const [cart, setCart] = useState([]);
- const [isCart, setIsCart] = useState(false);
-
  const [deleteStatus, setDeleteStatus] = useState(null);
 
- const localStorageKey = `cartState_${ejemplo.id}`;
-
-  
-
+//AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
-    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
         console.log('add')
         console.log(response.data.message);
@@ -24,10 +20,12 @@ function Card(ejemplo) {
       })
       .catch(error => console.error(error));
   };
+
+//SE ELIMINA EL NFT QUE ESTA EN EL CARRITO 
   const deleteToCart = (cartId, nftId) => {
 
-    console.log(cartId)
-    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
+    console.log(nftId)
+    axios.delete('http://localhost:3001/shop/delete',   {   data: {
       cartId: cartId,
       nftId: nftId,
     },}  )
@@ -40,42 +38,44 @@ function Card(ejemplo) {
       .catch(error => console.error(error));  
   };
 
-  useEffect(() => {
-    const storedIsCart = localStorage.getItem(localStorageKey);
-    if (storedIsCart) {
-      setIsCart(JSON.parse(storedIsCart));
-    }
-  }, [localStorageKey]);
-  
-  const handleCart = ()=>{
-    if(isCart){
-      setIsCart(false);
-       deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20',ejemplo.id)
-    } else {
-      setIsCart(true);
-    addToCart('2fcf8b23-6c07-416e-bb6c-99cb1f797dc2',ejemplo.id)
-    }}
-   
-   
-    useEffect(() => {
-      localStorage.setItem(localStorageKey, JSON.stringify(isCart));
-    }, [localStorageKey, isCart]);
-    
+/*ESTADO PARA QUE CAMBIE EL BOTON Y SUS FUNCIONES */
 
-    
-  deleteStatus === 'success' ? (
-    <p>¡El NFT se ha eliminado correctamente!</p>
-  ) : deleteStatus === 'error' ? (
-    <p>Hubo un error al eliminar el NFT.</p>
-  ) : (
-    <p>Eliminando el NFT...</p>
-  )
+const [isCart, setIsCart] = useState(false);
+const localStorageKey = `cartState_${ejemplo.id}`;
 
+useEffect(() => {
+  const storedIsCart = localStorage.getItem(localStorageKey);
+  if (storedIsCart) {
+    setIsCart(JSON.parse(storedIsCart));
+  }
+}, [localStorageKey]);
+
+const handleCart = ()=>{
+  if(isCart){
+    setIsCart(false);
+     deleteToCart('69fff19f-c383-4a37-bf09-20fdbd5274ff',ejemplo.id)
+  } else {
+    setIsCart(true);
+  addToCart('a4c97885-6310-4ee4-a42d-37a7f99ea765',ejemplo.id)
+  }}
  
+ 
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(isCart));
+  }, [localStorageKey, isCart]);
+
+
+
+   deleteStatus === 'success' ? (
+        <p>¡El NFT se ha eliminado correctamente!</p>
+      ) : deleteStatus === 'error' ? (
+        <p>Hubo un error al eliminar el NFT.</p>
+      ) : (
+        <p>Eliminando el NFT...</p>
+      )
 
   return (
     <div>
-
 {
 isCart ? (
    <button onClick={handleCart}>❤️</button>
@@ -84,12 +84,15 @@ isCart ? (
 )
 
 }
-{/*
-  <button onClick={() => deleteToCart('11697b75-34df-46ae-97b1-1ccc69181c20', ejemplo.id)}>eliminar el carrito</button>
 
-  <button onClick={() => addToCart('2fcf8b23-6c07-416e-bb6c-99cb1f797dc2', ejemplo.id)}>Agregar al carrito</button>
-*/
-}
+{/*
+
+   <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
+  <button onClick={() => addToCart("81a9c70e-06e3-496e-a0af-e93a364ac424", ejemplo.id)}>Agregar al carrito</button>
+
+  */}
+
+
 
         <NavLink to={`/detail/${ejemplo.id}`}>
        
@@ -118,6 +121,8 @@ isCart ? (
       <div className="front-content">
      
          <h1>{ejemplo.name}</h1> 
+         <h1>{ejemplo.shop}</h1> 
+
         <div className="description">
         <div className="description">
           <div className="title">
@@ -138,7 +143,7 @@ isCart ? (
      
         </NavLink>
 
-        <Link to='/Favorites'>Fav</Link>
+        
 
     </div>
   )
@@ -147,6 +152,3 @@ isCart ? (
 
 
 export default Card
-
-
-

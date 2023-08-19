@@ -6,4 +6,10 @@ export const FILTER_CATEGORIES='FILTER_CATEGORIES';
 export const LOGIN ='LOGIN';
 export const LOGOUT ='LOGOUT';
 export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
+
+// export const ADD_CART = "ADD_CART";
+// export const DELETE_CART= "DELETE_CART";
+
+export const GET_CARRITOS="GET_CARRITOS"
+
 export const GET_USER_ID = 'GET_USER_ID';
