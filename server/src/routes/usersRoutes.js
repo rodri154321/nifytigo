@@ -10,7 +10,8 @@ const {
     deleteUsersHandler,
     getDeleteUsersnameHandler,
     getIdUsersHandler,
-    getNftsUsersHandler
+    getNftsUsersHandler,
+    grantAdminAccesHandler
 }= require('../handlers/usersHandler')
 
 
@@ -22,6 +23,7 @@ router
 .post('/username', getUserNameHandler)
 .post('/', createUsersHandler)
 .put('/update/:id', updateUserHandler)
+.put('/admin/:id/grant-admin', grantAdminAccesHandler)
 .delete('/:id', deleteUsersHandler)
 .delete('/', getDeleteUsersnameHandler) 
  

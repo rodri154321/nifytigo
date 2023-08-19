@@ -1,4 +1,4 @@
-const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft } = require('../controllers/userController')
+const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft, grantAdminAcces } = require('../controllers/userController')
 const WelcomeEmail = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
@@ -13,9 +13,9 @@ const getUsersHandler = async (req, res) => {
 }
 
 const createUsersHandler = async (req, res) => {
-    const { username, name, lastName, email, password, cellPhone, country } = req.body;
+    const { username, name, lastName, email, password, cellPhone, country, admin } = req.body;
     try {
-        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country);
+        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country, admin);
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
@@ -51,6 +51,27 @@ const getIdUsersHandler = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message })
 
+    }
+}
+
+const grantAdminAccesHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const adminUser = await grantAdminAcces(id)
+        if (!adminUser) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        adminUser.admin = !adminUser.admin;
+        await adminUser.save();
+
+        const message = adminUser.admin
+        ? 'Acceso de administrador otorgado con éxito'
+        : 'Acceso de administrador revocado con éxito';
+
+        return res.status(200).json({ message });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error en el servidor' });
     }
 }
 
@@ -104,5 +125,6 @@ module.exports = {
     getDeleteUsersnameHandler,
     getIdUsersHandler,
     updateUserHandler,
-    getNftsUsersHandler
+    getNftsUsersHandler,
+    grantAdminAccesHandler
 }

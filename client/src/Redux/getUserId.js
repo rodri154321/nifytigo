@@ -1,3 +1,36 @@
+import axios from 'axios';
+
+export const grantAdminAccess = (id) => {
+    return async (dispatch) => {
+        try {
+            await axios.put(`https://nifytigoserver.onrender.com/users/${id}/grant-admin`);
+            dispatch({type: 'GRANT_ADMIN_ACCESS_SUCCESS'})
+        } catch (error) {
+            console.log(error);
+            dispatch({type: 'GRANT_ADMIN_ACCESS_FAILURE', error: 'Error de red' });
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import axios from "axios"
 // export const {GET_USER_ID} = "GET_USER_ID"
 
