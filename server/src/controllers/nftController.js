@@ -71,7 +71,7 @@ const getNftById = async (id) => {
         user:nft.user.name,
         userid: nft.user.id,
         categories: nft.categories
-      })}else{return`No se encontro Id`;}
+      })}return 'se seteo'
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
