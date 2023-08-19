@@ -82,9 +82,9 @@ const deleteNftHandler = async (req, res) => {
 
 const uptadeNftShop = async(req,res)=>{
     const {id} = req.params;
-    const {userId} = req.body;
+   
     try {
-        const response = await putShopNft(id , userId)
+        const response = await putShopNft(id)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -93,9 +93,9 @@ const uptadeNftShop = async(req,res)=>{
 }
 
 const getNftTrueHandler = async(req,res)=>{
-    const {userId} = req.params;
+  
     try {
-        const response = await allNftsTrue(userId)
+        const response = await allNftsTrue()
         res.status(200).json(response)
 
     } catch (error) {
@@ -104,9 +104,9 @@ const getNftTrueHandler = async(req,res)=>{
 }
 
 const getNftTrueIdHandler = async (req,res)=>{
-  const {userId} = req.body
+
   try {
-    const response = await allNftsTrue(userId)
+    const response = await allNftsTrue()
     res.status(200).json(response)
 
 } catch (error) {
