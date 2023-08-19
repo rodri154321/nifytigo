@@ -61,9 +61,14 @@ const grantAdminAccesHandler = async (req, res) => {
         if (!adminUser) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
-        adminUser.admin = true;
+        adminUser.admin = !adminUser.admin;
         await adminUser.save();
-        return res.status(200).json({ message: 'Acceso de administrador otorgado con éxito' });
+
+        const message = adminUser.admin
+        ? 'Acceso de administrador otorgado con éxito'
+        : 'Acceso de administrador revocado con éxito';
+
+        return res.status(200).json({ message });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Error en el servidor' });
