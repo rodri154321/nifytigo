@@ -7,7 +7,7 @@ const { getNftHandler,postNftHandler, nftbyID, deleteNftHandler, updateNftHandle
 
 router
 .get('/', getNftHandler)
-.post('/create/:email', postNftHandler)
+.post('/create', postNftHandler)
 .get("/:id", nftbyID)
 .delete('/delete/:id', deleteNftHandler)
 .put('/update/:id', updateNftHandler)

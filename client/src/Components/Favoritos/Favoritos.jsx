@@ -30,8 +30,8 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = "9b36566a-573e-4f44-a19f-41999b4f7251";
-      const response = (await axios.get(`https://nifytigo-49k6.onrender.com/shop/cart/${userId}`)).data;
+      const userId = "8b9815f2-0a2d-4b97-b8c3-cc06e8730a15";
+      const response = (await axios.get(`http://localhost:3001/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
       console.log(response)
@@ -64,7 +64,7 @@ useEffect(async() => {
 const deleteToCart = (cartId, nftId) => {
 
   console.log(cartId)
-  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
+  axios.delete('http://localhost:3001/shop/delete',   {   data: {
     cartId: cartId,
     nftId: nftId,
   },}  )
@@ -119,7 +119,7 @@ return (
         
          
       </div>
-      <bdo className="bn" onClick={() => deleteToCart('f1341af7-b67b-4822-b9c5-10dd66a79578', nft.id)}>delete Nft </bdo>
+      <bdo className="bn" onClick={() => deleteToCart('88e14ca7-c505-48d4-bd48-32ede695e4d0', nft.id)}>delete Nft </bdo>
    </li>
       ))}
                      

@@ -8,6 +8,8 @@ const shopCartRoutes = require('./shopCartRoutes')
 const loginRoutes = require('./loginRoutes')
 const loginGoogleRoutes = require('./loginGoogleRoutes')
 //const videoGamesRouter = require("./videoGamesRouter")
+const saveBoughtNFT = require("./saveBoughtNfts")
+
 
 router.use('/users', usersRoutes)
 router.use('/nft', nftRoutes)
@@ -20,12 +22,12 @@ router.use("/login/google", loginGoogleRoutes);
 
 //router.use('/videogames', videoGamesRouter)
 
-
+router.use("/" , saveBoughtNFT)
 // routes.js
 
-const { saveBoughtNFT } = require('../controllers/nftsCompradasController');
 
-router.post('/profile/:userId/bought-nfts', saveBoughtNFT);
+
+
 
 
 

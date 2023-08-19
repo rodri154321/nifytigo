@@ -66,9 +66,19 @@ nfts.belongsToMany(cart,{
   })
 
 
-nftsComprada.belongsTo(nfts,{
-  foreignKey: 'userId'
-})
+// nftsComprada.belongsToMany(nfts,{
+//   through:"nfts_c"
+// })
+
+
+// nfts.belongsToMany(nftsComprada,{
+//   through: "nfts_c"
+// })
+
+// nftsComprada.belongsToMany(users,{
+//   through: 'userId'
+// })
+
 
   
 module.exports = {

@@ -15,7 +15,7 @@ export default function Detail() {
     useEffect(() => {
 
         // axios(`https://nifytigo.onrender.com/nft/${id}`).then(({ data }) => {
-        // axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
+        //axios(`http://localhost:3001/nft/${id}`).then(({ data }) => {
         axios(`https://nifytigoserver.onrender.com/nft/${id}`).then(({ data }) => {
 
            if (data.name) {

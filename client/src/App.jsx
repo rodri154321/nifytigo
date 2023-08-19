@@ -14,7 +14,7 @@ import TopRating from './Views/TopRating/TopRating'
 import Purchase from './Views/Purchase/Purchase'
 import Profile from './Views/Profile/Profile'
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro'
-import FormNft from './Views/FormNft/FormNft'
+
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService'
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions'
@@ -23,7 +23,7 @@ import Login from './Views/Login/Login'
 import Carrito from './Views/Carrito/Carrito'
 import CarritoLogo from './Components/CarritoLogo/CarritoLogo'
 import Favoritos from './Components/Favoritos/Favoritos'
-import ProfileFalso from './Views/ProfileFalso/ProfileFalso'
+
 
 function App() {
   const location = useLocation();
@@ -51,7 +51,7 @@ function App() {
           
           <Route path='/Carritos/:id' element={<Favoritos />} /> 
 
-          <Route path='/profilefalso/:id/bought-nfts' element={<ProfileFalso />} />
+    
 
          <Route path='/Login' element={<Login />} /> 
 
