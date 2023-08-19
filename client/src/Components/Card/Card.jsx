@@ -1,7 +1,6 @@
 import { NavLink, } from "react-router-dom"
 import "./Card.css"
 import { useState} from "react";
-import { useEffect } from "react";
 import axios from "axios"
 
 function Card(ejemplo) {
@@ -12,7 +11,7 @@ function Card(ejemplo) {
 //AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
-    axios.post('http://localhost:3001/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
       .then(response => {
         console.log('add')
         console.log(response.data.message);
@@ -25,7 +24,7 @@ function Card(ejemplo) {
   const deleteToCart = (cartId, nftId) => {
 
     console.log(nftId)
-    axios.delete('http://localhost:3001/shop/delete',   {   data: {
+    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
       cartId: cartId,
       nftId: nftId,
     },}  )
@@ -43,58 +42,33 @@ function Card(ejemplo) {
 const [isCart, setIsCart] = useState(false);
 const localStorageKey = `cartState_${ejemplo.id}`;
 
-useEffect(() => {
-  const storedIsCart = localStorage.getItem(localStorageKey);
-  if (storedIsCart) {
-    setIsCart(JSON.parse(storedIsCart));
-  }
-}, [localStorageKey]);
+  useEffect(() => {
+    const storedIsCart = localStorage.getItem(localStorageKey);
+    setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
+  }, [localStorageKey]);
 
 const handleCart = ()=>{
   if(isCart){
     setIsCart(false);
-     deleteToCart('69fff19f-c383-4a37-bf09-20fdbd5274ff',ejemplo.id)
+     deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8',ejemplo.id)
   } else {
     setIsCart(true);
-  addToCart('a4c97885-6310-4ee4-a42d-37a7f99ea765',ejemplo.id)
+  addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424',ejemplo.id)
   }}
  
  
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(isCart));
+    localStorage.setItem(localStorageKey, isCart);
   }, [localStorageKey, isCart]);
-
-
-
-   deleteStatus === 'success' ? (
-        <p>¡El NFT se ha eliminado correctamente!</p>
-      ) : deleteStatus === 'error' ? (
-        <p>Hubo un error al eliminar el NFT.</p>
-      ) : (
-        <p>Eliminando el NFT...</p>
-      )
 
   return (
     <div>
-{
-isCart ? (
-   <button onClick={handleCart}>❤️</button>
-) : (
-   <button onClick={handleCart}>🤍</button>
-)
+      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
 
-}
-
-{/*
-
-   <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
-  <button onClick={() => addToCart("81a9c70e-06e3-496e-a0af-e93a364ac424", ejemplo.id)}>Agregar al carrito</button>
-
-  */}
-
-
-
-        <NavLink to={`/detail/${ejemplo.id}`}>
+      <NavLink to={`/detail/${ejemplo.id}`}>
+       
+         
+        
        
 <div className="card">
   <div className="content">
@@ -143,12 +117,12 @@ isCart ? (
      
         </NavLink>
 
-        
+          </div>
+       
+   
+      );
+    }
+    
+    export default Card;
+    
 
-    </div>
-  )
-}
-
-
-
-export default Card

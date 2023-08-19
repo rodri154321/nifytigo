@@ -17,6 +17,7 @@ const Account = ({ onSubmit }) => {
     cellPhone: "",
     country: "",
   });
+  console.log(userData)
   const [errors, setErrors] = useState({});
   const [userCreationStatus, setUserCreationStatus] = useState('');
 const [errorMessage, setErrorMessage] = useState('');

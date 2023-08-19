@@ -4,23 +4,83 @@ import Cards from '../../Components/Cards/Cards';
 import { useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const Purchase=(items)=>{
     const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
-    let price=0;
+    const [carritoDataServer,setcarritoDataServer]=useState([]);
+    const [total,setTotal]=useState(0);
+    // let price=0;
+    let totalValue=0;
+    // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
+    let idUserActual="8e7e6aab-1c6e-4d5c-b90b-5a6365042f3b";
     
+   // const clientId = localStorage.getItem("clientId");  
+
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);
     const id= searchParams.get('id');
+    let purchaseData={idUser: idUserActual ,idNFT:[]};
+    let currentItems='';
     
-    const currentItem=ejemplo.filter(card=>card.id==id)
-    console.log(currentItem[0]);
-    if (currentItem) {price=parseFloat(currentItem[0].price); console.log('El precio es:',price)}
+
+    if(id){                         //! Si se comprará card directo sin carrito
+        console.log('Params de solo una card')
+        currentItems=ejemplo.filter(card=>card.id==id)
+        console.log(currentItems);
+        // if (currentItems) {price=parseFloat(currentItems[0].price); console.log('El precio es:',price)}
+        purchaseData={  
+            idUser:idUserActual,
+             idNFT:[]
+        }
+        if (currentItems) {totalValue=parseFloat(currentItems[0].price); console.log('El precio es:',totalValue)}
+    }
+    else{                           //! Se comprará desde carrito
+        currentItems=carritoDataServer;
+        carritoDataServer.map((items)=>{
+            totalValue=totalValue+parseFloat(items.price);        //!Acumulación de precios
+           totalValue.toFixed(2)
+            console.log('El valor total a pagar es:',totalValue)
+
+        })
+        
+        // console.log('Compra del carrito 2 :',currentItems)
+    }
+
+    useEffect(()=>{                 //! Al montar el componente
+        const getData = async()=>{
+            try{
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'8b9815f2-0a2d-4b97-b8c3-cc06e8730a15'}`)).data.nfts;
+                console.log('Datos del carrito traidos desde el server',response)
+                setcarritoDataServer(response);
+            }
+            catch(error){}
+            }
+        getData();
+        
+    },[])
+
+    /*Nfts compradas 
+    const [boughtNFTs, setBoughtNFTs] = useState([]);
+
+    const buyNFT = (nftId) => {
+        axios.post(`https://nifytigoserver.onrender.com/profile/9b36566a-573e-4f44-a19f-41999b4f7251/bought-nfts`, { nftId })
+          .then(response => {
+            console.log(response.data.message);
+            // Actualiza la lista de NFTs compradas
+            setBoughtNFTs([...boughtNFTs, response.data.boughtNFT]);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };*/
 
     return(
         <div id='purchaseContainer'>
             <div id='detailPurchaseContainer'>
-            {currentItem?.map((eje) =>{
+            {currentItems?.map((eje) =>{
+                purchaseData.idNFT.push(eje.id)
                 return(
                         <Cards
                         key={eje.id}
@@ -41,7 +101,7 @@ const Purchase=(items)=>{
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Item Name</h2><h2 className='subtitleItem'>Price</h2></div>
                 
-                {currentItem?.map((item)=>{
+                {currentItems?.map((item)=>{
                     return(
                         // eslint-disable-next-line react/jsx-key
                         <div className='itemList'>
@@ -50,7 +110,16 @@ const Purchase=(items)=>{
                         </div>
                     )
                 })}
-                <div className='PaypalButtonContainer'>{currentItem &&<PaypalButton  totalValue={price} invoice={'Informacion de lo que se compro'} ></PaypalButton>}</div>
+                <hr id='titleSeparator'></hr>
+                <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
+                
+                <div className='PaypalButtonContainer' >
+                    {/*boton nfts compradas */}
+               
+
+                    {totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} > </PaypalButton>}
+           
+                    </div>
             </div>
         </div>
 
@@ -58,3 +127,7 @@ const Purchase=(items)=>{
     }
 
 export default Purchase;
+
+//Email test:
+// sb-shaik27022013@personal.example.com
+// *K)wk1FJ

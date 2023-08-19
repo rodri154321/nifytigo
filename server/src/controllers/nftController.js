@@ -1,4 +1,8 @@
-const { nfts, users, categories } = require('../db.js');
+
+
+//hare una ruta sencilla
+//la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
+ const { nfts, users, categories } = require('../db.js');
 
 
 const allNft = async (name) => {
@@ -71,7 +75,7 @@ const getNftById = async (id) => {
         user:nft.user.name,
         userid: nft.user.id,
         categories: nft.categories
-      })}return 'se seteo'
+      })}{return`se seteo`;}
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }

@@ -9,6 +9,8 @@ const loginRoutes = require('./loginRoutes')
 const loginGoogleRoutes = require('./loginGoogleRoutes')
 const buyNft = require('./usersBuyNftRoutes')
 //const videoGamesRouter = require("./videoGamesRouter")
+const saveBoughtNFT = require("./saveBoughtNfts")
+
 
 router.use('/users', usersRoutes)
 router.use('/nft', nftRoutes)
@@ -18,8 +20,18 @@ router.use('/shop', shopCartRoutes)
 
 router.use("/login", loginRoutes);
 router.use("/login/google", loginGoogleRoutes);
-router.use('/buynft',buyNft)
+
+
 //router.use('/videogames', videoGamesRouter)
+
+router.use("/" , saveBoughtNFT)
+// routes.js
+
+
+
+
+
+
 
 module.exports = router;
 

@@ -7,6 +7,7 @@ import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_SECRET = import.meta.env.VITE_API_SECRET;
@@ -20,26 +21,32 @@ const FormNft = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
+  const clientId = localStorage.getItem('clientId');
 
   const [formData, setFormData] = useState({
 
-      iduser: "b38064b4-71cd-40f1-a80f-9031506471c4",
-      image: [],
-      name: "",
-      description: "",
-      price: "",
-      categorie: [],
-    });
-
+    iduser: clientId,
+    image: [],
+    name: "",
+    description: "",
+    price: "",
+    categorie: [],
+  });
   const [formErrors, setFormErrors] = useState({
     image: [],
     name: "",
     description: "",
     price: "",
   });
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      iduser: clientId, // Actualizar el valor de iduser si clientId cambia
+    }));
+  }, [clientId]);
 
   useEffect(() => {
-    dispatch(getCategories()); // Cargar las categorías al cargar el componente
+    dispatch(getCategories()); 
   }, [dispatch]);
 
   const handleInputChange = (event) => {
@@ -54,11 +61,11 @@ const FormNft = () => {
   const validateField = (fieldName, value) => {
     let errors = "";
     switch (fieldName) {
-     // case "image":
-       // if (formData.image.length === 0) {
-         // errors = "Please select an NFT";
-       // }
-        //break;
+      // case "image":
+      // if (formData.image.length === 0) {
+      // errors = "Please select an NFT";
+      // }
+      //break;
       case "name":
         if (!/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(value)) {
           errors = "El nombre debe tener entre 3 y 25 letras o numeros y no debe contener espacios seguidos en blanco.";
@@ -208,7 +215,7 @@ const FormNft = () => {
         background: '#000000', // Color de fondo negro
         confirmButtonColor: '#5CE1E6', // Color del botón de confirmación
         cancelButtonColor: '#FF914D', // Color del botón de cancelación
-       // 
+        // 
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/Profile");
@@ -236,7 +243,7 @@ const FormNft = () => {
             <div className={style.imagepreview}>
               {formData.image?.map((imageUrl) => (
                 <div key={imageUrl} className={style.imageContainerFormNft}>
-                  <Image publicId={imageUrl} cloudName={CLOUD_NAME}className={style.nftImage}>
+                  <Image publicId={imageUrl} cloudName={CLOUD_NAME} className={style.nftImage}>
                     <Transformation width="100" height="100" crop="thumb" />
                   </Image>
                   <button
@@ -276,12 +283,12 @@ const FormNft = () => {
               rows="4"
               required
               placeholder="Description"
-              
+
             ></textarea>
             {formErrors.description && <p className={style.error}>{formErrors.description}</p>}
           </div>
 
-          <div  className={style.inputContainerFormNft}>
+          <div className={style.inputContainerFormNft}>
             {/*<h3 htmlFor="price">Price:</h3>*/}
             <input
               type="number"
@@ -306,7 +313,7 @@ const FormNft = () => {
             >
               {categories.map((category) => (
                 <option key={category.name} value={category.name} className={style.optionFormNft}>
-                  {category.name} 
+                  {category.name}
                 </option>
               ))}
             </select>
