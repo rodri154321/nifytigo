@@ -24,13 +24,20 @@ const PaypalButton = (props)=>{
                 nftId:nftID
             }
             console.log('Posteando al back:',buyData)
-            const responseBack = await axios.post('http://localhost:3001/',buyData);            //!Guardar los NFTs comprados en la base de datos
-            console.log(responseBack.data);
+            /*registro de compras */
+            const responseBack = await axios.post('https://nifytigoserver.onrender.com/profile',buyData); 
+           // const responseBack = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
+             console.log(responseBack.data);           //!Guardar los NFTs comprados en la base de datos
     })
 
        
-        
+       
     }
+        
+        
+                   //!Guardar los NFTs comprados en la base de datos
+     
+    
 
     return(
 

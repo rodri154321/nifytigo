@@ -6,7 +6,7 @@ import "./CarritoLogo.css" // Asegúrate de tener este archivo CSS creado
 import { NavLink } from "react-router-dom";
 const CarritoLogo = () => {
 
-    
+//  const clientId = localStorage.getItem('clientId');
   
 
   return (
@@ -14,7 +14,7 @@ const CarritoLogo = () => {
     <div className="logo-container">
 
        
-            <NavLink to={`/Carritos/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`}> 
+            <NavLink to={`/Carritos/${""}`}> 
              <img src="https://i.pinimg.com/1200x/1b/3b/d5/1b3bd5af30cb31cc4bc842b38e3ce459.jpg" alt="Logo" className="logo-image" />
              </NavLink>
         

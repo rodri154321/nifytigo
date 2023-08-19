@@ -1,4 +1,4 @@
-const { allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
+const { allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
 const {nftPurchaseNotification} = require('../nodemailer/userNodemailer')
 
 
@@ -27,15 +27,15 @@ const postNftHandler = async (req, res) => {
     const {email} = req.params
     console.log("EMAIL = ", email);
     
-    const { iduser, name, description, image, price, categorie } = req.body;
+    const { iduser,shop, name,  description, image, price, categorie } = req.body;
     try {
-        const response = await createNft(iduser, name, description, image, price, categorie);
+        const response = await createNft(iduser,shop, name, description, image, price, categorie);
 
         const usuarioEmail = email;
-        const nombreUsuario = '[nombre del usuario]';
+        // const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
-        await nftPurchaseNotification(usuarioEmail, nombreUsuario, nombreNFT)
+        await nftPurchaseNotification(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -71,6 +71,7 @@ const updateNftHandler = async (req, res) => {
 const deleteNftHandler = async (req, res) => {
 
     const { id } = req.params;
+    //por que estaba descripcion como argumento ?
     try {
         const response = await deleteNft(id);
         res.status(200).json(response);
@@ -79,11 +80,60 @@ const deleteNftHandler = async (req, res) => {
     }
 }
 
+const uptadeNftShop = async(req,res)=>{
+    const {id} = req.params;
 
+    try {
+        const response = await putShopNft(id)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
+
+const getNftTrueHandler = async(req,res)=>{
+    try {
+        const response = await allNftsTrue()
+        res.status(200).json(response)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+const getNftTrueIdHandler = async (req,res)=>{
+  const {userId} = req.body
+  try {
+    const response = await allNftsTrue(userId)
+    res.status(200).json(response)
+
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
+}
+
+const getNftFalseHandler = async(req,res)=>{
+    try {
+        const response = await allNftsFalse()
+        res.status(200).json(response)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
 module.exports = {
     getNftHandler,
     postNftHandler,
     deleteNftHandler,
     updateNftHandler,
-    nftbyID
+    nftbyID,
+    uptadeNftShop,
+    getNftTrueHandler,
+    getNftFalseHandler,
+    getNftTrueIdHandler 
 }
+
+//hare una ruta sencilla
+//la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
