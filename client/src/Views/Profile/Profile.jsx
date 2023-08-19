@@ -8,12 +8,12 @@ import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
 import Cards from "../../Components/Card/Card";
 import line from "../../assets/line.png"
-import UpdateUser from "../../Components/UpdateUser/UpdateUser";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const loger = localStorage.getItem('loger');
   const [storedUserId, setStoredUserId] = useState(localStorage.getItem("clientId"));
-  const [showAlertLog, setShowAlertLog] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -56,23 +56,11 @@ const Profile = () => {
     fetchData();
   }, [dispatch, storedUserId, loger]);
 
-  useEffect(() => {
-    setStoredUserId(localStorage.getItem("clientId"));
-  }, []);
-
-
-  const editProfile = () => {
-    setShowAlertLog(true);
-  };
-
-  const handleClose = () => {
-    setShowAlertLog(false);
-    // Resto de tu lógica
-  };
 
   const [infoVisibleTwo, setInfoVisibleTwo] = useState(false);
   const [infoVisibleFour, setInfoVisibleFour] = useState(false);
   const [infoVisibleFive, setInfoVisibleFive] = useState(false);
+  const [showAlertLog, setShowAlertLog] = useState(false);
 
   const toggleInfoTwo = () => {
     setInfoVisibleTwo(!infoVisibleTwo);
@@ -86,6 +74,11 @@ const Profile = () => {
     setInfoVisibleFive(!infoVisibleFive);
   };
 
+  const editProfile = () => {
+    console.log("Opening modal");
+    setShowAlertLog(true);
+  };
+  
   const userImage = userDetail?.image || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSfXuM3iS_aGTL5IijNPFKi0Iu4x_J5l7zUpK6x3jvdYFAxDtjm";
 
   return (
@@ -110,32 +103,28 @@ const Profile = () => {
               <h2>E-mail: {userDetail.email}</h2>
             </>
           )}
-
-
-
-<button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>
-        <h4>Update</h4>
-      </button>
-      {/* Resto de tu JSX */}
-      {showAlertLog && (
-        <div className={style.popup}>
-          <div className={style.container}>
-            <h2>Edit Personal Data</h2>
+          <button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>
+          <NavLink to="/UpdateUser">Update</NavLink>
+          </button>
           </div>
-          <div className={style.containerBtn}>
-          {console.log("userDetail en Profile:", userDetail)}
-          <UpdateUser userDetail={userDetail} />
-            <button className={style.btnCancel} onClick={handleClose}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
+
+          {/*{showAlertLog && (
+            <div className={style.popup}>
+              <div className={style.container}>
+                <h2>Edit Personal Data</h2>
+              </div>
+              <div className={style.containerBtn}>
+                <UpdateUser userDetail={userDetail} />
+                <button className={style.btnCancel} onClick={handleClose}>Cancel</button>
+              </div>
+            </div>
+          )}*/}
+
 
           <button className={style.buttonProfile}>
             <NavLink to="/">Back</NavLink>
           </button>
-        </div>
+        
       </div>
       <div className={style.games}>
         {/*  <h1 className={style.reserva}>Profile</h1>*/}
@@ -180,12 +169,10 @@ const Profile = () => {
           </div>
         </div>
 
-
-
         <div className={style.navlinkCreateNft} >
           <div>
             <h1 onClick={toggleInfoFive} className={style.navlinkProfile} >
-              Favorites
+              Bought
             </h1>
           </div>
           <div classname={style.CreateNftFormNft}>

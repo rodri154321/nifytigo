@@ -11,4 +11,4 @@ export const updateUser = (user) => {
         return dispatch({ type: UPDATE_USER, payload: info.data });
 
     }
-}
+} 
