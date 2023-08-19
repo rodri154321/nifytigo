@@ -57,8 +57,8 @@ const getIdUsersHandler = async (req, res) => {
 const updateUserHandler = async (req, res) => {
     try {
         const { id } = req.params
-        const { username, name, lastName, email, password, cellPhone, country } = req.body
-        const user = await updateUser(id, username, name, lastName, email, password, cellPhone, country);
+        const { username, name, lastName, image, password, cellPhone, country } = req.body
+        const user = await updateUser(id, username, name, lastName, image, password, cellPhone, country);
         return res.status(200).json(user)
     } catch (error) {
         res.status(500).json({ message: 'No se pudo actualizar el Usuario' });

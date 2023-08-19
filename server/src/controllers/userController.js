@@ -34,7 +34,7 @@ const findUserName = async (username, password) => {
 
 };
 
-const updateUser = async (id, username, name, lastName, email, password, cellPhone, country) => {
+const updateUser = async (id, username, name, lastName, image, password, cellPhone, country) => {
 
     const userUp = await users.findByPk(id);
 
@@ -61,10 +61,10 @@ const updateUser = async (id, username, name, lastName, email, password, cellPho
           })
     }
     
-    if (userUp.email !== email) {
-        await users.update({ email: email },
+    if (userUp.image !== email) {
+        await users.update({ image: image },
             {where: {
-                email: userUp.email
+                image: userUp.image
             }
           })
     }
