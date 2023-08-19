@@ -64,7 +64,7 @@ useEffect(async() => {
 const deleteToCart = (cartId, nftId) => {
 
   console.log(cartId)
-  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
+  axios.delete('http://localhost:3001/shop/delete',   {   data: {
     cartId: cartId,
     nftId: nftId,
   },}  )

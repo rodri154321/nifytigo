@@ -40,9 +40,9 @@ function Card(ejemplo) {
 
   const handleCart = () => {
     if (isCart) {
-      deleteFromCart('f1341af7-b67b-4822-b9c5-10dd66a79578', ejemplo.id); // cartID 
+      deleteFromCart('', ejemplo.id); // cartID 
     } else {
-      addToCart("9b36566a-573e-4f44-a19f-41999b4f7251", ejemplo.id); // userID
+      addToCart("", ejemplo.id); // userID
     }
   };
 
@@ -52,7 +52,7 @@ function Card(ejemplo) {
 
   return (
     <div>
-      <button onClick={handleCart}>{isCart ? "❤️" : "🤍"}</button>
+      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        

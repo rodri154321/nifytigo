@@ -157,7 +157,6 @@ const Profile = () => {
   </div>
   </div>*/}
 
-
         <div className={style.navlinkCreateNft} >
           <div>
             <h1 onClick={toggleInfoTwo} className={style.navlinkProfile} >

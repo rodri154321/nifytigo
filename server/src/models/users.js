@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
         country:{
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        admin: { 
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     },
     {timestamps:false});

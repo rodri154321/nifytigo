@@ -14,12 +14,14 @@ const Purchase=(items)=>{
     // let price=0;
     let totalValue=0;
     // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-    let idUserActual='f11db94d-5cae-426f-a734-143183a204f4';
+    let idUserActual="8e7e6aab-1c6e-4d5c-b90b-5a6365042f3b";
     
+   // const clientId = localStorage.getItem("clientId");  
+
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);
     const id= searchParams.get('id');
-    let purchaseData={idUser:'',idNFT:[]};
+    let purchaseData={idUser: idUserActual ,idNFT:[]};
     let currentItems='';
     
 
@@ -38,7 +40,9 @@ const Purchase=(items)=>{
         currentItems=carritoDataServer;
         carritoDataServer.map((items)=>{
             totalValue=totalValue+parseFloat(items.price);        //!Acumulación de precios
+           totalValue.toFixed(2)
             console.log('El valor total a pagar es:',totalValue)
+
         })
         
         // console.log('Compra del carrito 2 :',currentItems)
@@ -47,7 +51,7 @@ const Purchase=(items)=>{
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'9b36566a-573e-4f44-a19f-41999b4f7251'}`)).data.nfts;
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'8b9815f2-0a2d-4b97-b8c3-cc06e8730a15'}`)).data.nfts;
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
             }
@@ -56,7 +60,8 @@ const Purchase=(items)=>{
         getData();
         
     },[])
-    
+
+    /*Nfts compradas 
     const [boughtNFTs, setBoughtNFTs] = useState([]);
 
     const buyNFT = (nftId) => {
@@ -69,7 +74,7 @@ const Purchase=(items)=>{
           .catch(error => {
             console.error(error);
           });
-      };
+      };*/
 
     return(
         <div id='purchaseContainer'>
@@ -109,10 +114,11 @@ const Purchase=(items)=>{
                 <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
                 
                 <div className='PaypalButtonContainer' >
-                    <button  onClick={buyNFT}>
+                    {/*boton nfts compradas */}
+               
 
                     {totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} > </PaypalButton>}
-                    </button>
+           
                     </div>
             </div>
         </div>

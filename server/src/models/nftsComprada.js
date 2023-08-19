@@ -8,10 +8,14 @@ module.exports = (sequelize) => {
             primaryKey: true,
             allowNull: false,
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        userId:{
+             type: DataTypes.STRING,
+            allowNull: true,
         },
+        nftId:{
+            type: DataTypes.STRING,
+            allowNull: true,
+        }
         // Agrega las propiedades relacionadas con las NFTs compradas
     }, { timestamps: false });
 
