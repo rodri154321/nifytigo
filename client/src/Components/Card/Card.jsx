@@ -17,7 +17,7 @@ function Card(ejemplo) {
 
   const addToCart = async (userId, nftId) => {
     try {
-      await axios.post('http://localhost:3001/shop/add', { userId, nftId });
+      await axios.post('https://nifytigoserver.onrender.com/shop/add', { userId, nftId });
       setIsCart(true);
     } catch (error) {
       console.error(error);
@@ -26,7 +26,7 @@ function Card(ejemplo) {
 
   const deleteFromCart = async (cartId, nftId) => {
     try {
-      await axios.delete('http://localhost:3001/shop/delete', {
+      await axios.delete('https://nifytigoserver.onrender.com/shop/delete', {
         data: {
           cartId,
           nftId,
@@ -40,9 +40,9 @@ function Card(ejemplo) {
 
   const handleCart = () => {
     if (isCart) {
-      deleteFromCart('88e14ca7-c505-48d4-bd48-32ede695e4d0', ejemplo.id); // cartID 
+      deleteFromCart('', ejemplo.id); // cartID 
     } else {
-      addToCart("8b9815f2-0a2d-4b97-b8c3-cc06e8730a15", ejemplo.id); // userID
+      addToCart("", ejemplo.id); // userID
     }
   };
 
