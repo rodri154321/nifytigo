@@ -10,6 +10,7 @@ function Card(ejemplo) {
  // const clientId = localStorage.getItem('clientId');
   const localStorageKey = `cartState_${ejemplo.id}`;
 
+
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean

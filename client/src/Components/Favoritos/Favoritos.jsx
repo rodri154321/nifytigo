@@ -119,7 +119,11 @@ return (
         
          
       </div>
+<<<<<<< HEAD
       <bdo className="bn" onClick={() => deleteToCart('', nft.id)}>delete Nft </bdo>
+=======
+      <bdo className="bn" onClick={() => deleteToCart('bff6a42a-c16d-4932-9618-6c81fdd60f11', nft.id)}>delete Nft </bdo>   //! PONER SU ID DE CARRITO!!!! 
+>>>>>>> develop
    </li>
       ))}
                      

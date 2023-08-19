@@ -5,13 +5,13 @@ export function buscarName(name) {
         try {
         //    const responce = (await axios.get(`http://localhost:3001/nft/?name=${name}`)).data;
             const responce = (await axios.get(`https://nifytigoserver.onrender.com/nft/?name=${name}`)).data;
-            console.log(responce);
+            // console.log(responce);
             dispatch({
                 type:'GET_GAMENAME',
                 payload: responce
             })
         } catch (error) {
-            alert(error.response.data.error)
+            console.error("Ocurrió un error al buscar el nombre");
         }
     }
 }
