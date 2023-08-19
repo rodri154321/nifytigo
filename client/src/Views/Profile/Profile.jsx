@@ -45,8 +45,10 @@ const Profile = () => {
 
         // Get user ID and user NFTs
         await dispatch(getUserIdAsync(loger, storedUserId));
+        
         await dispatch(getNftsForUser(storedUserId));
       } catch (error) {
+
         console.error(error);
       }
     };

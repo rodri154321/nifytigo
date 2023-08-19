@@ -14,9 +14,10 @@ const Purchase=(items)=>{
     // let price=0;
     let totalValue=0;
     // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-    let idUserActual="8e7e6aab-1c6e-4d5c-b90b-5a6365042f3b";
+   
     
-   // const clientId = localStorage.getItem("clientId");  
+   const clientId = localStorage.getItem("clientId");  
+    let idUserActual= clientId;
 
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);

@@ -7,7 +7,9 @@ import {
   GET_USER_ID, 
   GET_NFTS_FOR_USER, 
   UPDATE_USER_DETAIL, 
-  UPDATE_USER } from "./actionTypes";
+  UPDATE_USER,
+  CART_ID
+} from "./actionTypes";
 
 const initialState = {
   user: null,
@@ -21,7 +23,8 @@ const initialState = {
   isClient: true,
   access: false,
   userDetail: [],
-  allUsers: []
+  allUsers: [],
+  carritoId: [],
 }
 
 //traer los carritos dependiendo del id
@@ -111,7 +114,13 @@ const rootReducer = (state = initialState, action) => {
               ejemplo: filteredGamesByGenres,
             };
 
- 
+    case CART_ID:
+        localStorage.setItem("cartId", action.payload.cartId.id);
+      return{
+        ...state,
+        carritoId: action.payload.cartId.id
+      }
+
 
     case LOGIN:
       localStorage.setItem("clientId", action.payload.user.id);
