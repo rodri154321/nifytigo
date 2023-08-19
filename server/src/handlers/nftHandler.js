@@ -93,10 +93,9 @@ const uptadeNftShop = async(req,res)=>{
 }
 
 const getNftTrueHandler = async(req,res)=>{
-    const {id} = req.body;
-    const {userId} = req.body;
+    const {userId} = req.params;
     try {
-        const response = await allNftsTrue(id, userId)
+        const response = await allNftsTrue(userId)
         res.status(200).json(response)
 
     } catch (error) {
