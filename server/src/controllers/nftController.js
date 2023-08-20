@@ -73,7 +73,7 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.user.id,
+        userId: nft.userId,
         categories: nft.categories
       })}
   {return`se seteo`;}
@@ -109,9 +109,8 @@ const putShopNft = async (nftId) => {
 
             if (nft) {
           // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: true });// ahora se setea el userId en modo comprador
-          await nft.update({ userid: userid});
-          await nft.update({ price: price });
+          await nft.update({ shop: true, userId: userId, price: price});// ahora se setea el userId en modo comprador
+  
           // Obtener la información actualizada del NFT
           return await getNftById(nftId);
       } else {
