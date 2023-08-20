@@ -73,9 +73,10 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.user.id,
+        iduser: nft.iduser,
         categories: nft.categories
-      })}{return`se seteo`;}
+      })}
+  {return`se seteo`;}
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
@@ -101,15 +102,15 @@ const updateNftDescription = async (id, description) => {
   return nft;
 };
 
-const putShopNft = async (nftId) => {
+const putShopNft = async (nftId, iduser, price) => {
   try {
       // Buscar el NFT por ID
       const nft = await nfts.findByPk(nftId);
 
             if (nft) {
           // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: true });
-
+          await nft.update( {where: { shop: true, iduser: iduser, price: price}});// ahora se setea el userId en modo comprador
+  
           // Obtener la información actualizada del NFT
           return await getNftById(nftId);
       } else {

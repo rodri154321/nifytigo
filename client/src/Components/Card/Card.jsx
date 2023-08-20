@@ -42,7 +42,7 @@ function Card(ejemplo) {
     if (isCart) {
       deleteFromCart('bff6a42a-c16d-4932-9618-6c81fdd60f11', ejemplo.id); // cartID 
     } else {
-      addToCart("e836d177-2b43-4c54-bc6a-41f08b932de5", ejemplo.id); // userID
+      addToCart("b5a12bbc-b81d-4e33-a7fc-5a0eaed85098", ejemplo.id); // userID
     }
   };
 
