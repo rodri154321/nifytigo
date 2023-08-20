@@ -25,6 +25,7 @@ const initialState = {
   adminAccessGranted: false,
 }
 
+
 //traer los carritos dependiendo del id
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -137,6 +138,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
+      console.log(isClient)
       localStorage.setItem("clientId", action.payload.id);
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
@@ -151,12 +153,13 @@ const rootReducer = (state = initialState, action) => {
       
       case GET_USER_ID:
         case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí
+        localStorage.setItem("userDetail", action.payload);
           return {
             ...state,
             userDetail: action.payload,
           };
+          
         case GET_NFTS_FOR_USER:
-          console.log(action.payload);
           return {
             ...state,
             userNFTs: action.payload,

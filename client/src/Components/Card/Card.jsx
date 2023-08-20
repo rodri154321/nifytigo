@@ -40,9 +40,9 @@ function Card(ejemplo) {
 
   const handleCart = () => {
     if (isCart) {
-      deleteFromCart('', ejemplo.id); // cartID 
+      deleteFromCart('bff6a42a-c16d-4932-9618-6c81fdd60f11', ejemplo.id); // cartID 
     } else {
-      addToCart("", ejemplo.id); // userID
+      addToCart("e836d177-2b43-4c54-bc6a-41f08b932de5", ejemplo.id); // userID
     }
   };
 

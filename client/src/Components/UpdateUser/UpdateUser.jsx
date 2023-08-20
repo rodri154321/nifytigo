@@ -13,8 +13,13 @@ const PRESET = import.meta.env.VITE_PRESET;
 const UpdateUser = () => {
     const navigate = useNavigate();
     const loger = localStorage.getItem('loger');
+    //console.log(loger)
+
     const id = localStorage.getItem("clientId");
+    console.log(id)
+
     const userDetail = useSelector((state) => state.userDetail);
+    console.log(userDetail)
 
     const [imagePreviewUrl, setImagePreviewUrl] = useState("")
     const dispatch = useDispatch();
@@ -45,7 +50,7 @@ const UpdateUser = () => {
         window.location.reload(false);
     };
 
-    console.log("userDetail:", userDetail);
+    //console.log("userDetail:", userDetail);
 
     const handleChange = (event) => {
         setForm({
@@ -141,6 +146,7 @@ const UpdateUser = () => {
             alert("Debe rellenar el campo obligatorio");
         } else {
             try {
+                //console.log(response)
                 const response = await dispatch(updateUser(form));
                 setIsUpdateSuccessful(true);
                 setIsUpdateError(false);
