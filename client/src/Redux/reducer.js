@@ -33,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         ejemplo: action.payload,
         cardsFiltered: action.payload,
       };
-
+      
     case POST_NFT:
       return {
         ...state,
@@ -125,9 +125,9 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGOUT:
-      localStorage.clear();
-      localStorage.setItem("isClient", 0)
-      localStorage.setItem("access", false)
+     localStorage.clear();
+      // localStorage.setItem("isClient", 0)
+      // localStorage.setItem("access", false)
       return {
         ...state,
         clientId: 0,
@@ -136,8 +136,8 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
-      localStorage.setItem("clientId", action.payload.user.id);
-      localStorage.setItem("isClient", action.payload.user.client);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("access", true)
       return {
         ...state,
@@ -145,6 +145,7 @@ const rootReducer = (state = initialState, action) => {
         isClient: action.payload.client,
         access: true,
       };
+      
       
       case GET_USER_ID:
         case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí

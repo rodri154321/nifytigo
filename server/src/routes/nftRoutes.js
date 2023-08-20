@@ -25,7 +25,6 @@ router
 .put('/:id', uptadeNftShop)
 .get('/nfts/true',getNftTrueHandler)
 
-.get('/nfts/true',getNftTrueHandler)
 
 .get('/nfts/false',getNftFalseHandler)
 module.exports = router;

@@ -12,7 +12,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        
+        shop:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
         description: {
             type: DataTypes.TEXT,
         },

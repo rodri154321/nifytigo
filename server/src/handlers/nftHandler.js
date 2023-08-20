@@ -32,10 +32,10 @@ const postNftHandler = async (req, res) => {
         const response = await createNft(iduser,shop, name, description, image, price, categorie);
 
         const usuarioEmail = email;
-        const nombreUsuario = '[nombre del usuario]';
+        // const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
-        await nftPurchaseNotification(usuarioEmail, nombreUsuario, nombreNFT)
+        await nftPurchaseNotification(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -137,3 +137,6 @@ module.exports = {
 
 //hare una ruta sencilla
 //la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
+
+
+//porque no se crean las nftc

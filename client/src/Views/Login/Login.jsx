@@ -14,6 +14,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const access = localStorage.getItem("access");
+
   const detail = localStorage.getItem("detail");
 
   const [user, setUser] = useState({
@@ -49,8 +51,8 @@ const Login = () => {
 
   const onSuccess = (response) => {
     const user = {
-      //lastName:response.profileObj.lastName,
-      //username: response.profileObj.username,
+      // lastName:response.profileObj.lastName,
+      // username: response.profileObj.username,
       email: response.profileObj.email,
       googleId: response.profileObj.googleId,
       name: response.profileObj.name,
@@ -81,7 +83,7 @@ const Login = () => {
     );
   };
 
-  const access = useSelector((state) => state.access);
+  
 
   useEffect(() => {
     if (access) {
