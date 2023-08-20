@@ -39,7 +39,7 @@ const findUserName = async (username, password) => {
 
 };
 
-const updateUser = async (id, username, name, lastName, image, password, cellPhone, country) => {
+const updateUser = async (id, username, name, lastName, image, password, cellPhone, country, admin) => {
 
     const userUp = await users.findByPk(id);
 
@@ -101,6 +101,16 @@ const updateUser = async (id, username, name, lastName, image, password, cellPho
             {
                 where: {
                     country: userUp.country
+                }
+            })
+    }
+
+
+    if (userUp.admin !== admin) {
+        await users.update({ admin: admin },
+            {
+                where: {
+                    country: userUp.admin
                 }
             })
     }
