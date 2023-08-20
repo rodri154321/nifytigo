@@ -6,8 +6,8 @@ const allUsers = async () => {
     return allusersDb
 }
 
-const createUser = async (username, name, lastName, email, password, cellPhone, country, admin) => {
-    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin })
+const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image) => {
+    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image })
 
     return newUser
 }

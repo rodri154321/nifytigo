@@ -13,9 +13,9 @@ const getUsersHandler = async (req, res) => {
 }
 
 const createUsersHandler = async (req, res) => {
-    const { username, name, lastName, email, password, cellPhone, country, admin } = req.body;
+    const { username, name, lastName, email, password, cellPhone, country, admin, image } = req.body;
     try {
-        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country, admin);
+        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country, admin, image);
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
