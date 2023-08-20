@@ -82,9 +82,9 @@ const deleteNftHandler = async (req, res) => {
 
 const uptadeNftShop = async(req,res)=>{
     const {id} = req.params;
-   const {userId, price} = req.body;
+   const {iduser, price} = req.body;
     try {
-        const response = await putShopNft(id, userId, price)
+        const response = await putShopNft(id, iduser, price)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message });
