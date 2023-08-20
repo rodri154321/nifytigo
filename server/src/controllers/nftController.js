@@ -102,7 +102,7 @@ const updateNftDescription = async (id, description) => {
   return nft;
 };
 
-const putShopNft = async (nftId) => {
+const putShopNft = async (nftId, iduser, price) => {
   try {
       // Buscar el NFT por ID
       const nft = await nfts.findByPk(nftId);
