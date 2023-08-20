@@ -24,18 +24,18 @@ const getNftHandler = async (req, res) => {
 }
 
 const postNftHandler = async (req, res) => {
-    const {email} = req.params
-    console.log("EMAIL = ", email);
+ /*   const {email} = req.params
+    console.log("EMAIL = ", email);*/
     
     const { iduser,shop, name,  description, image, price, categorie } = req.body;
     try {
         const response = await createNft(iduser,shop, name, description, image, price, categorie);
 
-        const usuarioEmail = email;
+       // const usuarioEmail = email;
         // const nombreUsuario = '[nombre del usuario]';
-        const nombreNFT = response.name;
+      //  const nombreNFT = response.name;
 
-        await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
+       // await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -82,9 +82,9 @@ const deleteNftHandler = async (req, res) => {
 
 const uptadeNftShop = async(req,res)=>{
     const {id} = req.params;
-   const {iduser, price} = req.body;
+   const {userid, price} = req.body;
     try {
-        const response = await putShopNft(id, iduser, price)
+        const response = await putShopNft(id, userid, price)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -137,3 +137,6 @@ module.exports = {
 
 //hare una ruta sencilla
 //la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
+
+
+//porque no se crean las nftc

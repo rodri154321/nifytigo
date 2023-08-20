@@ -7,6 +7,7 @@ const categoriesRoutes = require('./categoriesRoutes')
 const shopCartRoutes = require('./shopCartRoutes')
 const loginRoutes = require('./loginRoutes')
 const loginGoogleRoutes = require('./loginGoogleRoutes')
+const buyNft = require('./usersBuyNftRoutes')
 //const videoGamesRouter = require("./videoGamesRouter")
 const saveBoughtNFT = require("./saveBoughtNfts")
 
