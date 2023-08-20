@@ -111,6 +111,7 @@ const putShopNft = async (nftId) => {
           // Actualizar el valor de 'shop' a true
           await nft.update({ shop: true });// ahora se setea el userId en modo comprador
           await nft.update({ userid: userid});
+          await nft.update({ price: price });
           // Obtener la información actualizada del NFT
           return await getNftById(nftId);
       } else {
