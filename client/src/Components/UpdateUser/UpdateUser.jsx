@@ -41,6 +41,7 @@ const UpdateUser = () => {
         country: userDetail.country || "",
         cellPhone: userDetail.cellPhone || "",
         password: userDetail.password || "",
+        admin:false
     });
 
     const [errors, setErrors] = useState({});
