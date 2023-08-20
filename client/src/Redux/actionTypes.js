@@ -12,3 +12,4 @@ export const GET_USER_ID = 'GET_USER_ID';
 export const GET_NFTS_FOR_USER = 'GET_NFTS_FOR_USER';
 export const UPDATE_USER_DETAIL = 'UPDATE_USER_DETAIL';
 export const UPDATE_USER = 'UPDATE_USER';
+ export const CART_ID = "CART_ID"
