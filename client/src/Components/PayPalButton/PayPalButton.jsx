@@ -10,7 +10,8 @@ import { useSelector } from "react-redux";
 const PaypalButton = (props)=>{
     console.log('Data Ingresante para comprar en Paypal(idUser+NFT),', props)      //! ID
     
-    
+    const [paymentStatus, setPaymentStatus] = useState(''); //*Payout
+
     let total=props.totalValue;
     console.log('Precio en el Pbutton:', total)
 
@@ -27,8 +28,16 @@ const PaypalButton = (props)=>{
             console.log('Posteando al back:',buyData)
             /*registro de compras */
             const responseBack = await axios.post('https://nifytigoserver.onrender.com/profile',buyData); 
-           // const responseBack = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
-             console.log(responseBack.data);           //!Guardar los NFTs comprados en la base de datos
+            // const responseBack2 = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
+             console.log('Respuesta 1:',responseBack.data);           //!Guardar los NFTs comprados en la base de datos
+            //  console.log('Respuesta 2:', responseBack2.data);           //!Guardar los NFTs comprados en la base de datos
+
+            const response = await axios.post('/api/payments', {
+                senderEmail,
+                recipientEmail,
+              });
+              setPaymentStatus(response.data.message);
+
     })
 
        

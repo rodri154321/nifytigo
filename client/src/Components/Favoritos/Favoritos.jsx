@@ -30,7 +30,7 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = "";
+      const userId = "b5a12bbc-b81d-4e33-a7fc-5a0eaed85098";
       const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
