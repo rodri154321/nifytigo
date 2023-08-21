@@ -30,7 +30,7 @@ const Favoritos = ()=>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userId = "";
+      const userId = "b5a12bbc-b81d-4e33-a7fc-5a0eaed85098";
       const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
       if(response){
       setCart(response);
@@ -40,7 +40,6 @@ useEffect(() => {
     }
 
     } catch (error) { 
-      
      
       //  alert('No hay personajes con ese ID');
     }
@@ -63,13 +62,13 @@ useEffect(async() => {
 */
 const deleteToCart = (cartId, nftId) => {
 
-  console.log(cartId)
-  axios.delete('http://localhost:3001/shop/delete',   {   data: {
+  console.log('EN EL CARTID, el id es:',cartId, 'y el user id es:',nftId)
+  axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
     cartId: cartId,
     nftId: nftId,
   },}  )
     .then(response => {
-    console.log('delete')
+    
 
       console.log(response.data.message);
       setDeleteStatus([...deleteStatus]);

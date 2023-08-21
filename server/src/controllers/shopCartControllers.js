@@ -64,8 +64,9 @@ const deleteCartNft = async (cartId, nftId, userId) => {
   const nft = await nfts.findByPk(nftId)
 
   await carts.removeNfts(nft)
+  const cartb = await getMyCart(userId);
   const cart = await getMyCart(userId);
-
+  
   return cart
 }
 
