@@ -7,8 +7,8 @@ export const updateUser = (user) => {
            
         const id = localStorage.getItem('clientId');
         //const info = await axios.put(`https://nifytigo-49k6.onrender.com/users/${id}`, user);
-      const info = await axios.put(`https://nifytigoserver.onrender.com/users/${id}`, user);
+      const info = await axios.put(`https://nifytigoserver.onrender.com/users/update/${id}`, user);
         return dispatch({ type: UPDATE_USER, payload: info.data });
 
     }
-}
+} 

@@ -1,6 +1,6 @@
 import { NavLink, } from "react-router-dom"
 import "./Card.css"
-import { useState} from "react";
+import { useState,useEffect} from "react";
 import axios from "axios"
 
 function Card(ejemplo) {
@@ -41,7 +41,6 @@ function Card(ejemplo) {
 
 const [isCart, setIsCart] = useState(false);
 const localStorageKey = `cartState_${ejemplo.id}`;
-
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
