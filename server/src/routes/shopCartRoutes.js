@@ -8,9 +8,12 @@ const { getShopCart,postNftCart,getUserCart,deleteNftCart,updateCartHandler }= r
 router
 .get('/cart/:id', getUserCart)
 .post('/add',postNftCart)
-.get('/carti', getShopCart)
+.get('/carti/:id', getShopCart)
+
 .put('/complete', updateCartHandler)
+
 .delete("/delete",deleteNftCart)
 
 module.exports = router;
+
 

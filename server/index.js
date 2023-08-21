@@ -7,3 +7,4 @@ conn.sync({ alter: true }).then(() => {
       console.log(`Server listening on port ${PORT}`);
     })
     }).catch(error => console.error(error))
+    

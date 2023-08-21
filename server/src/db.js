@@ -28,7 +28,7 @@ const { favorites, nfts, users, categories, cart, nftsComprada } = sequelize.mod
 // 1. Relación uno a muchos: users -> nfts
 users.hasMany(nfts, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
-});
+}); //x
 nfts.belongsTo(users, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
 });
@@ -44,7 +44,7 @@ users.belongsToMany(favorites, {
 // 3. Relación muchos a muchos: nfts <-> categories
 nfts.belongsToMany(categories, {
   through: 'nfts_categories', // Nombre de la tabla intermedia que contiene las relaciones
-});
+});//x
 categories.belongsToMany(nfts, {
   through: 'nfts_categories', // Nombre de la tabla intermedia que contiene las relaciones
 });
@@ -66,6 +66,12 @@ nfts.belongsToMany(cart,{
   })
 
 
+//Esta es la relacion de el registro de compras
+
+//Esta es la relacion del nft comprado
+
+
+
 // nftsComprada.belongsToMany(nfts,{
 //   through:"nfts_c"
 // })
@@ -82,6 +88,6 @@ nfts.belongsToMany(cart,{
 
   
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  ...sequelize.models, /// para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };

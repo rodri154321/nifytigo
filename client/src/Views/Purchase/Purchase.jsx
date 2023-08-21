@@ -14,10 +14,8 @@ const Purchase=(items)=>{
     // let price=0;
     let totalValue=0;
     // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-    // let idUserActual="8e7e6aab-1c6e-4d5c-b90b-5a6365042f3b";
+    let idUserActual='f11db94d-5cae-426f-a734-143183a204f4';
     
-    let idUserActual = localStorage.getItem("clientId");  
-
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);
     const id= searchParams.get('id');
@@ -51,8 +49,7 @@ const Purchase=(items)=>{
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;
-                // let response = (await axios.get(`localhost3001:/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;                
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'8b9815f2-0a2d-4b97-b8c3-cc06e8730a15'}`)).data.nfts;
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
             }
