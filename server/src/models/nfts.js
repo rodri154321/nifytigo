@@ -28,6 +28,6 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0.00,  // podemos establecer un valor predeterminado
         },
-    },{timestamps:false});
+    });
 };
 
