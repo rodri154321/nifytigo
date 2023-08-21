@@ -226,6 +226,9 @@ export default function LinesChart() {
 
     const allLabels = [...new Set([...labelsUser, ...labelsNFTs])]; // Combinar todas las etiquetas
 
+    console.log(allLabels);
+    console.log(userData);
+
     const midata = {
         labels: allLabels, // Etiquetas para el eje X que incluyen ambos gráficos
         datasets: [
