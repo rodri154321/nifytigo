@@ -8,13 +8,12 @@ import { useSelector } from "react-redux";
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const PaypalButton = (props)=>{
-    console.log('Data Ingresante para comprar en Paypal(idUser+NFT),', props)      //! ID
+    console.log('Data Ingresante para comprar en Paypal,', props)      //! ID
     
     const [paymentStatus, setPaymentStatus] = useState(''); //*Payout
 
     let total=props.totalValue;
-    console.log('Precio en el Pbutton:', total)
-
+    // console.log('Precio en el Pbutton:', total)
     const handlePay = async (orderR)=>{ 
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');

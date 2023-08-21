@@ -90,7 +90,7 @@ return (
                       <div className="text"> 
                       <p>{cart.status}</p>
 
-                    <h1>Price Total: {cart.price}</h1>
+                    <h1>Total Price: {cart.price}</h1>
                       
                     </div>
                    </NavLink>
@@ -119,7 +119,8 @@ return (
         
          
       </div>
-      <bdo className="bn" onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>delete Nft </bdo>
+      <bdo className="bn" onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', nft.id)}>Delete NFT </bdo>   
+      {/* // PONER SU ID DE CARRITO!!!!  */}
    </li>
       ))}
                      

@@ -6,6 +6,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import React from 'react';
 
 const Purchase=(items)=>{
     const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado global
@@ -14,34 +15,34 @@ const Purchase=(items)=>{
     // let price=0;
     let totalValue=0;
     // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-   
+    const clientId = localStorage.getItem("clientId");
+    console.log('El usuario actualmente logeado: ',clientId)
+    let idUserActual='f11db94d-5cae-426f-a734-143183a204f4';
+      
     
-   const clientId = localStorage.getItem("clientId");  
-    let idUserActual= clientId;
-
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);
     const id= searchParams.get('id');
-    let purchaseData={idUser: idUserActual ,idNFT:[]};
+    let purchaseData={idUser:'',idNFT:[]};
     let currentItems='';
+    // const reduxID=useSelector(state=>state.clientId)
     
+    console.log('El id del usuario actual es:', clientId)
 
     if(id){                         //! Si se comprará card directo sin carrito
-        console.log('Params de solo una card')
         currentItems=ejemplo.filter(card=>card.id==id)
-        console.log(currentItems);
+        // console.log(currentItems);
         // if (currentItems) {price=parseFloat(currentItems[0].price); console.log('El precio es:',price)}
         purchaseData={  
-            idUser:idUserActual,
+            idUser:clientId,
              idNFT:[]
         }
-        if (currentItems) {totalValue=parseFloat(currentItems[0].price); console.log('El precio es:',totalValue)}
+        if (currentItems) {totalValue=parseFloat(currentItems[0].price); }
     }
     else{                           //! Se comprará desde carrito
         currentItems=carritoDataServer;
         carritoDataServer.map((items)=>{
             totalValue=totalValue+parseFloat(items.price);        //!Acumulación de precios
-           totalValue.toFixed(2)
             console.log('El valor total a pagar es:',totalValue)
 
         })
@@ -56,6 +57,7 @@ const Purchase=(items)=>{
                 // let response2 = (await axios.get(`localhost3001:/shop/cart/${'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098'}`)).data.nfts;                
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
+
             }
             catch(error){}
             }
@@ -98,7 +100,7 @@ const Purchase=(items)=>{
             })}
             </div>
 
-            <div id='paymentsContainer'>
+            <div id='paymentsContainer' >
                 <h1 id='title'>Purchase detail</h1>
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Item Name</h2><h2 className='subtitleItem'>Price</h2></div>
@@ -114,14 +116,7 @@ const Purchase=(items)=>{
                 })}
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Total Price</h2><h2 className='subtitleItem'>{totalValue}</h2></div>
-                
-                <div className='PaypalButtonContainer' >
-                    {/*boton nfts compradas */}
-               
-
-                    {totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} > </PaypalButton>}
-           
-                    </div>
+                <div className='PaypalButtonContainer'>{totalValue &&<PaypalButton purchaseData={purchaseData} totalValue={totalValue} invoice={'Comprando NFTS'} ></PaypalButton>}</div>
             </div>
         </div>
 
