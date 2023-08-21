@@ -6,8 +6,8 @@ const allUsers = async () => {
     return allusersDb
 }
 
-const createUser = async (username, name, lastName, email, password, cellPhone, country, admin) => {
-    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin })
+const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image) => {
+    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image })
 
     return newUser
 }
@@ -39,75 +39,41 @@ const findUserName = async (username, password) => {
 
 };
 
-const updateUser = async (id, username, name, lastName, image, password, cellPhone, country) => {
-
-    const userUp = await users.findByPk(id);
-
-    if (userUp.username !== username) {
-        await users.update({ username: username },
-            {
-                where: {
-                    username: userUp.username
-                }
-            })
+const updateUser = async (id, updates) => {
+    try {
+      const user = await users.findByPk(id);
+      
+      if (!user) {
+        throw new Error('Usuario no encontrado');
+      }
+  
+      // Validar los datos actualizados si es necesario
+  
+      // Realizar actualizaciones solo para campos que han cambiado
+      const updatedFields = {};
+  
+      for (const key of Object.keys(updates)) {
+        if (user[key] !== updates[key]) {
+          updatedFields[key] = updates[key];
+        }
+      }
+  
+      if (Object.keys(updatedFields).length === 0) {
+        return user; // No hay actualizaciones necesarias
+      }
+  
+      await users.update(updatedFields, {
+        where: { id },
+      });
+  
+      // Obtener el usuario actualizado
+      const updatedUser = await users.findByPk(id);
+      
+      return updatedUser;
+    } catch (error) {
+      throw new Error('No se pudo actualizar el Usuario');
     }
-    if (userUp.name !== name) {
-        await users.update({ name: name },
-            {
-                where: {
-                    name: userUp.name
-                }
-            })
-    }
-
-    if (userUp.lastName !== lastName) {
-        await users.update({ lastName: lastName },
-            {
-                where: {
-                    lastName: userUp.lastName
-                }
-            })
-    }
-
-    if (userUp.image !== email) {
-        await users.update({ image: image },
-            {
-                where: {
-                    image: userUp.image
-                }
-            })
-    }
-
-    if (userUp.password !== password) {
-        await users.update({ password: password },
-            {
-                where: {
-                    password: userUp.password
-                }
-            })
-    }
-
-    if (userUp.cellPhone !== cellPhone) {
-        await users.update({ cellPhone: cellPhone },
-            {
-                where: {
-                    cellPhone: userUp.cellPhone
-                }
-            })
-    }
-
-    if (userUp.country !== country) {
-        await users.update({ country: country },
-            {
-                where: {
-                    country: userUp.country
-                }
-            })
-    }
-
-    const newUserUp = await users.findByPk(id);
-    return newUserUp
-};
+  };
 
 
 const deleteUsersById = async (id) => {

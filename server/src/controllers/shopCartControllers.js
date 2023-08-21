@@ -23,7 +23,7 @@ const addNftCart = async (nftId, userId) => {
   await addCart.addNft(nftId)
   return addCart
 }
-
+//https://nifytigoserver.onrender.com
 const getMyCart = async (userId) => {
   const cartShop = await getShopCartController(userId)
 
@@ -59,14 +59,18 @@ const getMyCart = async (userId) => {
 
 }
 
-const deleteCartNft = async (cartId, nftId, userId) => {
-  const carts = await cart.findByPk(cartId)
-  const nft = await nfts.findByPk(nftId)
+const deleteCartNfts = async (cartId, nftId) => {
+  const carts = await cart.findByPk(cartId);
+  const nft = await nfts.findByPk(nftId);
+  if (!cart || !nft) {
+      throw new Error("Cart or NFT not found");
+  }
 
-  await carts.removeNfts(nft)
-  const cart = await getMyCart(userId);
-
-  return cart
+  // Suponiendo que la relación entre el carrito y los NFTs se llama "nfts"
+  await carts.removeNft(nft);
+  
+  // Devuelve el carrito actualizado
+  return carts;
 }
 
 //cuando el usuario hace click en el boton de abrir el carrito tendria que pasarnos el id...
@@ -84,6 +88,6 @@ const completeCart = async (cartId) => {
 
 }
 
-module.exports = { getShopCartController, createShopCart, addNftCart, getMyCart, deleteCartNft, completeCart }
+module.exports = { getShopCartController, createShopCart, addNftCart, getMyCart, deleteCartNfts, completeCart }
 
 //alt + shift + f   

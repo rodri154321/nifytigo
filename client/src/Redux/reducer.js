@@ -7,7 +7,9 @@ import {
   GET_USER_ID, 
   GET_NFTS_FOR_USER, 
   UPDATE_USER_DETAIL, 
-  UPDATE_USER } from "./actionTypes";
+  UPDATE_USER,
+  CART_ID
+} from "./actionTypes";
 
 const initialState = {
   user: null,
@@ -22,8 +24,10 @@ const initialState = {
   access: false,
   userDetail: [],
   allUsers: [],
+  carritoId: [],
   adminAccessGranted: false,
 }
+
 
 //traer los carritos dependiendo del id
 const rootReducer = (state = initialState, action) => {
@@ -112,7 +116,13 @@ const rootReducer = (state = initialState, action) => {
               ejemplo: filteredGamesByGenres,
             };
 
- 
+    case CART_ID:
+        localStorage.setItem("cartId", action.payload.cartId.id);
+      return{
+        ...state,
+        carritoId: action.payload.cartId.id
+      }
+
 
     case LOGIN:
       localStorage.setItem("clientId", action.payload.user.id);
@@ -137,8 +147,10 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
+      console.log(isClient)
       localStorage.setItem("clientId", action.payload.id);
       localStorage.setItem("isClient", action.payload.client);
+      localStorage.setItem("loger", true);
       localStorage.setItem("access", true)
       return {
         ...state,
@@ -150,12 +162,13 @@ const rootReducer = (state = initialState, action) => {
       
       case GET_USER_ID:
         case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí
+        localStorage.setItem("userDetail", action.payload);
           return {
             ...state,
             userDetail: action.payload,
           };
+          
         case GET_NFTS_FOR_USER:
-          console.log(action.payload);
           return {
             ...state,
             userNFTs: action.payload,

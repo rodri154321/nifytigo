@@ -27,21 +27,12 @@ const PaypalButton = (props)=>{
             }
             console.log('Posteando al back:',buyData)
             /*registro de compras */
-            const responseBack = await axios.post('https://nifytigoserver.onrender.com/profile',buyData); 
-            // const responseBack2 = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
-             console.log('Respuesta 1:',responseBack.data);           //!Guardar los NFTs comprados en la base de datos
-            //  console.log('Respuesta 2:', responseBack2.data);           //!Guardar los NFTs comprados en la base de datos
-
-            const response = await axios.post('/api/payments', {
-                senderEmail,
-                recipientEmail,
-              });
-              setPaymentStatus(response.data.message);
-
+           // const responseBack = await axios.post('https://nifytigoserver.onrender.com/profile',buyData); 
+            const responseBack = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
+             console.log(responseBack.data);           //!Guardar los NFTs comprados en la base de datos
     })
 
-       
-       
+
     }
         
         

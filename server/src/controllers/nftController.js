@@ -73,9 +73,10 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.user.id,
+        userid: nft.userid,
         categories: nft.categories
-      })}{return`se seteo`;}
+      })}
+  {return`se seteo`;}
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
@@ -101,14 +102,14 @@ const updateNftDescription = async (id, description) => {
   return nft;
 };
 
-const putShopNft = async (nftId) => {
+const putShopNft = async (nftId,userid, price) => {
   try {
       // Buscar el NFT por ID
       const nft = await nfts.findByPk(nftId);
 
-            if (nft) {
+      if (nft) {
           // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: true });
+          await nft.update({ shop: true, userId: userid, price:price });
 
           // Obtener la información actualizada del NFT
           return await getNftById(nftId);
@@ -119,6 +120,7 @@ const putShopNft = async (nftId) => {
       throw new Error('Error updating NFT');
   }
 };
+
 
 
 const allNftsTrue = async()=>{
@@ -134,8 +136,10 @@ return allNftsDb
 }
 
 
-const allNftsIdTrue = async(idusers)=>{
-  const allNftsDb = await nfts.findAll({where:{shop: true}})
+const allNftsIdTrue = async(userId)=>{
+ // const userNft = await nfts.findByPk(userId);
+  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId}})
+
 return allNftsDb
 }
 module.exports = {allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };

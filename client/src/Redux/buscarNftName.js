@@ -14,4 +14,4 @@ export function buscarName(name) {
             console.error("Ocurrió un error al buscar el nombre");
         }
     }
-}
+} 

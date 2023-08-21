@@ -2,14 +2,16 @@ import style from "./Profile.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { updateUserDetail } from "../../Redux/updateUserDetail";
-import { getUserIdAsync, getNftsForUser } from "../../Redux/getUser"; 
+import { getUserIdAsync, getNftsForUser } from "../../Redux/getUser";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/NifytiGo4.png";
 import FormNft from "../FormNft/FormNft";
 import Cards from "../../Components/Card/Card";
-
+import line from "../../assets/line.png"
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const loger = localStorage.getItem('loger');
   const [storedUserId, setStoredUserId] = useState(localStorage.getItem("clientId"));
 
@@ -45,8 +47,10 @@ const Profile = () => {
 
         // Get user ID and user NFTs
         await dispatch(getUserIdAsync(loger, storedUserId));
+        
         await dispatch(getNftsForUser(storedUserId));
       } catch (error) {
+
         console.error(error);
       }
     };
@@ -54,17 +58,11 @@ const Profile = () => {
     fetchData();
   }, [dispatch, storedUserId, loger]);
 
-  useEffect(() => {
-    setStoredUserId(localStorage.getItem("clientId"));
-  }, []);
 
-  const editProfile = () => {
-    setShowAlertLog(true);
-    setShowBackdrop(true);
-  };
   const [infoVisibleTwo, setInfoVisibleTwo] = useState(false);
   const [infoVisibleFour, setInfoVisibleFour] = useState(false);
   const [infoVisibleFive, setInfoVisibleFive] = useState(false);
+  const [showAlertLog, setShowAlertLog] = useState(false);
 
   const toggleInfoTwo = () => {
     setInfoVisibleTwo(!infoVisibleTwo);
@@ -78,6 +76,11 @@ const Profile = () => {
     setInfoVisibleFive(!infoVisibleFive);
   };
 
+  const editProfile = () => {
+    console.log("Opening modal");
+    setShowAlertLog(true);
+  };
+  
   const userImage = userDetail?.image || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSfXuM3iS_aGTL5IijNPFKi0Iu4x_J5l7zUpK6x3jvdYFAxDtjm";
 
   return (
@@ -94,24 +97,40 @@ const Profile = () => {
           <img src={logo} alt="" />
           {userDetail && (
             <>
-              <h2>User Name: {userDetail.username}</h2>
+              <h2>Username: {userDetail.username}</h2>
               <h2>Name: {userDetail.name}</h2>
-              <h2>Last Name: {userDetail.lastName}</h2>
+              <h2>Last name: {userDetail.lastName}</h2>
               <h2>Country: {userDetail.country} </h2>
-              <h2>CellPhone: {userDetail.cellPhone} </h2>
+              <h2>Cell phone: {userDetail.cellPhone} </h2>
               <h2>E-mail: {userDetail.email}</h2>
             </>
           )}
-          <button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>Update</button>
+          <button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>
+          <NavLink to="/UpdateUser">Update</NavLink>
+          </button>
+          </div>
+
+          {/*{showAlertLog && (
+            <div className={style.popup}>
+              <div className={style.container}>
+                <h2>Edit Personal Data</h2>
+              </div>
+              <div className={style.containerBtn}>
+                <UpdateUser userDetail={userDetail} />
+                <button className={style.btnCancel} onClick={handleClose}>Cancel</button>
+              </div>
+            </div>
+          )}*/}
+
+
           <button className={style.buttonProfile}>
             <NavLink to="/">Back</NavLink>
           </button>
-        </div>
+        
       </div>
       <div className={style.games}>
-        <h1 className={style.reserva}>Profile</h1>
-
-
+        {/*  <h1 className={style.reserva}>Profile</h1>*/}
+        <img src={line} />
         {/*<div className={style.navlinkCreateNft}>
   <div>
     <h1 onClick={toggleInfoFour} className={style.navlinkFormn}>
@@ -142,7 +161,7 @@ const Profile = () => {
 
         <div className={style.navlinkCreateNft} >
           <div>
-            <h1 onClick={toggleInfoTwo} className={style.navlinkFormn} >
+            <h1 onClick={toggleInfoTwo} className={style.navlinkProfile} >
               Create NFT
             </h1>
           </div>
@@ -151,12 +170,10 @@ const Profile = () => {
           </div>
         </div>
 
-
-
         <div className={style.navlinkCreateNft} >
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn} >
-              Favorites
+            <h1 onClick={toggleInfoFive} className={style.navlinkProfile} >
+              Bought
             </h1>
           </div>
           <div classname={style.CreateNftFormNft}>
@@ -166,13 +183,14 @@ const Profile = () => {
 
         <div className={style.navlinkCreateNft}>
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkFormn}>
+            <h1 onClick={toggleInfoFive} className={style.navlinkProfile}>
               My NFT's
             </h1>
           </div>
-          <div className={style.CreateNftFormNft}>
+
+          <div className={`${style.ContainerCreateNftFormNft} ${!infoVisibleFive ? style.hiddenContainer : ''}`}>
             {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
-              <div>
+              <div className={style.CreateNftFormNft}>
                 {userNFTs.nfts.map(nft => (
                   <Cards
                     key={nft.id}

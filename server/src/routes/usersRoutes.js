@@ -22,7 +22,9 @@ router
 .get('/nfts/:id', getNftsUsersHandler)
 .post('/username', getUserNameHandler)
 .post('/', createUsersHandler)
+
 .put('/update/:id', updateUserHandler)
+
 .put('/admin/:id/grant-admin', grantAdminAccesHandler)
 .delete('/:id', deleteUsersHandler)
 .delete('/', getDeleteUsersnameHandler) 

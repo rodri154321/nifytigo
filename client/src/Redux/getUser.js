@@ -7,6 +7,7 @@ export const getUserIdAsync = (loger, idUser) => {
   return async (dispatch) => { // Usa esta estructura para tus acciones asíncronas
     try {
       const response = await axios.get(`https://nifytigoserver.onrender.com/users/${idUser}`);
+      console.log(response.data)
       dispatch({
         type: GET_USER_ID,
         payload: response.data,
