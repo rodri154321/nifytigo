@@ -9,11 +9,8 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, 
   native: false, 
-  define: {
-    timestamps: true, // Habilita automáticamente createdAt y updatedAt
-    underscored: true, // Configura el estilo de nombres de columna en snake_case
-  },
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
