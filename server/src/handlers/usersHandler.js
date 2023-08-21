@@ -19,7 +19,7 @@ const createUsersHandler = async (req, res) => {
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
-        await WelcomeEmail(userEmail, nameuser);
+      await WelcomeEmail(userEmail, nameuser);
         
         res.status(200).json(newUser);
     } catch (error) {

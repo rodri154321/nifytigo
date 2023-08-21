@@ -31,11 +31,11 @@ const postNftHandler = async (req, res) => {
     try {
         const response = await createNft(iduser,shop, name, description, image, price, categorie);
 
-       // const usuarioEmail = email;
-        // const nombreUsuario = '[nombre del usuario]';
-      //  const nombreNFT = response.name;
+       const usuarioEmail = email;
+         const nombreUsuario = '[nombre del usuario]';
+        const nombreNFT = response.name;
 
-       // await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
+       await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -82,9 +82,12 @@ const deleteNftHandler = async (req, res) => {
 
 const uptadeNftShop = async(req,res)=>{
     const {id} = req.params;
-   const {userid, price} = req.body;
+   const {userId, price} = req.body;
+   console.log("userId: ",userId)
+   console.log("price: ", price)
+   
     try {
-        const response = await putShopNft(id, userid, price)
+        const response = await putShopNft(id, userId, price)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -102,16 +105,6 @@ const getNftTrueHandler = async(req,res)=>{
     }
 }
 
-const getNftTrueIdHandler = async (req,res)=>{
-
-  try {
-    const response = await allNftsTrue()
-    res.status(200).json(response)
-
-} catch (error) {
-    res.status(400).json({ error: error.message });
-}
-}
 
 const getNftFalseHandler = async(req,res)=>{
     try {
@@ -123,6 +116,19 @@ const getNftFalseHandler = async(req,res)=>{
 
     }
 }
+
+const getNftTrueIdHandler = async (req,res)=>{
+const {userId} =  req.params
+console.log(userId)
+    try {
+      const response = await allNftsIdTrue(userId)
+      res.status(200).json(response)
+  
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+  }
+  
 module.exports = {
     getNftHandler,
     postNftHandler,
