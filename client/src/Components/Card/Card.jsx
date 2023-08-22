@@ -7,11 +7,13 @@ function Card(ejemplo) {
 /*redux */
  const [cart, setCart] = useState([]);
  const [deleteStatus, setDeleteStatus] = useState(null);
+ const idUserActual=localStorage.getItem("clientId");
+ const idCartActual=localStorage.getItem("cartId");      
 
 //AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
     console.log(userId , " + ", nftId)
-    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
+    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })  //IDS DE CADA USER
       .then(response => {
         console.log('add')
         console.log(response.data.message);
@@ -50,10 +52,10 @@ const localStorageKey = `cartState_${ejemplo.id}`;
 const handleCart = ()=>{
   if(isCart){
     setIsCart(false);
-     deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8',ejemplo.id)
+     deleteToCart(`${idCartActual}`,ejemplo.id)   //cart
   } else {
     setIsCart(true);
-  addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424',ejemplo.id)
+  addToCart(idUserActual,ejemplo.id)    //user
   }}
  
  

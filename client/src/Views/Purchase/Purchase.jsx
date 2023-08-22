@@ -13,9 +13,14 @@ const Purchase=(items)=>{
     const [total,setTotal]=useState(0);
     // let price=0;
     let totalValue=0;
-    // let idUserActual=useSelector((state)=>state.clientId); //! Pendiente traer de localStorage
-    let idUserActual='f11db94d-5cae-426f-a734-143183a204f4';
     
+    const detail = localStorage.getItem("detail");
+    const idUserActual=localStorage.getItem("clientId");                                //!del LocalStorage
+    // let idUserActual='b5a12bbc-b81d-4e33-a7fc-5a0eaed85098';
+    const idCartActual=localStorage.getItem("cartId"); 
+    
+    console.log('idUser de quien esta logeado es:',idUserActual,'El carrito actual es:',idCartActual);
+
     const location = useLocation();
     const searchParams=new URLSearchParams(location.search);
     const id= searchParams.get('id');
@@ -32,14 +37,16 @@ const Purchase=(items)=>{
             idUser:idUserActual,
              idNFT:[]
         }
-        if (currentItems) {totalValue=parseFloat(currentItems[0].price); console.log('El precio es:',totalValue)}
+        if (currentItems) {totalValue=parseFloat(currentItems[0].price); 
+            // console.log('El precio es:',totalValue)
+        }
     }
     else{                           //! Se comprará desde carrito
         currentItems=carritoDataServer;
         carritoDataServer.map((items)=>{
             totalValue=totalValue+parseFloat(items.price);        //!Acumulación de precios
            totalValue.toFixed(2)
-            console.log('El valor total a pagar es:',totalValue)
+            // console.log('El valor total a pagar es:',totalValue)
 
         })
         
@@ -49,7 +56,7 @@ const Purchase=(items)=>{
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${'8b9815f2-0a2d-4b97-b8c3-cc06e8730a15'}`)).data.nfts;
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${idUserActual}`)).data.nfts;
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
             }
@@ -94,7 +101,7 @@ const Purchase=(items)=>{
             })}
             </div>
 
-            <div id='paymentsContainer'>
+            <div id='paymentsContainer' key={5}>
                 <h1 id='title'>Purchase detail</h1>
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Item Name</h2><h2 className='subtitleItem'>Price</h2></div>
