@@ -46,6 +46,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING(1000),
             allowNull: true,
         },
+        active: { // Nueva propiedad para controlar la activación/desactivación del usuario
+            type: DataTypes.BOOLEAN,
+            defaultValue: true, // Puedes configurarla en true por defecto para usuarios activos
+        },
         customCreatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
