@@ -13,19 +13,20 @@ const getUsersHandler = async (req, res) => {
 }
 
 const createUsersHandler = async (req, res) => {
-    const { username, name, lastName, email, password, cellPhone, country, admin, active, image } = req.body;
+    const { username, name, lastName, email, password, cellPhone, country, active, admin, image } = req.body;
     try {
-        const newUser = await createUser(username, name, lastName, email, password, active, cellPhone, country, admin, image);
+        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country, active, admin, image);
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
-      await WelcomeEmail(userEmail, nameuser);
+        await WelcomeEmail(userEmail, nameuser);
         
         res.status(200).json(newUser);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
+
 
 const getUserNameHandler = async (req, res) => {
     const { username, password } = req.method === 'GET' ? req.query : req.body;
