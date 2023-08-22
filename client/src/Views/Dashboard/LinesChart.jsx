@@ -101,6 +101,7 @@ export default function LinesChart() {
 
     console.log(allLabels);
     console.log(userData);
+    console.log(nftData);
 
     const midata = {
         labels: allLabels, // Etiquetas para el eje X que incluyen ambos gráficos

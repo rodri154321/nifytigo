@@ -35,6 +35,9 @@ const NavBar = () => {
         <NavLink to="/About" className={style.navlinkNavBar}>
           About
         </NavLink>
+        <NavLink to="/Admin" className={style.navlinkNavBar}>
+          Admin
+        </NavLink>
 
         {access ?(
         <NavLink to="/Profile" className={style.navlinkNavBar}>

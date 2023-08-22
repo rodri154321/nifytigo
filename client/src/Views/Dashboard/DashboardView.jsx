@@ -8,7 +8,7 @@ import PiesChart from "./PiesChart";
 function DashboardView() {
     return (
         <div>
-            <h1 className="bg-info text-center font-monospace fw-bold lh-base">Dashboard</h1>
+            <h1>Dashboard</h1>
             <div>
                 <p className="m-2"><b>1:</b>Gráfico de líneas</p>
                 <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{width:"450px", height:"230px"}}>
