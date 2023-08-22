@@ -30,7 +30,7 @@ const FormNft = () => {
     name: "",
     description: "",
     price: "",
-    categorie: [],
+    categorie: []
   });
   const [formErrors, setFormErrors] = useState({
     image: [],
