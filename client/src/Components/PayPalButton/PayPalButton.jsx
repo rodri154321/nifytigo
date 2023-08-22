@@ -8,12 +8,12 @@ import { useSelector } from "react-redux";
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const PaypalButton = (props)=>{
-    console.log('Data Ingresante para comprar en Paypal(idUser+NFT),', props)      //! ID
+    console.log('Data Ingresante para comprar en Paypal,', props)      //! ID
     
-    
-    let total=props.totalValue;
-    console.log('Precio en el Pbutton:', total)
+    const [paymentStatus, setPaymentStatus] = useState(''); //*Payout
 
+    let total=props.totalValue;
+    // console.log('Precio en el Pbutton:', total)
     const handlePay = async (orderR)=>{ 
         console.log("orden Exitosa",orderR);
         // window.alert('Purchase Complete! Check on myNFTs');
@@ -27,7 +27,7 @@ const PaypalButton = (props)=>{
             console.log('Posteando al back:',buyData)
             /*registro de compras */
            // const responseBack = await axios.post('https://nifytigoserver.onrender.com/profile',buyData); 
-            const responseBack = await axios.put(`https://nifytigoserver.onrender.com/${nftID}`)
+            const responseBack = await axios.put(`https://nifytigoserver.onrender.com/nft/${nftID}`,buyData);
              console.log(responseBack.data);           //!Guardar los NFTs comprados en la base de datos
     })
 
