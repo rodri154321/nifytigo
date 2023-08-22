@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './UsersView.css'; // Importa tu archivo de estilos CSS
 
 export default function UsersView() {
     const [users, setUsers] = useState([]);
@@ -22,17 +23,17 @@ export default function UsersView() {
     }, []);
 
     return (
-        <div>
+        <div className="users-view">
             <h2>Lista de Usuarios</h2>
-            <table>
+            <table className='table-container'>
                 <thead>
                     <tr>
                         <th>Username</th>
                         <th>Name</th>
-                        <th>Last Name</th>
                         <th>Email</th>
                         <th>Cell Phone</th>
                         <th>Country</th>
+                        <th>State</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +41,6 @@ export default function UsersView() {
                         <tr key={index}>
                             <td>{user.username}</td>
                             <td>{user.name}</td>
-                            <td>{user.lastName}</td>
                             <td>{user.email}</td>
                             <td>{user.cellPhone}</td>
                             <td>{user.country}</td>

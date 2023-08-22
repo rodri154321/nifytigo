@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './NFTsView.css';
 
 export default function NFTsView() {
     const [nfts, setNFTs] = useState([]);
@@ -22,21 +23,22 @@ export default function NFTsView() {
     }, []);
 
     return (
-        <div>
+        <div className='nfts-view'>
             <h2>Lista de NFTs</h2>
-            <table>
+            <table className='table-container'>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Image</th>
                         <th>Price</th>
+                        <th>State</th>
                     </tr>
                 </thead>
                 <tbody>
                     {nfts.map((nft, index) => (
                         <tr key={index}>
                             <td>{nft.name}</td>
-                            <td>{nft.image}</td>
+                            <td><img className='imgNFT' src={nft.image} alt="" /></td>
                             <td>{nft.price}</td>
                         </tr>
                     ))}

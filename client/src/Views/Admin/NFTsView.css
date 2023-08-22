@@ -1,0 +1,47 @@
+/* UsersView.css */
+.nfts-view {
+    padding: 20px;
+    border: 1px solid #49464659;
+    background-color: #9189898c;
+}
+
+.table-container {
+    background-color: #1f1d1d8c;
+}
+
+h2 {
+    color: #1df2f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #dddddd56;
+    color: #e7dddd;
+}
+
+th {
+    background-color: #0f0f0f31;
+    font-weight: bold;
+    text-align: left;
+}
+/* 
+img {
+    vertical-align: middle;
+    max-width: 100px;
+    height: auto;
+} */
+
+.imgNFT {
+    vertical-align: middle;
+    max-width: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px; 
+}
