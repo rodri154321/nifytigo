@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        shop:{
+        shop: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING(1000),
             allowNull: true,
         },
-        price: { 
+        price: {
             type: DataTypes.DECIMAL(10, 2), // Tipo de dato para almacenar precios en formato decimal (10 dígitos enteros y 2 decimales)
             allowNull: false,
             defaultValue: 0.00,  // podemos establecer un valor predeterminado
@@ -33,5 +33,7 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha de creación al crear el registro
         },
+    }, {
+        timestamps: false, // Habilita las columnas createdAt y updatedAt por defecto
     });
 };
