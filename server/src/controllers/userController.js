@@ -6,9 +6,9 @@ const allUsers = async () => {
     return allusersDb
 }
 
-const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image) => {
+const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image, active) => {
     const customCreatedAt = new Date();
-    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image, customCreatedAt})
+    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image, active ,customCreatedAt})
 
     return newUser
 }
@@ -21,6 +21,11 @@ const getUserId = async (id) => {
 const grantAdminAcces = async (id) => {
     const userAdmin = await users.findByPk(id);
     return userAdmin
+}
+
+const banearUser = async (id) => {
+    const userBan = await users.findByPk(id);
+    return userBan;
 }
 
 const findUserName = async (username, password) => {
@@ -144,4 +149,4 @@ const searchUserNft = async (id) => {
 };
 
 
-module.exports = { deleteSearchName, getUserId, searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser, searchUserNft, grantAdminAcces }
+module.exports = { deleteSearchName, getUserId, searchUsersnameByName, allUsers, createUser, findUserName, deleteUsersById, updateUser, searchUserNft, grantAdminAcces, banearUser }
