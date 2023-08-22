@@ -14,7 +14,7 @@ const CarritoLogo = () => {
     <div className="logo-container">
 
        
-            <NavLink to={`/Carritos/${"e836d177-2b43-4c54-bc6a-41f08b932de5"}`}> 
+            <NavLink to={`/Carritos/${localStorage.getItem('clientId')}`}> 
              <img src="https://i.pinimg.com/1200x/1b/3b/d5/1b3bd5af30cb31cc4bc842b38e3ce459.jpg" alt="Logo" className="logo-image" />
              </NavLink>
         

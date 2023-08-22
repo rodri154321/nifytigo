@@ -1,62 +1,51 @@
-import { NavLink, } from "react-router-dom"
-import "./Card.css"
-import { useState,useEffect} from "react";
-import axios from "axios"
+import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+import "./Card.css";
 
 function Card(ejemplo) {
-/*redux */
- const [cart, setCart] = useState([]);
- const [deleteStatus, setDeleteStatus] = useState(null);
+  const [isCart, setIsCart] = useState(false);
+ // const clientId = localStorage.getItem('clientId');
+  const localStorageKey = `cartState_${ejemplo.id}`;
 
-//AGREGAR Y SE CREA EL CARRITO */
-  const addToCart = (userId, nftId) => {
-    console.log(userId , " + ", nftId)
-    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
-      .then(response => {
-        console.log('add')
-        console.log(response.data.message);
-        setCart([...cart]);
-      })
-      .catch(error => console.error(error));
-  };
-
-//SE ELIMINA EL NFT QUE ESTA EN EL CARRITO 
-  const deleteToCart = (cartId, nftId) => {
-
-    console.log(nftId)
-    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
-      cartId: cartId,
-      nftId: nftId,
-    },}  )
-      .then(response => {
-      console.log('delete')
-
-        console.log(response.data.message);
-        setDeleteStatus([...deleteStatus]);
-      })
-      .catch(error => console.error(error));  
-  };
-
-/*ESTADO PARA QUE CAMBIE EL BOTON Y SUS FUNCIONES */
-
-const [isCart, setIsCart] = useState(false);
-const localStorageKey = `cartState_${ejemplo.id}`;
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
   }, [localStorageKey]);
 
-const handleCart = ()=>{
-  if(isCart){
-    setIsCart(false);
-     deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8',ejemplo.id)
-  } else {
-    setIsCart(true);
-  addToCart('81a9c70e-06e3-496e-a0af-e93a364ac424',ejemplo.id)
-  }}
- 
- 
+  const addToCart = async (userId, nftId) => {
+    try {
+      await axios.post('https://nifytigoserver.onrender.com/shop/add', { userId, nftId });
+      setIsCart(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteFromCart = async (cartId, nftId) => {
+    try {
+      await axios.delete('https://nifytigoserver.onrender.com/shop/delete', {
+        data: {
+          cartId,
+          nftId,
+        },
+      });
+      setIsCart(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCart = () => {
+    if (isCart) {
+      deleteFromCart('41d96c8b-c842-405d-9085-97bd9e89f0a7', ejemplo.id); // cartID 
+    } else {
+      addToCart("3dceebe8-4cf9-45e8-9dbc-20079c52d52f", ejemplo.id); // userID
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem(localStorageKey, isCart);
   }, [localStorageKey, isCart]);
@@ -77,6 +66,7 @@ const handleCart = ()=>{
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
+          {console.log(ejemplo.imagen)}
         </div>
         
       </div>
@@ -95,8 +85,6 @@ const handleCart = ()=>{
       <div className="front-content">
      
          <h1>{ejemplo.name}</h1> 
-         <h1>{ejemplo.shop}</h1> 
-
         <div className="description">
         <div className="description">
           <div className="title">
@@ -124,5 +112,3 @@ const handleCart = ()=>{
     }
     
     export default Card;
-    
-
