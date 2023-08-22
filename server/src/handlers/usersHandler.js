@@ -1,4 +1,4 @@
-const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft, grantAdminAcces } = require('../controllers/userController')
+const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft, grantAdminAcces, banearUser } = require('../controllers/userController')
 const WelcomeEmail = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
@@ -75,6 +75,26 @@ const grantAdminAccesHandler = async (req, res) => {
     }
 }
 
+const banearUserHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const user = await banearUser(id)
+        if(!user){
+            return res.status(400).json({ error: 'Usuario no encontrado' });
+        }
+        user.active = !user.active;
+        await user.save();
+
+        const message = user.active
+        ? 'Usuario desbaneado'
+        : 'Usuario baneado con exito'
+
+        return res.status(200).json({ message });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const updateUserHandler = async (req, res) => {
     try {
         const { id } = req.params
@@ -126,5 +146,6 @@ module.exports = {
     getIdUsersHandler,
     updateUserHandler,
     getNftsUsersHandler,
-    grantAdminAccesHandler
+    grantAdminAccesHandler,
+    banearUserHandler
 }

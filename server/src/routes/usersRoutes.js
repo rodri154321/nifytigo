@@ -11,7 +11,8 @@ const {
     getDeleteUsersnameHandler,
     getIdUsersHandler,
     getNftsUsersHandler,
-    grantAdminAccesHandler
+    grantAdminAccesHandler,
+    banearUserHandler
 }= require('../handlers/usersHandler')
 
 
@@ -22,6 +23,7 @@ router
 .get('/nfts/:id', getNftsUsersHandler)
 .post('/username', getUserNameHandler)
 .post('/', createUsersHandler)
+.put('/ban/:id', banearUserHandler)
 
 .put('/update/:id', updateUserHandler)
 
