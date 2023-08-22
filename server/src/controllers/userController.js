@@ -7,8 +7,8 @@ const allUsers = async () => {
 }
 
 const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image) => {
-    const customCreatedAt = new Date();
-    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image, customCreatedAt})
+    // const customCreatedAt = new Date();
+    const newUser = await users.create({ username, name, lastName, email, password, cellPhone, country, admin, image})
 
     return newUser
 }
