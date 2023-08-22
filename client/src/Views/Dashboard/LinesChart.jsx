@@ -107,7 +107,7 @@ export default function LinesChart() {
         labels: allLabels, // Etiquetas para el eje X que incluyen ambos gráficos
         datasets: [
             {
-                label: 'Cantidad de Usuarios',
+                label: 'Users quantyti',
                 data: userData,
                 tension: 0.5,
                 fill: true,
@@ -118,7 +118,7 @@ export default function LinesChart() {
                 pointBackgroundColor: 'rgba(255, 99, 132)',
             },
             {
-                label: 'Cantidad de NFTs',
+                label: 'NFTs quantyti',
                 data: nftData,
                 tension: 0.5,
                 fill: true,

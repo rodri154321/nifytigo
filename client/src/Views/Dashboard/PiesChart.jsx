@@ -51,7 +51,7 @@ export default function Pieschart() {
     };
 
     const data = {
-        labels: ['NFTs No vendidos', 'NFTs Vendidos'],
+        labels: ['unsold NFTs', 'NFTs sold'],
         datasets: [
             {
                 data: [

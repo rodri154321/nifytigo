@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './UsersView.css'; // Importa tu archivo de estilos CSS
+import './UsersView.css'; 
 
 export default function UsersView() {
     const [users, setUsers] = useState([]);
@@ -24,7 +24,7 @@ export default function UsersView() {
 
     return (
         <div className="users-view">
-            <h2>Lista de Usuarios</h2>
+            <h2 className='tit'>Lista de Usuarios</h2>
             <table className='table-container'>
                 <thead>
                     <tr>
