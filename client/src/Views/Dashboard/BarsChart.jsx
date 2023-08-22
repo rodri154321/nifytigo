@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -22,39 +23,82 @@ ChartJS.register(
     Filler
 );
 
-var Usuarios = [72, 56, 20, 36, 80, 40, 30, -20, 25, 30, 12, 60];
-var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const nftsVendidosAPIUrl = 'https://nifytigoserver.onrender.com/nft/nfts/true';
 
-var misoptions = {
-    responsive : true,
-    animation : false,
-    plugins : {
-        legend : {
-            display : false
+const getNFTsVendidosDataFromAPI = async () => {
+    try {
+        const response = await fetch(nftsVendidosAPIUrl);
+        if (response.ok) {
+            const jsonData = await response.json();
+            const modifiedData = jsonData.map(nft => ({
+                ...nft,
+                createdAt: nft.customCreatedAt
+            }));
+
+            return modifiedData;
+        } else {
+            throw new Error('Error al obtener los datos de NFTs desde la API');
         }
-    },
-    scales : {
-        y : {
-            min : -25,
-            max : 100
-        },
-        x: {
-            ticks: { color: 'rgba(0, 220, 195)'}
-        }
+    } catch (error) {
+        console.error(error);
+        return [];
     }
 };
 
-var midata = {
-    labels: meses,
-    datasets: [
-        {
-            label: 'Usuarios',
-            data: Usuarios,
-            backgroundColor: 'rgba(0, 220, 195, 0.5)'
-        }
-    ]
-};
-
 export default function Bars() {
-    return <Bar data={midata} options={misoptions} />
+    const [usuariosData, setUsuariosData] = useState([]);
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const nftsVendidosData = await getNFTsVendidosDataFromAPI();
+                const usuariosPorMes = Array.from({ length: 12 }, () => 0); // Inicializar el arreglo con ceros para cada mes
+
+                nftsVendidosData.forEach(nft => {
+                    const createdAtDate = new Date(nft.createdAt);
+                    const monthIndex = createdAtDate.getMonth();
+                    usuariosPorMes[monthIndex]++;
+                });
+
+                setUsuariosData(usuariosPorMes);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const options = {
+        responsive: true,
+        animation: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: Math.max(...usuariosData) + 10 // Ajustar el máximo del eje y según los datos
+            },
+            x: {
+                ticks: { color: 'rgba(0, 220, 195)' }
+            }
+        }
+    };
+
+    const data = {
+        labels: meses,
+        datasets: [
+            {
+                label: 'Usuarios',
+                data: usuariosData,
+                backgroundColor: 'rgba(0, 220, 195, 0.5)'
+            }
+        ]
+    };
+
+    return <Bar data={data} options={options} />;
 }

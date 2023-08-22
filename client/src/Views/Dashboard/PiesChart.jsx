@@ -1,39 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-var options = {
-    responsive : true,
+const options = {
+    responsive: true,
     maintainAspectRatio: false,
 };
 
-var data = {
-    labels: ['Carne', 'Jamón', 'Dulces', 'Turrón', 'Vino'],
-    datasets: [
-        {
-            label: 'Popularidad en Navidad',
-            data: [35, 20, 20, 15, 10],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-            ],
-            borderWidth: 1,
-        },
-    ],
-};
+export default function Pieschart() {
+    const [nftsData, setNFTsData] = useState([]);
+    const [nftsVendidosData, setNFTsVendidosData] = useState([]);
 
-export default function Pies() {
-    return <Pie data={data} options={options} />
+    useEffect(() => {
+        const fetchNFTsData = async () => {
+            try {
+                const response = await fetch('https://nifytigoserver.onrender.com/nft');
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    setNFTsData(jsonData);
+                } else {
+                    throw new Error('Error al obtener los datos de NFTs desde la API');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const fetchNFTsVendidosData = async () => {
+            try {
+                const response = await fetch('https://nifytigoserver.onrender.com/nft/nfts/true');
+                if (response.ok) {
+                    const jsonData = await response.json();
+                    setNFTsVendidosData(jsonData);
+                } else {
+                    throw new Error('Error al obtener los datos de NFTs vendidos desde la API');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchNFTsData();
+        fetchNFTsVendidosData();
+    }, []);
+
+    const calculateNFTsCountByType = (nftsData, type) => {
+        return nftsData.filter(nft => nft.type === type).length;
+    };
+
+    const data = {
+        labels: ['NFTs No vendidos', 'NFTs Vendidos'],
+        datasets: [
+            {
+                data: [
+                    calculateNFTsCountByType(nftsData, 'no vendido'),
+                    calculateNFTsCountByType(nftsVendidosData, 'vendido'),
+                ],
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    return <Pie data={data} options={options} />;
 }
