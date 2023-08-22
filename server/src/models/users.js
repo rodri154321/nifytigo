@@ -8,12 +8,12 @@ module.exports = (sequelize) => {
             primaryKey: true,
             unique: true
         },
-        username: { 
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        name: { 
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -34,11 +34,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        country:{
+        country: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        admin: { 
+        admin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
@@ -52,5 +52,5 @@ module.exports = (sequelize) => {
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha actual al crear un registro
         },
     },
-    {timestamps:false});
+    );
 }; 

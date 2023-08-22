@@ -31,8 +31,7 @@ module.exports = (sequelize) => {
         customCreatedAt: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha actual al crear un registro
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha de creación al crear el registro
         },
-    },{timestamps:false});
+    });
 };
-
