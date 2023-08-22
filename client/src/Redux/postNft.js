@@ -9,11 +9,10 @@ export const postNft = (formData) => {
       const idUs = localStorage.getItem('clientId')
       
        const emailAndName = (await axios.get(`https://nifytigoserver.onrender.com/users/${idUs}`)).data
-     
       const {email} = emailAndName; 
-      
+      console.log('El data del form es:',formData)
       const response = await axios.post(`https://nifytigoserver.onrender.com/nft/create/${email}`, formData);
-
+      
        dispatch({ type: POST_NFT, payload: response.data });
 
       return response.data; 
