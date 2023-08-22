@@ -34,7 +34,8 @@ const allNft = async (name) => {
 
 
 const createNft = async (iduser, shop ,name, description, image, price, cate) => {
-  const newNft = await nfts.create({ name,shop, description, image, price });
+  const customCreatedAt = new Date();
+  const newNft = await nfts.create({ name,shop, description, image, price, customCreatedAt });
   await newNft.setUser(iduser);
   for (const cateName of cate) {
 
