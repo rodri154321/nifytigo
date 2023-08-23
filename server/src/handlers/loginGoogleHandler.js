@@ -10,7 +10,6 @@ const loginGoogle = async (req, res) => {
 
 
 
-
     return res.status(200).json({ message: "Registro Exitoso", homeURL: "/", response });
 
   } catch (error) {
