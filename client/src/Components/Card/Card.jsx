@@ -87,8 +87,8 @@ const localStorageKey = `cartState_${ejemplo.id}`;
       <div className="front-content">
      
          <h1>{ejemplo.name}</h1> 
-        <div className="description">
-        <div className="description">
+        <div className="descriptionN">
+        <div className="descriptionN">
           <div className="title">
         <p>  {ejemplo.price}</p> 
           </div>
