@@ -1,20 +1,20 @@
 
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { NavLink, useLocation } from "react-router-dom"
 import "./Card.css";
 
 function Card(ejemplo) {
 /*redux */
+const isProfileRoute = location.pathname === '/Profile' || location.pathname ==='/Purchase';
  const idUserActual=localStorage.getItem("clientId");
  const idCartActual=localStorage.getItem("cartId");     
-
 const [isCart, setIsCart] = useState(false);
 const localStorageKey = `cartState_${ejemplo.id}`;
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
+    
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
   }, [localStorageKey]);
 
@@ -55,7 +55,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
 
   return (
     <div>
-      {idUserActual&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        
@@ -69,7 +69,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
-          {console.log(ejemplo.imagen)}
+          {/* {console.log(ejemplo.imagen)} */}
         </div>
         
       </div>
