@@ -33,21 +33,27 @@ const allNft = async (name) => {
 };
 
 
-const createNft = async (iduser, shop ,name, description, image, price, cate) => {
+const createNft = async (iduser, shop, name, description, image, price, cate) => {
   const customCreatedAt = new Date();
-  const newNft = await nfts.create({ name,shop, description, image, price, customCreatedAt });
+  
+  // Comprobar si cate es una cadena y convertirla en un arreglo si es necesario
+  if (typeof cate === 'string') {
+    cate = cate.split(',');
+  }
+  
+  const newNft = await nfts.create({ name, shop, description, image, price, customCreatedAt });
   await newNft.setUser(iduser);
-  for (const cateName of cate) {
 
-    
+  for (const cateName of cate) {
     const cat = await categories.findOne({ where: { name: cateName } });
-    
     if (cat) {     
       await newNft.addCategories(cat);
     }
   }
+  
   return newNft;
 };
+
 
 
 const getNftById = async (id) => {
