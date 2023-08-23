@@ -34,8 +34,8 @@ const nftStatusHandler = async (req, res) => {
         await statusNft.save();
 
         const messagge = statusNft.active
-        ? 'Nft Desactivada'
-        : 'Nft Activada'
+        ? 'Nft Activada'
+        : 'Nft Desactivada'
         return res.status(200).json({messagge})
     } catch (error) {
         return res.status(500).json({ error: error.message })
