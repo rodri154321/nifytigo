@@ -4,15 +4,9 @@ const postLoginGoogle = async (email, googleId, name) => {
     console.log("EMAIL", email, "GOOGLEID", googleId, "NAME", name);
 
     try {
-        // Verificar si el usuario ya existe en la base de datos
-        const existingUser = await users.findOne({ where: { email } });
-
-        if (existingUser) {
-            // El usuario ya existe, devolverlo
-            return existingUser;
-        } else {
-            // El usuario no existe, crear uno nuevo
-            const newUser = await users.create({
+        const newuser = await users.findOrCreate({
+            where: { email: email },
+            defaults: {
                 name: name,
                 email: email,
                 password: googleId,
@@ -20,13 +14,13 @@ const postLoginGoogle = async (email, googleId, name) => {
                 country: "",
                 username: "",
                 lastName: "",
-            });
+            },
+        });
 
-            // Devuelve el nuevo usuario creado
-            return newUser;
-        }
+        // Devuelve el nuevo usuario creado o el usuario existente
+        return newuser[0];
     } catch (error) {
-        console.error("Error al crear/buscar usuario:", error.message);
+        console.error("Error al crear/buscar usuario:", error);
         throw error;
     }
 };
