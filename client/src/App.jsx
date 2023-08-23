@@ -28,7 +28,6 @@ import Admin from './Views/Admin/Admin';
 import NFTsView from './Views/Admin/NFTsView';
 import UsersView from './Views/Admin/UsersView';
 
-
 function App() {
   const location = useLocation();
   const domain = import.meta.env.REACT_APP_AUTH0_DOMAIN;

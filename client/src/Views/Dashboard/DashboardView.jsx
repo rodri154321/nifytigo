@@ -1,9 +1,9 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle";
 
-import LinesChart from "./LinesChart";
-import BarsChart from "./BarsChart";
-import PiesChart from "./PiesChart";
+import LinesChart from "./LinesChart.jsx";
+import BarsChart from "./BarsChart.jsx";
+import PiesChart from "./PiesChart.jsx";
 
 import './DashboardView.css'
 
@@ -16,13 +16,15 @@ function DashboardView() {
               <LinesChart />
             </div>
           </div>
-          <hr className="mt-3 mb-2" />
+          {/* <hr className="custom-margin-top custom-margin-bottom" /> */}
+          <br/>
           <div>
             <div className="chart-container">
               <BarsChart />
             </div>
           </div>
-          <hr className="mt-3 mb-2" />
+          {/* <hr className="custom-margin-top custom-margin-bottom" /> */}
+          <br/>
           <div>
             <div className="chart-container">
               <div className="inner-chart-container">

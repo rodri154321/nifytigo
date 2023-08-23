@@ -55,7 +55,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
 
   return (
     <div>
-      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        
@@ -69,6 +69,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
+          {console.log(ejemplo.imagen)}
         </div>
         
       </div>
@@ -87,6 +88,9 @@ const localStorageKey = `cartState_${ejemplo.id}`;
       <div className="front-content">
      
          <h1>{ejemplo.name}</h1> 
+         
+         <h1>{ejemplo.shop}</h1> 
+
         <div className="descriptionN">
         <div className="descriptionN">
           <div className="title">
@@ -114,5 +118,3 @@ const localStorageKey = `cartState_${ejemplo.id}`;
     }
     
     export default Card;
-    
-

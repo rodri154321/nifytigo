@@ -13,7 +13,7 @@ const validate = (user) => {
     errors.password = 'Password must have at least one number';
   }
 
-  if (user.password && (user.password.length < 6 || user.password.length > 10)) {
+  if (user.password && (user.password.length < 6 || user.password.length > 30)) {
     errors.password = 'The password must be between 6 and 10 characters in length';
   }
 
