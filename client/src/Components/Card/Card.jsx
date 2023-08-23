@@ -9,7 +9,6 @@ function Card(ejemplo) {
 const isProfileRoute = location.pathname === '/Profile' || location.pathname ==='/Purchase';
  const idUserActual=localStorage.getItem("clientId");
  const idCartActual=localStorage.getItem("cartId");     
-
 const [isCart, setIsCart] = useState(false);
 const localStorageKey = `cartState_${ejemplo.id}`;
 

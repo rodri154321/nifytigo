@@ -97,7 +97,7 @@ const rootReducer = (state = initialState, action) => {
             console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
             // eslint-disable-next-line no-case-declarations
             let filteredGamesByGenres = allGamesGenre.filter((game) => {
-                console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
+                // console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
               if (game.categories) {
                 // console.log(game.categories)
                 let cats=game.categories.map(cat=>cat.name)
@@ -153,7 +153,7 @@ const rootReducer = (state = initialState, action) => {
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
       localStorage.setItem("access", true)
-      console.log('userId en reducer',action.payload.user.id);
+      // console.log('userId en reducer',action.payload.user.id);
       return {
         ...state,
         clientId: action.payload.id,

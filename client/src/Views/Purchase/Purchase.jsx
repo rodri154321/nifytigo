@@ -52,26 +52,11 @@ const Purchase=(items)=>{
         
         // console.log('Compra del carrito 2 :',currentItems)
     }
-    // let userData=null;
-    // useEffect(()=>{                 //! Al montar el componente
-    //     const idUserActual=localStorage.getItem("clientId"); 
-    //     const getData = async()=>{
-    //         try{
-    //             userData= (await axios.get(`https://nifytigoserver.onrender.com/users/${idUserActual}`)).data;
-    //             console.log('Datos del usuario para la navBar',userData);
-    //         }
-    //         catch(error){}
-    //         }
-    //     getData();
-        
-    // },[])
-
-
 
     useEffect(()=>{                 //! Al montar el componente
         const getData = async()=>{
             try{
-                let userData = (await axios.get(`https://nifytigoserver.onrender.com/users/${idUserActual}`)).data.nfts;
+                let response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${idUserActual}`)).data.nfts;
                 console.log('Datos del carrito traidos desde el server',response)
                 setcarritoDataServer(response);
             }
