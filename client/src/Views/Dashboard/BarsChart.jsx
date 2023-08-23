@@ -23,19 +23,14 @@ ChartJS.register(
     Filler
 );
 
-const nftsVendidosAPIUrl = 'https://nifytigoserver.onrender.com/nft/nfts/true';
+const nftsAPIUrl = 'https://nifytigoserver.onrender.com/nft/nfts/true';
 
-const getNFTsVendidosDataFromAPI = async () => {
+const getNFTsDataFromAPI = async () => {
     try {
-        const response = await fetch(nftsVendidosAPIUrl);
+        const response = await fetch(nftsAPIUrl);
         if (response.ok) {
             const jsonData = await response.json();
-            const modifiedData = jsonData.map(nft => ({
-                ...nft,
-                createdAt: nft.customCreatedAt
-            }));
-
-            return modifiedData;
+            return jsonData;
         } else {
             throw new Error('Error al obtener los datos de NFTs desde la API');
         }
@@ -45,23 +40,18 @@ const getNFTsVendidosDataFromAPI = async () => {
     }
 };
 
-export default function Bars() {
-    const [usuariosData, setUsuariosData] = useState([]);
-    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+export default function BarsChart() {
+    const [nftsData, setNFTsData] = useState([]);
+    const meses = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+    ];
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const nftsVendidosData = await getNFTsVendidosDataFromAPI();
-                const usuariosPorMes = Array.from({ length: 12 }, () => 0); // Inicializar el arreglo con ceros para cada mes
-
-                nftsVendidosData.forEach(nft => {
-                    const createdAtDate = new Date(nft.createdAt);
-                    const monthIndex = createdAtDate.getMonth();
-                    usuariosPorMes[monthIndex]++;
-                });
-
-                setUsuariosData(usuariosPorMes);
+                const nftsResponse = await getNFTsDataFromAPI();
+                setNFTsData(nftsResponse);
             } catch (error) {
                 console.error(error);
             }
@@ -69,6 +59,14 @@ export default function Bars() {
 
         fetchData();
     }, []);
+
+    const nftsCountByMonth = Array.from({ length: 12 }, () => 0);
+
+    nftsData.forEach(nft => {
+        const createdAtDate = new Date(nft.customCreatedAt);
+        const monthIndex = createdAtDate.getMonth();
+        nftsCountByMonth[monthIndex]++;
+    });
 
     const options = {
         responsive: true,
@@ -81,7 +79,7 @@ export default function Bars() {
         scales: {
             y: {
                 min: 0,
-                max: Math.max(...usuariosData) + 10 // Ajustar el máximo del eje y según los datos
+                max: Math.max(...nftsCountByMonth) + 10
             },
             x: {
                 ticks: { color: 'rgba(0, 220, 195)' }
@@ -93,8 +91,8 @@ export default function Bars() {
         labels: meses,
         datasets: [
             {
-                label: 'Usuarios',
-                data: usuariosData,
+                label: 'NFTs',
+                data: nftsCountByMonth,
                 backgroundColor: 'rgba(0, 220, 195, 0.5)'
             }
         ]
