@@ -18,7 +18,7 @@ const { getNftHandler,
 
 
 router
-.get('/', getNftHandler)
+.get('/', getNftHandler)//Muestra todos los NFTS
 
 .put('/active', nftStatusHandler)
 .post('/create/:email', postNftHandler)
