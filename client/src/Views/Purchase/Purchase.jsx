@@ -101,7 +101,7 @@ const Purchase=(items)=>{
             })}
             </div>
 
-            <div id='paymentsContainer' key={5}>
+            <div id='paymentsContainer' >
                 <h1 id='title'>Purchase detail</h1>
                 <hr id='titleSeparator'></hr>
                 <div className='subtitle'><h2 className='subtitleItem'>Item Name</h2><h2 className='subtitleItem'>Price</h2></div>
@@ -109,7 +109,7 @@ const Purchase=(items)=>{
                 {currentItems?.map((item)=>{
                     return(
                         // eslint-disable-next-line react/jsx-key
-                        <div className='itemList'>
+                        <div className='itemList' key={item.name}>
                             <h3 className='itemDescription'>{item.name}</h3>
                             <h3 className='itemDescription'> {item.price}</h3>
                         </div>
