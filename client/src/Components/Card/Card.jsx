@@ -80,6 +80,7 @@ const handleCart = ()=>{
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
+          {console.log(ejemplo.imagen)}
         </div>
         
       </div>
@@ -127,5 +128,3 @@ const handleCart = ()=>{
     }
     
     export default Card;
-    
-

@@ -64,7 +64,9 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
                 categories={eje.categories}
                 />
           )
-          })}
+          })
+          }
+          
         { isLoading && <Loader></Loader> }
         { isLoading && <div className='loaderBack'/>}
         </div>
