@@ -1,13 +1,18 @@
-import { NavLink} from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import style from "./NavBar.module.css";
 import logo from "../../assets/NifytiGo4.png";
 import { logout } from "../../Redux/logout";
 import avatar from "../../assets/avatarNav.png";
 import SearchBar from "../../Components/Search/Search";
+import axios from "axios";
 
 const NavBar = () => {
+
+  const [userAdmin, setUserAdmin] = useState(false);
   const dispatch = useDispatch();
+  const idUserActual = localStorage.getItem("clientId");
   const loger = localStorage.getItem("loger");
   const access = localStorage.getItem("access");
 
@@ -16,6 +21,24 @@ const NavBar = () => {
     //localStorage.setItem("loger", false);
     //localStorage.setItem("detail", null);
   };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          `https://nifytigoserver.onrender.com/users/${idUserActual}`
+        );
+        const userData = response.data;
+        console.log("Datos del usuario para la navBar", userData.admin);
+        setUserAdmin(userData.admin);
+      } catch (error) {
+        console.error("Error obteniendo los datos del usuario", error);
+      }
+    };
+    if (idUserActual) {
+      getData();
+    }
+  }, [idUserActual]);
+
 
 
   return (
@@ -36,14 +59,24 @@ const NavBar = () => {
           About
         </NavLink>
 
-        {access ?(
-        <NavLink to="/Profile" className={style.navlinkNavBar}>
-          <img src={avatar} alt="Avatar" className={style.avatarImageNavBar} />
-        </NavLink>
-        ) : ( null 
-      )}
+        {access && userAdmin ? (
+        <NavLink to="/Admin" className={style.navlinkNavBar}>
+            Admin
+          </NavLink>
+        ) : null }
 
-        {access ? ( 
+        {/* <NavLink to="/Admin" className={style.navlinkNavBar}>
+          Admin
+        </NavLink> */}
+
+        {access ? (
+          <NavLink to="/Profile" className={style.navlinkNavBar}>
+            <img src={avatar} alt="Avatar" className={style.avatarImageNavBar} />
+          </NavLink>
+        ) : (null
+        )}
+
+        {access ? (
           <NavLink to="" className={style.navlink} onClick={handleLogout}>
             <button className={style.btnNavBar}>
               <div className={style.sign}>
