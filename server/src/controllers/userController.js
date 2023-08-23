@@ -2,7 +2,7 @@ const { users, nfts } = require('../db')
 
 
 const allUsers = async () => {
-    const allusersDb = users.findAll()
+    const allusersDb = users.findAll({where:{admin:false}})
     return allusersDb
 }
 
