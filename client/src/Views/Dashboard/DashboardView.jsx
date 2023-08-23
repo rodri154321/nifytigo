@@ -11,6 +11,8 @@ function DashboardView() {
     return (
         <div className="dash-container">
           <h1 className="tit">Dashboard</h1>
+          <br/>
+          <h2 className="subtit">Users and NFTs in the list</h2>
           <div>
             <div className="chart-container">
               {/* <LinesChart /> */}
@@ -18,11 +20,13 @@ function DashboardView() {
           </div>
           <br/>
           <div>
+          <h2 className="subtit">NFTs sold</h2>
             <div className="chart-container">
               <BarsChart />
             </div>
           </div>
           <br/>
+          <h2 className="subtit">Sold and unsold NFTs</h2>
           <div>
             <div className="chart-container">
               <div className="inner-chart-container">
