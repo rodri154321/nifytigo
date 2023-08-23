@@ -3,6 +3,6 @@ const loginGoogleRouter = Router();
 const { loginGoogle } = require("../handlers/loginGoogleHandler");
 
 loginGoogleRouter
-.post("/", loginGoogle)
+.post("/user", loginGoogle)
 
 module.exports = loginGoogleRouter;
