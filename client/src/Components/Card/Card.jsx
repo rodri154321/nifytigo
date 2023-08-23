@@ -6,10 +6,12 @@ import axios from "axios";
 import "./Card.css";
 
 function Card(ejemplo) {
-  const [isCart, setIsCart] = useState(false);
- // const clientId = localStorage.getItem('clientId');
-  const localStorageKey = `cartState_${ejemplo.id}`;
+/*redux */
+ const idUserActual=localStorage.getItem("clientId");
+ const idCartActual=localStorage.getItem("cartId");     
 
+const [isCart, setIsCart] = useState(false);
+const localStorageKey = `cartState_${ejemplo.id}`;
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
@@ -41,9 +43,9 @@ function Card(ejemplo) {
 
   const handleCart = () => {
     if (isCart) {
-      deleteFromCart('bff6a42a-c16d-4932-9618-6c81fdd60f11', ejemplo.id); // cartID 
+      deleteFromCart(idCartActual, ejemplo.id); // cartID 
     } else {
-      addToCart("b5a12bbc-b81d-4e33-a7fc-5a0eaed85098", ejemplo.id); // userID
+      addToCart(idUserActual, ejemplo.id); // userID
     }
   };
 
