@@ -144,6 +144,7 @@ console.log(userId)
  }
   const getNftsIdUsers = async(req,res)=>{
     const {userId} =  req.params
+    console.log(userId)
         try {
           const response = await allNftsIdUser(userId)
           res.status(200).json(response)
