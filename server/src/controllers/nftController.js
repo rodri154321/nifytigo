@@ -32,6 +32,7 @@ const allNftadmin = async (name) => {
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
     })}
+    return allNftsDb;
 };
 
 const allNft = async (name) => {
