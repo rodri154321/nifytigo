@@ -99,8 +99,8 @@ const handleCart = ()=>{
          <h1>{ejemplo.name}</h1> 
          <h1>{ejemplo.shop}</h1> 
 
-        <div className="description">
-        <div className="description">
+        <div className="descriptionN">
+        <div className="descriptionN">
           <div className="title">
         <p>  {ejemplo.price}</p> 
           </div>
