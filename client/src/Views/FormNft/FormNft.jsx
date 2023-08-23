@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+console.log(CLOUD_NAME);
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_SECRET = import.meta.env.VITE_API_SECRET;
 const PRESET = import.meta.env.VITE_PRESET;
