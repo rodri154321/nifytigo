@@ -33,27 +33,21 @@ const allNft = async (name) => {
 };
 
 
-const createNft = async (iduser, shop, name, description, image, price, cate) => {
+const createNft = async (iduser, shop ,name, description, image, price, cate) => {
   const customCreatedAt = new Date();
-  
-  // Comprobar si cate es una cadena y convertirla en un arreglo si es necesario
-  if (typeof cate === 'string') {
-    cate = cate.split(',');
-  }
-  
-  const newNft = await nfts.create({ name, shop, description, image, price, customCreatedAt });
+  const newNft = await nfts.create({ name,shop, description, image, price, customCreatedAt });
   await newNft.setUser(iduser);
-
   for (const cateName of cate) {
+
+    
     const cat = await categories.findOne({ where: { name: cateName } });
+    
     if (cat) {     
       await newNft.addCategories(cat);
     }
   }
-  
   return newNft;
 };
-
 
 
 const getNftById = async (id) => {
@@ -149,25 +143,4 @@ const allNftsIdTrue = async(userId)=>{
 
 return allNftsDb
 }
-
-const putFalseShopNft = async (nftId,userid, price) => {
-  try {
-      // Buscar el NFT por ID
-      const nft = await nfts.findByPk(nftId);
-
-      if (nft) {
-          // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: false, userId: userid, price:price });
-
-          // Obtener la información actualizada del NFT
-          return await getNftById(nftId);
-      } else {
-          throw new Error('NFT not found');
-      }
-  } catch (error) {
-      throw new Error('Error updating NFT');
-  }
-};
-
-
-module.exports = {putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+module.exports = {allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
