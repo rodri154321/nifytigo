@@ -11,7 +11,8 @@ const { getNftHandler,
     uptadeNftShop,
     getNftTrueHandler,
     getNftTrueIdHandler,
-    getNftFalseHandler
+    getNftFalseHandler,
+    updateFalseNftHandler
 }= require('../handlers/nftHandler')
 
 
@@ -22,6 +23,8 @@ router
 .delete('/delete/:id', deleteNftHandler)
 .put('/:id', uptadeNftShop)
 .put('/update/:id', updateNftHandler)
+.put('/nfts/false/:id', updateFalseNftHandler)
+
 .get('/nfts/true',getNftTrueHandler)
 .get('/nfts/true/:userId',getNftTrueIdHandler)
 .get('/nfts/false',getNftFalseHandler)

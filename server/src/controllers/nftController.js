@@ -149,4 +149,25 @@ const allNftsIdTrue = async(userId)=>{
 
 return allNftsDb
 }
-module.exports = {allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+
+const putFalseShopNft = async (nftId,userid, price) => {
+  try {
+      // Buscar el NFT por ID
+      const nft = await nfts.findByPk(nftId);
+
+      if (nft) {
+          // Actualizar el valor de 'shop' a true
+          await nft.update({ shop: false, userId: userid, price:price });
+
+          // Obtener la información actualizada del NFT
+          return await getNftById(nftId);
+      } else {
+          throw new Error('NFT not found');
+      }
+  } catch (error) {
+      throw new Error('Error updating NFT');
+  }
+};
+
+
+module.exports = {putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
