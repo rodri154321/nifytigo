@@ -38,7 +38,7 @@ const Login = () => {
 
   // Autenticación con Google
   const clientID =
-    "382815966378-j7fpqsigtlqffijmrdc2di4ehsrf9phe.apps.googleusercontent.com";
+    "755672461536-1gjski8fkg6amvkhrjeu79ocu5tl2pv2.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = async () => {
