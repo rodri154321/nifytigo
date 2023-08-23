@@ -4,12 +4,17 @@ import './PayPalButton_style.css'
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 //const payPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const PaypalButton = (props)=>{
+    const navigate = useNavigate();
     console.log('Data Ingresante para comprar en Paypal,', props)      //! ID
-    
+    const [order,setOrder]=useState(null);
+
     const [paymentStatus, setPaymentStatus] = useState(''); //*Payout
 
     let total=props.totalValue;
@@ -37,7 +42,21 @@ const PaypalButton = (props)=>{
         
                    //!Guardar los NFTs comprados en la base de datos
      
-    
+    useEffect(() => {
+
+    if (order) {
+        Swal.fire({
+        icon: "success",
+        title: "Successful Purchase",
+        showConfirmButton: false,
+        timer: 2000,
+        background: "#666",
+        color: "#FFFFFF",
+        });
+
+        navigate("/");
+    }
+    }, [order]);
 
     return(
 
@@ -62,7 +81,7 @@ const PaypalButton = (props)=>{
                     })
                 }}
                 onApprove={async(data,actions)=>{
-                    const order = await actions.order?.capture();
+                    setOrder(await actions.order?.capture())
                     handlePay(order)
                 }}
             />

@@ -26,8 +26,8 @@ import CarritoLogo from './Components/CarritoLogo/CarritoLogo';
 import Favoritos from './Components/Favoritos/Favoritos';
 import Admin from './Views/Admin/Admin';
 import NFTsView from './Views/Admin/NFTsView';
-import UsersView from './Views/Admin/UsersView';
-import DashboardView from './Views/Dashboard/DashboardView';
+// import UsersView from './Views/Admin/UsersView';
+// import DashboardView from './Views/Dashboard/DashboardView';
 
 function App() {
   const location = useLocation();
@@ -58,8 +58,8 @@ function App() {
           <Route path='/Login' element={<Login />} /> 
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Admin/NFTsView" element={<NFTsView />} />
-          <Route path="/Admin/UsersView" element={<UsersView />} />
-          <Route path='/Admin/DashboardView' element={<DashboardView/>}/>
+          {/* <Route path="/Admin/UsersView" element={<UsersView />} /> */}
+          {/* <Route path='/Admin/DashboardView' element={<DashboardView/>}/> */}
 
           {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
