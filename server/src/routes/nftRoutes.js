@@ -21,7 +21,7 @@ const { getNftHandler,
 router
 .get('/', getNftHandler)//Muestra todos los NFTS
 
-.put('/active', nftStatusHandler)
+.put('/active/:id', nftStatusHandler)
 .post('/create/:email', postNftHandler)//Esta ruta crea un NFT 
 .get("/:id", nftbyID)//Esta ruta busca un NFT por Id
 .delete('/delete/:id', deleteNftHandler)//esta ruta elimina un NFT por parametro
