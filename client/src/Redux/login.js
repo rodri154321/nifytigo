@@ -9,7 +9,7 @@ export const login = (iduser) => {
          const response = (await axios.post("https://nifytigoserver.onrender.com/login/login", iduser).data);
      // const response = await axios.post("https://nifytigo.onrender.com/login", user);
         console.log(response);
-        return  dispatch({type: LOGIN, payload: response});
+        return  dispatch({type: LOGIN, payload: response.user});
       } catch (error) {
         throw error;
       }
