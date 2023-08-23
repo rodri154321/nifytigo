@@ -9,7 +9,7 @@ const isProfileRoute = location.pathname === '/Profile' || location.pathname ===
  const [cart, setCart] = useState([]);
  const [deleteStatus, setDeleteStatus] = useState(null);
  const idUserActual=localStorage.getItem("clientId");
- const idCartActual=localStorage.getItem("cartId");      
+ const idCartActual=localStorage.getItem("cartId");     
 
 //AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
