@@ -102,6 +102,11 @@ const deleteNft = async (id) => {
   return deleteNft;
 };
 
+const nftStatus = async (id) => {
+  const nftStatusId = nfts.findByPk(id)
+  return nftStatusId;
+}
+
 
 const updateNftDescription = async (id, description) => {
   const nft = await nfts.findByPk(id);
@@ -182,4 +187,4 @@ const allNftsIdUser = async(userId)=>{
 }
 
 
-module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus };

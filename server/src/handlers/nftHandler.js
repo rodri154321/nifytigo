@@ -1,5 +1,5 @@
-const {allNftsIdUser,putFalseShopNft, allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
-const {nftPurchaseNotificationn} = require('../nodemailer/userNodemailer')
+const {allNftsIdUser,putFalseShopNft, allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus } = require('../controllers/nftController')
+const {nftPurchaseNotification} = require('../nodemailer/userNodemailer')
 
 
 
@@ -23,19 +23,37 @@ const getNftHandler = async (req, res) => {
     }
 }
 
+const nftStatusHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const statusNft = await nftStatus(id)
+        if(!statusNft) {
+            return res.status(400).json({error: "Nft no encontrada"});
+        }
+        statusNft.active = !statusNft.active
+        await statusNft.save();
+
+        const messagge = statusNft.active
+        ? 'Nft Desactivada'
+        : 'Nft Activada'
+        return res.status(200).json({messagge})
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const postNftHandler = async (req, res) => {
- /*   const {email} = req.params
-    console.log("EMAIL = ", email);*/
+    const {email} = req.params
+    console.log("EMAIL = ", email);
     
     const { iduser,shop, name,  description, image, price, categorie } = req.body;
     try {
         const response = await createNft(iduser,shop, name, description, image, price, categorie);
 
        const usuarioEmail = email;
-         const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
 
-       await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
+       await nftPurchaseNotification(usuarioEmail, nombreNFT)
 
         res.status(201).json(response);
     } catch (error) {
@@ -164,7 +182,8 @@ module.exports = {
     getNftFalseHandler,
     getNftTrueIdHandler,
     updateFalseNftHandler ,
-    getNftsIdUsers
+    getNftsIdUsers,
+    nftStatusHandler
 }
 
 //hare una ruta sencilla

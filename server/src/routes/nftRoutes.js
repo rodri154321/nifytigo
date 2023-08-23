@@ -7,20 +7,20 @@ const { getNftHandler,
     nftbyID, 
     deleteNftHandler, 
     updateNftHandler,
-    
     uptadeNftShop,
     getNftTrueHandler,
     getNftTrueIdHandler,
     getNftFalseHandler,
     updateFalseNftHandler,
-    getNftsIdUsers
+    getNftsIdUsers,
+    nftStatusHandler,
 }= require('../handlers/nftHandler')
 
 
 router
 .get('/', getNftHandler)
 
-
+.put('/active', nftStatusHandler)
 .post('/create/:email', postNftHandler)
 
 .get("/:id", nftbyID)
