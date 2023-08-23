@@ -2,11 +2,11 @@ const { postLoginGoogle } = require("../controllers/loginGoogleController");
 
 
 const loginGoogle = async (req, res) => {
-  const {email, password,name, cellPhone, country, username, lastName} = req.body;
+  const {email, googleId,name,} = req.body;
   console.log("user", email,googleId,name);
   try {
 
-    const response = await postLoginGoogle(email,password,name, cellPhone, country, username, lastName);
+    const response = await postLoginGoogle(email,googleId,name);
 
 
 
