@@ -5,8 +5,8 @@
 const { nfts, users, categories } = require('../db.js');
 
 
-const allNft = async (name) => {
-  const allNftsDb= await nfts.findAll({include: [{
+const allNftadmin = async (name) => {
+  const allNftsDb = await nfts.findAll({include: [{
     model: users,
     attributes: ["name","id"],
   },
@@ -16,6 +16,38 @@ const allNft = async (name) => {
     attributes: ["name"],
     through: { attributes: [] },
   }],});
+
+  
+  if(allNftsDb.shop === false){
+  return (
+    {
+
+      id: allNftsDb.id,
+      shop: allNftsDb.shop,
+      name: allNftsDb.name,
+      description: allNftsDb.description,
+      image: allNftsDb.image,
+      price: allNftsDb.price,
+      user: allNftsDb.user.name,
+      userid: allNftsDb.userid,
+      categories: allNftsDb.categories
+    })}
+    return allNftsDb;
+};
+
+const allNft = async (name) => {
+  const allNftsDb = await nfts.findAll({where: {active: true}},{include: [{
+    model: users,
+    attributes: ["name","id"],
+  },
+  {
+    model: categories,
+    as: 'categories', // Usa el alias definido en el modelo
+    attributes: ["name"],
+    through: { attributes: [] },
+  }],});
+
+  
   if(allNftsDb.shop === false){
   return (
     {
@@ -187,4 +219,4 @@ const allNftsIdUser = async(userId)=>{
 }
 
 
-module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus };
+module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus, allNftadmin };

@@ -13,14 +13,16 @@ const { getNftHandler,
     getNftTrueIdHandler,
     getNftFalseHandler,
     updateFalseNftHandler,
-    getNftsIdUsers
+    getNftsIdUsers,
+    nftStatusHandler,
+    getNftAdminHandler
 }= require('../handlers/nftHandler')
 
 
 router
 .get('/', getNftHandler)//Muestra todos los NFTS
-
-
+.get('/admin', getNftAdminHandler)//Muestra todos los NFTS
+.put('/active/:id', nftStatusHandler)
 .post('/create/:email', postNftHandler)//Esta ruta crea un NFT 
 .get("/:id", nftbyID)//Esta ruta busca un NFT por Id
 .delete('/delete/:id', deleteNftHandler)//esta ruta elimina un NFT por parametro
