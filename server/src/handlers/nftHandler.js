@@ -1,4 +1,4 @@
-const {allNftsIdUser,putFalseShopNft, allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus } = require('../controllers/nftController')
+const {allNftsIdUser,putFalseShopNft, allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus, allNftadmin } = require('../controllers/nftController')
 const {nftPurchaseNotification} = require('../nodemailer/userNodemailer')
 
 
@@ -34,8 +34,8 @@ const nftStatusHandler = async (req, res) => {
         await statusNft.save();
 
         const messagge = statusNft.active
-        ? 'Nft Desactivada'
-        : 'Nft Activada'
+        ? 'Nft Activada'
+        : 'Nft Desactivada'
         return res.status(200).json({messagge})
     } catch (error) {
         return res.status(500).json({ error: error.message })
@@ -171,6 +171,18 @@ console.log(userId)
           res.status(400).json({ error: error.message });
       }
   }
+
+  const getNftAdminHandler = async (req, res) => {
+    try {
+        const nfts = await allNftadmin();
+        res.status(200).json(nfts)
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+
+    }
+}
+
 module.exports = {
     getNftHandler,
     postNftHandler,
@@ -183,7 +195,8 @@ module.exports = {
     getNftTrueIdHandler,
     updateFalseNftHandler ,
     getNftsIdUsers,
-    nftStatusHandler
+    nftStatusHandler,
+    getNftAdminHandler
 }
 
 //hare una ruta sencilla

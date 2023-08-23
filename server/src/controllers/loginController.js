@@ -9,6 +9,8 @@ const postLogin = async(email, password) =>{
   
       if (exist.password !== password) throw Error("Contraseña Invalida")
 
+      if (exist.active !== true) throw Error("Usuario Desactivado")
+
       return exist;
 }
 

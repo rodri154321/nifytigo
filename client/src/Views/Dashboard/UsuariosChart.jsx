@@ -23,7 +23,7 @@ ChartJS.register(
     Filler
 );
 
-const nftsAPIUrl = 'https://nifytigoserver.onrender.com/nft/nfts/true';
+const nftsAPIUrl = 'https://nifytigoserver.onrender.com/users';
 
 const getNFTsDataFromAPI = async () => {
     try {
@@ -41,7 +41,7 @@ const getNFTsDataFromAPI = async () => {
     }
 };
 
-export default function BarsChart() {
+export default function UsuariosChart() {
     const [nftsData, setNFTsData] = useState([]);
     const meses = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -92,7 +92,7 @@ export default function BarsChart() {
         labels: meses,
         datasets: [
             {
-                label: 'NFTs',
+                label: 'Users',
                 data: nftsCountByMonth,
                 backgroundColor: 'rgba(0, 220, 195, 0.5)'
             }
