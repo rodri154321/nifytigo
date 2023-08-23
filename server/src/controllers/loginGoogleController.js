@@ -10,10 +10,10 @@ const postLoginGoogle = async (email, googleId, name) => {
                 name: name,
                 email: email,
                 password: googleId,
-                cellPhone: "sin informacion",
-                country: "sin informacion",
-                username: "sin informacion",
-                lastName: "sin informacion",
+                cellPhone: "",
+                country: "",
+                username: "",
+                lastName: "",
             },
         });
 
