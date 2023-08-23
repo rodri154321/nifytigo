@@ -100,3 +100,4 @@ export default function BarsChart() {
 
     return <Bar data={data} options={options} />;
 }
+

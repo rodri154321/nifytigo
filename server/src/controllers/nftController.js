@@ -76,7 +76,7 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.userid,
+        userid: nft.user.id,
         categories: nft.categories
       })}
   {return`se seteo`;}
