@@ -9,6 +9,8 @@ import FormNft from "../FormNft/FormNft";
 import Cards from "../../Components/Card/Card";
 import line from "../../assets/line.png"
 import { useNavigate } from "react-router-dom";
+import Bought from "../../Components/Bought/Bought";
+import Owns from "../../Components/Owns/Owns";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ const Profile = () => {
 
         // Get user ID and user NFTs
         await dispatch(getUserIdAsync(loger, storedUserId));
-        
+
         await dispatch(getNftsForUser(storedUserId));
       } catch (error) {
 
@@ -80,7 +82,7 @@ const Profile = () => {
     console.log("Opening modal");
     setShowAlertLog(true);
   };
-  
+
   const userImage = userDetail?.image || "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSfXuM3iS_aGTL5IijNPFKi0Iu4x_J5l7zUpK6x3jvdYFAxDtjm";
 
   return (
@@ -106,11 +108,11 @@ const Profile = () => {
             </>
           )}
           <button className={style.buttonProfile} onClick={editProfile} disabled={loger !== 'true'}>
-          <NavLink to="/UpdateUser">Update</NavLink>
+            <NavLink to="/UpdateUser">Update</NavLink>
           </button>
-          </div>
+        </div>
 
-          {/*{showAlertLog && (
+        {/*{showAlertLog && (
             <div className={style.popup}>
               <div className={style.container}>
                 <h2>Edit Personal Data</h2>
@@ -123,10 +125,10 @@ const Profile = () => {
           )}*/}
 
 
-          <button className={style.buttonProfile}>
-            <NavLink to="/">Back</NavLink>
-          </button>
-        
+        <button className={style.buttonProfile}>
+          <NavLink to="/">Back</NavLink>
+        </button>
+
       </div>
       <div className={style.games}>
         {/*  <h1 className={style.reserva}>Profile</h1>*/}
@@ -177,37 +179,22 @@ const Profile = () => {
             </h1>
           </div>
           <div classname={style.CreateNftFormNft}>
-            {/*{infoVisibleFive && <FormNft />}*/}
+            {infoVisibleFive && <Bought />}
           </div>
         </div>
 
-        <div className={style.navlinkCreateNft}>
+        <div className={style.navlinkCreateNft} >
           <div>
-            <h1 onClick={toggleInfoFive} className={style.navlinkProfile}>
-              My NFT's
+            <h1 onClick={toggleInfoFour} className={style.navlinkProfile} >
+              Owns
             </h1>
           </div>
-
-          <div className={`${style.ContainerCreateNftFormNft} ${!infoVisibleFive ? style.hiddenContainer : ''}`}>
-            {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
-              <div className={style.CreateNftFormNft}>
-                {userNFTs.nfts.map(nft => (
-                  <Cards
-                    key={nft.id}
-                    id={nft.id}
-                    name={nft.name}
-                    description={nft.description}
-                    image={nft.image}
-                    price={nft.price}
-                    user={userNFTs}
-                    categories={nft.categories}
-                  />
-                ))}
-              </div>
-            ) : null}
-            {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
+          <div classname={style.CreateNftFormNft}>
+            {infoVisibleFour && <Owns />}
           </div>
         </div>
+
+
 
       </div>
     </div>
