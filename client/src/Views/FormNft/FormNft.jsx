@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+//const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+const CLOUD_NAME = dd69f9oj7;
 console.log(CLOUD_NAME);
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_SECRET = import.meta.env.VITE_API_SECRET;
