@@ -62,8 +62,8 @@ function App() {
           <Route path="/Admin/UsersView" element={<UsersView />} />
           <Route path="/Admin/DashboardView" element={<DashboardView />} />
           <Route path="/Profile" element={<Bought />} />
-          {/* <Route path="/Admin/UsersView" element={<UsersView />} /> */}
-          {/* <Route path='/Admin/DashboardView' element={<DashboardView/>}/> */}
+          <Route path="/Admin/UsersView" element={<UsersView />} />
+          <Route path='/Admin/DashboardView' element={<DashboardView/>}/>
 
           {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
