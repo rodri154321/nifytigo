@@ -3,7 +3,7 @@ const { users, nfts } = require('../db')
 
 const allUsers = async () => {
     const allusersDb = users.findAll({where:{admin:false}})
-    return allusersDb
+    return allusersDb;
 }
 
 const createUser = async (username, name, lastName, email, password, cellPhone, country, admin, image, active) => {
