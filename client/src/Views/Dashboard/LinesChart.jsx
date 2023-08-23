@@ -62,7 +62,7 @@ export default function LinesChart() {
 
     dataArray.forEach(entry => {
       const month = new Date(entry.customCreatedAt).getMonth();
-      monthsCount[month] += 1;
+      monthsCount[month] += 1; // Incrementar el contador para cada entrada en el mes
     });
 
     return monthsCount;

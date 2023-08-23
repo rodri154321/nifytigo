@@ -13,17 +13,15 @@ function DashboardView() {
           <h1 className="tit">Dashboard</h1>
           <div>
             <div className="chart-container">
-              <LinesChart />
+              {/* <LinesChart /> */}
             </div>
           </div>
-          {/* <hr className="custom-margin-top custom-margin-bottom" /> */}
           <br/>
           <div>
             <div className="chart-container">
               <BarsChart />
             </div>
           </div>
-          {/* <hr className="custom-margin-top custom-margin-bottom" /> */}
           <br/>
           <div>
             <div className="chart-container">
