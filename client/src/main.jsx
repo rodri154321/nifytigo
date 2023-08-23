@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <PayPalScriptProvider options={{"client-id":clientID}}>
-        <App /> 
+         <App />
       </PayPalScriptProvider>
     </BrowserRouter>
   </Provider>,
