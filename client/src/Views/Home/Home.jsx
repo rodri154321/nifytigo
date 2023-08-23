@@ -34,7 +34,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
     dispatch(getEjemplo())
     setTimeout(() => {          //Loader
         setIsLoading(false);
-      }, 500); //
+      }, 1000); //
     }, [dispatch]);
 
 

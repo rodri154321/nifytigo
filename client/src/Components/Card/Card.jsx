@@ -1,5 +1,4 @@
 
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink, useLocation } from "react-router-dom"
@@ -71,7 +70,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
-          {console.log(ejemplo.imagen)}
+          {/* {console.log(ejemplo.imagen)} */}
         </div>
         
       </div>
