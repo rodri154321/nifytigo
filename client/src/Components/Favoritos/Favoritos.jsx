@@ -2,9 +2,11 @@ import "./Favoritos.css"
 import { NavLink} from "react-router-dom"
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import {setDeleteCartLogo} from '../../Redux/cardLogoID';
+import { useDispatch } from "react-redux";
 
 const Favoritos = () => {
+  const dispatch=useDispatch();
   const [cart, setCart] = useState({
     id: "",
     price: "",
@@ -36,6 +38,7 @@ const Favoritos = () => {
   };
 
   const deleteToCart = (cartId, nftId) => {
+    // dispatch(setDeleteCartLogo(nftId));
     axios
       .delete("https://nifytigoserver.onrender.com/shop/delete", {
         data: {

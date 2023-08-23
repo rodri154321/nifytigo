@@ -8,7 +8,8 @@ import {
   GET_NFTS_FOR_USER, 
   UPDATE_USER_DETAIL, 
   UPDATE_USER,
-  CART_ID
+  CART_ID,
+  DELETE_CART_LOGO
 } from "./actionTypes";
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
   carritoId: [],
   adminAccessGranted: false,
   
+  cardLogoID:null
 }
 
 
@@ -58,7 +60,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ejemplo: action.payload
       }
-
+    case  DELETE_CART_LOGO:
+      console.log('en el DELETE_CART_LOGO(reducer):',action.payload)
+      return{
+          ...state,
+          cardLogoID:action.payload
+      };
         case SORT_ALFA:
             // eslint-disable-next-line no-case-declarations
             let cardsFilteredAlfa = [...state.ejemplo];
@@ -90,7 +97,7 @@ const rootReducer = (state = initialState, action) => {
             console.log("Todos los games ENTRANTES el reducer filter:", allGamesGenre);
             // eslint-disable-next-line no-case-declarations
             let filteredGamesByGenres = allGamesGenre.filter((game) => {
-                console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
+                // console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
               if (game.categories) {
                 // console.log(game.categories)
                 let cats=game.categories.map(cat=>cat.name)
@@ -118,7 +125,6 @@ const rootReducer = (state = initialState, action) => {
 
 
     case LOGIN:
-      console.log(action.payload);
       localStorage.setItem("clientId", action.payload.id);
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("access", true)
@@ -146,7 +152,7 @@ const rootReducer = (state = initialState, action) => {
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
       localStorage.setItem("access", true)
-      console.log('userId en reducer',action.payload.user.id);
+      // console.log('userId en reducer',action.payload.user.id);
       return {
         ...state,
         clientId: action.payload.id,
