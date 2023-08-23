@@ -25,9 +25,9 @@ useEffect(()=>{
     
     <div className="logo-container">
        
-            <NavLink to={`/Carritos/${idUserActual}`}> 
+            {idUserActual && <NavLink to={`/Carritos/${idUserActual}`}> 
              <img src="https://i.pinimg.com/1200x/1b/3b/d5/1b3bd5af30cb31cc4bc842b38e3ce459.jpg" alt="Logo" className="logo-image" />
-             </NavLink>
+             </NavLink>}
         
       <div>
         <h1>{}</h1>
