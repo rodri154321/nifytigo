@@ -22,7 +22,6 @@ const FormNft = () => {
   const navigate = useNavigate();
   const categories = useSelector((state) => state.categories);
   const clientId = localStorage.getItem('clientId');
-
   const [formData, setFormData] = useState({
 
     iduser: clientId,

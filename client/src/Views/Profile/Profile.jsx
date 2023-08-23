@@ -188,25 +188,8 @@ const Profile = () => {
             </h1>
           </div>
 
-          <div className={`${style.ContainerCreateNftFormNft} ${!infoVisibleFive ? style.hiddenContainer : ''}`}>
-            {infoVisibleFive && Array.isArray(userNFTs.nfts) ? (
-              <div className={style.CreateNftFormNft}>
-                {userNFTs.nfts.map(nft => (
-                  <Cards
-                    key={nft.id}
-                    id={nft.id}
-                    name={nft.name}
-                    description={nft.description}
-                    image={nft.image}
-                    price={nft.price}
-                    user={userNFTs}
-                    categories={nft.categories}
-                  />
-                ))}
-              </div>
-            ) : null}
-            {/* {console.log("NFTs del usuario:", userNFTs.nfts)} */}
-          </div>
+        
+
         </div>
 
       </div>

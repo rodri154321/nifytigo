@@ -59,9 +59,9 @@ function App() {
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Admin/NFTsView" element={<NFTsView />} />
           <Route path="/Admin/UsersView" element={<UsersView />} />
-          {/* <Route path="/Admin/DashboardView" element={<DashboardView />} /> */}
+          <Route path='/Admin/DashboardView' element={<DashboardView/>}/>
 
-          {/* <Route path="/FormCollection" element={<FormCollection />} /> */}
+          {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
           {/* <Route path="/Success" element={<Success />} /> */}
           {/* <Route path="/Failure" element={<Failure />} /> */}
