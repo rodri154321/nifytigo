@@ -117,10 +117,10 @@ const rootReducer = (state = initialState, action) => {
 
 
     case LOGIN:
-      localStorage.setItem("clientId", action.payload.user.id);
-      localStorage.setItem("isClient", action.payload.user.client);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("access", true)
-      console.log('userId en reducer',action.payload.user.id);
+      console.log('userId en reducer',action.payload.id);
       return {
         ...state,
         clientId: action.payload.id,
