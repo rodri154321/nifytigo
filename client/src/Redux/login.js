@@ -13,6 +13,6 @@ export const login = (iduser) => {
       } catch (error) {
         throw error;
       }
-      
+
     };
 };

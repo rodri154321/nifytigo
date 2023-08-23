@@ -6,19 +6,30 @@ const { nfts, users, categories } = require('../db.js');
 
 
 const allNft = async (name) => {
-  const allNftsDb = await nfts.findAll({where:{shop: false}},{
-    include: [{
-      model: users,
-      attributes: ["name"],
-    },
+  const allNftsDb= await nfts.findAll({include: [{
+    model: users,
+    attributes: ["name","id"],
+  },
+  {
+    model: categories,
+    as: 'categories', // Usa el alias definido en el modelo
+    attributes: ["name"],
+    through: { attributes: [] },
+  }],});
+  if(allNftsDb.shop === false){
+  return (
     {
-      model: categories,
-      as: 'categories', // Usa el alias definido en el modelo
-      attributes: ["name"],
-      through: { attributes: [] },
-    }],
-  });
 
+      id: allNftsDb.id,
+      shop: allNftsDb.shop,
+      name: allNftsDb.name,
+      description: allNftsDb.description,
+      image: allNftsDb.image,
+      price: allNftsDb.price,
+      user: allNftsDb.user.name,
+      userid: allNftsDb.userid,
+      categories: allNftsDb.categories
+    })}
   if (name) {
     
     let filterNft = allNftsDb.filter((nft) => 
@@ -47,6 +58,7 @@ const createNft = async (iduser, shop ,name, description, image, price, cate) =>
     }
   }
   return newNft;
+  
 };
 
 
