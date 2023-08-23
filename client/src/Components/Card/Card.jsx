@@ -1,100 +1,66 @@
-import { NavLink, } from "react-router-dom"
-import "./Card.css"
-import { useState} from "react";
-import axios from "axios"
 
-import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+import "./Card.css";
+
 function Card(ejemplo) {
 /*redux */
- const [cart, setCart] = useState([]);
- const [deleteStatus, setDeleteStatus] = useState(null);
-
-//AGREGAR Y SE CREA EL CARRITO */
-  const addToCart = (userId, nftId) => {
-    console.log(userId , " + ", nftId)
-    axios.post('https://nifytigoserver.onrender.com/shop/add', {  userId: userId , nftId: nftId })
-      .then(response => {
-        console.log('add')
-        console.log(response.data.message);
-        setCart([...cart]);
-      })
-      .catch(error => console.error(error));
-  };
-
-//SE ELIMINA EL NFT QUE ESTA EN EL CARRITO 
-  const deleteToCart = (cartId, nftId) => {
-
-    console.log(nftId)
-    axios.delete('https://nifytigoserver.onrender.com/shop/delete',   {   data: {
-      cartId: cartId,
-      nftId: nftId,
-    },}  )
-      .then(response => {
-      console.log('delete')
-
-        console.log(response.data.message);
-        setDeleteStatus([...deleteStatus]);
-      })
-      .catch(error => console.error(error));  
-  };
-
-/*ESTADO PARA QUE CAMBIE EL BOTON Y SUS FUNCIONES */
+ const idUserActual=localStorage.getItem("clientId");
+ const idCartActual=localStorage.getItem("cartId");     
 
 const [isCart, setIsCart] = useState(false);
 const localStorageKey = `cartState_${ejemplo.id}`;
 
-useEffect(() => {
-  const storedIsCart = localStorage.getItem(localStorageKey);
-  if (storedIsCart) {
-    setIsCart(JSON.parse(storedIsCart));
-  }
-}, [localStorageKey]);
-
-const handleCart = ()=>{
-  if(isCart){
-    setIsCart(false);
-     deleteToCart('f1341af7-b67b-4822-b9c5-10dd66a79578',ejemplo.id)
-  } else {
-    setIsCart(true);
-  addToCart('9b36566a-573e-4f44-a19f-41999b4f7251',ejemplo.id)
-  }}
- 
- 
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(isCart));
+    const storedIsCart = localStorage.getItem(localStorageKey);
+    setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
+  }, [localStorageKey]);
+
+  const addToCart = async (userId, nftId) => {
+    try {
+      await axios.post('https://nifytigoserver.onrender.com/shop/add', { userId, nftId });
+      setIsCart(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteFromCart = async (cartId, nftId) => {
+    try {
+      await axios.delete('https://nifytigoserver.onrender.com/shop/delete', {
+        data: {
+          cartId,
+          nftId,
+        },
+      });
+      setIsCart(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCart = () => {
+    if (isCart) {
+      deleteFromCart(idCartActual, ejemplo.id); // cartID 
+    } else {
+      addToCart(idUserActual, ejemplo.id); // userID
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, isCart);
   }, [localStorageKey, isCart]);
-
-
-
-   deleteStatus === 'success' ? (
-        <p>¡El NFT se ha eliminado correctamente!</p>
-      ) : deleteStatus === 'error' ? (
-        <p>Hubo un error al eliminar el NFT.</p>
-      ) : (
-        <p>Eliminando el NFT...</p>
-      )
 
   return (
     <div>
-{
-isCart ? (
-   <button onClick={handleCart}>❤️</button>
-) : (
-   <button onClick={handleCart}>🤍</button>
-)
+      {idUserActual&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
-}
-
-{/*
-
-   <button onClick={() => deleteToCart('abbc74bc-279c-415a-ba14-4dee0d80f7c8', ejemplo.id)}>eliminar el carrito</button>
-  <button onClick={() => addToCart("81a9c70e-06e3-496e-a0af-e93a364ac424", ejemplo.id)}>Agregar al carrito</button>
-
-  */}
-
-
-
-        <NavLink to={`/detail/${ejemplo.id}`}>
+      <NavLink to={`/detail/${ejemplo.id}`}>
+       
+         
+        
        
 <div className="card">
   <div className="content">
@@ -103,6 +69,7 @@ isCart ? (
        
       <div>
           <img width="220px" height="220px"src={ejemplo.image}/>
+          {console.log(ejemplo.imagen)}
         </div>
         
       </div>
@@ -121,8 +88,11 @@ isCart ? (
       <div className="front-content">
      
          <h1>{ejemplo.name}</h1> 
-        <div className="description">
-        <div className="description">
+         
+         <h1>{ejemplo.shop}</h1> 
+
+        <div className="descriptionN">
+        <div className="descriptionN">
           <div className="title">
         <p>  {ejemplo.price}</p> 
           </div>
@@ -141,12 +111,10 @@ isCart ? (
      
         </NavLink>
 
-        
-
-    </div>
-  )
-}
-
-
-
-export default Card
+          </div>
+       
+   
+      );
+    }
+    
+    export default Card;

@@ -1,8 +1,8 @@
-// import { ADD_CART, DELETE_CART,GET_CARRITOS } from "./actionTypes"
-// import axios from "axios"
-// export const addToCard =(character)=>{
-//     return {type:ADD_CART, payload: character}
-// }
+import { ADD_CART, DELETE_CART,GET_CARRITOS } from "./actionTypes"
+import axios from "axios"
+export const addToCard =(character)=>{
+    return {type:ADD_CART, payload: character}
+}
 
 // export const deleteToCart = (id)=>{
 //     return {type: DELETE_CART, payload: id}
@@ -27,5 +27,5 @@
 
  
 
-// //Ahora debemos implementar una action en el cual nos diga que dependiendo el id del usuario no muestre la informacion correspondiente
-// //como le pasamos algo porn body desde el front?
+//Ahora debemos implementar una action en el cual nos diga que dependiendo el id del usuario no muestre la informacion correspondiente
+//como le pasamos algo porn body desde el front?

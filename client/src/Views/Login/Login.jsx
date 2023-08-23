@@ -1,4 +1,3 @@
-
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -15,7 +14,9 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const detail = localStorage.getItem("profile");
+  const access = useSelector((state) => state.access) //localStorage.getItem("access");
+
+  const detail = localStorage.getItem("detail");
 
   const [user, setUser] = useState({
     email: "",
@@ -32,16 +33,16 @@ const Login = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("loger", loger);
+    localStorage.getItem("loger");
   }, [loger]);
 
-  //Autenticación con Google
+  // Autenticación con Google
   const clientID =
     "382815966378-j7fpqsigtlqffijmrdc2di4ehsrf9phe.apps.googleusercontent.com";
 
   useEffect(() => {
-    const start = () => {
-      gapi.auth2.init({
+    const start = async () => {
+      await gapi.auth2.init({
         clientId: clientID,
       });
     };
@@ -49,34 +50,29 @@ const Login = () => {
   }, []);
 
   const onSuccess = (response) => {
-    console.log(response)
     const user = {
+      // lastName:response.profileObj.lastName,
+      // username: response.profileObj.username,
       email: response.profileObj.email,
       googleId: response.profileObj.googleId,
       name: response.profileObj.name,
     };
-    dispatch(loginGoogle(user)).then(() => {
-      navigate(`/profile/${Number(profile)}`); // Redirige al usuario a la página de perfil
-    });
-
-    //if (detail !== "null") {
-    //navigate(`/detail/${Number(detail)}`);
-    //} else {
-    //navigate("/");
-    //}
-    //});
+    console.log(user);
+    dispatch(loginGoogle(user))
   };
 
   const onFailure = () => {
-    console.log("could not log inn");
+    console.log("could not log in");
   };
 
   //--------------------------
+
   const handleChange = (event) => {
     setUser({
       ...user,
       [event.target.name]: event.target.value,
-    });
+    })
+    console.log(event.target.value);;
 
     setErrors(
       validate({
@@ -86,9 +82,10 @@ const Login = () => {
     );
   };
 
-  const access = useSelector((state) => state.access)
+  
 
   useEffect(() => {
+    console.log(access);
     if (access) {
       Swal.fire({
         icon: "success",
@@ -96,13 +93,13 @@ const Login = () => {
         showConfirmButton: false,
         timer: 2000,
         background: "#666",
-        color: "#FFFFFF"
+        color: "#FFFFFF",
       });
       setUser({
         email: "",
         password: "",
       });
-      navigate('/')
+      navigate("/");
     }
   }, [access]);
 
@@ -110,28 +107,28 @@ const Login = () => {
     event.preventDefault();
     const errorSave = validate(user);
     if (Object.keys(errorSave).length === 0) {
-      dispatch(login(user))
+      dispatch(login(user));
     }
   };
-
-
 
   return (
     <div className={style.LoginContainer}>
       <div className={style.gridContainer}></div>
       <div className={style.switchLogin} id="switch-cnt">
         <div className="switch__container" id="switch-c1">
-          <h2 className="switch__title title">Welcome Back Nifytigo!</h2>
+          <h2 className="switch__title title">¡Wellcome to Nifytigo!</h2>
           <button className="switch__button button switch-btn">
             <NavLink to="/Account" className="navlink-style">
-              SIGN UP
+              SING UP
             </NavLink>
           </button>
         </div>
       </div>
 
-
-      <form className={style.formLogin} onSubmit={(event) => handleSubmit(event)}>
+      <form
+        className={style.formLogin}
+        onSubmit={(event) => handleSubmit(event)}
+      >
         <h2>Login</h2>
         <div className={style.text}>
           <div className={style.content}>
@@ -164,7 +161,7 @@ const Login = () => {
         <div>
           <button className={style.btnLogin}>Access</button>
         </div>
-        <p className={style.loginAccount}>O access for</p>
+        <p className={style.loginAccount}>or</p>
         <div className={style.googleContainer}>
           <GoogleLogin
             clientId={clientID}
@@ -173,6 +170,7 @@ const Login = () => {
             cookiePolicy={"single_host_origin"}
           />
         </div>
+
       </form>
     </div>
   );

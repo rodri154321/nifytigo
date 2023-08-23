@@ -5,6 +5,7 @@
     flex-direction: row;
     width: 90vw;
     min-height: 90vh;
+    height: fit-content;
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.3); 
@@ -14,14 +15,17 @@
 }
 #detailPurchaseContainer{
     width: 50%;
-    height: 80vh;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 10px;
 }
 #paymentsContainer{
     width: 50%;
-    height: 100vh;
+    min-height: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,13 +33,15 @@
     background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 0 10px 10px 0; 
     position: relative;
+    margin: 0px;
+    padding: 0px;
 }
 #title{
     margin-top: 50px;
     margin-bottom: 0px;
     margin-right: auto;
     margin-left: 5%;
-    font-size: xx-large;
+    font-size: xxx-large;
     color: black;
     padding: 0;
 }
@@ -52,9 +58,11 @@
     color: rgb(40, 40, 40);
     margin-bottom: 30px;
     margin-top: 0;
+    font-size: x-large;
 }
 .subtitleItem{
     padding: 0;
+    
 }
 .itemList{
     display: flex;
@@ -64,6 +72,7 @@
     color: rgb(76, 76, 76);
     /* margin-bottom: auto; */
     margin-top: 0;
+    font-size: large;
 }
 .itemDescription{
     /* margin: 15%; */

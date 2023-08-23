@@ -8,12 +8,12 @@ module.exports = (sequelize) => {
             primaryKey: true,
             unique: true
         },
-        username: { 
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        name: { 
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -34,10 +34,29 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        country:{
+        country: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
-    },
-    {timestamps:false});
+        },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        image: {
+            type: DataTypes.STRING(1000),
+            allowNull: true,
+        },
+        customCreatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha de creación al crear el registro
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
+    }, {
+        timestamps: false, // Habilita las columnas createdAt y updatedAt por defecto
+    }
+    );
 }; 

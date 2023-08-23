@@ -30,7 +30,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
  useEffect(()=>{
-  console.log(localStorage.getItem('clientId'));
+  // console.log(localStorage.getItem('clientId'));
     dispatch(getEjemplo())
     setTimeout(() => {          //Loader
         setIsLoading(false);
@@ -41,7 +41,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
 
 
     
-       
+
     return (
         <div id='Homes'>
        <div id='HomeContainer'>
@@ -54,6 +54,7 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
                 <Cards
                 key={eje.id}
                 id={eje.id}
+               shop={eje.shop}
                 name={eje.name}
                 description={eje.description}
                 image={eje.image}
@@ -63,7 +64,9 @@ const ejemplo = useSelector((state) => state.ejemplo)   //Seguimiento al estado 
                 categories={eje.categories}
                 />
           )
-          })}
+          })
+          }
+          
         { isLoading && <Loader></Loader> }
         { isLoading && <div className='loaderBack'/>}
         </div>

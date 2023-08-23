@@ -1,5 +1,5 @@
-const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft } = require('../controllers/userController')
-const WelcomeEmail = require('../nodemailer/userNodemailer')
+const { getUserId, searchUsersnameByName, deleteUsersById, allUsers, createUser, findUserName, deleteSearchName, updateUser,searchUserNft, grantAdminAcces, banearUser } = require('../controllers/userController')
+const {WelcomeEmail} = require('../nodemailer/userNodemailer')
 
 const getUsersHandler = async (req, res) => {
     const { username } = req.query
@@ -13,18 +13,19 @@ const getUsersHandler = async (req, res) => {
 }
 
 const createUsersHandler = async (req, res) => {
-    const { username, name, lastName, email, password, cellPhone, country } = req.body
+    const { username, name, lastName, email, password, cellPhone, country, admin, image } = req.body;
     try {
-        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country)
+        const newUser = await createUser(username, name, lastName, email, password, cellPhone, country, admin, image);
 
         const userEmail = newUser.email;
         const nameuser = newUser.name;
-        await WelcomeEmail(userEmail, nameuser)
-        res.status(200).json(newUser)
+      await WelcomeEmail(userEmail, nameuser);
+        
+        res.status(200).json(newUser);
     } catch (error) {
-        res.status(400).json({ error: error.message = 'No se creo el usuario' })
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
 const getUserNameHandler = async (req, res) => {
     const { username, password } = req.method === 'GET' ? req.query : req.body;
@@ -53,11 +54,52 @@ const getIdUsersHandler = async (req, res) => {
     }
 }
 
+const grantAdminAccesHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const adminUser = await grantAdminAcces(id)
+        if (!adminUser) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        adminUser.admin = !adminUser.admin;
+        await adminUser.save();
+
+        const message = adminUser.admin
+        ? 'Acceso de administrador otorgado con éxito'
+        : 'Acceso de administrador revocado con éxito';
+
+        return res.status(200).json({ message });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error en el servidor' });
+    }
+}
+
+const banearUserHandler = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const user = await banearUser(id)
+        if(!user){
+            return res.status(400).json({ error: 'Usuario no encontrado' });
+        }
+        user.active = !user.active;
+        await user.save();
+
+        const message = user.active
+        ? 'Usuario desbaneado'
+        : 'Usuario baneado con exito'
+
+        return res.status(200).json({ message });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const updateUserHandler = async (req, res) => {
     try {
         const { id } = req.params
-        const { username, name, lastName, email, password, cellPhone, country } = req.body
-        const user = await updateUser(id, username, name, lastName, email, password, cellPhone, country);
+        const { username, name, lastName, image, password, cellPhone, country, admin } = req.body
+        const user = await updateUser(id, username, name, lastName, image, password, cellPhone, country, admin);
         return res.status(200).json(user)
     } catch (error) {
         res.status(500).json({ message: 'No se pudo actualizar el Usuario' });
@@ -103,5 +145,7 @@ module.exports = {
     getDeleteUsersnameHandler,
     getIdUsersHandler,
     updateUserHandler,
-    getNftsUsersHandler
+    getNftsUsersHandler,
+    grantAdminAccesHandler,
+    banearUserHandler
 }

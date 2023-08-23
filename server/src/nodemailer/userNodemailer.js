@@ -34,8 +34,7 @@ const WelcomeEmail = async (email, name) => {
     }
 };
 
-
-const nftPurchaseNotification = async (email, nftName, name) => {
+const nftPurchaseNotification = async (email, nftName) => {
     try {
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
@@ -44,25 +43,24 @@ const nftPurchaseNotification = async (email, nftName, name) => {
                 pass: GMAIL_PASSWORD
             },
         });
+
+        // Leer el contenido del template HTML para la notificación de compra de NFT
         const templatePath = path.join(__dirname, 'templatePurchaseNft.html');
         const templateContent = fs.readFileSync(templatePath, 'utf-8');
 
-        const modifiedTemplate = templateContent
-        .replace("[Nombre del NFT]", nftName)
-        .replace("[Nombre del Usuario]", name)
+        const modifiedTemplate = templateContent.replace("[Nombre del NFT]", nftName);
 
         const mailOptions = {
             from: GMAIL_USER,
             to: email,
-            subject: 'Tu creacion de NFT se realizo con exito!',
-            html: modifiedTemplate,
+            subject: '¡Compra exitosa de un NFT en NifytiGo!',
+            html: modifiedTemplate, // Usar el contenido del template HTML aquí
         };
 
         await transporter.sendMail(mailOptions);
     } catch (error) {
-        
+        console.error('Error al enviar la notificación por correo electrónico: ', error);
     }
-}
+};
 
 module.exports = {WelcomeEmail, nftPurchaseNotification};
-

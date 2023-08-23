@@ -8,8 +8,9 @@ const {
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, 
-  native: false, 
+  native: false,
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -23,12 +24,12 @@ fs.readdirSync(path.join(__dirname, '/models'))
 modelDefiners.forEach(model => model(sequelize));
 
 // Definición de las relaciones
-const { favorites, nfts, users, categories, cart} = sequelize.models;
+const { favorites, nfts, users, categories, cart, nftsComprada } = sequelize.models;
 
 // 1. Relación uno a muchos: users -> nfts
 users.hasMany(nfts, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
-});
+}); //x
 nfts.belongsTo(users, {
   foreignKey: 'userId', // Nombre de la clave externa en el modelo "nfts" que referencia al modelo "users"
 });
@@ -44,7 +45,7 @@ users.belongsToMany(favorites, {
 // 3. Relación muchos a muchos: nfts <-> categories
 nfts.belongsToMany(categories, {
   through: 'nfts_categories', // Nombre de la tabla intermedia que contiene las relaciones
-});
+});//x
 categories.belongsToMany(nfts, {
   through: 'nfts_categories', // Nombre de la tabla intermedia que contiene las relaciones
 });
@@ -65,8 +66,29 @@ nfts.belongsToMany(cart,{
   through: 'cart_nfts'
   })
 
+
+//Esta es la relacion de el registro de compras
+
+//Esta es la relacion del nft comprado
+
+
+
+// nftsComprada.belongsToMany(nfts,{
+//   through:"nfts_c"
+// })
+
+
+// nfts.belongsToMany(nftsComprada,{
+//   through: "nfts_c"
+// })
+
+// nftsComprada.belongsToMany(users,{
+//   through: 'userId'
+// })
+
+
   
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  ...sequelize.models, /// para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };

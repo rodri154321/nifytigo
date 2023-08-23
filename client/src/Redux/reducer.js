@@ -1,18 +1,34 @@
-import { GET_EJEMPLO, POST_NFT, GET_CATEGORIES, SORT_ALFA, FILTER_CATEGORIES,LOGIN_GOOGLE,LOGIN,LOGOUT} from "./actionTypes";
+import { 
+  GET_EJEMPLO, 
+  POST_NFT, GET_CATEGORIES, 
+  SORT_ALFA, FILTER_CATEGORIES, 
+  LOGIN_GOOGLE,
+  LOGIN, LOGOUT, 
+  GET_USER_ID, 
+  GET_NFTS_FOR_USER, 
+  UPDATE_USER_DETAIL, 
+  UPDATE_USER,
+  CART_ID
+} from "./actionTypes";
 
 const initialState = {
-    user: null,
-    loading: false,
-    error: null,
-    categories: [],
-    ejemplo: [],                //Todas las cards
-    cardsFiltered: [],
-    isLoggeIn: false,
-    allCharacter: [],
-    myFavorites: [],
-    getCarritos:[]
-
+  user: null,
+  loading: false,
+  error: null,
+  categories: [],
+  ejemplo: [],                //Todas las cards
+  cardsFiltered: [],
+  isLoggeIn: false,
+  clientId: 0,
+  isClient: true,
+  access: false,
+  userDetail: [],
+  allUsers: [],
+  carritoId: [],
+  adminAccessGranted: false,
+  
 }
+
 
 //traer los carritos dependiendo del id
 const rootReducer = (state = initialState, action) => {
@@ -23,7 +39,7 @@ const rootReducer = (state = initialState, action) => {
         ejemplo: action.payload,
         cardsFiltered: action.payload,
       };
-
+      
     case POST_NFT:
       return {
         ...state,
@@ -88,26 +104,25 @@ const rootReducer = (state = initialState, action) => {
             if(action.payload==='All'){
                 filteredGamesByGenres=allGamesGenre;
               }
-            // else {
-            //     if (state.ejemplo.length > 0) {
-            //       filteredGamesByGenres = filteredGamesByGenres.filter((game) =>
-            //         state.ejemplo.includes(game)
-            //   );
-            //   }
-            // }
-      
             return {
               ...state,
               ejemplo: filteredGamesByGenres,
             };
 
- 
+    case CART_ID:
+        localStorage.setItem("cartId", action.payload.cartId.id);
+      return{
+        ...state,
+        carritoId: action.payload.cartId.id
+      }
+
 
     case LOGIN:
-      localStorage.setItem("clientId", action.payload.user.id);
-      // console.log(action.payload.user.client);
-      // localStorage.setItem("isClient", action.payload.user.client);
+      console.log(action.payload);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("access", true)
+      console.log('userId en reducer',action.payload.id);
       return {
         ...state,
         clientId: action.payload.id,
@@ -116,9 +131,9 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGOUT:
-      localStorage.clear();
-      //localStorage.setItem("isClient", 0)
-      localStorage.setItem("access", false)
+     localStorage.clear();
+      // localStorage.setItem("isClient", 0)
+      // localStorage.setItem("access", false)
       return {
         ...state,
         clientId: 0,
@@ -127,23 +142,34 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
-      console.log(action.payload);
-      localStorage.setItem("clientId", action.payload.googleId);
-      //localStorage.setItem("isClient", action.payload.client);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
+      localStorage.setItem("access", true)
+      console.log('userId en reducer',action.payload.user.id);
       return {
         ...state,
-        clientId: action.payload.googleId,
-        //isClient: action.payload.client,
-
+        clientId: action.payload.id,
+        isClient: action.payload.client,
         access: true,
       };
-
-    // case GET_USER_ID:
-    //   return {
-    //     ...state,
-    //     userDetail: action.payload,
-    //   };
+      
+      
+      case GET_USER_ID:
+        case UPDATE_USER_DETAIL: // Puedes manejar ambas acciones aquí
+        localStorage.setItem("userDetail", action.payload);
+          return {
+            ...state,
+            userDetail: action.payload,
+          };
+          
+        case GET_NFTS_FOR_USER:
+          return {
+            ...state,
+            userNFTs: action.payload,
+          };
+        case UPDATE_USER:
+          return { ...state };
       
     case 'CREATE_USER_START':
       return {
@@ -181,13 +207,23 @@ const rootReducer = (state = initialState, action) => {
         isLoggedIn: false,
         error: null,
       };
+      case 'GRANT_ADMIN_ACCESS_SUCCESS':
+        return {
+            ...state,
+            adminAccessGranted: true,
+            error: null,
+        };
+    case 'GRANT_ADMIN_ACCESS_FAILURE':
+        return {
+            ...state,
+            adminAccessGranted: false,
+            error: action.error,
+        };
     default:
       return state;
 
 
 
-      
-                    
   }
 
 };
