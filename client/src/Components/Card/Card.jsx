@@ -1,10 +1,11 @@
-import { NavLink, } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import "./Card.css"
 import { useState,useEffect} from "react";
 import axios from "axios"
 
 function Card(ejemplo) {
 /*redux */
+const isProfileRoute = location.pathname === '/Profile' || location.pathname ==='/Purchase';
  const [cart, setCart] = useState([]);
  const [deleteStatus, setDeleteStatus] = useState(null);
  const idUserActual=localStorage.getItem("clientId");
@@ -65,7 +66,7 @@ const handleCart = ()=>{
 
   return (
     <div>
-      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        
