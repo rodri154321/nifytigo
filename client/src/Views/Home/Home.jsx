@@ -67,7 +67,8 @@ function Home() {
           })}
           {isLoading && <Loader></Loader>}
           {isLoading && <div className='loaderBack' />}
-        </div>
+            
+¿¿        </div>
       </div>
       <Pagination cardsPerPage={videogamesPerPage} paginate={paginate} totalCards={ejemplo.length}></Pagination>
     </div>

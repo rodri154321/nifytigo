@@ -63,7 +63,7 @@ function App() {
           <Route path="/Admin/DashboardView" element={<DashboardView />} />
           <Route path="/Profile" element={<Bought />} />
 
-          {/* <Route path="/FormCollection" element={<FormCollection />} /> */}
+          {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
           {/* <Route path="/Success" element={<Success />} /> */}
           {/* <Route path="/Failure" element={<Failure />} /> */}

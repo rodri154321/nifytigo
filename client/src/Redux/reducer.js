@@ -26,6 +26,7 @@ const initialState = {
   allUsers: [],
   carritoId: [],
   adminAccessGranted: false,
+  
 }
 
 
@@ -117,9 +118,11 @@ const rootReducer = (state = initialState, action) => {
 
 
     case LOGIN:
-      localStorage.setItem("clientId", action.payload.user.id);
-      localStorage.setItem("isClient", action.payload.user.client);
+      console.log(action.payload);
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("access", true)
+      console.log('userId en reducer',action.payload.id);
       return {
         ...state,
         clientId: action.payload.id,
@@ -139,11 +142,11 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case LOGIN_GOOGLE:
-      console.log(isClient)
       localStorage.setItem("clientId", action.payload.id);
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
       localStorage.setItem("access", true)
+      console.log('userId en reducer',action.payload.user.id);
       return {
         ...state,
         clientId: action.payload.id,

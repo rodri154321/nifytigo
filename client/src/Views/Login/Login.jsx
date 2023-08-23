@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const access = localStorage.getItem("access");
+  const access = useSelector((state) => state.access) //localStorage.getItem("access");
 
   const detail = localStorage.getItem("detail");
 
@@ -33,7 +33,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("loger", loger);
+    localStorage.getItem("loger");
   }, [loger]);
 
   // Autenticación con Google
@@ -58,9 +58,7 @@ const Login = () => {
       name: response.profileObj.name,
     };
     console.log(user);
-    dispatch(loginGoogle(user)).then(() => {
-      navigate("/");
-    });
+    dispatch(loginGoogle(user))
   };
 
   const onFailure = () => {
@@ -73,7 +71,8 @@ const Login = () => {
     setUser({
       ...user,
       [event.target.name]: event.target.value,
-    });
+    })
+    console.log(event.target.value);;
 
     setErrors(
       validate({
@@ -86,6 +85,7 @@ const Login = () => {
   
 
   useEffect(() => {
+    console.log(access);
     if (access) {
       Swal.fire({
         icon: "success",
@@ -161,7 +161,7 @@ const Login = () => {
         <div>
           <button className={style.btnLogin}>Access</button>
         </div>
-        <p className={style.loginAccount}>O acceder mediante</p>
+        <p className={style.loginAccount}>or</p>
         <div className={style.googleContainer}>
           <GoogleLogin
             clientId={clientID}

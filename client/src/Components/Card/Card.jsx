@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { NavLink, } from "react-router-dom"
 import "./Card.css"
 import { useState, useEffect } from "react";
@@ -42,6 +43,19 @@ function Card(ejemplo) {
   };
 
   /*ESTADO PARA QUE CAMBIE EL BOTON Y SUS FUNCIONES */
+=======
+
+import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+import "./Card.css";
+
+function Card(ejemplo) {
+/*redux */
+ const idUserActual=localStorage.getItem("clientId");
+ const idCartActual=localStorage.getItem("cartId");     
+>>>>>>> 34c64c7de5e7cf223169a257e5b37248c75c7c8b
 
   const [isCart, setIsCart] = useState(false);
   const localStorageKey = `cartState_${ejemplo.id}`;
@@ -51,6 +65,7 @@ function Card(ejemplo) {
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
   }, [localStorageKey]);
 
+<<<<<<< HEAD
   const handleCart = () => {
     if (isCart) {
       setIsCart(false);
@@ -61,6 +76,38 @@ function Card(ejemplo) {
     }
   }
 
+=======
+  const addToCart = async (userId, nftId) => {
+    try {
+      await axios.post('https://nifytigoserver.onrender.com/shop/add', { userId, nftId });
+      setIsCart(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteFromCart = async (cartId, nftId) => {
+    try {
+      await axios.delete('https://nifytigoserver.onrender.com/shop/delete', {
+        data: {
+          cartId,
+          nftId,
+        },
+      });
+      setIsCart(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCart = () => {
+    if (isCart) {
+      deleteFromCart(idCartActual, ejemplo.id); // cartID 
+    } else {
+      addToCart(idUserActual, ejemplo.id); // userID
+    }
+  };
+>>>>>>> 34c64c7de5e7cf223169a257e5b37248c75c7c8b
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, isCart);
@@ -68,9 +115,10 @@ function Card(ejemplo) {
 
   return (
     <div>
-      <button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>
+      {idUserActual&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
+<<<<<<< HEAD
 
 
 
@@ -114,6 +162,45 @@ function Card(ejemplo) {
                 </div>
               </div>
             </div>
+=======
+       
+         
+        
+       
+<div className="card">
+  <div className="content">
+    <div className="back">
+      <div className="back-content">
+       
+      <div>
+          <img width="220px" height="220px"src={ejemplo.image}/>
+          {console.log(ejemplo.imagen)}
+        </div>
+        
+      </div>
+    </div>
+    <div className="front">
+      
+      <div className="img">
+        <div className="circle">
+        </div>
+        <div className="circle" id="right">
+        </div>
+        <div className="circle" id="bottom">
+        </div>
+      </div>
+
+      <div className="front-content">
+     
+         <h1>{ejemplo.name}</h1> 
+         
+         <h1>{ejemplo.shop}</h1> 
+
+        <div className="descriptionN">
+        <div className="descriptionN">
+          <div className="title">
+        <p>  {ejemplo.price}</p> 
+>>>>>>> 34c64c7de5e7cf223169a257e5b37248c75c7c8b
           </div>
         </div>
 
@@ -124,6 +211,7 @@ function Card(ejemplo) {
 
     </div>
 
+<<<<<<< HEAD
 
   );
 }
@@ -131,3 +219,12 @@ function Card(ejemplo) {
 export default Card;
 
 
+=======
+          </div>
+       
+   
+      );
+    }
+    
+    export default Card;
+>>>>>>> 34c64c7de5e7cf223169a257e5b37248c75c7c8b

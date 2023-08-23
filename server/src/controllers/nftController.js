@@ -2,7 +2,7 @@
 
 //hare una ruta sencilla
 //la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
- const { nfts, users, categories } = require('../db.js');
+const { nfts, users, categories } = require('../db.js');
 
 
 const allNft = async (name) => {
@@ -74,7 +74,7 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.userid,
+        userid: nft.user.id,
         categories: nft.categories
       })}
   {return`se seteo`;}
@@ -163,5 +163,11 @@ const putFalseShopNft = async (nftId,userid, price) => {
   }
 };
 
+const allNftsIdUser = async(userId)=>{
+  const allNftsDb = await nfts.findAll({where:{shop: false,userId: userId}})
 
-module.exports = {putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+  return allNftsDb
+}
+
+
+module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
