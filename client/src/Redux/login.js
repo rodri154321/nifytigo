@@ -6,11 +6,10 @@ export const login = (iduser) => {
     return async function (dispatch) {
       // eslint-disable-next-line no-useless-catch
       try {
-        console.log(iduser);
-         const response = await axios.post("https://nifytigoserver.onrender.com/login", iduser);
+         const response = (await axios.post("https://nifytigoserver.onrender.com/login/login", iduser).data);
      // const response = await axios.post("https://nifytigo.onrender.com/login", user);
-        
-        return  dispatch({type: LOGIN, payload: response.data});
+        console.log(response);
+        return  dispatch({type: LOGIN, payload: response.user});
       } catch (error) {
         throw error;
       }

@@ -56,7 +56,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
 
   return (
     <div>
-      {idUserActual&&!isProfileRoute&&<button onClick={handleCart} className='CartCheck'>{isCart ? "✅" : "🛒"}</button>}
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        

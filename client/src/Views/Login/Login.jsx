@@ -71,7 +71,8 @@ const Login = () => {
     setUser({
       ...user,
       [event.target.name]: event.target.value,
-    });
+    })
+    console.log(event.target.value);;
 
     setErrors(
       validate({
