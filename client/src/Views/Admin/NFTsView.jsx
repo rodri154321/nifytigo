@@ -6,7 +6,7 @@ export default function NFTsView() {
 
     const fetchNFTs = async () => {
         try {
-            const response = await fetch('https://nifytigoserver.onrender.com/nft');
+            const response = await fetch('https://nifytigoserver.onrender.com/nft/admin');
             if (response.ok) {
                 const jsonData = await response.json();
                 setNFTs(jsonData);

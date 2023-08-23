@@ -1,7 +1,8 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle";
 
-import LinesChart from "./LinesChart.jsx";
+import UsuariosChart from "./UsuariosChart.jsx";
+import NFTsChart from "./NFTsChart.jsx";
 import BarsChart from "./BarsChart.jsx";
 import PiesChart from "./PiesChart.jsx";
 
@@ -12,10 +13,17 @@ function DashboardView() {
         <div className="dash-container">
           <h1 className="tit">Dashboard</h1>
           <br/>
-          <h2 className="subtit">Users and NFTs in the list</h2>
+          <h2 className="subtit">Total Users:</h2>
           <div>
             <div className="chart-container">
-              {/* <LinesChart /> */}
+              <UsuariosChart />
+            </div>
+          </div>
+          <br/>
+          <h2 className="subtit">Total NFTs:</h2>
+          <div>
+            <div className="chart-container">
+              <NFTsChart />
             </div>
           </div>
           <br/>
