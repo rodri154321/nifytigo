@@ -89,7 +89,7 @@ const getNftById = async (id) => {
         userid: nft.user.id,
         categories: nft.categories
       })}
-  {return`se seteo`;}
+  {return nft;}
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
