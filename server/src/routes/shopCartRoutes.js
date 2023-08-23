@@ -16,4 +16,4 @@ router
 
 module.exports = router;
 
-
+//crear una ruta donde se rendericen las nfts pero por usuario

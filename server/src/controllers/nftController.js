@@ -74,7 +74,7 @@ const getNftById = async (id) => {
         image: nft.image,
         price: nft.price,
         user:nft.user.name,
-        userid: nft.userid,
+        userid: nft.user.id,
         categories: nft.categories
       })}
   {return`se seteo`;}
@@ -143,4 +143,31 @@ const allNftsIdTrue = async(userId)=>{
 
 return allNftsDb
 }
-module.exports = {allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+
+const putFalseShopNft = async (nftId,userid, price) => {
+  try {
+      // Buscar el NFT por ID
+      const nft = await nfts.findByPk(nftId);
+
+      if (nft) {
+          // Actualizar el valor de 'shop' a true
+          await nft.update({ shop: false, userId: userid, price:price });
+
+          // Obtener la información actualizada del NFT
+          return await getNftById(nftId);
+      } else {
+          throw new Error('NFT not found');
+      }
+  } catch (error) {
+      throw new Error('Error updating NFT');
+  }
+};
+
+const allNftsIdUser = async(userId)=>{
+  const allNftsDb = await nfts.findAll({where:{shop: false,userId: userId}})
+
+  return allNftsDb
+}
+
+
+module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };

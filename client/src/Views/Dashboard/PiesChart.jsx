@@ -45,19 +45,15 @@ export default function Pieschart() {
         fetchNFTsData();
         fetchNFTsVendidosData();
     }, []);
-
-    const calculateNFTsCountByType = (nftsData, type) => {
-        return nftsData.filter(nft => nft.type === type).length;
-    };
+    
+    const nftsCount = nftsData.length;
+    const nftsVendidosCount = nftsVendidosData.length;
 
     const data = {
         labels: ['unsold NFTs', 'NFTs sold'],
         datasets: [
             {
-                data: [
-                    calculateNFTsCountByType(nftsData, 'no vendido'),
-                    calculateNFTsCountByType(nftsVendidosData, 'vendido'),
-                ],
+                data: [nftsCount, nftsVendidosCount],
                 backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                 borderWidth: 1,
