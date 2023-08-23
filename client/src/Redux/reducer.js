@@ -146,6 +146,7 @@ const rootReducer = (state = initialState, action) => {
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
       localStorage.setItem("access", true)
+      console.log('userId en reducer',action.payload.user.id);
       return {
         ...state,
         clientId: action.payload.id,
