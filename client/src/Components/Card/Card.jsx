@@ -2,14 +2,33 @@ import { NavLink, useLocation } from "react-router-dom"
 import "./Card.css"
 import { useState,useEffect} from "react";
 import axios from "axios"
+import { useSelector} from "react-redux/es/hooks/useSelector";
+import { setDeleteCartLogo } from "../../Redux/cardLogoID";
+import { useDispatch } from "react-redux";
 
 function Card(ejemplo) {
 /*redux */
+const dispatch=useDispatch();
 const isProfileRoute = location.pathname === '/Profile' || location.pathname ==='/Purchase';
  const [cart, setCart] = useState([]);
  const [deleteStatus, setDeleteStatus] = useState(null);
  const idUserActual=localStorage.getItem("clientId");
  const idCartActual=localStorage.getItem("cartId");      
+
+// let idCardLogoSet=useSelector(state=>state.cardLogoID);
+// console.log('El ID a setear su cart image:',idCardLogoSet);
+// const [coincidence,setCoincidence]=useState(false);
+// if(idCardLogoSet==ejemplo.id){
+//   console.log('coincide en: ',ejemplo.id);
+//   setCoincidence(true);
+// }
+// if(coincidence){
+//   setIsCart(false);
+//   setCoincidence(false);
+//   dispatch(setDeleteCartLogo(null));
+// }
+
+
 
 //AGREGAR Y SE CREA EL CARRITO */
   const addToCart = (userId, nftId) => {
@@ -47,6 +66,7 @@ const localStorageKey = `cartState_${ejemplo.id}`;
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
+    
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
   }, [localStorageKey]);
 
@@ -66,7 +86,7 @@ const handleCart = ()=>{
 
   return (
     <div>
-      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart} className='CartCheck'>{isCart ? "✅" : "🛒"}</button>}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
        

@@ -8,7 +8,8 @@ import {
   GET_NFTS_FOR_USER, 
   UPDATE_USER_DETAIL, 
   UPDATE_USER,
-  CART_ID
+  CART_ID,
+  DELETE_CART_LOGO
 } from "./actionTypes";
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   allUsers: [],
   carritoId: [],
   adminAccessGranted: false,
+  cardLogoID:null
 }
 
 
@@ -57,7 +59,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ejemplo: action.payload
       }
-
+    case  DELETE_CART_LOGO:
+      console.log('en el DELETE_CART_LOGO(reducer):',action.payload)
+      return{
+          ...state,
+          cardLogoID:action.payload
+      };
         case SORT_ALFA:
             // eslint-disable-next-line no-case-declarations
             let cardsFilteredAlfa = [...state.ejemplo];
