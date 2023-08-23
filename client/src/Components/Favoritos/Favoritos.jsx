@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import "./Favoritos.css"
 import axios from "axios";
@@ -29,10 +27,11 @@ const Favoritos = ()=>{
     
 useEffect(() => {
   const fetchData = async () => {
+    const idCartActual=localStorage.getItem("cartId"); 
     try {
-      const userId = localStorage.getItem("clientId");
-      console.log(localStorage.getItem("clientId"));
-      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${userId}`)).data;
+      // const userId = 'b5a12bbc-b81d-4e33-a7fc-5a0eaed85098';
+      const idUserActual=localStorage.getItem("clientId");  
+      const response = (await axios.get(`https://nifytigoserver.onrender.com/shop/cart/${idUserActual}`)).data;
       if(response){
       setCart(response);
       console.log(response)
@@ -41,7 +40,6 @@ useEffect(() => {
     }
 
     } catch (error) { 
-      
      
       //  alert('No hay personajes con ese ID');
     }
@@ -70,7 +68,7 @@ const deleteToCart = (cartId, nftId) => {
     nftId: nftId,
   },}  )
     .then(response => {
-    console.log('delete')
+    
 
       console.log(response.data.message);
       setDeleteStatus([...deleteStatus]);
@@ -91,7 +89,7 @@ return (
                       <div className="text"> 
                       <p>{cart.status}</p>
 
-                    <h1>Price Total: {cart.price}</h1>
+                    <h1>Total Price: {cart.price}</h1>
                       
                     </div>
                    </NavLink>
@@ -120,7 +118,8 @@ return (
         
          
       </div>
-      <bdo className="bn" onClick={() => deleteToCart('41d96c8b-c842-405d-9085-97bd9e89f0a7', nft.id)}>delete Nft </bdo>
+      <bdo className="bn" onClick={() => deleteToCart(cart.id, nft.id)}>Delete NFT </bdo>   
+      {/* // PONER SU ID DE CARRITO!!!!  */}
    </li>
       ))}
                      

@@ -103,14 +103,6 @@ const rootReducer = (state = initialState, action) => {
             if(action.payload==='All'){
                 filteredGamesByGenres=allGamesGenre;
               }
-            // else {
-            //     if (state.ejemplo.length > 0) {
-            //       filteredGamesByGenres = filteredGamesByGenres.filter((game) =>
-            //         state.ejemplo.includes(game)
-            //   );
-            //   }
-            // }
-      
             return {
               ...state,
               ejemplo: filteredGamesByGenres,
