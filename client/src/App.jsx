@@ -16,6 +16,7 @@ import Purchase from './Views/Purchase/Purchase';
 import Profile from './Views/Profile/Profile';
 import AboutProgrammers from './Views/AboutProgrammers/AboutPro';
 import UpdateUser from './Components/UpdateUser/UpdateUser';
+import Bought from './Components/Bought/Bought';
 
 import { TermsOfService } from './Views/TermsOfService/TermsOfService';
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions';
@@ -27,7 +28,7 @@ import Favoritos from './Components/Favoritos/Favoritos';
 import Admin from './Views/Admin/Admin';
 import NFTsView from './Views/Admin/NFTsView';
 import UsersView from './Views/Admin/UsersView';
-//import DashboardView from './Views/Dashboard/DashboardView';
+import DashboardView from './Views/Dashboard/DashboardView';
 
 function App() {
   const location = useLocation();
@@ -59,9 +60,12 @@ function App() {
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Admin/NFTsView" element={<NFTsView />} />
           <Route path="/Admin/UsersView" element={<UsersView />} />
-          {/*<Route path="/Admin/DashboardView" element={<DashboardView />} />*/}
+          <Route path="/Admin/DashboardView" element={<DashboardView />} />
+          <Route path="/Profile" element={<Bought />} />
+          {/* <Route path="/Admin/UsersView" element={<UsersView />} /> */}
+          {/* <Route path='/Admin/DashboardView' element={<DashboardView/>}/> */}
 
-          {/* <Route path="/FormCollection" element={<FormCollection />} /> */}
+          {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
           {/* <Route path="/Success" element={<Success />} /> */}
           {/* <Route path="/Failure" element={<Failure />} /> */}
