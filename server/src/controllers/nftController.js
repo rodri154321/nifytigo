@@ -6,7 +6,7 @@ const { nfts, users, categories } = require('../db.js');
 
 
 const allNft = async (name) => {
-  const allNftsDb = await nfts.findAll({include: [{
+  const allNftsDb = await nfts.findAll({where: {active: true}},{include: [{
     model: users,
     attributes: ["name","id"],
   },
@@ -17,7 +17,7 @@ const allNft = async (name) => {
     through: { attributes: [] },
   }],});
 
-  if(allNftsDb.active === true){
+  
   if(allNftsDb.shop === false){
   return (
     {
@@ -31,7 +31,7 @@ const allNft = async (name) => {
       user: allNftsDb.user.name,
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
-    })}}
+    })}
   if (name) {
     
     let filterNft = allNftsDb.filter((nft) => 
