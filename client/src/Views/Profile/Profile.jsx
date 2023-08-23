@@ -186,7 +186,7 @@ const Profile = () => {
         <div className={style.navlinkCreateNft} >
           <div>
             <h1 onClick={toggleInfoFour} className={style.navlinkProfile} >
-              Owns
+              Created
             </h1>
           </div>
           <div classname={style.CreateNftFormNft}>

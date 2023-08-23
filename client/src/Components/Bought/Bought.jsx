@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 
 import './Bought.css';
 function Kard({ nft }) {
@@ -46,7 +47,6 @@ function Kard({ nft }) {
         </div>
     );
 }
-import React, { useState, useEffect } from 'react';
 
 function Bought() {
     const [nfts, setNfts] = useState([]);
