@@ -1,5 +1,5 @@
-const { allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
-const {nftPurchaseNotificationn} = require('../nodemailer/userNodemailer')
+const {putFalseShopNft, allNftsIdTrue, allNftsFalse,allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById } = require('../controllers/nftController')
+const {nftPurchaseNotification} = require('../nodemailer/userNodemailer')
 
 
 
@@ -24,19 +24,14 @@ const getNftHandler = async (req, res) => {
 }
 
 const postNftHandler = async (req, res) => {
- /*   const {email} = req.params
-    console.log("EMAIL = ", email);*/
+    const {email} = req.params
     
     const { iduser,shop, name,  description, image, price, categorie } = req.body;
     try {
         const response = await createNft(iduser,shop, name, description, image, price, categorie);
-
        const usuarioEmail = email;
-         const nombreUsuario = '[nombre del usuario]';
         const nombreNFT = response.name;
-
-       await nftPurchaseNotificationn(usuarioEmail, nombreNFT)
-
+       await nftPurchaseNotification(usuarioEmail, nombreNFT)
         res.status(201).json(response);
     } catch (error) {
         console.log(error)
@@ -128,6 +123,20 @@ console.log(userId)
       res.status(400).json({ error: error.message });
   }
   }
+
+ const  updateFalseNftHandler = async(req,res)=>{
+    const {id} = req.params;
+   const {userId, price} = req.body;
+   console.log("userId: ",userId)
+   console.log("price: ", price)
+   
+    try {
+        const response = await putFalseShopNft(id, userId, price)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+ }
   
 module.exports = {
     getNftHandler,
@@ -138,7 +147,8 @@ module.exports = {
     uptadeNftShop,
     getNftTrueHandler,
     getNftFalseHandler,
-    getNftTrueIdHandler 
+    getNftTrueIdHandler,
+    updateFalseNftHandler 
 }
 
 //hare una ruta sencilla

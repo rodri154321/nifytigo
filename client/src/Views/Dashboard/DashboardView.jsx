@@ -1,38 +1,38 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle";
 
 import LinesChart from "./LinesChart";
 import BarsChart from "./BarsChart";
 import PiesChart from "./PiesChart";
 
+import './DashboardView.css'
+
 function DashboardView() {
     return (
-        <div>
-            <h1 className="bg-info text-center font-monospace fw-bold lh-base">Dashboard</h1>
-            <div>
-                <p className="m-2"><b>1:</b>Gráfico de líneas</p>
-                <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{width:"450px", height:"230px"}}>
-                    <LinesChart />
-                </div>
+        <div className="dash-container">
+          <h1 className="tit">Dashboard</h1>
+          <div>
+            <div className="chart-container">
+              <LinesChart />
             </div>
-            <hr className="mt-3 mb-2"/>
-            <div>
-                <p className="m-2"><b>2:</b>Gráfico de barras</p>
-                <div className="bg-light mx-auto px-2 border border-2 border-primary" style={{width:"450px", height:"225px"}}>
-                    <BarsChart />
-                </div>
+          </div>
+          <hr className="custom-margin-top custom-margin-bottom" />
+          <div>
+            <div className="chart-container">
+              <BarsChart />
             </div>
-            <hr className="mt-3 mb-2"/>
-            <div>
-                <p className="m-2"><b>3:</b>Gráfico circular</p>
-                <div className="bg-light mx-auto border border-2 border-primary" style={{width:"450px", height:"250px"}}>
-                    <div style={{width:"100%", height:"100%", padding:"10px 0"}}>
-                        <PiesChart />                       
-                    </div>
-                </div>
+          </div>
+          <hr className="custom-margin-top custom-margin-bottom" />
+          <div>
+            <div className="chart-container">
+              <div className="inner-chart-container">
+                <PiesChart />
+              </div>
             </div>
+          </div>
+          <br />
         </div>
-    );
-}
+      );
+    }
 
 export default DashboardView;

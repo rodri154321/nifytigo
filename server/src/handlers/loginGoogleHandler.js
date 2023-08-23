@@ -1,5 +1,5 @@
 const { postLoginGoogle } = require("../controllers/loginGoogleController");
-//const emailer = require("../emailer");
+
 
 const loginGoogle = async (req, res) => {
   const {email, googleId,name} = req.body;
@@ -8,7 +8,7 @@ const loginGoogle = async (req, res) => {
 
     const response = await postLoginGoogle(email,googleId,name);
 
-   //emailer.sendMail({email, name});
+
 
 
     return res.status(200).json({ message: "Registro Exitoso", homeURL: "/", response });

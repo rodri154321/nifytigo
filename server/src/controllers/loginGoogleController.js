@@ -1,25 +1,30 @@
 const { users } = require("../db.js");
 
-const postLoginGoogle = async(email,googleId,name) =>{
+const postLoginGoogle = async (email, googleId, name) => {
     console.log("EMAIL", email, "GOOGLEID", googleId, "NAME", name);
 
-    const newuser = await users.findOrCreate({ 
-        where: { email : email },
-        defaults: {
-            name: name,
-            email: email,
-            password: googleId,
-            cellPhone:"",
-            country:"",
-            username:"",
-            lastName:"",
-        } 
-    });
+    try {
+        const newuser = await users.findOrCreate({
+            where: { email: email },
+            defaults: {
+                name: name,
+                email: email,
+                password: googleId,
+                cellPhone: "",
+                country: "",
+                username: "",
+                lastName: "",
+            },
+        });
 
-    return newuser;
-    
-}
+        // Devuelve el nuevo usuario creado o el usuario existente
+        return newuser[0];
+    } catch (error) {
+        console.error("Error al crear/buscar usuario:", error);
+        throw error;
+    }
+};
 
 module.exports = {
     postLoginGoogle
-}
+};
