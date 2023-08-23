@@ -1,20 +1,29 @@
 
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { NavLink, useLocation } from "react-router-dom"
 import "./Card.css";
 
 function Card(ejemplo) {
+<<<<<<< HEAD
   /*redux */
   const idUserActual = localStorage.getItem("clientId");
   const idCartActual = localStorage.getItem("cartId");
 
   const [isCart, setIsCart] = useState(false);
   const localStorageKey = `cartState_${ejemplo.id}`;
+=======
+/*redux */
+const isProfileRoute = location.pathname === '/Profile' || location.pathname ==='/Purchase';
+ const idUserActual=localStorage.getItem("clientId");
+ const idCartActual=localStorage.getItem("cartId");     
+const [isCart, setIsCart] = useState(false);
+const localStorageKey = `cartState_${ejemplo.id}`;
+>>>>>>> 98c9adc47a5e48cbb1719fe8800c1563f3a7c509
 
   useEffect(() => {
     const storedIsCart = localStorage.getItem(localStorageKey);
+    
     setIsCart(storedIsCart === 'true'); // Parse the stored value to a boolean
   }, [localStorageKey]);
 
@@ -55,9 +64,41 @@ function Card(ejemplo) {
 
   return (
     <div>
+<<<<<<< HEAD
       {idUserActual}
 
       <NavLink to={`/detail/${ejemplo.id}`}>
+=======
+      {idUserActual&&!isProfileRoute&&<button onClick={handleCart}>{isCart ? "✅" : "🛒"}</button>}
+
+      <NavLink to={`/detail/${ejemplo.id}`}>
+       
+         
+        
+       
+<div className="card">
+  <div className="content">
+    <div className="back">
+      <div className="back-content">
+       
+      <div>
+          <img width="220px" height="220px"src={ejemplo.image}/>
+          {/* {console.log(ejemplo.imagen)} */}
+        </div>
+        
+      </div>
+    </div>
+    <div className="front">
+      
+      <div className="img">
+        <div className="circle">
+        </div>
+        <div className="circle" id="right">
+        </div>
+        <div className="circle" id="bottom">
+        </div>
+      </div>
+>>>>>>> 98c9adc47a5e48cbb1719fe8800c1563f3a7c509
 
 
 
