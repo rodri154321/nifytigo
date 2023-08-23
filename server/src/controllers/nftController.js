@@ -2,7 +2,7 @@
 
 //hare una ruta sencilla
 //la cual solo se encargara que depende del ID del usuario cambiara el shop de false a true
- const { nfts, users, categories } = require('../db.js');
+const { nfts, users, categories } = require('../db.js');
 
 
 const allNft = async (name) => {

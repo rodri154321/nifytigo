@@ -30,7 +30,7 @@ const getMyCart = async (userId) => {
   const cartResults = await cart.findByPk(cartShop.id, {
     include: {
       model: nfts,
-      attributes: ["id", "name", "image", "price"],
+      attributes: ["id", "name","shop", "image", "price"],
       through: { attributes: [] }
 
     },
@@ -46,15 +46,28 @@ const getMyCart = async (userId) => {
   //let totalPrice = Number(cartResults.price) + cartResults.nfts.map(pr => Number(pr.price))  
 
   //let totalPrice = Number(cartResults.price) + Number(cartResults.nfts[0].price)
-  console.log(cartResults.price)
+
   await cart.update({ price: totalPrice }, { where: { id: cartShop.id } })
   const cartShops = await cart.findByPk(cartShop.id, {
     include: {
       model: nfts,
-      attributes: ["id", "name", "image", "price"],
+      attributes: ["id", "name", "shop","image", "price"],
       through: { attributes: [] }
     },
   });
+
+ cartShops.nfts.map((nfts)=>{
+  
+  if(nfts.shop ===true){
+ //sacarlo del carrito
+ deleteCartNfts(cartShops.id,nfts.id)
+  }
+
+})
+  
+  
+
+
   return cartShops
 
 }
