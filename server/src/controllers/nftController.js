@@ -16,9 +16,8 @@ const allNft = async (name) => {
       as: 'categories', // Usa el alias definido en el modelo
       attributes: ["name"],
       through: { attributes: [] },
-    }],});
-
-
+    }],
+  });
 
   if (name) {
     
