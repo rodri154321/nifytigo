@@ -9,15 +9,16 @@ const allNft = async (name) => {
   const allNftsDb = await nfts.findAll({where:{shop: false}},{
     include: [{
       model: users,
-      attributes: ["name"],
+      attributes: ["name","id"],
     },
     {
       model: categories,
       as: 'categories', // Usa el alias definido en el modelo
       attributes: ["name"],
       through: { attributes: [] },
-    }]
-  });
+    }],});
+
+
 
   if (name) {
     
@@ -47,6 +48,7 @@ const createNft = async (iduser, shop ,name, description, image, price, cate) =>
     }
   }
   return newNft;
+  
 };
 
 
