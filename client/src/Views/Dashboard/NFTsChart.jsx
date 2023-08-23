@@ -23,7 +23,7 @@ ChartJS.register(
     Filler
 );
 
-const nftsAPIUrl = 'https://nifytigoserver.onrender.com/nft/nfts/true';
+const nftsAPIUrl = 'https://nifytigoserver.onrender.com/nft/admin';
 
 const getNFTsDataFromAPI = async () => {
     try {
@@ -41,7 +41,7 @@ const getNFTsDataFromAPI = async () => {
     }
 };
 
-export default function BarsChart() {
+export default function NFTsChart() {
     const [nftsData, setNFTsData] = useState([]);
     const meses = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',

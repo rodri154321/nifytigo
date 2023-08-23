@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'), // Establece la fecha de creación al crear el registro
         },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
     }, {
         timestamps: false, // Habilita las columnas createdAt y updatedAt por defecto
     });

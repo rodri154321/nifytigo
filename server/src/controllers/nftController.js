@@ -5,20 +5,63 @@
 const { nfts, users, categories } = require('../db.js');
 
 
-const allNft = async (name) => {
-  const allNftsDb = await nfts.findAll({where:{shop: false}},{
-    include: [{
-      model: users,
-      attributes: ["name"],
-    },
-    {
-      model: categories,
-      as: 'categories', // Usa el alias definido en el modelo
-      attributes: ["name"],
-      through: { attributes: [] },
-    }],
-  });
+const allNftadmin = async (name) => {
+  const allNftsDb = await nfts.findAll({include: [{
+    model: users,
+    attributes: ["name","id"],
+  },
+  {
+    model: categories,
+    as: 'categories', // Usa el alias definido en el modelo
+    attributes: ["name"],
+    through: { attributes: [] },
+  }],});
 
+  
+  if(allNftsDb.shop === false){
+  return (
+    {
+
+      id: allNftsDb.id,
+      shop: allNftsDb.shop,
+      name: allNftsDb.name,
+      description: allNftsDb.description,
+      image: allNftsDb.image,
+      price: allNftsDb.price,
+      user: allNftsDb.user.name,
+      userid: allNftsDb.userid,
+      categories: allNftsDb.categories
+    })}
+    return allNftsDb;
+};
+
+const allNft = async (name) => {
+  const allNftsDb = await nfts.findAll({where: {active: true}},{include: [{
+    model: users,
+    attributes: ["name","id"],
+  },
+  {
+    model: categories,
+    as: 'categories', // Usa el alias definido en el modelo
+    attributes: ["name"],
+    through: { attributes: [] },
+  }],});
+
+  
+  if(allNftsDb.shop === false){
+  return (
+    {
+
+      id: allNftsDb.id,
+      shop: allNftsDb.shop,
+      name: allNftsDb.name,
+      description: allNftsDb.description,
+      image: allNftsDb.image,
+      price: allNftsDb.price,
+      user: allNftsDb.user.name,
+      userid: allNftsDb.userid,
+      categories: allNftsDb.categories
+    })}
   if (name) {
     
     let filterNft = allNftsDb.filter((nft) => 
@@ -47,6 +90,7 @@ const createNft = async (iduser, shop ,name, description, image, price, cate) =>
     }
   }
   return newNft;
+  
 };
 
 
@@ -77,7 +121,7 @@ const getNftById = async (id) => {
         userid: nft.user.id,
         categories: nft.categories
       })}
-  {return`se seteo`;}
+  {return nft;}
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
@@ -89,6 +133,11 @@ const deleteNft = async (id) => {
   const deleteNft = await nfts.destroy({where: { id: id} });
   return deleteNft;
 };
+
+const nftStatus = async (id) => {
+  const nftStatusId = nfts.findByPk(id)
+  return nftStatusId;
+}
 
 
 const updateNftDescription = async (id, description) => {
@@ -170,4 +219,4 @@ const allNftsIdUser = async(userId)=>{
 }
 
 
-module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById };
+module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus, allNftadmin };
