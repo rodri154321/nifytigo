@@ -1,17 +1,29 @@
+const { log } = require("console");
 const { users } = require("../db.js");
 
 const postLoginGoogle = async (email, googleId, name) => {
     console.log("EMAIL", email, "GOOGLEID", googleId, "NAME", name);
 
-    const existingUser = await users.findOne({ where: { email: email } })
+    users.findOne({ where: { email: email } })
+  .then(existingUser => {
+    console.log(existingUser);
     if (existingUser) {
       return existingUser
     } else {
       // El usuario no existe, puedes crearlo
-      const newuser = await users.create({ email: email, name: name, password: googleId, cellPhone: "", country: "",username: "",lastName: "", })
-    return newuser
+      users.create({ email: email, name: name, password: googleId, cellPhone: "", country: "",username: "",lastName: "", })
+        .then(newUser => {
+            console.log(newUser);
+          return newUser
+        })
+        .catch(error => {
+            throw new Error(error , "no se pudo acceder")
+        });
     }
-  }
+  })
+  .catch(error => {
+    throw new Error(error , "no se pudo acceder")
+  });
 
 
     // try {
@@ -34,7 +46,7 @@ const postLoginGoogle = async (email, googleId, name) => {
     //     console.error("Error al crear/buscar usuario:", error);
     //     throw error;
     // }
-
+};
 
 module.exports = {
     postLoginGoogle
