@@ -18,7 +18,6 @@ const allNftadmin = async (name) => {
   }],});
 
   
-  if(allNftsDb.shop === false){
   return (
     {
 
@@ -31,8 +30,8 @@ const allNftadmin = async (name) => {
       user: allNftsDb.user.name,
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
-    })}
-    return allNftsDb;
+    })
+    
 };
 
 const allNft = async (name) => {
