@@ -6,19 +6,8 @@ const { nfts, users, categories } = require('../db.js');
 
 
 const allNftadmin = async (name) => {
-  const allNftsDb = await nfts.findAll({include: [{
-    model: users,
-    attributes: ["name","id"],
-  },
-  {
-    model: categories,
-    as: 'categories', // Usa el alias definido en el modelo
-    attributes: ["name"],
-    through: { attributes: [] },
-  }],});
+  const allNftsDb = await nfts.findAll();
 
-  
-  if(allNftsDb.shop === false){
   return (
     {
       id: allNftsDb.id,
@@ -30,18 +19,7 @@ const allNftadmin = async (name) => {
       user: allNftsDb.user.name,
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
-    })}
-  if (name) {
-    
-    let filterNft = allNftsDb.filter((nft) => 
-      nft.name.toLowerCase().includes(name.toLowerCase()));
-    //validacion para que no devuelva un array u objeto vacio 
-
-    if (!filterNft.length)
-      throw new Error(`No se encontro el Nft con el nombre ${name}`);
-    return filterNft;
-  }
-  return allNftsDb;
+    })
 };
 
 const allNft = async (name) => {
