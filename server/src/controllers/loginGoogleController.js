@@ -34,7 +34,7 @@ const postLoginGoogle = async (email, googleId, name) => {
     //     console.error("Error al crear/buscar usuario:", error);
     //     throw error;
     // }
-};
+
 
 module.exports = {
     postLoginGoogle
