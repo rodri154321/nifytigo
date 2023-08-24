@@ -7,7 +7,7 @@ const postLoginGoogle = async (email, googleId, name) => {
     users.findOne({ where: { email: email } })
   .then(existingUser => {
     console.log(existingUser);
-    if (existingUser) {
+    if (existingUser===null) {
       return existingUser
     } else {
       // El usuario no existe, puedes crearlo
