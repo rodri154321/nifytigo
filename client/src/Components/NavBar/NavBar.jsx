@@ -68,6 +68,9 @@ const NavBar = () => {
         {/* <NavLink to="/Admin" className={style.navlinkNavBar}>
           Admin
         </NavLink> */}
+        {/* {idUserActual && <NavLink to="/Wallet" className={style.navlinkNavBar}>
+          Wallet
+        </NavLink>} */}
 
         {access ? (
           <NavLink to="/Profile" className={style.navlinkNavBar}>

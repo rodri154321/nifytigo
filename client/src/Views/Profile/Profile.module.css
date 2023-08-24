@@ -473,8 +473,10 @@ a:active {
   margin: 2.5rem;
   padding: 2.5rem;
   background: linear-gradient(#615f5c67, #69686571);
+  background-color: red;
   border-radius: 12px;
   box-shadow: -2px -2px 12px 12px #4d4c4bd5;
+  
 }
 
 .hiddenContainer {
@@ -492,4 +494,5 @@ a:active {
   align-items: center;
   justify-content: space-evenly;
   padding: 2rem;
+  
 }

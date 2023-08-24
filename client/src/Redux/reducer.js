@@ -49,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_CATEGORIES:
-      let allcats = action.payload.push({ name: 'All' })
+      let allcats = action.payload.unshift({ name: 'All' })
       return {
         ...state,
         // ejemplo: action.payload,
@@ -98,12 +98,12 @@ const rootReducer = (state = initialState, action) => {
             // eslint-disable-next-line no-case-declarations
             let filteredGamesByGenres = allGamesGenre.filter((game) => {
                 // console.log("Game en el reducer filter:", game,'el payload es:', action.payload );
-              if (game.categories) {
+              //if (game.categories) {
                 // console.log(game.categories)
-                let cats=game.categories.map(cat=>cat.name)
-                // console.log("categorias extraidas",cats)
+                let cats=game.categories.map(cat=>cat)
+                console.log("categorias extraidas",cats)
                 return cats.includes(action.payload);   //Devuelve los juegos en los que se encontro la cate
-              }
+              //}
               return false;
             });
             console.log('Cards ya filtradas:',filteredGamesByGenres);
