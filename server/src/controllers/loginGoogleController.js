@@ -9,7 +9,7 @@ const postLoginGoogle = async (email, googleId, name) => {
       return existingUser
     } else {
       // El usuario no existe, puedes crearlo
-      User.create({ email: email, name: name, password: googleId })
+      users.create({ email: email, name: name, password: googleId, cellPhone: "", country: "",username: "",lastName: "", })
         .then(newUser => {
           return newUser
         })
