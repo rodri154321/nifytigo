@@ -52,7 +52,7 @@ function Owns() {
     const idUserActual = localStorage.getItem("clientId");
     useEffect(() => {
         // Realizar la llamada a la API dentro del useEffect
-        fetch(`https://nifytigoserver.onrender.com/nft/users/${idUserActual}`)
+        fetch(`https://nifytigoserver.onrender.com/nft/nfts/users/${idUserActual}`)
             .then(response => response.json())
             .then(data => setNfts(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -60,13 +60,16 @@ function Owns() {
 
     return (
         <div>
-            <ul style={{ display: "flex" }}>
+         <div className='KardC'>
                 {nfts.map(nft => (
-                    <li key={nft.id}>
+                    // eslint-disable-next-line react/jsx-key
+                    <div >
                         <Kard nft={nft} />
-                    </li>
+                    </div>
+                        
+                   
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

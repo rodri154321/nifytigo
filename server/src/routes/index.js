@@ -20,7 +20,7 @@ router.use("/login", loginRoutes);
 router.use("/login/google", loginGoogleRoutes);
 //router.use('/videogames', videoGamesRouter)
 
-router.use("/" , saveBoughtNFT)
+router.use("/profile" , saveBoughtNFT)
 // routes.js
 
 

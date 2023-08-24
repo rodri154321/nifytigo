@@ -5,63 +5,51 @@
 const { nfts, users, categories } = require('../db.js');
 
 
-const allNftadmin = async (name) => {
-  const allNftsDb = await nfts.findAll({include: [{
-    model: users,
-    attributes: ["name","id"],
-  },
-  {
-    model: categories,
-    as: 'categories', // Usa el alias definido en el modelo
-    attributes: ["name"],
-    through: { attributes: [] },
-  }],});
+const allNftadmin = async () => {
+  const allNfts = await nfts.findAll();
 
-  
-  if(allNftsDb.shop === false){
-  return (
-    {
-
-      id: allNftsDb.id,
-      shop: allNftsDb.shop,
-      name: allNftsDb.name,
-      description: allNftsDb.description,
-      image: allNftsDb.image,
-      price: allNftsDb.price,
-      user: allNftsDb.user.name,
-      userid: allNftsDb.userid,
-      categories: allNftsDb.categories
-    })}
-    return allNftsDb;
+  return allNfts;
 };
 
 const allNft = async (name) => {
-  const allNftsDb = await nfts.findAll({where: {active: true}},{include: [{
-    model: users,
-    attributes: ["name","id"],
-  },
-  {
-    model: categories,
-    as: 'categories', // Usa el alias definido en el modelo
-    attributes: ["name"],
-    through: { attributes: [] },
-  }],});
+  const nftsQuery = {
+    where: { shop: false },
+    include: [
+      {
+        model: users,
+        attributes: ["name", "id"],
+      },
+    ],
+  };
 
-  
-  if(allNftsDb.shop === false){
-  return (
-    {
+ 
 
-      id: allNftsDb.id,
-      shop: allNftsDb.shop,
-      name: allNftsDb.name,
-      description: allNftsDb.description,
-      image: allNftsDb.image,
-      price: allNftsDb.price,
-      user: allNftsDb.user.name,
-      userid: allNftsDb.userid,
-      categories: allNftsDb.categories
-    })}
+  const allNftsDb = await nfts.findAll(nftsQuery);
+
+  const nftsWithCategories = await Promise.all(
+    allNftsDb.map(async (nft) => {
+      const categories = await nft.getCategories({
+        attributes: ["name"],
+      });
+
+      const userName = nft.user ? nft.user.name : "Usuario Desconocido";
+      const userId = nft.user ? nft.user.id : "ID Desconocido";
+
+      return {
+        id: nft.id,
+        shop: nft.shop,
+        name: nft.name,
+        description: nft.description,
+        image: nft.image,
+        price: nft.price,
+        customCreatedAt: nft.customCreatedAt,
+        active: nft.active,
+        user: userName,
+        userid: userId,
+        categories: categories.map((category) => category.name),
+      };
+    })
+  );
   if (name) {
     
     let filterNft = allNftsDb.filter((nft) => 
@@ -72,9 +60,8 @@ const allNft = async (name) => {
       throw new Error(`No se encontro el Nft con el nombre ${name}`);
     return filterNft;
   }
-  return allNftsDb;
+  return nftsWithCategories;
 };
-
 
 const createNft = async (iduser, shop ,name, description, image, price, cate) => {
   const customCreatedAt = new Date();
