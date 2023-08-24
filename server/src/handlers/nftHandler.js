@@ -196,7 +196,7 @@ module.exports = {
     updateFalseNftHandler ,
     getNftsIdUsers,
     nftStatusHandler,
-    getNftAdminHandler
+    NftAdminHandler
 }
 
 //hare una ruta sencilla

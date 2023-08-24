@@ -36,9 +36,9 @@ const Login = () => {
     localStorage.getItem("loger");
   }, [loger]);
 
-
-  const clientID = "1097783639812-uq9r07aq792puaao9vq35npialuc6ute.apps.googleusercontent.com"
-
+  // Autenticación con Google
+  const clientID =
+    "1097783639812-uq9r07aq792puaao9vq35npialuc6ute.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = async () => {
@@ -109,6 +109,7 @@ const Login = () => {
     if (Object.keys(errorSave).length === 0) {
       dispatch(login(user));
     }
+
   };
 
   return (

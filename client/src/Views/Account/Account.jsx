@@ -3,10 +3,13 @@ import validation from "./validation";
 import "./index.css";
 //import Login from "../Login/Login";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createUser } from "../../Redux/userActions";
+import Swal from "sweetalert2";
 
 const Account = ({ onSubmit }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
     username: "",
@@ -38,8 +41,16 @@ const [errorMessage, setErrorMessage] = useState('');
         // Aquí llamamos a la acción createUser con los datos del formulario
         dispatch(createUser(userData));
         setUserCreationStatus('User created successfully!');
-        
         setErrorMessage(''); // Limpiamos el mensaje de error en caso de existir previamente
+        Swal.fire({
+          icon: "success",
+          title: "User Created",
+          showConfirmButton: false,
+          timer: 2000,
+          background: "#666",
+          color: "#FFFFFF",
+        });
+        navigate("/Login");
       } catch (error) {
         setUserCreationStatus('User creation failed.');
         setErrorMessage(error.message);
