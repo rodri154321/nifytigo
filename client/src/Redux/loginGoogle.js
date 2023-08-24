@@ -8,9 +8,9 @@ export const loginGoogle = (user) => {
       try {
         //const response = await axios.post("http://localhost:3001/login/google", user);
         console.log(user);
-       const response = await axios.post("https://nifytigoserver.onrender.com/login/google/", user)
+       const response = (await axios.post("https://nifytigoserver.onrender.com/login/google", user)).data
         console.log(response);
-        return dispatch({type: LOGIN_GOOGLE, payload: response.data});
+        return dispatch({type: LOGIN_GOOGLE, payload: response});
       } catch (error) {
         throw error;
       }
