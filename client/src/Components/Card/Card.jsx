@@ -58,9 +58,6 @@ function Card(ejemplo) {
 
       <NavLink to={`/detail/${ejemplo.id}`}>
 
-
-
-
         <div className="card">
           <div className="content">
             <div className="back">
@@ -104,9 +101,6 @@ function Card(ejemplo) {
             </div>
           </div>
         </div>
-
-
-
 
       </NavLink>
 

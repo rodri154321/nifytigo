@@ -18,6 +18,7 @@ import AboutProgrammers from './Views/AboutProgrammers/AboutPro';
 import UpdateUser from './Components/UpdateUser/UpdateUser';
 import Bought from './Components/Bought/Bought';
 
+import Wallet from './Views/Wallet/Wallet';
 import { TermsOfService } from './Views/TermsOfService/TermsOfService';
 import { FrequentQuestions } from './Views/FrequentQuestions/FrequentQuestions';
 import { PrivacyOfPolicy } from './Views/PrivacyOfPolicy/PrivacyOfPolicy';
@@ -29,6 +30,7 @@ import Admin from './Views/Admin/Admin';
 import NFTsView from './Views/Admin/NFTsView';
 import UsersView from './Views/Admin/UsersView';
 import DashboardView from './Views/Dashboard/DashboardView';
+
 
 function App() {
   const location = useLocation();
@@ -64,7 +66,7 @@ function App() {
           <Route path="/Profile" element={<Bought />} />
           <Route path="/Admin/UsersView" element={<UsersView />} />
           <Route path='/Admin/DashboardView' element={<DashboardView/>}/>
-
+          <Route path='/Wallet' element={<Wallet/>}/>
           {/* <Route path="/FormCollection" element={<FormCollection />} */}
           {/* <Route path="/Admin" element={<Admin />} /> */}
           {/* <Route path="/Success" element={<Success />} /> */}
