@@ -13,7 +13,7 @@ const allNftadmin = async () => {
 
 const allNft = async (name) => {
   const nftsQuery = {
-    where: { shop: false, active:true },
+    where: { shop: false, active: true },
     include: [
       {
         model: users,
@@ -22,7 +22,7 @@ const allNft = async (name) => {
     ],
   };
 
- 
+
 
   const allNftsDb = await nfts.findAll(nftsQuery);
 
@@ -51,8 +51,8 @@ const allNft = async (name) => {
     })
   );
   if (name) {
-    
-    let filterNft = allNftsDb.filter((nft) => 
+
+    let filterNft = allNftsDb.filter((nft) =>
       nft.name.toLowerCase().includes(name.toLowerCase()));
     //validacion para que no devuelva un array u objeto vacio 
 
@@ -63,52 +63,55 @@ const allNft = async (name) => {
   return nftsWithCategories;
 };
 
-const createNft = async (iduser, shop ,name, description, image, price, cate) => {
+const createNft = async (iduser, shop, name, description, image, price, cate) => {
   const customCreatedAt = new Date();
-  const newNft = await nfts.create({ name,shop, description, image, price, customCreatedAt });
+  const newNft = await nfts.create({ name, shop, description, image, price, customCreatedAt });
   await newNft.setUser(iduser);
   for (const cateName of cate) {
 
-    
+
     const cat = await categories.findOne({ where: { name: cateName } });
-    
-    if (cat) {     
+
+    if (cat) {
       await newNft.addCategories(cat);
     }
   }
   return newNft;
-  
+
 };
 
 
 const getNftById = async (id) => {
   try {
-    
-    const nft = await nfts.findByPk(id,{include: [{
-      model: users,
-      attributes: ["name","id"],
-    },
-    {
-      model: categories,
-      as: 'categories', // Usa el alias definido en el modelo
-      attributes: ["name"],
-      through: { attributes: [] },
-    }],});
-    if(nft.shop === false){
-    return (
-      {
 
-        id: nft.id,
-        shop: nft.shop,
-        name: nft.name,
-        description: nft.description,
-        image: nft.image,
-        price: nft.price,
-        user:nft.user.name,
-        userid: nft.user.id,
-        categories: nft.categories
-      })}
-  {return nft;}
+    const nft = await nfts.findByPk(id, {
+      include: [{
+        model: users,
+        attributes: ["name", "id"],
+      },
+      {
+        model: categories,
+        as: 'categories', // Usa el alias definido en el modelo
+        attributes: ["name"],
+        through: { attributes: [] },
+      }],
+    });
+    if (nft.shop === false) {
+      return (
+        {
+
+          id: nft.id,
+          shop: nft.shop,
+          name: nft.name,
+          description: nft.description,
+          image: nft.image,
+          price: nft.price,
+          user: nft.user.name,
+          userid: nft.user.id,
+          categories: nft.categories
+        })
+    }
+    { return nft; }
   } catch (error) {
     throw new Error('Error retrieving NFT');
   }
@@ -117,7 +120,7 @@ const getNftById = async (id) => {
 
 
 const deleteNft = async (id) => {
-  const deleteNft = await nfts.destroy({where: { id: id} });
+  const deleteNft = await nfts.destroy({ where: { id: id } });
   return deleteNft;
 };
 
@@ -139,71 +142,71 @@ const updateNftDescription = async (id, description) => {
   return nft;
 };
 
-const putShopNft = async (nftId,userid, price) => {
+const putShopNft = async (nftId, userid, price) => {
   try {
-      // Buscar el NFT por ID
-      const nft = await nfts.findByPk(nftId);
+    // Buscar el NFT por ID
+    const nft = await nfts.findByPk(nftId);
 
-      if (nft) {
-          // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: true, userId: userid, price:price });
+    if (nft) {
+      // Actualizar el valor de 'shop' a true
+      await nft.update({ shop: true, userId: userid, price: price });
 
-          // Obtener la información actualizada del NFT
-          return await getNftById(nftId);
-      } else {
-          throw new Error('NFT not found');
-      }
+      // Obtener la información actualizada del NFT
+      return await getNftById(nftId);
+    } else {
+      throw new Error('NFT not found');
+    }
   } catch (error) {
-      throw new Error('Error updating NFT');
+    throw new Error('Error updating NFT');
   }
 };
 
 
 
-const allNftsTrue = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: true, active:true},})
-return allNftsDb
+const allNftsTrue = async () => {
+  const allNftsDb = await nfts.findAll({ where: { shop: true, active: true }, })
+  return allNftsDb
 
 }
 
-const allNftsFalse = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: false,active:true}})
-return allNftsDb
+const allNftsFalse = async () => {
+  const allNftsDb = await nfts.findAll({ where: { shop: false, active: true } })
+  return allNftsDb
 
 }
 
 
-const allNftsIdTrue = async(userId)=>{
- // const userNft = await nfts.findByPk(userId);
-  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId,active:true}})
+const allNftsIdTrue = async (userId) => {
+  // const userNft = await nfts.findByPk(userId);
+  const allNftsDb = await nfts.findAll({ where: { shop: true, userId: userId, active: true } })
 
-return allNftsDb
+  return allNftsDb
 }
 
-const putFalseShopNft = async (nftId,userid, price) => {
+const putFalseShopNft = async (nftId, userid, price) => {
   try {
-      // Buscar el NFT por ID
-      const nft = await nfts.findByPk(nftId);
+    // Buscar el NFT por ID
+    const nft = await nfts.findByPk(nftId);
 
-      if (nft) {
-          // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: false, userId: userid, price:price,active:true });
+    if (nft) {
+      // Actualizar el valor de 'shop' a true
+      await nft.update({ shop: false, userId: userid, price: price, active: true });
 
-          // Obtener la información actualizada del NFT
-          return await getNftById(nftId);
-      } else {
-          throw new Error('NFT not found');
-      }
+      // Obtener la información actualizada del NFT
+      return await getNftById(nftId);
+    } else {
+      throw new Error('NFT not found');
+    }
   } catch (error) {
-      throw new Error('Error updating NFT');
+    throw new Error('Error updating NFT');
   }
 };
 
-const allNftsIdUser = async(userId)=>{
-  const allNftsDb = await nfts.findAll({where:{shop: false,userId: userId,active:true}})
+const allNftsIdUser = async (userId) => {
+  const allNftsDb = await nfts.findAll({ where: { shop: false, userId: userId, active: true } })
 
   return allNftsDb
 }
 
 
-module.exports = {allNftsIdUser,putFalseShopNft,allNftsIdTrue, allNftsFalse,allNftsTrue ,putShopNft,allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus, allNftadmin };
+module.exports = { allNftsIdUser, putFalseShopNft, allNftsIdTrue, allNftsFalse, allNftsTrue, putShopNft, allNft, createNft, deleteNft, updateNftDescription, getNftById, nftStatus, allNftadmin };
