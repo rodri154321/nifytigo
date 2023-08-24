@@ -12,7 +12,7 @@ const allNftadmin = async () => {
 };
 
 const allNft = async (name) => {
-  const allNftsDb= await nfts.findAll( {where: {shop:false}},{include: [{
+  const allNftsDb= await nfts.findAll( {where: {shop: false, active: true}},{include: [{
     model: users,
     attributes: ["name","id"],
   },
