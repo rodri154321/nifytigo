@@ -44,5 +44,5 @@ router
 
 .get('/nfts/false',getNftFalseHandler)//muestra todos los nfts con la propiedad "shop:false"
 
-.get('/nft/users/:userId',getNftsIdUsers)//Trae los NFTS con la propiedad "shop:false" por id de usuario
+.get('/nfts/users/:userId',getNftsIdUsers)//Trae los NFTS con la propiedad "shop:false" por id de usuario
 module.exports = router;

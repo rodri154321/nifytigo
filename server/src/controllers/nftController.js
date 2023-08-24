@@ -35,7 +35,7 @@ const allNftadmin = async (name) => {
 };
 
 const allNft = async (name) => {
-  const allNftsDb= await nfts.findAll({include: [{
+  const allNftsDb= await nfts.findAll( {where: {shop:false}},{include: [{
     model: users,
     attributes: ["name","id"],
   },

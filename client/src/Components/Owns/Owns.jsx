@@ -52,7 +52,7 @@ function Owns() {
     const idUserActual = localStorage.getItem("clientId");
     useEffect(() => {
         // Realizar la llamada a la API dentro del useEffect
-        fetch(`https://nifytigoserver.onrender.com/nft/users/${idUserActual}`)
+        fetch(`https://nifytigoserver.onrender.com/nft/nfts/users/${idUserActual}`)
             .then(response => response.json())
             .then(data => setNfts(data))
             .catch(error => console.error('Error fetching data:', error));
