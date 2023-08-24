@@ -38,8 +38,20 @@ const [errorMessage, setErrorMessage] = useState('');
         // Aquí llamamos a la acción createUser con los datos del formulario
         dispatch(createUser(userData));
         setUserCreationStatus('User created successfully!');
-        
         setErrorMessage(''); // Limpiamos el mensaje de error en caso de existir previamente
+        Swal.fire({
+          icon: "success",
+          title: "User Created",
+          showConfirmButton: false,
+          timer: 2000,
+          background: "#666",
+          color: "#FFFFFF",
+        });
+        setUser({
+          email: "",
+          password: "",
+        });
+        navigate("/Login");
       } catch (error) {
         setUserCreationStatus('User creation failed.');
         setErrorMessage(error.message);
