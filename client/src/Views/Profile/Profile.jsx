@@ -167,7 +167,7 @@ const Profile = () => {
               Create NFT
             </h1>
           </div>
-          <div classname={style.CreateNftFormNft}>
+          <div className={style.CreateNftFormNft}>
             {infoVisibleTwo && <FormNft />}
           </div>
         </div>
@@ -178,7 +178,7 @@ const Profile = () => {
               Bought
             </h1>
           </div>
-          <div classname={style.CreateNftFormNft}>
+          <div className={style.Bought}>
             {infoVisibleFive && <Bought />}
           </div>
         </div>
@@ -189,7 +189,7 @@ const Profile = () => {
               Created
             </h1>
           </div>
-          <div classname={style.CreateNftFormNft}>
+          <div className={style.Owns}>
             {infoVisibleFour && <Owns />}
           </div>
         </div>

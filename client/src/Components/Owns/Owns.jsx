@@ -60,13 +60,16 @@ function Owns() {
 
     return (
         <div>
-            <ul style={{ display: "flex" }}>
+         <div className='KardC'>
                 {nfts.map(nft => (
-                    <li key={nft.id}>
+                    // eslint-disable-next-line react/jsx-key
+                    <div >
                         <Kard nft={nft} />
-                    </li>
+                    </div>
+                        
+                   
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
