@@ -49,10 +49,10 @@ import React, { useState, useEffect } from 'react';
 
 function Owns() {
     const [nfts, setNfts] = useState([]);
-    const idCartActual = localStorage.getItem("cartId");
+    const idUserActual = localStorage.getItem("clientId");
     useEffect(() => {
         // Realizar la llamada a la API dentro del useEffect
-        fetch(`https://nifytigoserver.onrender.com/nft/users/${}`)
+        fetch(`https://nifytigoserver.onrender.com/nft/users/${idUserActual}`)
             .then(response => response.json())
             .then(data => setNfts(data))
             .catch(error => console.error('Error fetching data:', error));
