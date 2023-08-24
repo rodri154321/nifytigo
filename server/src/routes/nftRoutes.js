@@ -13,16 +13,14 @@ const { getNftHandler,
     getNftTrueIdHandler,
     getNftFalseHandler,
     updateFalseNftHandler,
-    getNftsIdUsers,
-    nftStatusHandler,
-    getNftAdminHandler
+    getNftsIdUsers
 }= require('../handlers/nftHandler')
 
 
 router
 .get('/', getNftHandler)//Muestra todos los NFTS
-.get('/admin', getNftAdminHandler)//Muestra todos los NFTS
-.put('/active/:id', nftStatusHandler)
+
+
 .post('/create/:email', postNftHandler)//Esta ruta crea un NFT 
 .get("/:id", nftbyID)//Esta ruta busca un NFT por Id
 .delete('/delete/:id', deleteNftHandler)//esta ruta elimina un NFT por parametro
@@ -32,4 +30,5 @@ router
 .get('/nfts/true',getNftTrueHandler)//esta ruta muestra todas las NFTS con el parametro "shop:true"
 .get('/nfts/true/:userId',getNftTrueIdHandler)//esta ruta busca los NFTS que tengan la propiedad "shop:true" por id de usuario
 .get('/nfts/false',getNftFalseHandler)//muestra todos los nfts con la propiedad "shop:false"
+.get('/nft/users/:userId',getNftsIdUsers)//Trae los NFTS con la propiedad "shop:false" por id de usuario
 module.exports = router;
