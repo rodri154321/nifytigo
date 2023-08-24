@@ -174,8 +174,8 @@ console.log(userId)
 
   const getNftAdminHandler = async (req, res) => {
     try {
-        const nfts = await allNftadmin();
-        res.status(200).json(nfts)
+        const admin = await allNftadmin();
+        res.status(200).json(admin)
 
     } catch (error) {
         res.status(500).json({ error: error.message })
