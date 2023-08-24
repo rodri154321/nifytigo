@@ -123,6 +123,14 @@ const deleteNft = async (id) => {
 
 const nftStatus = async (id) => {
   const nftStatusId = nfts.findByPk(id)
+  if(nftStatusId.active === true){
+    nftStatusId.active = false
+    await nftStatusId.save()
+  }
+  if(nftStatusId.active === false){
+    nftStatusId.active = true
+    await nftStatusId.save()
+  }
   return nftStatusId;
 }
 

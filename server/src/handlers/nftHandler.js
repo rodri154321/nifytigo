@@ -27,11 +27,11 @@ const nftStatusHandler = async (req, res) => {
     const {id} = req.params;
     try {
         const statusNft = await nftStatus(id)
-        if(!statusNft) {
-            return res.status(400).json({error: "Nft no encontrada"});
-        }
-        statusNft.active = !statusNft.active
-        await statusNft.save();
+        // if(!statusNft) {
+        //     return res.status(400).json({error: "Nft no encontrada"});
+        // }
+        // statusNft.active = !statusNft.active
+        // await statusNft.save();
 
         const messagge = statusNft.active
         ? 'Nft Activada'
