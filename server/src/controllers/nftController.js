@@ -18,7 +18,6 @@ const allNftadmin = async (name) => {
   }],});
 
   
-  if(allNftsDb.shop === false){
   return (
     {
 
@@ -31,12 +30,12 @@ const allNftadmin = async (name) => {
       user: allNftsDb.user.name,
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
-    })}
-    return allNftsDb;
+    })
+    
 };
 
 const allNft = async (name) => {
-  const allNftsDb = await nfts.findAll({where: {active: true}},{include: [{
+  const allNftsDb= await nfts.findAll({include: [{
     model: users,
     attributes: ["name","id"],
   },
@@ -46,8 +45,6 @@ const allNft = async (name) => {
     attributes: ["name"],
     through: { attributes: [] },
   }],});
-
-  
   if(allNftsDb.shop === false){
   return (
     {
@@ -58,8 +55,8 @@ const allNft = async (name) => {
       description: allNftsDb.description,
       image: allNftsDb.image,
       price: allNftsDb.price,
-      user: allNftsDb.user.name,
-      userid: allNftsDb.userid,
+      user:allNftsDb.user.name,
+      userid: allNftsDb.user.id,
       categories: allNftsDb.categories
     })}
   if (name) {

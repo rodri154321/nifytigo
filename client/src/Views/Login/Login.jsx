@@ -37,8 +37,8 @@ const Login = () => {
   }, [loger]);
 
   // Autenticación con Google
-  const clientID =
-    "755672461536-1gjski8fkg6amvkhrjeu79ocu5tl2pv2.apps.googleusercontent.com";
+  const clientID = "1097783639812-uq9r07aq792puaao9vq35npialuc6ute.apps.googleusercontent.com"
+    // "382815966378-j7fpqsigtlqffijmrdc2di4ehsrf9phe.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = async () => {
@@ -72,7 +72,7 @@ const Login = () => {
       ...user,
       [event.target.name]: event.target.value,
     })
-    console.log(event.target.value);;
+    console.log(event.target.value);
 
     setErrors(
       validate({
