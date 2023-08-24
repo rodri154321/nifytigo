@@ -3,24 +3,15 @@ const { users } = require("../db.js");
 const postLoginGoogle = async (email, googleId, name) => {
     console.log("EMAIL", email, "GOOGLEID", googleId, "NAME", name);
 
-    users.findOne({ where: { email: email } })
-  .then(existingUser => {
+    const existingUser = await users.findOne({ where: { email: email } })
     if (existingUser) {
       return existingUser
     } else {
       // El usuario no existe, puedes crearlo
-      users.create({ email: email, name: name, password: googleId, cellPhone: "", country: "",username: "",lastName: "", })
-        .then(newUser => {
-          return newUser
-        })
-        .catch(error => {
-            throw new Error(error , "no se pudo acceder")
-        });
+      const newuser = await users.create({ email: email, name: name, password: googleId, cellPhone: "", country: "",username: "",lastName: "", })
+    return newuser
     }
-  })
-  .catch(error => {
-    throw new Error(error , "no se pudo acceder")
-  });
+  }
 
 
     // try {
