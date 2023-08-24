@@ -10,8 +10,10 @@ const postLoginGoogle = async (email, googleId, name) => {
     if (existingUser !== null) {
         return existingUser
     } else {
+        console.log("entro en el else");
       // El usuario no existe, puedes crearlo
       const newgUser = await users.create({ email: email, name:name, password: googleId, cellPhone: "-", country: "-",username: "-",lastName: "-" })
+      console.log(newgUser);
       return newgUser
     }
 
