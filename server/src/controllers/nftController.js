@@ -13,7 +13,7 @@ const allNftadmin = async () => {
 
 const allNft = async (name) => {
   const nftsQuery = {
-    where: { shop: false },
+    where: { shop: false, active:true },
     include: [
       {
         model: users,
