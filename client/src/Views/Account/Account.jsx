@@ -5,6 +5,7 @@ import "./index.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../Redux/userActions";
+import Swal from "sweetalert2";
 
 const Account = ({ onSubmit }) => {
   const dispatch = useDispatch();
