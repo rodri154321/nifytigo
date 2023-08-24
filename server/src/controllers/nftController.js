@@ -6,9 +6,9 @@ const { nfts, users, categories } = require('../db.js');
 
 
 const allNftadmin = async () => {
-  const allNftsDb = await nfts.findAll();
+  const allNfts = await nfts.findAll();
 
-  return allNftsDb;
+  return allNfts;
 };
 
 const allNft = async (name) => {
