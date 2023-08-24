@@ -3,10 +3,12 @@ import validation from "./validation";
 import "./index.css";
 //import Login from "../Login/Login";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createUser } from "../../Redux/userActions";
 
 const Account = ({ onSubmit }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
     username: "",
@@ -46,10 +48,6 @@ const [errorMessage, setErrorMessage] = useState('');
           timer: 2000,
           background: "#666",
           color: "#FFFFFF",
-        });
-        setUser({
-          email: "",
-          password: "",
         });
         navigate("/Login");
       } catch (error) {
