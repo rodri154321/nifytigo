@@ -18,9 +18,9 @@ const allNftadmin = async (name) => {
   }],});
 
   
+  if(allNftsDb.shop === false){
   return (
     {
-
       id: allNftsDb.id,
       shop: allNftsDb.shop,
       name: allNftsDb.name,
@@ -30,8 +30,18 @@ const allNftadmin = async (name) => {
       user: allNftsDb.user.name,
       userid: allNftsDb.userid,
       categories: allNftsDb.categories
-    })
+    })}
+  if (name) {
     
+    let filterNft = allNftsDb.filter((nft) => 
+      nft.name.toLowerCase().includes(name.toLowerCase()));
+    //validacion para que no devuelva un array u objeto vacio 
+
+    if (!filterNft.length)
+      throw new Error(`No se encontro el Nft con el nombre ${name}`);
+    return filterNft;
+  }
+  return allNftsDb;
 };
 
 const allNft = async (name) => {
@@ -50,7 +60,6 @@ const allNft = async (name) => {
   if(allNftsDb.shop === false){
   return (
     {
-
       id: allNftsDb.id,
       shop: allNftsDb.shop,
       name: allNftsDb.name,
