@@ -18,7 +18,7 @@ const postLoginGoogle = async (email, googleId, name) => {
         });
 
         // Devuelve el nuevo usuario creado o el usuario existente
-        return newuser[0];
+        return newuser;
     } catch (error) {
         console.error("Error al crear/buscar usuario:", error);
         throw error;
