@@ -5,33 +5,10 @@
 const { nfts, users, categories } = require('../db.js');
 
 
-const allNftadmin = async (name) => {
-  const allNftsDb = await nfts.findAll({include: [{
-    model: users,
-    attributes: ["name","id"],
-  },
-  {
-    model: categories,
-    as: 'categories', // Usa el alias definido en el modelo
-    attributes: ["name"],
-    through: { attributes: [] },
-  }],});
+const allNftadmin = async () => {
+  const allNfts = await nfts.findAll();
 
-  
-  return (
-    {
-
-      id: allNftsDb.id,
-      shop: allNftsDb.shop,
-      name: allNftsDb.name,
-      description: allNftsDb.description,
-      image: allNftsDb.image,
-      price: allNftsDb.price,
-      user: allNftsDb.user.name,
-      userid: allNftsDb.userid,
-      categories: allNftsDb.categories
-    })
-    
+  return allNfts;
 };
 
 const allNft = async (name) => {
