@@ -1,4 +1,4 @@
-import "./privacyOfPolicy.modules.css";
+import "./PrivacyOfPolicy.modules.css";
 import { useNavigate } from "react-router-dom";
 
 

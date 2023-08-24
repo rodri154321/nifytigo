@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Bought.css';
 function Kard({ nft }) {
+    
     return (
         <div>
             <div className="card">
