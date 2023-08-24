@@ -383,13 +383,14 @@ a:active {
 
 }
 
-.navlinkCreateNft {
+.Bought {
   text-decoration: none;
   color: #5CE1E6;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  font-weight: bold;
+  cursor: pointer;
+}
+.Owns {
+  text-decoration: none;
+  color: #5CE1E6;
   cursor: pointer;
 }
 
@@ -403,9 +404,7 @@ a:active {
   /* Coloca este elemento en la tercera columna */
 }
 
-.navlinkCreateNft:hover {
-  transform: translate(0%) scale(1.0);
-}
+
 
 .buttonProfile {
   align-items: center;

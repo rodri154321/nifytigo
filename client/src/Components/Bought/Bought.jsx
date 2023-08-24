@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
+import  { useState, useEffect } from 'react';
 import './Bought.css';
-function Kard({ nft }) {
+function Kard({nft} ) {
     
     return (
         <div>
@@ -52,6 +51,7 @@ function Kard({ nft }) {
 function Bought() {
     const [nfts, setNfts] = useState([]);
     const idUserActual = localStorage.getItem("clientId");
+ 
     useEffect(() => {
         // Realizar la llamada a la API dentro del useEffect
         fetch(`https://nifytigoserver.onrender.com/nft/nfts/true/${idUserActual}`)
@@ -62,13 +62,18 @@ function Bought() {
 
     return (
         <div>
-            <ul style={{ display: "flex" }}>
+          
+            <div className='KardC'>
                 {nfts.map(nft => (
-                    <li key={nft.id}>
+                    // eslint-disable-next-line react/jsx-key
+                    <div >
                         <Kard nft={nft} />
-                    </li>
+                    </div>
+                        
+                   
                 ))}
-            </ul>
+            </div> 
+      
         </div>
     );
 }

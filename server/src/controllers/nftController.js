@@ -12,29 +12,44 @@ const allNftadmin = async () => {
 };
 
 const allNft = async (name) => {
-  const allNftsDb= await nfts.findAll( {where: {shop: false, active: true}},{include: [{
-    model: users,
-    attributes: ["name","id"],
-  },
-  {
-    model: categories,
-    as: 'categories', // Usa el alias definido en el modelo
-    attributes: ["name"],
-    through: { attributes: [] },
-  }],});
-  if(allNftsDb.shop === false){
-  return (
-    {
-      id: allNftsDb.id,
-      shop: allNftsDb.shop,
-      name: allNftsDb.name,
-      description: allNftsDb.description,
-      image: allNftsDb.image,
-      price: allNftsDb.price,
-      user:allNftsDb.user.name,
-      userid: allNftsDb.user.id,
-      categories: allNftsDb.categories
-    })}
+  const nftsQuery = {
+    where: { shop: false, active:true },
+    include: [
+      {
+        model: users,
+        attributes: ["name", "id"],
+      },
+    ],
+  };
+
+ 
+
+  const allNftsDb = await nfts.findAll(nftsQuery);
+
+  const nftsWithCategories = await Promise.all(
+    allNftsDb.map(async (nft) => {
+      const categories = await nft.getCategories({
+        attributes: ["name"],
+      });
+
+      const userName = nft.user ? nft.user.name : "Usuario Desconocido";
+      const userId = nft.user ? nft.user.id : "ID Desconocido";
+
+      return {
+        id: nft.id,
+        shop: nft.shop,
+        name: nft.name,
+        description: nft.description,
+        image: nft.image,
+        price: nft.price,
+        customCreatedAt: nft.customCreatedAt,
+        active: nft.active,
+        user: userName,
+        userid: userId,
+        categories: categories.map((category) => category.name),
+      };
+    })
+  );
   if (name) {
     
     let filterNft = allNftsDb.filter((nft) => 
@@ -45,9 +60,8 @@ const allNft = async (name) => {
       throw new Error(`No se encontro el Nft con el nombre ${name}`);
     return filterNft;
   }
-  return allNftsDb;
+  return nftsWithCategories;
 };
-
 
 const createNft = async (iduser, shop ,name, description, image, price, cate) => {
   const customCreatedAt = new Date();
@@ -147,13 +161,13 @@ const putShopNft = async (nftId,userid, price) => {
 
 
 const allNftsTrue = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: true},})
+  const allNftsDb = await nfts.findAll({where:{shop: true, active:true},})
 return allNftsDb
 
 }
 
 const allNftsFalse = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: false}})
+  const allNftsDb = await nfts.findAll({where:{shop: false,active:true}})
 return allNftsDb
 
 }
@@ -161,7 +175,7 @@ return allNftsDb
 
 const allNftsIdTrue = async(userId)=>{
  // const userNft = await nfts.findByPk(userId);
-  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId}})
+  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId,active:true}})
 
 return allNftsDb
 }
@@ -173,7 +187,7 @@ const putFalseShopNft = async (nftId,userid, price) => {
 
       if (nft) {
           // Actualizar el valor de 'shop' a true
-          await nft.update({ shop: false, userId: userid, price:price });
+          await nft.update({ shop: false, userId: userid, price:price,active:true });
 
           // Obtener la información actualizada del NFT
           return await getNftById(nftId);
@@ -186,7 +200,7 @@ const putFalseShopNft = async (nftId,userid, price) => {
 };
 
 const allNftsIdUser = async(userId)=>{
-  const allNftsDb = await nfts.findAll({where:{shop: false,userId: userId}})
+  const allNftsDb = await nfts.findAll({where:{shop: false,userId: userId,active:true}})
 
   return allNftsDb
 }
