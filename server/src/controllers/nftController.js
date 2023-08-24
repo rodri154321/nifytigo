@@ -161,13 +161,13 @@ const putShopNft = async (nftId,userid, price) => {
 
 
 const allNftsTrue = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: true},})
+  const allNftsDb = await nfts.findAll({where:{shop: true, active:true},})
 return allNftsDb
 
 }
 
 const allNftsFalse = async()=>{
-  const allNftsDb = await nfts.findAll({where:{shop: false}})
+  const allNftsDb = await nfts.findAll({where:{shop: false, active:true}})
 return allNftsDb
 
 }
@@ -175,7 +175,7 @@ return allNftsDb
 
 const allNftsIdTrue = async(userId)=>{
  // const userNft = await nfts.findByPk(userId);
-  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId}})
+  const allNftsDb = await nfts.findAll({where:{shop: true, userId: userId, active:true}})
 
 return allNftsDb
 }
