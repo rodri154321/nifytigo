@@ -16,7 +16,8 @@ const { getNftHandler,
     getNftTrueIdHandler,
     getNftFalseHandler,
     updateFalseNftHandler,
-    getNftsIdUsers
+    getNftsIdUsers,
+    getNftAdminHandler
 }= require('../handlers/nftHandler')
 
 
